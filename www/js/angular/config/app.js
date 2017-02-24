@@ -1,5 +1,3 @@
-var myApp = angular.module('myApp', []);
-
 angular.module("routeModule",['ngRoute'])
 .config(function($routeProvider)
 {
@@ -8,6 +6,6 @@ angular.module("routeModule",['ngRoute'])
 		templateUrl:'template/homecontent.html'
 	})
 	.when('/pakage',{
-		templateUrl:'template/homecontent.html'
+		templateUrl:'template/pakage.html'
 	});
 });

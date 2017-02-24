@@ -1,0 +1,277 @@
+<!doctype html>
+
+<html>
+
+
+<!-- Mirrored from manage.staticking.net/index.php/pages/login by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2017 05:54:17 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+
+<meta charset="utf-8">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>StaticKing SMS Gateway</title>
+
+<link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+
+<link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+
+<link rel="stylesheet" href="css/animate.css" type="text/css">
+
+<link rel="stylesheet" href="css/waves.css" type="text/css">
+
+<link rel="stylesheet" href="css/layout.css" type="text/css">
+
+<link rel="stylesheet" href="css/components.css" type="text/css">
+
+<link rel="stylesheet" href="css/plugins.css" type="text/css">
+
+<link rel="stylesheet" href="css/common-styles.css" type="text/css">
+
+<link rel="stylesheet" href="css/pages.css" type="text/css">
+
+<link rel="stylesheet" href="css/responsive.css" type="text/css">
+
+<link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
+
+<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
+
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
+
+<link rel="shortcut icon" href="images/" type="image/x-icon">
+<link href="css/my-csse256.css?1487915659" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body class="body-background" style="background:url(images/Softwares.jpg)">
+
+<div class="body-background">
+<div class="container">
+<div class="col-md-8"></div>
+
+<div class="col-md-4">
+<div class="login-formme">
+
+<div class="row">
+
+<div class="col-md-12"><img src="images/log.jpg" class="img-responsive" /></div>
+<div class="col-md-12 login-page-ma login-text">Log In</div>
+
+<form id="loginform">
+<div class="col-md-12 login-page-ma">
+
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-user pass-text"></i></span>
+<input type="text" class="form-control"  placeholder="Username" name="username" id="username" required>
+</div>
+
+
+
+
+
+
+</div>
+
+<div class="col-md-12 login-page-ma">
+
+
+<div class="input-group">
+<span class="input-group-addon"><i class="fa fa-lock pass-text"></i></span>
+<input type="password" class="form-control" name="password" id="inputPassword" placeholder="Password" required>
+</div>
+
+
+
+</div>
+
+<div class="col-md-12 socil-link"><button class="btn btn-primarya btn-block btn-signin" id="yuoji" name="submit" type="submit">Sign In</button></div>
+<span id="msgstatus" style="font-size:15px;"></span>
+</form>
+<div class="col-md-12">
+
+<div class="row">
+<div class="col-md-6 forgot-pas"><a href="forgotpassword.html" class="forgot-pass-link">Forgot password?</a></div>
+<div class="col-md-6 join-link">Not a member? <a href="registration.html">Join now</a></div>
+</div>
+
+</div>
+
+<div class="col-md-12 forgot-pas">
+<div class="divi-new"><span>OR</span></div>
+
+</div>
+
+<div class="col-md-12 socil-link">
+<div class="row">
+<div class="col-md-6"><a href="https://www.facebook.com/dialog/oauth?client_id=1481547032078075&amp;redirect_uri=http%3A%2F%2Fmanage.staticking.net%2Findex.php%2Fpages%2Flogin&amp;state=7ca43f9d5448dea0ce675da84e411ee3&amp;sdk=php-sdk-3.2.3&amp;scope=email"><img src="images/facebook-icon-login.png" width="100%" class="img-responsive"/></a></div>
+<div class="col-md-6 imag"><a href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;redirect_uri=http%3A%2F%2Fmanage.staticking.net%2Findex.php%2Fpages%2Flogin&amp;client_id=95225454408-ouikghqqv3ggs7oggm1bgba8kesiqdm1.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;access_type=online&amp;approval_prompt=auto"><img src="images/google-icon-login.png" width="138" height="41" /></a></div>
+</div>
+
+</div>
+
+
+
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+<script src="js/jquery-1.11.2.min.js"></script>
+
+<script src="js/jquery-migrate-1.2.1.min.js"></script>
+
+    
+
+    <script type="text/javascript">
+
+    jQuery(document).ready(function()
+
+{
+
+	
+
+jQuery("#loginform").on('submit',function(ev)
+{		
+ev.preventDefault();
+username=jQuery("#username").val();
+password=jQuery("#inputPassword").val();
+
+if(username=='')
+
+{
+
+	jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Enter Username");
+
+}
+
+else
+
+{
+
+	if(password=='')
+
+	{
+
+		jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Enter Password");
+
+	}
+
+	else
+	{
+
+		window.localStorage.setItem("loggedIn", 1);
+					window.location.href ="index.html";
+
+		jQuery.ajax({
+				
+				type:'GET',
+               
+				url:'http://manage.staticking.net/index.php/pages/loginuserid',
+				headers: {
+					  'MyCustomHeader': 'important information'
+				  },
+				  xhrFields: {
+					  withCredentials: true
+				  },
+
+				data:jQuery("#loginform").serialize(),
+				
+
+				beforeSend:function()
+				{
+
+					jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Wait....");
+
+				},
+
+				success:function(data)
+
+				{
+                      alert(data)
+					window.localStorage.setItem("loggedIn", 1);
+					window.location.href ="index.html";
+
+				}
+
+				
+
+			
+
+		});
+
+		
+
+		
+
+	}
+
+	
+
+}
+
+	
+
+	});
+
+});
+
+    
+
+    
+
+    </script>
+
+    
+
+    <script src="js/jRespond.min.js"></script>
+
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/nav-accordion.js"></script>
+
+    <script src="js/hoverintent.js"></script>
+
+    <script src="js/waves.js"></script>
+
+    <script src="js/switchery.js"></script>
+
+    <script src="js/jquery.loadmask.js"></script>
+
+    <script src="js/icheck.js"></script>
+
+    <script src="js/bootbox.js"></script>
+
+    <script src="js/animation.js"></script>
+
+    <script src="js/colorpicker.js"></script>
+
+    <script src="js/bootstrap-datepicker.js"></script>
+
+    <script src="js/floatlabels.js"></script>
+
+	
+
+    <script src="js/smart-resize.js"></script>
+
+    <script src="js/layout.init.js"></script>
+
+    <script src="js/matmix.init.js"></script>
+
+    <script src="js/retina.min.js"></script>
+
+
+</body>
+
+<!-- Mirrored from manage.staticking.net/index.php/pages/login by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2017 05:54:48 GMT -->
+</html>

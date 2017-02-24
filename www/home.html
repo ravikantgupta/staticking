@@ -1,0 +1,1634 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>StaticKing SMS Gateway</title>
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/waves.css" type="text/css">
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/components.css" type="text/css">
+    <link rel="stylesheet" href="css/plugins.css" type="text/css">
+    <link rel="stylesheet" href="css/common-styles.css" type="text/css">
+    <link rel="stylesheet" href="css/pages.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
+    
+     
+    
+    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    
+   
+    <script type="text/javascript" src="cordova.js"></script>
+</head>
+
+<body>
+<div id="scrpadd">
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+</div>
+<script type="text/javascript">
+      // Load the Google Transliteration API
+      google.load("elements", "1", {
+            packages: "transliteration"
+          });
+
+      function onLoaddisable() {
+          var options = {
+            sourceLanguage: 'en',
+            destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+            shortcutKey: 'ctrl+g',
+            transliterationEnabled: false
+          };
+          // Create an instance on TransliterationControl with the required
+          // options.
+          var control =
+              new google.elements.transliteration.TransliterationControl(options);
+
+          // Enable transliteration in the textfields with the given ids.
+          var ids = [ "smscontent"];
+          //control.disableTransliteration(ids);
+        }
+        function onLoad() {
+            var options = {
+              sourceLanguage: 'en',
+              destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+              shortcutKey: 'ctrl+g',
+              transliterationEnabled: false
+            };
+
+            // Create an instance on TransliterationControl with the required
+            // options.
+            var control =
+                new google.elements.transliteration.TransliterationControl(options);
+
+            // Enable transliteration in the textfields with the given ids.
+            var ids = [ "smscontent"];
+            control.makeTransliteratable(ids);
+
+            // Show the transliteration control which can be used to toggle between
+            // English and Hindi and also choose other destination language.
+            control.showControl('translControl');
+          }
+        google.setOnLoadCallback(onLoad);
+	</script>
+
+
+<div class="page-container list-menu-view">
+
+    <!--Leftbar Start Here -->
+
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<div class="left-aside desktop-view">
+
+        <div class="aside-branding">
+
+     
+            <a href="http://manage.staticking.net/index.php" class="large-logo">
+			<img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
+
+            </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
+
+            <span class="aside-close waves-effect"><i class="fa fa-times"></i></span>
+
+        </div>
+
+        
+
+    <input type="text" id="filtersearch" class="form-control" placeholder="Search Page">        
+
+        <div class="left-navigation">
+
+            <ul class="list-accordion">
+
+                
+
+                <li><a href="home.html" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
+
+                </li>
+
+                 
+                
+
+               <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-comments"></i></span><span class="nav-label">SMS</span></a>
+
+                    <ul>
+
+                        <li><a href="http://manage.staticking.net/index.php/sms/composesms">Compose SMS</a>
+
+                        </li>
+
+                        <li><a href="http://manage.staticking.net/index.php/sms/allsentsms">All Sent Sms</a>
+
+                        </li>
+
+                        <li><a href="http://manage.staticking.net/index.php/sms/schedule">Schedule Sms</a>
+
+                        </li>
+                         
+                       <li><a href="http://manage.staticking.net/index.php/sms/dynamicsms">Dynamic Sms</a>
+
+                        </li>
+
+                        
+
+                        
+
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
+
+                    <ul>
+                    
+                    	<li><a href="http://manage.staticking.net/index.php/sms/uploadvoicefile">Upload Voice File</a>
+
+                        </li>
+                        <li><a href="http://manage.staticking.net/index.php/sms/mysounds">View Voice Files</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/sms/voicesms">Compose Voice SMS</a>
+
+                        </li>
+
+                        <li><a href="http://manage.staticking.net/index.php/sms/allvoicesentsms">All Sent Voice Sms</a>
+
+                        </li>
+                        
+                                                 <li><a href="http://manage.staticking.net/index.php/pages/voicespecialprice">Add Voice Special Price</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/pages/voicespecialpricelist">View Voice Special Price</a>
+
+                        </li>
+                                                
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-phone"></i></span><span class="nav-label">Miss Call Alerts</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="http://manage.staticking.net/index.php/pages/viewmisscall">View Miss Call Alerts</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-th"></i></span><span class="nav-label">Short/Long Code</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="http://manage.staticking.net/index.php/pages/viewlongcode">View Short/Long Code</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+                
+                
+               
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-facebook-official"></i></span><span class="nav-label">Social Media</span></a>
+
+                    <ul>        
+                         
+                        
+                                                 <li><a href="http://manage.staticking.net/index.php/social/addpackage">Add Package</a></li>
+                        <li><a href="http://manage.staticking.net/index.php/social/viewpackage">View Package</a></li>
+                                                <li><a href="http://manage.staticking.net/index.php/social/placeorder">Place Order</a></li>
+                        <li><a href="http://manage.staticking.net/index.php/social/vieworder">View Order</a></li>
+                        <li><a href="http://manage.staticking.net/index.php/social/socialpricing">Social Pricing</a></li>
+
+                        
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-android"></i></span><span class="nav-label">Android App Installation</span></a>
+
+                    <ul>
+
+                        <li><a href="http://manage.staticking.net/index.php/andriodapp/add">Place Order</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/andriodapp/viewcampaign">View Order</a>
+
+                        </li>
+                                                <li><a href="http://manage.staticking.net/index.php/andriodapp/pricing">Pricing</a>
+
+                        </li>
+                        
+                       
+                    </ul>
+
+                </li>
+
+
+                
+                
+                
+                
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-file"></i></span><span class="nav-label">Others</span></a>
+
+                    <ul>
+
+                        <li><a href="http://manage.staticking.net/index.php/sms/smstemplate">Add Template</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/sms/viewsmstemplate">View Templates</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/sms/newgroup">Add Group</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/sms/viewgroup">View Group</a>
+
+                        </li>
+                    </ul>
+
+                </li>
+
+				 
+                
+                
+                
+
+                
+
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-user"></i></span><span class="nav-label">Users</span></a>
+
+                    <ul>
+
+                        <li><a href="http://manage.staticking.net/index.php/pages/addusers">Add Users</a>
+
+                        </li>
+
+                        <li><a href="http://manage.staticking.net/index.php/pages/viewusers">View Users</a>
+
+                        </li>
+
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                 
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-users"></i></span><span class="nav-label">Reseller</span></a>
+
+                    <ul>
+
+                        <li><a href="http://manage.staticking.net/index.php/pages/addresellers">Add Reseller</a>
+
+                        </li>
+
+                        <li><a href="http://manage.staticking.net/index.php/pages/viewreseller">View Reseller</a>
+
+                        </li>
+                                                 <li><a href="http://manage.staticking.net/index.php/pages/usersmpp">Add Your Smpp</a>
+
+                        </li>
+						                        
+
+                    </ul>
+
+                </li>
+
+                                
+                 
+               
+
+                
+
+                
+
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-cogs"></i></span><span class="nav-label">Settings</span></a>
+
+                    <ul>
+
+						                         <li><a href="http://manage.staticking.net/index.php/pages/viewusersmpp">Client Smpp</a>
+
+                        </li> 
+                                                
+						
+                        <li><a href="http://manage.staticking.net/index.php/settings/changeusertype">Change User Type</a>
+
+                        </li>
+							
+                            
+                         
+
+                    							
+                        <li><a href="http://manage.staticking.net/index.php/settings/transfercredits">Transfer Credits</a></li>
+
+                                                
+                        
+                        
+                        
+                                                
+                        
+                        
+                        
+
+                         <li><a href="http://manage.staticking.net/index.php/settings/transsactionin">Transactions In</a>
+
+                        </li>
+
+
+
+                        <li><a href="http://manage.staticking.net/index.php/settings/transsactionout">Transactions Out</a>
+
+                        </li>
+
+                        <li><a href="http://manage.staticking.net/index.php/pages/myshorturls">My Short Urls</a>
+
+                        </li>
+
+						<li><a href="http://manage.staticking.net/index.php/settings/smsapi">HTTP API</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/bulksmsapi">Bulk SMS API</a>
+
+                        </li>
+
+                        <li><a href="http://manage.staticking.net/index.php/settings/xmlapi">XML API</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/creditapi">Credits API</a>
+
+                        </li>
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/deliveryapi">Delivery API</a>
+
+                        </li>
+                        
+                        
+
+                                                
+                        
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/allsenderids">View Sender IDs</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/actualcredits">View Actual Credits</a>
+
+                        </li>
+
+                        
+
+						                        
+                                                 <li><a href="http://manage.staticking.net/index.php/settings/notifications">Send Notifications</a>
+
+                        </li>
+                                                 
+
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/deliverycutting">Delivery Cutting</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/deliveryusers">Delivery Cutting Users List</a>
+
+                        </li>
+
+                                                  
+                         
+                         
+                        <li><a href="http://manage.staticking.net/index.php/settings/website">Website Settings</a>
+
+                        </li>
+						
+                                                  <li><a href="http://manage.staticking.net/index.php/settings/checkdnd">Check DND Number</a>
+                         <li><a href="http://manage.staticking.net/index.php/settings/blocknumber">Block Number</a>
+
+                        </li>
+                        
+                                                                        <li><a href="http://manage.staticking.net/index.php/settings/mysmpptransactions">My Transactions</a></li>
+                        <li><a href="http://manage.staticking.net/index.php/settings/smppmycredits">Available Credits</a></li>
+												
+                        
+
+                    </ul>
+
+                </li>
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+                
+
+               
+
+               
+
+            </ul>
+
+        </div>
+
+    </div>
+     <!--Leftbar End Here -->
+
+        <div class="page-content">
+
+        <!--Topbar Start Here -->
+
+         
+<header class="top-bar">
+
+            <div class="container-fluid top-nav">
+
+                <div class="search-form search-bar">
+
+                    
+
+                    <span class="search-close waves-effect"><i class="ico-cross"></i></span>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+
+                        <div class="clearfix top-bar-action">
+
+                            <span class="leftbar-action-mobile waves-effect"><i class="fa fa-bars "></i></span>
+
+                            <span class="leftbar-action desktop waves-effect"><i class="fa fa-bars "></i></span>
+
+						
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+
+					                    
+                                        <div class="col-md-4 responsive-fix top-mid">
+
+                        <div class="notification-nav">
+
+                            <ul class="clearfix">
+                        
+                        <li class="dropdown whenuserread" >
+                        
+                        <a href="#"  data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i>
+                                                </a>
+                        
+                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp noty-lists hide-small-device">
+                                <div class="notification-wrap">
+                                    <h4>You have 0 new notifications</h4>
+                                    <ul>
+                                    	                                        <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Please don't use @ symbol  in between the content on transactional 2 route.. we ware working on it. will fix it asap. thanks.
+ <span class="notification-time clearfix">2017-02-20 13:18:51  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">promosid route is under maintenance due to some errors. We are working on the issue and fix it asap. <span class="notification-time clearfix">2017-02-17 14:10:35  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Transactional 2 route is under maintenance, so messages will delivered with delay... sorry for the inconvenience. thanks. <span class="notification-time clearfix">2017-02-04 13:28:44  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Wishing You a very Happy Republic Day 
+--
+System Admin <span class="notification-time clearfix">2017-01-26 10:51:14  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Dear Team,
+
+Route: Transactional Route
+With further efforts to optimize our SMPP platform performance and scalability, we are making updates to our servers, which may affect services to the customers.
+The maintenance will be performed on January 25th duri <span class="notification-time clearfix">2017-01-25 14:25:04  </span></span></a>
+                                        </li>
+                                                                            </ul>
+                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="http://manage.staticking.net/index.php/settings/usernotifications"><span>View All</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        
+                                            </ul>
+
+                        </div>
+
+                       
+
+                    </div>
+
+                   	
+					
+                    <div class="col-md-6 responsive-fix">
+
+                        <div class="top-aside-right">
+								
+                              
+                            <div class="user-nav">
+
+                                <ul>
+
+                                    <li class="dropdown">
+
+                                        <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
+
+                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+
+                                            <span class="user-thumb" style="background:#15BDC3;" >
+                                            
+                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                            
+                                                                                        
+                                            
+                                            
+                                            </span>
+
+                                        </a>
+
+                                        <ul role="menu" class="dropdown-menu fadeInUp">
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/userprofile"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+
+                                            </li>
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/logout"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+							
+                                                        
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+        <!--Topbar End Here -->
+
+
+
+
+
+
+<div class="main-containera">
+
+			<div class="container-fluid">
+
+				<div class="page-breadcrumb">
+
+					<div class="row">
+
+						<div class="col-md-7">
+
+							<div class="page-breadcrumb-wrap">
+
+								<div class="page-breadcrumb-info">
+
+									<h2 class="breadcrumb-titles">Welcome Demo </h2>
+
+									
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div class="col-md-5">
+
+						</div>
+
+					</div>
+
+				</div>
+
+				<div style="padding:10px !important; border:solid 1px #ddd; background:#fff !important;">
+                <div class="row">
+
+					<div class="col-md-4 col-sm-6">
+
+						<div class="panel panel" style="background:#9CF;">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >2062</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >0</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="primary" style="background:#069;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">PROMOTIONAL (P) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel" style="background:#02DAC5;">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >10</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >0</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="primary" style="background:#135E57;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">PROMOTIONAL 1 (P1) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel-info">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >32</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >3</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="info" style="background:#0064C7;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">PROMOTIONAL SENDER ID (PSI) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+
+					<div class="col-md-4 col-sm-6">
+
+						<div class="panel panel-danger">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >3</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >0</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="danger" style="background:#C36;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">TRANSACTIONAL (T) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel-danger">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >9</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >49</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="danger" style="background:#C36;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">TRANSACTIONAL 2 (T2) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel-warning">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >10</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >0</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="warning" style="background:#EA9E06;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">PROMOTIONAL API  (PA) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel-success">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >10</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >0</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="success" style="background:#096;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">PROMOTIONAL S.ID API  (PSA) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel" style="background:#C9C;">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >10</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >0</div>
+                                    </div>
+																	</div>
+                                
+                               
+
+							</div>
+                             <div class="primary" style="background:#96C;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">TRANSACTIONAL API  (TA) </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    
+                    <div class="col-md-4 col-sm-6">
+						
+						<div class="panel panel" style="background:#FC9;">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;color:F90;" >Rs. 0</div>
+                                    </div>
+                                    
+
+								</div>
+                                
+                               
+
+							</div>
+                             <div class="primary" style="background:#F7830F;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">VOICE CALL  </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+
+					</div>
+                    
+                    
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel warning">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;" >Rs. 0</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;" >Rs. 0</div>
+                                    </div>
+                                    
+								</div>
+                                
+                               
+
+							</div>
+                            </div>
+                            
+                            
+                             <div class="warning" style="margin-top: -21px;">
+                             <div class="panel-heading" style="background:#096;">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="font-size:15px;">SOCIAL MEDIA </span>
+                               </div>
+                               </div> 
+                               </div>
+
+							
+
+						</div>
+
+					
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel" style="background:#FC9;">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;color:F90;" >0</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;color:F90;" >0</div>
+                                    </div>
+                                    
+								</div>
+                                
+                               
+
+							</div>
+                             <div class="primary" style="background:#F7830F;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;">BULK EMAIL  </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+				
+                
+               
+                
+					</div>
+                    <div class="col-md-4 col-sm-6">
+
+						<div class="panel panel primary" style="background:#FFAC99;">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-android fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;color:#F7240F;" >0</div>
+                                    </div>
+                                    
+
+								</div>
+                                
+                               
+
+							</div>
+                             <div class="primary" style="background:#F7240F;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;"> ANDROID APP INSTALLATION  </span>
+                                </div>
+                               </div> 
+                                </div>
+</div>
+							
+
+						</div>
+                
+                    </div>
+</div>
+                    <div class="row" style="padding:10px !important; background:#fff !important;max-width: 100% !important;
+    margin-left: -1px !important; ">
+                    <div class="col-md-4 col-sm-6" style="margin-left: -11px;">
+
+						<div class="panel panel primary" style="background:#FFAC99;">
+
+							<div class="panel-heading">
+                            
+                            <div class="row">
+
+								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+
+								
+									<div class="col-xs-9 text-right">
+                                    <div style="font-size: 23px;color:#F7240F;" >0</div>
+                                    </div>
+                                                                        <div class="col-xs-9 text-right">
+                                    <div style="font-size: 15px;color:F90;" >0</div>
+                                    </div>
+                                                                        
+
+								</div>
+                                
+                               
+
+							</div>
+                             <div class="primary" style="background:#F7240F;">
+                             <div class="panel-heading">
+                             <div class="row" style="height:18px;margin-left:2px;">
+                                <span style="color:white;font-size:15px;"> INTERNATIONAL </span>
+                                </div>
+                               </div> 
+                                </div>
+
+							
+
+						</div>
+                </div>
+                    </div>
+                    
+
+                    </div>
+                    
+
+
+                   
+                    
+
+					
+                    </div>
+                    
+                    
+                    
+                    
+                     
+                    
+                    </div>
+                    
+                    
+				<div class="top-stat-box">
+
+					
+
+				</div>
+
+				
+
+				
+
+				
+
+            
+
+			</div>
+
+		</div>
+
+   
+<footer class="footer-container">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-left">
+
+                                
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-right">
+
+                               
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+
+<div class="right-aside">
+
+    <div class="aside-branding">
+
+        <div class="aside-tab">
+
+            <ul class="nav nav-tabs pull-left">
+
+                <li class="active"><a href="#coversetaion"  data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+
+                </li>
+
+                <li><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+
+                </li>
+               <!-- <li><a href="#notifications" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Notifications" class="waves-effect aside-notifications"><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
+
+                </li>-->
+
+            </ul>
+
+        </div>
+
+        <span class="rightbar-action waves-effect"><i class="fa fa-times"></i></span>
+
+    </div>
+
+    <div class="aside-tab-wigets">
+
+    <div class="tab-content">
+
+    <div class="tab-pane active" id="coversetaion">
+
+        
+
+        <div class="block-content chat-user-list">
+
+            <span class="piechart"></span>
+			
+            <h3 class="clearfix"><br /><span class="pull-left">Credits</span><span class="pull-right online-counter"></span></h3>
+
+            <ul class="chat-list">
+				
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">2062</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional 1<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+                
+              
+				
+                 <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">32</span>
+
+                </li>
+    
+				
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">3</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">9</span>
+
+                </li>
+                
+               
+				
+ 
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info"> API Promotional  (PA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+				
+                
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info"> API Promo Sender ID  (PSA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+                
+				
+                
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info"> API Transactional  (TA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+				
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Voice Sms<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Android App Installation<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+				
+
+
+            </ul>
+
+            
+
+            
+
+        </div>
+
+    </div>
+	    <div class="tab-pane" id="server-stats">
+
+        <div class="block-content chat-user-list">
+
+            <span class="piechart"></span>
+			
+            <h3 class="clearfix"><br /><span class="pull-left">Actual Credits</span><span class="pull-right online-counter"></span></h3>
+
+            <ul class="chat-list">
+				
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional1<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+               
+				
+                 <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">3</span>
+
+                </li>
+                
+               
+                
+				
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">49</span>
+
+                </li>
+                
+                
+				
+               
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+				
+                
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">API Promo Sender ID (PSA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+				
+               
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">API Transactional (TA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+				
+               
+                
+               
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+				
+
+            </ul>
+
+            
+
+            
+
+        </div>
+
+    </div>
+
+    
+    </div>
+
+    </div>
+
+ 
+
+    </div>
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>   
+
+<style type="text/css">
+    
+ .navbgr
+ {
+    background: red;
+ }   
+</style>
+
+
+
+<script src="js/jquery-1.11.2.min.js"></script>
+
+ 
+
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jRespond.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/nav-accordion.js"></script>
+    <script src="js/hoverintent.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/switchery.js"></script>
+    <script src="js/jquery.loadmask.js"></script>
+    <script src="js/icheck.js"></script>
+    <script src="js/select2.js"></script>
+    <script src="js/bootstrap-filestyle.js"></script>
+    <script src="js/bootbox.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/colorpicker.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/calendar/fullcalendar.js"></script>
+    
+    <!--CHARTS-->
+    <script src="js/chart/sparkline/jquery.sparkline.js"></script>
+    <script src="js/chart/easypie/jquery.easypiechart.min.js"></script>
+    <script src="js/chart/flot/excanvas.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.min.js"></script>
+    <script src="js/chart/flot/curvedLines.js"></script>
+    <script src="js/chart/flot/jquery.flot.time.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.stack.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.axislabels.js"></script>
+    <script src="js/chart/flot/jquery.flot.resize.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.spline.js"></script>
+    <script src="js/chart/flot/jquery.flot.pie.min.js"></script>
+    <script src="js/chart.init.js"></script>
+    <script src="js/smart-resize.js"></script>
+    <script src="js/layout.init.js"></script>
+    <script src="js/matmix.init.js"></script>
+    <script src="js/retina.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/summernote.min.js"></script>
+    <script src="js/jquery.simple-dtpicker.js"></script>
+
+	<script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+        $(".whenuserread").on('click',function()
+		{
+			
+			$.get('http://manage.staticking.net/index.php/settings/notiread?notiread=yes',function(data)
+			{
+				if(data=='success')
+				{
+					$(".notitotalh").hide();
+				}
+			});
+		});
+    });
+	</script>
+    
+    <script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+		
+		$("#accountmanager").hover(function()
+		{
+			$("#accountmanagerdiv").show();
+		});
+		
+		$(document).on('click',function()
+		{
+			$("#accountmanagerdiv").hide();
+		});
+		
+		
+	});
+
+function capitalizeFirstLetter(string) {
+    return string[0].toUpperCase() + string.slice(1);
+}
+
+
+$('#filtersearch').keyup(function(){
+
+    var that = this, $allListElements = $('.list-accordion > li, .dcjq-parent-li > ul > li');
+
+    var $matchingListElements = $allListElements.filter(function(i, li){
+        var listItemText = $(li).text().toUpperCase(), 
+            searchText = that.value.toUpperCase();
+        return ~listItemText.indexOf(searchText);
+    });    
+    $allListElements.hide();
+    $matchingListElements.show();
+    
+    $(".dcjq-parent-li > ul").show();
+    
+    if($.trim($('#filtersearch').val())=='')
+    {
+        $(".dcjq-parent-li > ul").hide();
+    }
+});
+
+
+	</script>
+
+
+
+
+</body>
+
+
+
+</html>
+
+
+
+          
+

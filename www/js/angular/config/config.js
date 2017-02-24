@@ -1,0 +1,1 @@
+angular.module('StaticKing',['routeModule','ControllerModule','ServiceModule']);
