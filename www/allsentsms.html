@@ -1,0 +1,2223 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>StaticKing SMS Gateway</title>
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/waves.css" type="text/css">
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/components.css" type="text/css">
+    <link rel="stylesheet" href="css/plugins.css" type="text/css">
+    <link rel="stylesheet" href="css/common-styles.css" type="text/css">
+    <link rel="stylesheet" href="css/pages.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
+    
+     
+    
+    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    
+   
+    
+</head>
+
+<body>
+<div id="scrpadd">
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+</div>
+<script type="text/javascript">
+      // Load the Google Transliteration API
+      google.load("elements", "1", {
+            packages: "transliteration"
+          });
+
+      function onLoaddisable() {
+          var options = {
+            sourceLanguage: 'en',
+            destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+            shortcutKey: 'ctrl+g',
+            transliterationEnabled: false
+          };
+          // Create an instance on TransliterationControl with the required
+          // options.
+          var control =
+              new google.elements.transliteration.TransliterationControl(options);
+
+          // Enable transliteration in the textfields with the given ids.
+          var ids = [ "smscontent"];
+          //control.disableTransliteration(ids);
+        }
+        function onLoad() {
+            var options = {
+              sourceLanguage: 'en',
+              destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+              shortcutKey: 'ctrl+g',
+              transliterationEnabled: false
+            };
+
+            // Create an instance on TransliterationControl with the required
+            // options.
+            var control =
+                new google.elements.transliteration.TransliterationControl(options);
+
+            // Enable transliteration in the textfields with the given ids.
+            var ids = [ "smscontent"];
+            control.makeTransliteratable(ids);
+
+            // Show the transliteration control which can be used to toggle between
+            // English and Hindi and also choose other destination language.
+            control.showControl('translControl');
+          }
+        google.setOnLoadCallback(onLoad);
+	</script><link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
+<style>
+.scrollbar
+{
+	margin-left: 30px;
+	float: left;
+	height: 300px;
+	width: 65px;
+	background: #F5F5F5;
+	overflow-y: scroll;
+	margin-bottom: 25px;
+}
+#style-3::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+	height:2px;
+}
+
+#style-3::-webkit-scrollbar
+{
+	width: 6px;
+	background-color: #F5F5F5;
+	height:2px;
+}
+
+#style-3::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	height:2px;
+}
+</style>
+
+
+<style>
+
+#faceoff {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+#preloader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #2B8B90;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    z-index: 1001;
+}
+
+#preloader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #356F66;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+#preloader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #92E0D4;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+@-webkit-keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+@keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+
+#faceoff .preloader-section {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+	opacity:0.4;
+    z-index: 1000;
+    -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: translateX(0);  /* IE 9 */
+    transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
+}
+
+/* Loaded */
+.loaded #faceoff .preloader-section {
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
+            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.loaded #preloader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+}
+.loaded #faceoff {
+    visibility: hidden;
+
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.3s 1s ease-out;
+            transition: all 0.3s 1s ease-out;
+}
+
+</style>
+
+
+
+
+<div id="faceoff" style="display: none;">
+        <div id="preloader"></div>
+        <div class="preloader-section"></div>
+      </div>
+
+<div class="page-container list-menu-view">
+    <!--Leftbar Start Here -->
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<div class="left-aside desktop-view">
+
+        <div class="aside-branding">
+
+     
+            <a href="http://manage.staticking.net/index.php" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
+
+            </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
+
+            <span class="aside-close waves-effect"><i class="fa fa-times"></i></span>
+
+        </div>
+
+        
+
+    <input type="text" id="filtersearch" class="form-control" placeholder="Search Page">        
+
+        <div class="left-navigation">
+
+           <ul class="list-accordion">
+
+                
+
+                <li><a href="index.html" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
+
+                </li>
+
+                 
+                
+
+               <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-comments"></i></span><span class="nav-label">SMS</span></a>
+
+                    <ul>
+
+                        <li><a href="composesms.html">Compose SMS</a>
+
+                        </li>
+
+                        <li><a href="allsentsms.html">All Sent Sms</a>
+
+                        </li>
+
+                        <li><a href="schedule.html">Schedule Sms</a>
+
+                        </li>
+                         
+                       <li><a href="dynamicsms.html">Dynamic Sms</a>
+
+                        </li>
+
+                        
+
+                        
+
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
+
+                    <ul>
+                    
+                    	<li><a href="uploadvoicefile.html">Upload Voice File</a>
+
+                        </li>
+                        <li><a href="mysounds.html">View Voice Files</a>
+
+                        </li>
+                        
+                        <li><a href="voicesms.html">Compose Voice SMS</a>
+
+                        </li>
+
+                        <li><a href="allvoicesentsms.html">All Sent Voice Sms</a>
+
+                        </li>
+                        
+                          <li><a href="voicespecialprice.html">Add Voice Special Price</a>
+
+                        </li>
+                        
+                        <li><a href="voicespecialpricelist.html">View Voice Special Price</a>
+
+                        </li>
+                                                
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-phone"></i></span><span class="nav-label">Miss Call Alerts</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="viewmisscall.html">View Miss Call Alerts</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-th"></i></span><span class="nav-label">Short/Long Code</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="viewlongcode.html">View Short/Long Code</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+                
+                
+               
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-facebook-official"></i></span><span class="nav-label">Social Media</span></a>
+
+                    <ul>        
+                        <li><a href="addpackage.html">Add Package</a></li>
+                        <li><a href="viewpackage.html">View Package</a></li>
+                       <li><a href="placeorder.html">Place Order</a></li>
+                        <li><a href="vieworder.html">View Order</a></li>
+                        <li><a href="socialpricing.html">Social Pricing</a></li>
+                       
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-android"></i></span><span class="nav-label">Android App Installation</span></a>
+
+                    <ul>
+
+                        <li><a href="add.html">Place Order</a>
+
+                        </li>
+                        
+                        <li><a href="viewcampaign.html">View Order</a>
+
+                        </li>
+                          <li><a href="pricing.html">Pricing</a>
+
+                        </li>
+                        
+                       
+                    </ul>
+
+                </li>
+
+
+                
+                
+                
+                
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-file"></i></span><span class="nav-label">Others</span></a>
+
+                    <ul>
+
+                        <li><a href="smstemplate.html">Add Template</a>
+
+                        </li>
+                        
+                        <li><a href="viewsmstemplate.html">View Templates</a>
+
+                        </li>
+                        
+                        <li><a href="newgroup.html">Add Group</a>
+
+                        </li>
+                        
+                        <li><a href="viewgroup.html">View Group</a>
+
+                        </li>
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-user"></i></span><span class="nav-label">Users</span></a>
+
+                    <ul>
+
+                        <li><a href="addusers.html">Add Users</a>
+
+                        </li>
+
+                        <li><a href="viewusers.html">View Users</a>
+
+                        </li>
+
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                 
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-users"></i></span><span class="nav-label">Reseller</span></a>
+
+                    <ul>
+
+                        <li><a href="addresellers.html">Add Reseller</a>
+
+                        </li>
+
+                        <li><a href="viewreseller.html">View Reseller</a>
+
+                        </li>
+                        <li><a href="usersmpp.html">Add Your Smpp</a>
+
+                        </li>
+						                        
+
+                    </ul>
+
+                </li>
+
+                                
+                 
+               
+
+                
+
+                
+
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-cogs"></i></span><span class="nav-label">Settings</span></a>
+
+                    <ul>
+
+						 <li><a href="viewusersmpp.html">Client Smpp</a>
+
+                        </li> 
+                                                
+						
+                        <li><a href="changeusertype.html">Change User Type</a>
+
+                        </li>
+							
+                            
+                         
+
+                    							
+                        <li><a href="transfercredits.html">Transfer Credits</a></li>
+
+                                                
+                        
+                        
+                        
+                                                
+                        
+                        
+                        
+
+                         <li><a href="transsactionin.html">Transactions In</a>
+
+                        </li>
+
+
+
+                        <li><a href="transsactionou.html">Transactions Out</a>
+
+                        </li>
+
+                        <li><a href="myshorturls.html">My Short Urls</a>
+
+                        </li>
+
+						<li><a href="smsapi.html">HTTP API</a>
+
+                        </li>
+                        
+                        <li><a href="bulksmsapi.html">Bulk SMS API</a>
+
+                        </li>
+
+                        <li><a href="xmlapi.html">XML API</a>
+
+                        </li>
+                        
+                        <li><a href="creditapi.html">Credits API</a>
+
+                        </li>
+                        
+                        <li><a href="deliveryapi.html">Delivery API</a>
+
+                        </li>
+                        
+                        
+
+                                                
+                        
+                        
+                        <li><a href="allsenderids.html">View Sender IDs</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="actualcredits.html">View Actual Credits</a>
+
+                        </li>
+                         <li><a href="notifications.html">Send Notifications</a>
+
+                        </li>
+                                                 
+
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/deliverycutting">Delivery Cutting</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="deliveryusers.html">Delivery Cutting Users List</a>
+
+                        </li>
+
+                                                  
+                         
+                         
+                        <li><a href="website.html">Website Settings</a>
+
+                        </li>
+						
+                          <li><a href="checkdnd.html">Check DND Number</a>
+                         <li><a href="blocknumber.html">Block Number</a>
+
+                        </li>
+                         <li><a href="mysmpptransactions.html">My Transactions</a></li>
+                        <li><a href="smppmycredits.html">Available Credits</a></li>
+												
+                        
+
+                    </ul>
+
+                </li>
+             
+
+               
+
+               
+
+            </ul>
+
+        </div>
+
+    </div>     <!--Leftbar End Here -->
+        <div class="page-content">
+        <!--Topbar Start Here -->
+         
+<header class="top-bar">
+
+            <div class="container-fluid top-nav">
+
+                <div class="search-form search-bar">
+
+                    
+
+                    <span class="search-close waves-effect"><i class="ico-cross"></i></span>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+
+                        <div class="clearfix top-bar-action">
+
+                            <span class="leftbar-action-mobile waves-effect"><i class="fa fa-bars "></i></span>
+
+                            <span class="leftbar-action desktop waves-effect"><i class="fa fa-bars "></i></span>
+
+						
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+
+					                    
+                                        <div class="col-md-4 responsive-fix top-mid">
+
+                        <div class="notification-nav">
+
+                            <ul class="clearfix">
+                        
+                        <li class="dropdown whenuserread" >
+                        
+                        <a href="#"  data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i>
+                                                </a>
+                        
+                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp noty-lists hide-small-device">
+                                <div class="notification-wrap">
+                                    <h4>You have 0 new notifications</h4>
+                                    <ul>
+                                    	                                        <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Please don't use @ symbol  in between the content on transactional 2 route.. we ware working on it. will fix it asap. thanks.
+ <span class="notification-time clearfix">2017-02-20 13:18:51  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">promosid route is under maintenance due to some errors. We are working on the issue and fix it asap. <span class="notification-time clearfix">2017-02-17 14:10:35  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Transactional 2 route is under maintenance, so messages will delivered with delay... sorry for the inconvenience. thanks. <span class="notification-time clearfix">2017-02-04 13:28:44  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Wishing You a very Happy Republic Day 
+--
+System Admin <span class="notification-time clearfix">2017-01-26 10:51:14  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Dear Team,
+
+Route: Transactional Route
+With further efforts to optimize our SMPP platform performance and scalability, we are making updates to our servers, which may affect services to the customers.
+The maintenance will be performed on January 25th duri <span class="notification-time clearfix">2017-01-25 14:25:04  </span></span></a>
+                                        </li>
+                                                                            </ul>
+                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="http://manage.staticking.net/index.php/settings/usernotifications"><span>View All</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        
+                                            </ul>
+
+                        </div>
+
+                       
+
+                    </div>
+
+                   	
+					
+                    <div class="col-md-6 responsive-fix">
+
+                        <div class="top-aside-right">
+								
+                              
+                            <div class="user-nav">
+
+                                <ul>
+
+                                    <li class="dropdown">
+
+                                        <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
+
+                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+
+                                            <span class="user-thumb" style="background:#15BDC3;" >
+                                            
+                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                            
+                                                                                        
+                                            
+                                            
+                                            </span>
+
+                                        </a>
+
+                                        <ul role="menu" class="dropdown-menu fadeInUp">
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/userprofile"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+
+                                            </li>
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/logout"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+							
+                                                        
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>        <!--Topbar End Here -->
+		
+
+<div class="bb-alert alert alert-success noty_animated fadeInUp" id="bbalertd"></div>
+<div class="main-container">
+<div class="container-fluid" style="padding:0px;">
+<div class="col-md-12" style="padding:0px;">
+<div class="box-widget widget-module">
+
+<div class="widget-container">
+<div class=" widget-block">
+<div class="page-header">
+	<h2>All Sent SMS</h2>
+</div>
+
+
+
+<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get" >
+<div class="col-md-2">
+<select name="senderids" class="form-control select2" onchange="this.form.submit();" required>
+
+<option value="">Sort By Sender ID</option>
+<option value="RGVmYXVsdA==">Default</option>
+<option value="U1RLSU5H">STKING</option>
+<option value="S0lOR0RM">KINGDL</option>
+<option value="U01TT1RQ">SMSOTP</option>
+<option value="QUxDQVJF">ALCARE</option>
+<option value="VFNUU01T">TSTSMS</option>
+<option value="ZGVtb29v">demooo</option>
+</select>
+</div>
+</form>
+
+<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get">
+<div class="col-md-2">
+<input type="text" name="usernameid" class="form-control" placeholder="Add Username & Hit Enter" required/>
+</div>
+</form>
+
+</div>
+
+
+<div class="row" id="dlralldata">
+</div>
+
+<br />
+<div class="row">
+
+<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get">
+<div class="col-md-2">
+<input type="text" name="smsid" class="form-control" placeholder="Add SMS ID & Hit Enter" required/>
+</div>
+</form>
+
+<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get">
+<div class="col-md-2">
+<input type="text" name="fromdate" class="form-control input-date-picker" placeholder="From Date" required/>
+</div>
+<div class="col-md-2">
+<input type="text" name="todate" class="form-control input-date-picker" placeholder="To Date" required/>
+</div>
+
+<div class="col-md-2">
+<input type="submit" name="submit" value="Date Search" class="btn btn-primary" />
+</div>
+
+</form>
+<div class="row">
+<br>
+<br>
+<br>
+<br>
+</div>
+<div class="col-md-1">
+<strong>Bulk DLRS</strong>
+</div>
+<form action="http://manage.staticking.net/index.php/pages/bulkdlrs" method="post">
+
+<div class="col-md-2">
+<select class="form-control" name="route" id="" required="">
+<option value="">Select Route</option>
+<option value="Promotional1">Promotional1</option>
+<option value="Promosid">Promosid</option>
+<option value="Transactional">Transactional</option>
+<option value="transactional2">Transactional2</option>
+<option value="international">International</option>
+<option value="Apitransactional">Api Transactional</option>
+<option value="Apipromosenderid">Api Promosenderid</option>
+<option value="Apipromotional">Api Promotional</option>
+</select>
+</div>
+<div class="col-md-2">
+<input type="text" name="fromdate" class="form-control input-date-picker" placeholder="From Date" required/>
+</div>
+<div class="col-md-2">
+<input type="text" name="todate" class="form-control input-date-picker" placeholder="To Date" required/>
+</div>
+
+<div class="col-md-2">
+<input type="submit" name="submit" value="Export" class="btn btn-primary" />
+</div>
+
+</form>
+
+</div>
+</div>
+<br />
+
+
+													
+</div>
+
+<div class="table-responsive">
+<table class="table table-bordered">
+       <thead>
+       <tr>
+       <th>Id</th>
+       <th>Username</th>
+       <th>Sender</th>
+              <th>Date & Time</th>
+       <th width="80">Total Contacts</th>
+       <th width="80">Total SMS</th>
+       <th max-width="80" >Credits</th>
+       <th width="500">Content</th>
+       <th>SMS Type</th>
+       <th>Route</th>
+              <th colspan="4">Report</th>
+       </tr>
+       </thead>
+       <tbody>
+              <tr>
+       <td>476189</td>
+       <td>
+	   Demo       </td>
+       <td>TSTSMS</td>
+              <td>2016-06-14 11:58:50</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>API.textmsg</td>
+       <td>API-Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=476189 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/476189 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>476188</td>
+       <td>
+	   Demo       </td>
+       <td>TSTSMS</td>
+              <td>2016-06-14 11:58:37</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>API.textmsg</td>
+       <td>API-Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=476188 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/476188 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>438953</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2016-05-24 17:59:53</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this test sms       <button type="button" originalmsg="hi this test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>API.textmsg</td>
+       <td>API-Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=438953 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/438953 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>357057</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2016-04-25 13:26:49</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">test sms       <button type="button" originalmsg="test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>API.textmsg</td>
+       <td>API-Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=357057 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/357057 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>357035</td>
+       <td>
+	   Demo       </td>
+       <td>TSTSMS</td>
+              <td>2016-04-25 13:18:02</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Hi, This is test sms from SMS panel.       <button type="button" originalmsg="Hi, This is test sms from SMS panel." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=357035 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/357035 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>350774</td>
+       <td>
+	   Demo       </td>
+       <td>demooo</td>
+              <td>2016-04-22 00:16:39</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Hi, This is test sms from SMS panel.       <button type="button" originalmsg="Hi, This is test sms from SMS panel." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=350774 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/350774 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>197949</td>
+       <td>
+	   Demo       </td>
+       <td>TSTSMS</td>
+              <td>2016-03-22 12:21:44</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>API.textmsg</td>
+       <td>API-Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=197949 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/197949 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>174734</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2016-03-07 13:29:55</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=174734 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/174734 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>174733</td>
+       <td>
+	   Demo       </td>
+       <td>TSTSMS</td>
+              <td>2016-03-07 13:29:29</td>
+       <td>2</td>
+       <td>1</td>
+       <td>2</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Hi, This is test sms from SMS panel.       <button type="button" originalmsg="Hi, This is test sms from SMS panel." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=174733 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/174733 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>160217</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2016-02-25 13:45:58</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test       <button type="button" originalmsg="hi this is test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=160217 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/160217 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>160216</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2016-02-25 13:44:50</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test       <button type="button" originalmsg="hi this is test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=160216 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/160216 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>160214</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2016-02-25 13:41:15</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=160214 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/160214 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>54511</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2016-02-05 20:53:32</td>
+       <td>4</td>
+       <td>1</td>
+       <td>4</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=54511 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/54511 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>11594</td>
+       <td>
+	   Demo       </td>
+       <td>ALCARE</td>
+              <td>2016-01-25 16:07:40</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test test       <button type="button" originalmsg="hi test test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Transactional2</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=11594 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/11594 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>3133</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-11-30 14:00:35</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3133 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/3133 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>3115</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-11-27 20:53:58</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">welcome staticking test sms       <button type="button" originalmsg="welcome staticking test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3115 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/3115 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>3006</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-11-20 17:57:53</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Welcome to world       <button type="button" originalmsg="Welcome to world" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3006 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/3006 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>3005</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2015-11-20 17:32:20</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">yo test smsz       <button type="button" originalmsg="yo test smsz" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3005 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/3005 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>3004</td>
+       <td>
+	   Demo       </td>
+       <td>SMSOTP</td>
+              <td>2015-11-20 17:30:55</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test smsg pinnacle       <button type="button" originalmsg="hi test smsg pinnacle" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3004 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/3004 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>229</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-10-14 12:46:33</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">welcome to the world of sms.       <button type="button" originalmsg="welcome to the world of sms." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=229 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/229 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>226</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-10-14 12:36:11</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">welcome to the world of sms       <button type="button" originalmsg="welcome to the world of sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=226 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/226 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>225</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-10-14 12:23:55</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=225 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/225 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>221</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-10-14 12:06:50</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=221 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/221 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>218</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-10-10 21:05:01</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">پنجابی       <button type="button" originalmsg="پنجابی" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>unicodemsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=218 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/218 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>207</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-10-07 22:07:02</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test       <button type="button" originalmsg="hi this is test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=207 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/207 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>206</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-10-07 22:06:22</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">this is test sms       <button type="button" originalmsg="this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=206 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/206 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>202</td>
+       <td>
+	   Demo       </td>
+       <td>KINGDL</td>
+              <td>2015-10-07 17:51:19</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">this is test sms       <button type="button" originalmsg="this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=202 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/202 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>201</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-10-07 17:49:34</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">this is test sms       <button type="button" originalmsg="this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Transactional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=201 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/201 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>190</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-10-03 16:03:40</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi Hello - Testing the SErrvice       <button type="button" originalmsg="hi Hello - Testing the SErrvice" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=190 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/190 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>189</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-10-03 14:48:10</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">test sms       <button type="button" originalmsg="test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=189 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/189 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>178</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-09-29 18:27:14</td>
+       <td>2</td>
+       <td>1</td>
+       <td>2</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">6.27pm       <button type="button" originalmsg="6.27pm" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=178 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/178 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>177</td>
+       <td>
+	   Demo       </td>
+       <td>STKING</td>
+              <td>2015-09-29 17:45:19</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test promo s id       <button type="button" originalmsg="hi this is test promo s id" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promosid</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=177 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/177 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
+		   
+		   
+		   </td>       
+       </tr>
+              <tr>
+       <td>176</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-09-29 17:35:49</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hey this is Test sms       <button type="button" originalmsg="hey this is Test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=176 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/176 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              <tr>
+       <td>175</td>
+       <td>
+	   Demo       </td>
+       <td>Default</td>
+              <td>2015-09-29 17:34:07</td>
+       <td>1</td>
+       <td>1</td>
+       <td>1</td>
+       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hey this is Test sms       <button type="button" originalmsg="hey this is Test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
+       </td>
+       <td>textmsg</td>
+       <td>Promotional</td>
+              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=175 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/175 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
+       </tr>
+              
+       </tbody>
+       
+       </table>
+       
+
+
+													
+</div>
+
+
+	</div>	
+
+
+
+</div>
+</div>
+
+</div>
+</div>
+
+            
+</div>
+</div>
+
+<div id="dialog-message" title="Message">
+</div>
+             
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	
+    <!-- Modal content-->
+    <div class="modal-content" style="width:800px;">
+      <span id="msgload"></span>
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title popupme">Delivery Report </h4>
+      </div>
+      <div id="showthere" class=" modal-body alert-info">
+     
+      
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="myurlModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content" style="width:800px;">
+      <span id="msgload"></span>
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title popupme">Short Url Report </h4>
+      </div>
+      <div id="showthereurlreport" class=" modal-body alert-info">
+     
+      
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div id="messagemodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	
+    <!-- Modal content-->
+    <div class="modal-content">
+      <span id="msgload"></span>
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title popupme">Message </h4>
+      </div>
+      <div id="showmsgthere" class=" modal-body alert-info" style="white-space:pre;">
+     
+      
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+        <button type="button" id="msgmodal" data-toggle='modal' data-target='#messagemodal' style="display:none;"></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer-container">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-left">
+
+                                
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-right">
+
+                               
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+<div class="right-aside">
+
+    <div class="aside-branding">
+
+        <div class="aside-tab">
+
+            <ul class="nav nav-tabs pull-left">
+
+                <li class="active"><a href="#coversetaion"  data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+
+                </li>
+
+                <li><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+
+                </li>
+               <!-- <li><a href="#notifications" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Notifications" class="waves-effect aside-notifications"><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
+
+                </li>-->
+
+            </ul>
+
+        </div>
+
+        <span class="rightbar-action waves-effect"><i class="fa fa-times"></i></span>
+
+    </div>
+
+    <div class="aside-tab-wigets">
+
+    <div class="tab-content">
+
+    <div class="tab-pane active" id="coversetaion">
+
+        
+
+        <div class="block-content chat-user-list">
+
+            <span class="piechart"></span>
+			
+            <h3 class="clearfix"><br /><span class="pull-left">Credits</span><span class="pull-right online-counter"></span></h3>
+
+            <ul class="chat-list">
+				
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">2062</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional 1<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+                
+              
+				
+                 <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">32</span>
+
+                </li>
+    
+				
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">3</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">9</span>
+
+                </li>
+                
+               
+				
+ 
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info"> API Promotional  (PA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+				
+                
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info"> API Promo Sender ID  (PSA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+                
+				
+                
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info"> API Transactional  (TA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">10</span>
+
+                </li>
+				
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Voice Sms<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Android App Installation<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+				
+
+
+            </ul>
+
+            
+
+            
+
+        </div>
+
+    </div>
+	    <div class="tab-pane" id="server-stats">
+
+        <div class="block-content chat-user-list">
+
+            <span class="piechart"></span>
+			
+            <h3 class="clearfix"><br /><span class="pull-left">Actual Credits</span><span class="pull-right online-counter"></span></h3>
+
+            <ul class="chat-list">
+				
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promotional1<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+               
+				
+                 <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">3</span>
+
+                </li>
+                
+               
+                
+				
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">49</span>
+
+                </li>
+                
+                
+				
+               
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+				
+                
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">API Promo Sender ID (PSA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+                
+				
+               
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">API Transactional (TA)<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">0</span>
+
+                </li>
+				
+               
+                
+               
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+                
+                <li class="chat-u-online">
+
+                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
+
+                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
+
+                </li>
+				
+
+            </ul>
+
+            
+
+            
+
+        </div>
+
+    </div>
+
+    
+    </div>
+
+    </div>
+
+    <!--<div class="conv-container">
+
+        <div class="conv-u-info chat-u-online">
+
+            <ul>
+
+                <li class="chat-avatar"><img src="images/avatar/adellecharles.jpg" alt="Avatar">
+
+                </li>
+
+                <li class="chat-u-info">adellecharles<span>New York</span>
+
+                </li>
+
+                <li><span data-tooltip="tooltip" data-placement="bottom" title="Call" class="waves-effect chat-u-call"><i class="fa fa-phone"></i></span>
+
+                </li>
+
+                <li><span data-tooltip="tooltip" data-placement="bottom" title="Exit" class="waves-effect chat-close"><i class="fa fa-angle-right"></i></span>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="converstaion-list">
+
+            <div class="conversation-back">
+
+                <div class="conv-thumb">
+
+                    <img src="images/avatar/uxceo.jpg" alt="user">
+
+                </div>
+
+                <div class="conv-text">
+
+                    Hello John, thank you for calling Provide Support. How may I help you?
+
+                </div>
+
+            </div>
+
+            <div class="conversation-front">
+
+                <div class="conv-text">
+
+                    Hello Mary. I understand the problem and will be happy to help you. Let's see what I can do.
+
+                </div>
+
+            </div>
+
+            <div class="conversation-front">
+
+                <div class="conv-text">
+
+                    Let me see if I have this correct, you want me to…" or "You would like for me to…?
+
+                </div>
+
+            </div>
+
+            <div class="conversation-back">
+
+                <div class="conv-thumb">
+
+                    <img src="images/avatar/uxceo.jpg" alt="user">
+
+                </div>
+
+                <div class="conv-text">
+
+                    I'm not sure, but let me find out for you.
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-input-form">
+
+            <form>
+
+                <input name="chatbox" value="" class="form-control chat-input">
+
+            </form>
+
+        </div>
+
+    </div>-->
+
+    </div>
+<style type="text/css">
+    
+ .navbgr
+ {
+    background: red;
+ }   
+</style>
+
+
+
+<script src="js/jquery-1.11.2.min.js"></script>
+
+ 
+
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jRespond.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/nav-accordion.js"></script>
+    <script src="js/hoverintent.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/switchery.js"></script>
+    <script src="js/jquery.loadmask.js"></script>
+    <script src="js/icheck.js"></script>
+    <script src="js/select2.js"></script>
+    <script src="js/bootstrap-filestyle.js"></script>
+    <script src="js/bootbox.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/colorpicker.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/calendar/fullcalendar.js"></script>
+    
+    <!--CHARTS-->
+    <script src="js/chart/sparkline/jquery.sparkline.js"></script>
+    <script src="js/chart/easypie/jquery.easypiechart.min.js"></script>
+    <script src="js/chart/flot/excanvas.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.min.js"></script>
+    <script src="js/chart/flot/curvedLines.js"></script>
+    <script src="js/chart/flot/jquery.flot.time.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.stack.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.axislabels.js"></script>
+    <script src="js/chart/flot/jquery.flot.resize.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.spline.js"></script>
+    <script src="js/chart/flot/jquery.flot.pie.min.js"></script>
+    <script src="js/chart.init.js"></script>
+    <script src="js/smart-resize.js"></script>
+    <script src="js/layout.init.js"></script>
+    <script src="js/matmix.init.js"></script>
+    <script src="js/retina.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/summernote.min.js"></script>
+    <script src="js/jquery.simple-dtpicker.js"></script>
+
+	<script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+        $(".whenuserread").on('click',function()
+		{
+			
+			$.get('http://manage.staticking.net/index.php/settings/notiread?notiread=yes',function(data)
+			{
+				if(data=='success')
+				{
+					$(".notitotalh").hide();
+				}
+			});
+		});
+    });
+	</script>
+    
+    <script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+		
+		$("#accountmanager").hover(function()
+		{
+			$("#accountmanagerdiv").show();
+		});
+		
+		$(document).on('click',function()
+		{
+			$("#accountmanagerdiv").hide();
+		});
+		
+		
+	});
+
+function capitalizeFirstLetter(string) {
+    return string[0].toUpperCase() + string.slice(1);
+}
+
+
+$('#filtersearch').keyup(function(){
+
+    var that = this, $allListElements = $('.list-accordion > li, .dcjq-parent-li > ul > li');
+
+    var $matchingListElements = $allListElements.filter(function(i, li){
+        var listItemText = $(li).text().toUpperCase(), 
+            searchText = that.value.toUpperCase();
+        return ~listItemText.indexOf(searchText);
+    });    
+    $allListElements.hide();
+    $matchingListElements.show();
+    
+    $(".dcjq-parent-li > ul").show();
+    
+    if($.trim($('#filtersearch').val())=='')
+    {
+        $(".dcjq-parent-li > ul").hide();
+    }
+});
+
+
+	</script>
+
+
+
+
+</body>
+
+
+
+</html>
+
+<script type="text/javascript">
+$=jQuery;
+
+$(document).ready(function()
+{
+$(".viewreport").click(function()
+{
+	check=(this.value);
+	
+	if(check!=='')
+	{
+		$.ajax({
+				type:'POST',
+				url:'http://manage.staticking.net/index.php/sms/viewdlr',
+				data:'checkid='+check,
+				beforeSend:function()
+				{
+					$("#showthere").text("Please Wait...");
+				},
+				success:function(data)
+				{
+					$("#showthere").html(data);
+				}
+		});
+	}
+});
+});
+
+</script>
+<script type="text/javascript">
+$(document).ready(function()
+{
+		if($(window).width() < 960)
+		{
+			$(".msgcontentidadd").each(function(index, element) {
+				smslenfgthd=$(this).text();
+				smslengy=smslenfgthd.length;
+			if(smslengy > 20)
+			{
+			$(this).css('overflow-x','scroll');
+			}
+                
+            });
+			
+		}
+		else
+		{
+			$(".msgcontentidadd").css('overflow-x','hidden');
+		}
+		
+		$(window).resize(function()
+		{
+			if($(window).width() < 960)
+		{
+			$(".msgcontentidadd").each(function(index, element) {
+				smslenfgthd=$(this).text();
+				smslengy=smslenfgthd.length;
+				
+			if(smslengy > 20)
+			{
+			$(this).css('overflow-x','scroll');
+			}
+                
+            });
+			
+		}
+		else
+		{
+			$(".msgcontentidadd").css('overflow-x','hidden');
+		}
+		});
+		
+		
+	
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $("#smsallreportsform").on('submit',function(ev)
+	{
+		ev.preventDefault();
+		user='8';
+		route=$("#smsallreportroute").val();
+		if(user!=='' && route!=='' && $.isNumeric(user))
+		{
+		$.ajax({
+			 type:'POST',
+			 url:'http://manage.staticking.net/index.php/ppd/getsmsreport',
+			 data:'user='+user+'&route='+route,
+			 beforeSend: function()
+			 {
+				  $("#smsallreportsubmit").val("Please Wait..");
+				  $("#smsallreportsubmit").attr('disabled','disabled');
+			 },
+			 success: function(data)
+			 {
+				 data=$.parseJSON(data);
+				 $("#dlralldata").empty();
+				 $("#dlralldata").append(data);
+				 
+				 $("#smsallreportsubmit").val("View Report");
+				 $("#smsallreportsubmit").removeAttr('disabled');
+			 }
+		});
+		}
+		
+	});
+});
+</script>
+
+
+
+<script type="text/javascript">
+$(".originalmsg").on('click',function()
+{
+	msg=$(this).attr("originalmsg");
+	
+	$("#showmsgthere").html("<pre>"+msg+"</pre>");
+	$("#msgmodal").click();
+});
+
+$(document).ready(function()
+{
+  $(".leftbar-action").click();
+});
+
+
+</script>
+
+<script type="text/javascript">
+ $(".viewurlreport").on('click',function()
+ {
+  urlsmsid=$(this).attr('value');
+
+  $.ajax({
+          type:'post',
+          url:"http://manage.staticking.net/index.php/pages/getshorurlview/"+urlsmsid,
+          data:'yes=1',
+          beforeSend:function()
+          {
+            $("#showthereurlreport").html("Please Wait..");
+          },
+          success:function(data)
+          {
+            $("#showthereurlreport").html(data);
+          }
+  });
+
+ }); 
+
+</script>
+
+

@@ -82,145 +82,8 @@
           }
         google.setOnLoadCallback(onLoad);
 	</script>
-
-
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
-<style>
 
-.inputapi-transliterate-language-menu-vertical
-{
-	margin-left: 1070px;
-    margin-top: -386px;
-}
-
-
-#faceoff {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-}
-#preloader {
-    display: block;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #2B8B90;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-    z-index: 1001;
-}
-
-#preloader:before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #356F66;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
-
-#preloader:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #92E0D4;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
-
-@-webkit-keyframes spin {
-    0%   { 
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-}
-@keyframes spin {
-    0%   { 
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-}
-
-#faceoff .preloader-section {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-	opacity:0.4;
-    z-index: 1000;
-    -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: translateX(0);  /* IE 9 */
-    transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
-}
-
-/* Loaded */
-.loaded #faceoff .preloader-section {
-    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: translateY(-100%);  /* IE 9 */
-            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
-            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-}
-
-.loaded #preloader {
-    opacity: 0;
-    -webkit-transition: all 0.3s ease-out;
-            transition: all 0.3s ease-out;
-}
-.loaded #faceoff {
-    visibility: hidden;
-
-    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: translateY(-100%);  /* IE 9 */
-            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.3s 1s ease-out;
-            transition: all 0.3s 1s ease-out;
-}
-
-</style>
-
-
-
-
-<div id="faceoff" style="display: none;">
-        <div id="preloader"></div>
-        <div class="preloader-section"></div>
-      </div>
-      
-      
 <div class="page-container list-menu-view">
 
     <!--Leftbar Start Here -->
@@ -245,7 +108,7 @@
 
         <div class="left-navigation">
 
-         <ul class="list-accordion">
+             <ul class="list-accordion">
 
                 
 
@@ -727,10 +590,9 @@ The maintenance will be performed on January 25th duri <span class="notification
 
         </header>
         <!--Topbar End Here -->
-
-		
-
-
+<div class="bb-alert alert alert-success noty_animated fadeInUp" id="bbalertd" style="width:300px;">
+        <span></span>
+    </div>
 
 <style type="text/css">
 
@@ -841,12 +703,11 @@ text-decoration:none;
 
 <div class="page-header">
 
-	<h2>Compose SMS</h2>
+	<h2>Dynamic SMS (Max 25k One time)</h2>
 
 </div>
 
-
-<div id="popup_box" style="height:310px;border-radius:8px;">
+<div id="popup_box" style="height:200px;border-radius:8px;">
 
 
 
@@ -854,66 +715,45 @@ text-decoration:none;
 
 <br />
 
-<div class="row">
-<div class="col-md-3">
+<div>
+
 <label>Route ID: <span style="color:red;">*</span> &nbsp;&nbsp;</label>
-</div>
-<div class="col-md-4">
-<select name="routeid" id="newrouteid" class="form-control" >
+
+<select name="routeid" id="newrouteid" >
 
 <option value="">Select Route ID</option>
-
 
 
 <option value="Promosid">Promo. S ID</option>
 
 
 
-
-
-
-
 <option value="Transactional">Transactional</option>
-
 
 <option value="transactional2">Transactional 2</option>
 
 
 
-
-
-
 </select>
-</div>
-</div>
 
+</div>
 
 <br />
-<div class="row">
-<div class="col-md-3">
+
+<div>
+
 <label>Sender ID: <span style="color:red;">*</span>&nbsp;</label>
-</div>
-<div class="col-md-4 ">
-<input type="text" class="form-control" name="addnewsenderid" id="addnewsenderid" maxlength="6" placeholder="New Sender ID" style="width:300px;" required/>
-</div>
-</div>
-<br />
-<div  class="row">
-<div class="col-md-3">
-<label>Sample Content: <span style="color:red;">*</span>&nbsp;</label>
-</div>
-<div class="col-md-4">
-<textarea class="form-control" type="text" name="samplecontentmsg" id="samplecontentmsg" placeholder="Sample Message Content" style="width:300px;" required></textarea>
-</div>
+
+<input type="text" name="addnewsenderid" id="addnewsenderid" maxlength="6" placeholder="New Sender ID" style="width:300px;" required/>
+
 </div>
 
 <br />
 
-<div  class="row">
-<div class="col-md-3"></div>
-<div class="col-md-4">
+<div style="margin-left:200px;">
+
 <input type="button" name="submitsender" onclick="return addnewsendersnew()" value="Create" class="btn btn-primary" />
-</div>
+
 </div>
 
 
@@ -927,58 +767,63 @@ text-decoration:none;
 
 
 
-
+<form action="javascript:void(0)">
 <div class="form-horizontal">
 
 <span class="alert-danger"></span>
 
 										<div class="form-group">
 
-											<label class="col-md-2 control-label">Select Route</label>
+											<label class="col-md-2 control-label">Select Route (Required)</label>
 
 											<div class=" col-md-10">
-												
-                                                                                                
+
 												<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required>
 
                                                 <option value=""><b>Select Route</b></option>
 
-                                               
-												                                                <option value="Promotional">Promotional</option>
-												                                                <option value="Promotional1">Promotional1</option>
-												                                                <option value="Promosid">Promosid</option>
-												                                                <option value="Transactional">Transactional</option>
-												                                                <option value="transactional2">Transactional2</option>
-												                                                <option value="international">International</option>
-												                                                
+                                                
+
+                                                <option value="Promotional">Promotional</option>
 
                                                 
-												
+
+                                                <option value="Promosid">Promo S.ID</option>
+
+                                               
+
+                                                <option value="Transactional">Transactional</option>
+                                                <option value="transactional2">Transactional 2</option>
+
                                                 
 
                                                 </select>
 
-												
+												<!--<p class="input-instruction">
+
+													<i class="fa fa-question-circle"></i> Input Instruction
+
+												</p>-->
 
 											</div>
 
 										</div>
 
-										<div class="form-group" id="senderidrowhi">
+										<div class="form-group">
 
 											<label class="col-md-2 control-label" id="labelsendid">Sender ID</label>
 
                                             
 
-											<div class="col-xs-10 col-md-9 col-sm-10">
+										<div class="col-xs-8 col-md-9">
 
                                              
 
-												<select name="senderid" class="form-control select2" id="senderid">
-												<option value="">Select Sender ID</option>
-                                                
+												<select class="form-control select2" id="senderid" required>
 
-                                               
+                                                <option value="">Select Sender ID (Required)</option>
+
+                                                
 
                                                 </select>
 
@@ -986,73 +831,17 @@ text-decoration:none;
 
 											</div>
                                             
-                                            
+                                         <div class="col-md-1"><button type="button" id="opensenderid" class="btn btn-primary"><i class="fa fa-plus"></i></button></div>   
 
 										</div>
-										
-										<div class="form-group">
-										<div class="col-md-11"></div>
-										<div class="col-md-1" id="changemob" style="margin-top: -53px;">
-
-                                             
-<button type="button" id="opensenderid" class="btn btn-primary"><i class="fa fa-plus"></i></button>
-
-											</div>
-											</div>
 
 										<div class="form-group">
-
-											<label class="col-md-2 control-label">Contact No (One Per Line)</label>
-
-											<div class="col-md-10">
-
-												<textarea pattern="[0-9]*" inputmode="numeric" class="form-control" id="contactnumberst" style="width:100%;" rows="10" cols="15" onchange="countwordcontact();" onmouseover="countwordcontact();" onkeyup="countwordcontact();" onkeydown="countwordcontact();" required></textarea>	<span style="color:red;font-size:15px;">Total Contact No's: <span id="totalcontacts"> </span>  <input type="hidden" id="totalcontactrow"  /></span>
-
-											</div>
-
-                                            <div class="col-md-8" style="display:none;">
-
-			<form method="post" id="fileuploadform" action="http://manage.staticking.net/index.php/sms/uploadcontacts" enctype="multipart/form-data">
-
-                      <input type="file" id="contactnosfile" name="contactnosfile" onchange="document.getElementById('fileuploadform').submit()">
-
-             </form>
-
-											</div>
-
-                                              <div class="col-md-2">
-
-                                              
-
-                                              </div>
+                                         
+                                         <label class="col-md-2 control-label" id="labelsendid">Select File (For Mac: Windows CSV Format, For Windows: Comma Delimited CSV) (Required)</label>
 
                                              <div class="col-md-10">
 
-                                            <button type="button" style="margin-top:5px;" id="fileupload" onclick="document.getElementById('contactnosfile').click();" class="btn btn-primary" title="Upload File"><i class="fa fa-upload"></i></button>
-
-                                            <button type="button" style="margin-top:5px;margin-left:0px;" id="countnos" onclick="countwordcontact();" class="btn btn-info" title="Count No's"><i class="fa fa-tags"></i></button>
-
-                                            
-
-                                            <button type="button" style="margin-top:5px;margin-left:0px;" id="clearall" onclick="document.getElementById('contactnumberst').value='';" title="Clear All"  class="btn btn-danger"><i class="fa fa-eraser"></i></button>
-
-                                            
-
-                                            <button type="button" style="margin-top:5px;margin-left:0px;" id="removeduplicate" class="btn btn-warning" title="Remove Duplicate Numbers"><i class="fa fa-minus"></i></button>
-                                            
-                                            
-                                            <button type="button" style="margin-top:5px;margin-left:0px;" id="removedndnumbers" class="btn btn-info" title="Remove DND Numbers"><i class="fa fa-mobile"></i></button>
-
-                                            <button type="button" style="margin-top:5px;margin-left:0px;" id="removeinvalid" class="btn btn-danger" title="Remove Invalid Numbers"><i class="fa fa-times"></i></button>
-                                            
-                                            
-                                              <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" data-target="#myModal" id="addgroup" class="btn btn-warning" title="Add Group"><i class="fa fa-users"></i></button>
-                                              
-                                              
-
-                                            
-                                            
-                                            
+                                            <input type="file" name="fileupload" id="fileupload" accept=".csv" required />
 
                                             </div>
 
@@ -1062,9 +851,9 @@ text-decoration:none;
 
 										<div class="form-group" id="msgtypetab">
 
-											<label class="col-md-2 control-label">Message Type</label>
+											<label class="col-md-2 control-label">Message Type (Required)</label>
 
-											<div class="col-md-8">
+											<div class="col-md-10">
 
 												<select id="msgtype" class="form-control" required>
 
@@ -1076,49 +865,36 @@ text-decoration:none;
 
                                                 <option value="unicodemsg">Unicode</option>
 
-                                                <option value="unicodeflashmsg">Unicode + Flash</option>
-
                                                 </select>
 
                                                 
 
 											</div>
-											
-                                            <div class="col-md-2" id="translControl" style="display:none;">
-                                            
-                                            </div>
-                                            
+
 										</div>
-                                        
-                                        <div class="form-group" id="">
 
-											<label class="col-md-2 selecttmp control-label">Select Template (Optional)</label>
+										<div class="form-group" id="">
 
-											<div class="col-md-8">
+											<label class="col-md-2 control-label">Attachment (Url Shortner) (Optional)</label>
 
-												<select id="templateswithname" class="form-control" onchange="gettemplate(this.value);">
-                                                <option value="">Select Template</option>
-                                                
-                                                </select>
+											<div class="col-md-10">
 
-                                                
-
+											<input type="text" name="url" id="url" class="form-control" placeholder="Add Full Url With Http:// or Https:// It will Shortened automatically">
+												                                               
 											</div>
-											
-                                           
-                                            
+
 										</div>
-                                        
+
 
 										
 
                                         <div class="form-group" id="smstabh">
 
-											<label class="col-md-2 control-label">Sms Content</label>
+											<label class="col-md-2 control-label">Sms Content (Required)</label>
 
 											<div class="col-md-10" >
 
-												<textarea class="form-control" id="smscontent" style="width:100%;" rows="5" cols="15" onchange="countwords();" onkeydown="countwords(); " onclick="countwords();" onkeyup="countwords();" onfocus="countwords();" onkeypress="countwords();" onmouseover="countwords();" onmousemove="countwords();" required ></textarea>
+												<textarea class="form-control" id="smscontent" style="width:100%;" rows="5" cols="15" onchange="countwords();" onkeydown="countwords(); " onclick="countwords();" onkeyup="countwords();" onfocus="countwords();" onkeypress="countwords();" onmouseover="countwords();" onmousemove="countwords();" required></textarea>
                                                 
 
                                                 <span id="wordsremain"></span> <span id="labelchar">Characters</span> <span id="countsms"></span> <span id="labelsms">SMS</span>
@@ -1129,8 +905,73 @@ text-decoration:none;
 
 										</div>
                                         
-
+                                        
                                         <div class="form-group">
+
+											<label class="col-md-2 control-label">Number Column (Required)</label>
+
+											<div class="col-md-10">
+
+												<select id="numbercolumn" class="form-control" disabled="disabled">
+
+                                                
+												
+                                                <option value="0">A Column</option>
+															
+                                                </select>
+
+                                                
+
+											</div>
+
+										</div>
+                                        
+                                        <div class="form-group">
+
+											<label class="col-md-2 control-label">Data column (If Needed)</label>
+
+											<div class="col-md-10">
+
+												<select id="datacolumn" class="form-control">
+
+                                                <option value="">--Select--</option>
+												                                                <option value="[0]">A Column</option>
+												                                                <option value="[1]">B Column</option>
+												                                                <option value="[2]">C Column</option>
+												                                                <option value="[3]">D Column</option>
+												                                                <option value="[4]">E Column</option>
+												                                                <option value="[5]">F Column</option>
+												                                                <option value="[6]">G Column</option>
+												                                                <option value="[7]">H Column</option>
+												                                                <option value="[8]">I Column</option>
+												                                                <option value="[9]">J Column</option>
+												                                                <option value="[10]">K Column</option>
+												                                                <option value="[11]">L Column</option>
+												                                                <option value="[12]">M Column</option>
+												                                                <option value="[13]">N Column</option>
+												                                                <option value="[14]">O Column</option>
+												                                                <option value="[15]">P Column</option>
+												                                                <option value="[16]">Q Column</option>
+												                                                <option value="[17]">R Column</option>
+												                                                <option value="[18]">S Column</option>
+												                                                <option value="[19]">T Column</option>
+												                                                <option value="[20]">U Column</option>
+												                                                <option value="[21]">V Column</option>
+												                                                <option value="[22]">W Column</option>
+												                                                <option value="[23]">X Column</option>
+												                                                <option value="[24]">Y Column</option>
+												                                                <option value="[25]">Z Column</option>
+																
+                                                </select>
+
+                                                
+
+											</div>
+
+										</div>
+                                        
+
+                                        <!--<div class="form-group">
 
 											<label class="col-md-2 control-label">Schedule SMS</label>
 
@@ -1138,19 +979,11 @@ text-decoration:none;
 
 												<a id="scheduleison"><input type="checkbox" /></a>
 
-                                                <input type="text" name="date" value id="schedulenew" placeholder="Please Select Date/time" class="form-control" style="display:none;" readonly="readonly"   />
+                                                <input type="text" name="date" value id="schedulenew" placeholder="Please Select Date/time" class="form-control" style="display:none;"   />
 
 											</div>
 
-										</div>
-
-                                        
-
-										
-
-                                       
-
-										
+										</div>-->
 
 										<div class="form-group">
 
@@ -1162,7 +995,9 @@ text-decoration:none;
 
 													
 
-												<input type="submit" id="sendsmsfast" class="btn btn-primary" value="Send Message">
+												<button type="submit" id="sendsmsfast" value="Send" class="btn btn-primary">Send Message</button>	
+                                                
+                                                <button type="submit" value="Preview" id="preview" class="btn btn-info">Preview</button>
 												<button type="button" data-toggle="modal" data-target="#myModalload" id="showloadf" style="display:none;"></button>	
                                                 <span id="msgstatus"></span>
 
@@ -1173,83 +1008,9 @@ text-decoration:none;
 										</div>
 
 									</div>
-
-
-</div>
-
-</div>
-
-
-
-</div>
-
-</div>
-
-
-
-            
-
-</div>
-
-</div>
-
-
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-	
-    <!-- Modal content-->
-    <div class="modal-content" style="width:800px;">
-      <span id="msgload"></span>
-      
-      <div class="modal-header">
-        
-        <h4 class="modal-title alert-success">Select Groups </h4>
-      </div>
-      <div id="showthere" class=" modal-body alert-info">
-     	<select id="groupswithname" class="form-control" onchange="getgroupnos(this.value);">
-        <option value="">Select Group</option>
-                <option value="24-11-20151448378032.txt">test</option>
-                </select>
-      
-        </div>
-
-      <div class="modal-footer">
-        <button type="button" id="mismodal" class="btn btn-default close" onclick="javascript:void(0)" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-<div id="myModaltemplate" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-	
-    <!-- Modal content-->
-    <div class="modal-content" style="width:800px;">
-      <span id="msgload"></span>
-      
-      <div class="modal-header">
-        
-        <h4 class="modal-title alert-success">Select Template </h4>
-      </div>
-      <div id="showtheregroups" class=" modal-body alert-info">
-     	
-      
-        </div>
-
-      <div class="modal-footer">
-        <button type="button" id="mismodalgroup" class="btn btn-default close" onclick="javascript:void(0)" data-dismiss="modal">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-
-
- 
- <div id="myModalload" class="modal fade" role="dialog">
+</form>                              
+  
+  <div id="myModalload" class="modal fade" role="dialog" data-backdrop="static">
   <div class="modal-dialog">
 	
     <!-- Modal content-->
@@ -1258,12 +1019,12 @@ text-decoration:none;
       
       <div id="showthereload" class=" modal-body">
 			
-            
+            <center><img src="images/animated_loading.gif" /></center>
         </div>
 
       	
         <center>
-        <h4 id="waitmsg"></h4>
+        <h4 id="waitmsg">Please Wait Sending Message ...</h4>
         <button type="button" class="btn btn-default" id="clsosebutton" data-dismiss="modal" style="display:none;">Close</button></center>
       
     </div>
@@ -1271,31 +1032,24 @@ text-decoration:none;
 </div>
 
 
-
-<div id="myModaltrans2" class="modal fade" role="dialog" data-backdrop="static">
-  <div class="modal-dialog">
-    
-    <!-- Modal content-->
-    <div class="modal-content">
-
-      
-      <div id="" class=" modal-body">
-            
-           <a href="javascript:void(0)" target="_blank"> <img src="images/trans2.png?1487918736" style="width:549px;"></a>
-            
-        </div>
-
-        
-        <center> 
-    <button type="button" class="btn btn-default" id="clsosebuttontrans2" data-dismiss="modal">Agree</button></center>
-      
-
-    <button type="button" style="margin-top:5px;margin-left:0px;display:none;" data-toggle="modal" data-target="#myModaltrans2" id="opentrans2" class="btn btn-warning" title=""></button>  
-    </div>
-  </div>
 </div>
- 
-  <input type="hidden" id="istendigitid" />           
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+   <input type="text" id="prcheck" style="display:none" />         
+
+</div>
+
+</div>
+
 
 
 
@@ -1846,60 +1600,179 @@ $('#filtersearch').keyup(function(){
 
 <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
 
-<script type="text/javascript" src="js/composesms.js?1487918736"></script>
+
 
 <script type="text/javascript">
-jQuery(document).ready(function(e) {
-  
- jQuery("#schedulenew").datetimepicker({
-			mask:'9999/19/39 29:59',
-			minDate:'-1970/01/01',
-			minTime:'0',
-			maxTime:'21:00',
-			step:30
-			});   
+jQuery('#schedulenew').datetimepicker({
+	mask:'9999/19/39 29:59',
+	minDate:'-1970/01/01',
+	minTime:'0'
+	
+});
 
-jQuery("#schedulenew").val("");
-    jQuery("#schedulenew").on('change click focus',function()
+function checkpreview()
+{
+	return confirm("Did You Check The Preview? If Not Then First Check The Preview Before Sending SMS");
+}
+
+</script>
+
+<script type="text/javascript">
+$=jQuery;
+$(document).ready(function()
+{
+	$("#sendsmsfast").on('click',function()
+	{
+	 	if(checkpreview())
+		{
+			$("#prcheck").val("true");
+		}
+		else
+		{
+			$("#prcheck").val("false");
+		}
+	});
+	
+	$("#sendsmsfast, #preview").click(function()
 	{
 		
-			
-		if(this.value!=='')
+		countwords();
+
+		routeid=$("#routeid").val();
+		
+
+		senderid=$("#senderid").val();
+
+		msgtype=$("#msgtype").val();
+
+		smscontent=$("#smscontent").val();
+
+		schedulenew=$("#schedulenew").val();
+
+		totalsms=$("#countsmshidden").val();
+
+		file=$("#fileupload").val();
+		
+		numbercolumn=$("#numbercolumn").val();
+		
+		datacolumn=$("#datacolumn").val();
+		
+		buttonval=$(this).val();
+		
+		
+		if(senderid=='' || senderid=='undefined')
+		{
+			senderid='Default';
+		}
+		
+		
+		
+		if(senderid=='Default' && routeid=='Transactional' || senderid=='' && routeid=='Transactional')
+		{
+			$("#bbalertd").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		
+		if(senderid=='Default' && routeid=='Promosid' || senderid=='' && routeid=='Promosid')
+		{
+			$("#bbalertd").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		
+		if(senderid=='Default' && routeid=='transactional2' || senderid=='' && routeid=='transactional2')
+		{
+			$("#bbalertd").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		
+		
+		if(routeid=='' || senderid=='' || msgtype=='' || file=='' || numbercolumn=='' || smscontent=='')
 		{
 			
-			ajdidate="2017/02/24";
+			$("#bbalertd").fadeIn(0).fadeOut(3000).addClass('alert-danger').text("Please Enter Required Values");
 			
-			tyu=this.value.split("/");
-			//alert(tyu[0]);
-			tyus=tyu[2].charAt(0)+tyu[2].charAt(1);
-			var myDate = tyu[0]+'/'+tyu[1]+'/'+tyus;
-			if(myDate==ajdidate)
-			{
-				jQuery(this).datetimepicker({
-			mask:'9999/19/39 29:59',
-			minDate:'-1970/01/01',
-			minTime:'0',
-			maxTime:'21:00'
-			});
-			}
-			else
-			{
-				
-				jQuery(this).datetimepicker({
-			mask:'9999/19/39 29:59',
-			minDate:'-1970/01/01',
-			minTime:'09:00',
-			maxTime:'21:00'
-			});
-			}
 		}
+		else
+		{
+			if($("#prcheck").val()=='true' || buttonval=='Preview')
+				{
+				smsdata=new FormData();
+				
+				smsdata.append('datafile',$('input[name=fileupload]')[0].files[0]);
+				smsdata.append('routeid',routeid);
+				smsdata.append('senderid',senderid);
+				smsdata.append('msgtype',msgtype);
+				smsdata.append('smscontent',smscontent);
+				smsdata.append('schedulenew',schedulenew);
+				smsdata.append('totalsms',totalsms);
+				smsdata.append('numbercolumn',numbercolumn);
+				smsdata.append('datacolumn',datacolumn);
+				smsdata.append('buttonval',buttonval);
+				smsdata.append('url',$("#url").val());
+				$.ajax({
+						type:'POST',
+						url:'http://manage.staticking.net/index.php/dynamicsmscontroller/senddynamicsms',
+						data:smsdata,
+						beforeSend:function()
+						{
+							$("#msgstatus").fadeIn(0).text("Please Wait...");
+								
+							$("#waitmsg").html("Please Wait... Processing Your Request...");		
+
+							$("#showloadf").click();
+							$("#showthereload").show();
+						},
+						
+						success:function(data)
+						{
+							if(buttonval=='Preview')
+							{
+							$("#showthereload").hide();
+							$("#msgstatus").hide();
+							$("#waitmsg").fadeIn(0).html(data);
+							$("#clsosebutton").show();
+							return false;
+							}
+							
+							if(buttonval=='Send')
+							{
+							$("#showthereload").hide();
+						  	$("#waitmsg").fadeIn(10).html(data);
+							$("#msgstatus").html(data);	
+							
+							$(".close").removeAttr('disabled');
+						
+							$("#clsosebutton").show();
+							
+							$("input,select,textarea").each(function()
+							{
+								$(this).val("");
+							});
+							}
+							return false;
+						},
+						complete:function()
+						{
+							return false;
+						},
+						cache:false,
+						contentType:false,
+						processData:false
+				});
+				
+				}
+
 			
+		}
+		 
+		 
+	     
 	});
-	});
+});
 </script>
 
 
-<script type="text/javascript">
+<!--<script type="text/javascript">
 $=jQuery;
 $(document).ready(function()
 {
@@ -1924,76 +1797,26 @@ $(document).ready(function()
 					}
 					
 			});
-
+			
+		
+		
+		
+		
 	});
-	
-	
 });
-</script>
+</script>-->
+
 <script type="text/javascript">
 function getsmslen(str)
 {
 	$=jQuery;
 	totchars=str.length;
 	$("#wordsremain").html(totchars);
-	msgtyu=$("#msgtype").val();
-	if(msgtyu=='unicodemsg' || msgtyu=='unicodeflashmsg')
-	{
-		if(totchars > 71)
-		{
-		totsmslen=Math.ceil(totchars/63);
-		}
-		else
-		{
-		totsmslen=Math.ceil(totchars/70);	
-		}
+	totsmslen=Math.ceil(totchars/160);
 	
-	}
-	else
-	{
-		if(totchars > 161)
-		{
-		totsmslen=Math.ceil(totchars/153);	
-		}
-		else
-		{
-		totsmslen=Math.ceil(totchars/160);	
-		}
-	}
 	$("#countsms").html(totsmslen);
 	$("#countsmshidden").val(totsmslen);
-	$("#msgpreview").html("<span class='alert-info' style='font-size:15px;'><br>Message Preview:</span>"+str+"<br>");
 }
-
-</script>
-
-<script type="text/javascript">
-$(document).ready(function()
-{
-	$("#msgtype").on('change',function()
-	{
-		getsmslen($("#smscontent").val());
-		if($(this).val()=='unicodemsg')
-		{	
-			$("#translControl").show();
-		}
-		else
-		{
-			$(".inputapi-inline-block").removeClass("inputapi-transliterate-button-checked");
-			$(".inputapi-transliterate-button").removeClass("inputapi-transliterate-button-checked");
-			$(".inputapi-transliterate-language-menuitem").removeClass("inputapi-option inputapi-option-selected");
-			
-			 
-			
-			$("#translControl").hide();
-			 
-		}
-		
-	});
-	
-	
-		
-});
 
 </script>
 
@@ -2002,172 +1825,21 @@ $(document).ready(function()
 function checkroutes(str)
 {
 	$=jQuery;
-	if(str=='Promotional' || str=='Promotional1')
+	if(str=='Promotional')
 	{
 		$("#senderid").hide();
 		$("#labelsendid").hide();
 		$("#opensenderid").hide();
-		$("#senderidrowhi").hide();
 	}
 	else
 	{
 		$("#senderid").show();
 		$("#labelsendid").show();
 		$("#opensenderid").show();
-		$("#senderidrowhi").show();
 	}
 	
 }
 </script>
-
-<script type="text/javascript">
-
-$=jQuery;
-
-$(document).ready(function()
-
-{
-
-	$("#sendsmsfast").click(function()
-
-	{
-
-		countwords();
-
-		countwordcontact();
-
-		
-
-		routeid=$("#routeid").val();
-
-		senderid=$("#senderid").val();
-
-		contactnumberst=$("#contactnumberst").val();
-
-		msgtype=$("#msgtype").val();
-
-		smscontent=encodeURIComponent($("#smscontent").val());
-
-		schedulenew=$("#schedulenew").val();
-
-		totalsms=$("#countsmshidden").val();
-
-		totalcontacts=$("#totalcontactrow").val();
-		
-		if(senderid=='' && routeid=='Promotional' || senderid=='undefined' && routeid=='Promotional')
-		{
-			senderid='Default';
-		}
-		
-		if(senderid=='Default' && routeid=='Transactional' || senderid=='' && routeid=='Transactional')
-		{
-			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
-			return false;
-		}
-		
-		if(senderid=='Default' && routeid=='Promosid' || senderid=='' && routeid=='Promosid')
-		{
-			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
-			return false;
-		}
-		if(senderid=='Default' && routeid=='transactional2' || senderid=='' && routeid=='transactional2')
-		{
-			$("#bbalertd").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
-			return false;
-		}
-		
-
-		if(routeid=='' || senderid=='' || contactnumberst=='' || msgtype=='' || smscontent=='' || totalsms=='' || totalcontacts=='')
-
-		{
-
-			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required Values");
-
-			
-
-		}
-
-		else
-		{
-			if(totalcontacts > 50000)
-			{
-				alert("Enter Only 50000 Numbers");
-				return false;
-			}
-			else
-			{
-			if(routeid=='Promotional1' && $("#istendigitid").val()=='yes' && totalsms > 1)
-			{
-				alert("You Can Send Only 1 Sms(160 Characters) On this Route ");
-				return false;
-			}
-			else
-			{		
-datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactnumberst+'&msgtype='+msgtype+'&smscontent='+smscontent+'&schedulenew='+schedulenew+'&totalsms='+totalsms+'&totalcontacts='+totalcontacts;
-
-			$.ajax({
-
-					type:'POST',
-
-					url:'http://manage.staticking.net/index.php/sms/sendsms',
-
-					data:datastring,
-
-					beforeSend:function()
-					{
-						$("#waitmsg").text("Please Wait. Sending Message.....");
-						
-						$("#faceoff").show();
-						$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass("alert-info").text("Please Wait, Sending Message.....");
-						$("#sendsmsfast").attr('disabled','disabled');
-						
-						
-					},
-
-					success:function(data)
-					{
-						$("#faceoff").hide();
-						$("#showloadf").click();
-						$("#waitmsg").fadeIn(10).html(data);
-						
-						$("#msgstatus").fadeIn(10).removeClass("alert-info").html(data);
-						$("#sendsmsfast").removeAttr('disabled');
-						$(".close").removeAttr('disabled');
-						
-						$("#clsosebutton").show();
-						$("input,select,textarea").each(function()
-						{
-							$(this).val("");
-						});
-						$("#sendsmsfast").val("Send Message");
-						
-					}
-
-			});
-
-			}
-
-			
-			}
-		}
-
-		
-
-	});
-
-$("#clsosebutton").click(function()
-{
-	location.reload(true);
-});	
-						
-	
-
-});
-
-
-
-</script>
-
 
 
 
@@ -2177,8 +1849,6 @@ $("#clsosebutton").click(function()
     jQuery(document).ready(function() {
 
            jQuery('#opensenderid').click( function() { 
-
-		    
 
             loadPopupBox();
 
@@ -2244,8 +1914,6 @@ $("#clsosebutton").click(function()
 
  <script type="text/javascript">
 
- 
-
  function addnewsendersnew()
 
  {
@@ -2253,8 +1921,6 @@ $("#clsosebutton").click(function()
 		inroute=jQuery("#newrouteid").val();
 
 			insenderid=jQuery("#addnewsenderid").val();
-			
-			msgcontent=jQuery("#samplecontentmsg").val();
 
 			if(inroute=='')
 
@@ -2301,19 +1967,14 @@ $("#clsosebutton").click(function()
 						}
 
 						else
+
 						{
-							if(msgcontent=='')
-							{
-								
-							jQuery("#msg_statusnewid").fadeIn(0).addClass("alert-danger").text("Please Enter Sample Message");	
-							}
-							else
-							{
 
 							if(insenderid.length == 6)
+
 							{
 
-								datastringsender='inroute='+inroute+'&insenderid='+insenderid+'&msgcontent='+msgcontent;
+								datastringsender='inroute='+inroute+'&insenderid='+insenderid;
 
 								jQuery.ajax({
 
@@ -2356,7 +2017,6 @@ $("#clsosebutton").click(function()
 								
 
 							}
-							}
 
 							
 
@@ -2379,35 +2039,24 @@ $("#clsosebutton").click(function()
 
  }
  </script>
-
-<script type="text/javascript">
-	function getgroupnos(str)
-	{
-		file="http://manage.staticking.net/public/groupfiles/"+str;
-		
-		$.get(file, function(data)
-		{
-		
-		$("#contactnumberst").append(data);
-		$("#mismodal").click();
-		
-		});
-	}
-	
-	function gettemplate(templa)
-	{
-		
-		
-		
-		
-		$("#smscontent").val(templa);
-		$("#mismodalgroup").click();
-		
-		
-	}
-</script>
-
-<script type="text/javascript">
+ 
+ <script type="text/javascript">
+ 
+ $=jQuery;
+ $(document).ready(function()
+ {
+	 $("#datacolumn").on('change',function()
+	 {
+		 str=$(this).val();
+		 
+		 smsval=$("#smscontent").val();
+		 $("#smscontent").val(smsval+' '+str); 
+	 });
+ });
+ 
+ 
+ </script>
+ <script type="text/javascript">
 $=jQuery;
 $(document).ready(function()
 {
@@ -2426,236 +2075,22 @@ $(document).ready(function() {
 		
 		if(routbval=='Promosid' || routbval=='Transactional' || routbval=='transactional2')
 		{
-			
 			$.get('http://manage.staticking.net/index.php/sms/getsenderidbyroute/'+routbval,function(data)
 			{
-				
 				$("#senderid").html($.parseJSON(data));
-				
-				
-				$("#senderid").css('display','none');
-				
 			});
-		}
-		else
-		{
-			$("#senderid").html("");	
-		}
-		if(routbval=='transactional2' || routbval=='Transactional')
-		{
-			$("#opentrans2").click();
-		}
-		
-        if(routbval=='Transactional')
-        {
-            $("#templateswithname").hide();
-            $(".selecttmp").hide();
-        }
-        else
-        {
-            $("#templateswithname").show();
-             $(".selecttmp").show();
-        }
-	
-			
-	});
-});
-</script>
-<script type="text/javascript">
-$=jQuery;
-$("#contactnumberst").on('change keyup',function()
-{
-    //$("#contactnumberst").val(this.value.match(/[0-9 \s]*/));
-     onlynumberscheck();
-});
 
+			$("#senderid").hide();
 
-
-    function onlynumberscheck()
-	{
-		onlynumsty=/^[0-9 \s]+$/;
-		nosval=$("#contactnumberst").val();
-		//var patterns = /[^0-9]/g;
-		if(nosval.match(onlynumsty))
-		{
-		}
-		else
-		{
-			if(nosval!=='')
-			{
-			alert("Please Remove Alphabets and Special Characters From Your Contact List.");
-			 $("#contactnumberst").val("");
-			}
-		}
-	}
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(e) {
-    $("#removedndnumbers").on('click',function()
-	{
-		
-		allmulnumbersple=$("#contactnumberst").val();
-		
-		if(allmulnumbersple!=='')
-		{
-
-			$.ajax({
-					type:'POST',
-					url:'http://manage.staticking.net/index.php/pages/removedndnumbersfast',
-					data:'alldndnumbers='+allmulnumbersple,
-					beforeSend: function()
-					{
-						//$("#showloadf").click();
-						//$("#waitmsg").text("Please Wait. Removing DND Numbers");
-						$("#faceoff").show();
-						$("#sendsmsfast, #removedndnumbers").attr('disabled','disabled');
-					},
-					success:function(data)
-					{
-						
-						$("#contactnumberst").val($.parseJSON(data));
-						$("#sendsmsfast, #removedndnumbers").removeAttr('disabled');
-						$("#faceoff").hide();
-						alert("DND Numbers Removed");
-						
-					}
-			});
 		}
 		
 	});
 });
 </script>
 
-<script type="text/javascript">
-$=jQuery;
-$("#addnewsenderid").on('keyup change keydown keypress',function()
-{
-	onlyaplha=/^[A-Z a-z]+$/;
-	sendervalnew=$("#addnewsenderid").val();
-	if(sendervalnew.match(onlyaplha))
-		{
-		}
-		else
-		{
-			if(sendervalnew!=='')
-			{
-			alert("Enter Only Alphabets");
-			$("#addnewsenderid").val("");
-			}
-		}
-	
-});
-</script>
+<script type="text/javascript" src="js/composesms.js"></script>
 
 
 
-<script type="text/javascript">
-$(document).ready(function() {
-    $("#routeid").on('change',function()
-	{
-		roytu=$(this).val();
-		
-		if(roytu=='Promotional1')
-		{
-			$.ajax({
-					type:'POST',
-					url:'http://manage.staticking.net/index.php/sms/getsmscsofroute/'+roytu,
-					data:'route='+roytu,
-					beforeSend:function()
-					{
-						
-					},
-					success:function(data)
-					{
-						
-						if(data=='10digitid')
-						{
-						$("#istendigitid").val("yes");	
-						$("#msgtype").empty();
-						$("#msgtype").html("<option value=''>Select Message Type</option><option value='textmsg'>Text</option>");
-						//$("#smstabh").html(data);
-						
-						}
-					}
-					
-				});
-		}
-		else
-		{
-			$("#msgtype").empty();
-			$("#istendigitid").val("no");	
-	$("#msgtype").html("<option value=''>Select Message Type</option><option value='textmsg'>Text</option><option value='flashmsg'>Flash</option><option value='unicodemsg'>Unicode</option><option value='unicodeflashmsg'>Unicode + Flash</option");	
-		}
-	});
-	
-	
-	
-	
-});
 
 
-$("#translControl").on('click',function()
-	{
-		
-		$(".inputapi-transliterate-language-menu").toggle();
-	});
-
-$("#msgtype").on('change',function()
-{
-	if($(this).val()!=='')
-	{
-		$.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/sms/templatebytype",
-				data:'mgtype='+$("#msgtype").val(),
-				beforeSend: function()
-				{
-					$("#faceoff").show();
-				},
-				success:function(data)
-				{
-					$("#faceoff").hide();
-					$("#templateswithname").html(data);
-				}
-		});
-	}
-});
-
-if($(window).width() < 700)
-	{
-		$("#changemob").css('margin-top','0px');
-		
-	}
-	else
-	{
-		
-			
-		
-	}
-	
-	
-
-$("#removeinvalid").on('click',function()
-{
-    contactnumberst=$("#contactnumberst").val();
-    nums = contactnumberst.split("\n");
-
-    $.ajax({
-            type:'POST',
-            url:'http://manage.staticking.net/index.php/settings/removeinvalidno',
-            data:'numbers='+nums,
-            beforeSend:function()
-            {
-                $("#faceoff").show();
-            },
-            success:function(data)
-            {
-                $("#faceoff").hide();
-                $("#contactnumberst").val(data);
-            }
-    });
-
-});
-
-</script>

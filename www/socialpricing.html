@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
     
      
     
@@ -27,7 +29,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
     
    
-    <script type="text/javascript" src="cordova.js"></script>
+    
 </head>
 
 <body>
@@ -35,21 +37,6 @@
 <script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
 </div>
-
-<script>
-//window.localStorage.removeItem("loggedIn");
-		if(window.localStorage.getItem("loggedIn") == 1) 
-		{
-		  // alert('ram1');
-		 
-		}
-		else
-		{
-		
-		  window.location.href="login.html";
-		// Redirect to login page.
-		}
-</script>
 <script type="text/javascript">
       // Load the Google Transliteration API
       google.load("elements", "1", {
@@ -94,8 +81,177 @@
             control.showControl('translControl');
           }
         google.setOnLoadCallback(onLoad);
-	</script>
+	</script><script type="text/javascript">
+function getserviceprice(serviceid)
+{ 
+  rows=parseInt($("#rows").val());
+  afterrow=rows + 1;
+  totalrows=parseInt($("#totalrows").val());
+  $.ajax({
+      type:'POST',
+      url:'http://manage.staticking.net/index.php/social/getorderprice',
+      data:'service='+serviceid+'&likes=1',
+      beforeSend:function()
+      {
+        $("#faceoff").show();
+        $("#rows").val(afterrow);
+        checkrows();
+      },
+      success:function(data)
+      {
+        $("#yourprice"+serviceid).text(data+" Per Like");
+        $("#dollarprice"+serviceid).text((data / 60).toFixed(3) +" Per Like");
+        
+        $("#yourprice"+serviceid).attr('readonly','readonly');
+        checkrows();
+      }
+  });
+}   
 
+function checkrows()
+{
+  rows=parseInt($("#rows").val());
+  totalrows=parseInt($("#totalrows").val());
+  if(totalrows==rows || rows > totalrows)
+  {
+        setTimeout(function(){ $("#faceoff").hide(); }, 13000);
+    
+  }
+}
+
+</script>
+
+<style>
+
+#faceoff {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+#preloader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #2B8B90;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    z-index: 1001;
+}
+
+#preloader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #356F66;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+#preloader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #92E0D4;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+@-webkit-keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+@keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+
+#faceoff .preloader-section {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+  opacity:0.4;
+    z-index: 1000;
+    -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: translateX(0);  /* IE 9 */
+    transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
+}
+
+/* Loaded */
+.loaded #faceoff .preloader-section {
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
+            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.loaded #preloader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+}
+.loaded #faceoff {
+    visibility: hidden;
+
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.3s 1s ease-out;
+            transition: all 0.3s 1s ease-out;
+}
+
+</style>
+
+
+
+
+<div id="faceoff" style="display: none;">
+        <div id="preloader"></div>
+        <div class="preloader-section"></div>
+      </div>
+
+
+<input type="hidden" id="rows" value="0">
+<input type="hidden" id="totalrows" value="75">
 
 <div class="page-container list-menu-view">
 
@@ -107,8 +263,7 @@
         <div class="aside-branding">
 
      
-            <a href="http://manage.staticking.net/index.php" class="large-logo">
-			<img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
+            <a href="http://manage.staticking.net/index.php" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
 
             </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
 
@@ -122,7 +277,7 @@
 
         <div class="left-navigation">
 
-       <ul class="list-accordion">
+           <ul class="list-accordion">
 
                 
 
@@ -610,554 +765,1126 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 
 
-<div class="main-containera">
 
-			<div class="container-fluid">
+<div class="main-container">
 
-				<div class="page-breadcrumb">
+<div class="container-fluid" style="padding:0px;">
+<div class="col-md-12" style="padding:0px;">
 
-					<div class="row">
+<div class="box-widget widget-module">
 
-						<div class="col-md-7">
 
-							<div class="page-breadcrumb-wrap">
 
-								<div class="page-breadcrumb-info">
+<div class="widget-container">
 
-									<h2 class="breadcrumb-titles">Welcome Demo </h2>
+<div class=" widget-block">
 
-									
+<div class="page-header">
 
-								</div>
+	<h2>Social Services Pricing</h2>
 
-							</div>
-
-						</div>
-
-						<div class="col-md-5">
-
-						</div>
-
-					</div>
-
-				</div>
-
-				<div style="padding:10px !important; border:solid 1px #ddd; background:#fff !important;">
-                <div class="row">
-
-					<div class="col-md-4 col-sm-6">
-
-						<div class="panel panel" style="background:#9CF;">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >2062</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >0</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="primary" style="background:#069;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">PROMOTIONAL (P) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel" style="background:#02DAC5;">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >10</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >0</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="primary" style="background:#135E57;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">PROMOTIONAL 1 (P1) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel-info">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >32</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >3</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="info" style="background:#0064C7;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">PROMOTIONAL SENDER ID (PSI) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-
-					<div class="col-md-4 col-sm-6">
-
-						<div class="panel panel-danger">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >3</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >0</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="danger" style="background:#C36;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">TRANSACTIONAL (T) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel-danger">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >9</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >49</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="danger" style="background:#C36;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">TRANSACTIONAL 2 (T2) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel-warning">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >10</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >0</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="warning" style="background:#EA9E06;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">PROMOTIONAL API  (PA) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel-success">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >10</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >0</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="success" style="background:#096;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">PROMOTIONAL S.ID API  (PSA) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel" style="background:#C9C;">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >10</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >0</div>
-                                    </div>
-																	</div>
-                                
-                               
-
-							</div>
-                             <div class="primary" style="background:#96C;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">TRANSACTIONAL API  (TA) </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    
-                    <div class="col-md-4 col-sm-6">
-						
-						<div class="panel panel" style="background:#FC9;">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;color:F90;" >Rs. 0</div>
-                                    </div>
-                                    
-
-								</div>
-                                
-                               
-
-							</div>
-                             <div class="primary" style="background:#F7830F;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">VOICE CALL  </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-
-					</div>
-                    
-                    
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel warning">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;" >Rs. 0</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;" >Rs. 0</div>
-                                    </div>
-                                    
-								</div>
-                                
-                               
-
-							</div>
-                            </div>
-                            
-                            
-                             <div class="warning" style="margin-top: -21px;">
-                             <div class="panel-heading" style="background:#096;">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="font-size:15px;">SOCIAL MEDIA </span>
-                               </div>
-                               </div> 
-                               </div>
-
-							
-
-						</div>
-
-					
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel" style="background:#FC9;">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;color:F90;" >0</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;color:F90;" >0</div>
-                                    </div>
-                                    
-								</div>
-                                
-                               
-
-							</div>
-                             <div class="primary" style="background:#F7830F;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;">BULK EMAIL  </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-				
-                
-               
-                
-					</div>
-                    <div class="col-md-4 col-sm-6">
-
-						<div class="panel panel primary" style="background:#FFAC99;">
-
-							<div class="panel-heading">
-                            
-                            <div class="row">
-
-								<div class="col-xs-3"><i class="fa fa-android fa-5x"></i></div>
-
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;color:#F7240F;" >0</div>
-                                    </div>
-                                    
-
-								</div>
-                                
-                               
-
-							</div>
-                             <div class="primary" style="background:#F7240F;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;"> ANDROID APP INSTALLATION  </span>
-                                </div>
-                               </div> 
-                                </div>
 </div>
-							
+<span class="alert-success"></span>
 
-						</div>
-                
-                    </div>
-</div>
-                    <div class="row" style="padding:10px !important; background:#fff !important;max-width: 100% !important;
-    margin-left: -1px !important; ">
-                    <div class="col-md-4 col-sm-6" style="margin-left: -11px;">
 
-						<div class="panel panel primary" style="background:#FFAC99;">
+<div style="height:50px;"></div>
+       <table class="table table-bordered">
 
-							<div class="panel-heading">
-                            
-                            <div class="row">
+       <tr class="alert-info">
+       <th width="50">Id</th>
+       <th width="250">Name</th>
+       <th>Price(INR)</th>
+       <th>Price($)</th>
+       </tr>
 
-								<div class="col-xs-3"><i class="fa fa-comments fa-5x"></i></div>
+        <script src="js/jquery-1.11.2.min.js"></script>
 
-								
-									<div class="col-xs-9 text-right">
-                                    <div style="font-size: 23px;color:#F7240F;" >0</div>
-                                    </div>
-                                                                        <div class="col-xs-9 text-right">
-                                    <div style="font-size: 15px;color:F90;" >0</div>
-                                    </div>
-                                                                        
+       
+       <tr class="alert-default">
+
+       <td>1</td>
+        <td>Facebook Worldwide Likes</td>
+       
+       <td><span id="yourprice3"></span></td>
+       <td><span id="dollarprice3"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("3");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>2</td>
+        <td>Facebook - Page Likes Middle East Countries</td>
+       
+       <td><span id="yourprice4"></span></td>
+       <td><span id="dollarprice4"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("4");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>3</td>
+        <td>Facebook Page Indian Likes </td>
+       
+       <td><span id="yourprice6"></span></td>
+       <td><span id="dollarprice6"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("6");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>4</td>
+        <td>Facebook UP/Bihar Likes</td>
+       
+       <td><span id="yourprice7"></span></td>
+       <td><span id="dollarprice7"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("7");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>5</td>
+        <td>Facebook - Page Likes  From Only Europe - Min Order: 200 , Max: 200,000</td>
+       
+       <td><span id="yourprice10"></span></td>
+       <td><span id="dollarprice10"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("10");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>6</td>
+        <td>Facebook - Page France Likes - Min Order: 500 , Max: 200,000</td>
+       
+       <td><span id="yourprice11"></span></td>
+       <td><span id="dollarprice11"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("11");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>7</td>
+        <td>Facebook - Page Likes ( Guaranteed ) ( African Fans ) </td>
+       
+       <td><span id="yourprice12"></span></td>
+       <td><span id="dollarprice12"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("12");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>8</td>
+        <td>Facebook Video Views</td>
+       
+       <td><span id="yourprice13"></span></td>
+       <td><span id="dollarprice13"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("13");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>9</td>
+        <td>Facebook - Photo | Post likes ( Worldwide ) </td>
+       
+       <td><span id="yourprice14"></span></td>
+       <td><span id="dollarprice14"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("14");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>10</td>
+        <td>Facebook Profile  Followers ( Worldwide ) ( Speed 100-500 )</td>
+       
+       <td><span id="yourprice15"></span></td>
+       <td><span id="dollarprice15"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("15");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>11</td>
+        <td>Facebook Profile Indian Followers</td>
+       
+       <td><span id="yourprice16"></span></td>
+       <td><span id="dollarprice16"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("16");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>12</td>
+        <td>Facebook Profile USA Followers</td>
+       
+       <td><span id="yourprice17"></span></td>
+       <td><span id="dollarprice17"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("17");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>13</td>
+        <td>Facebook - Post / Photo Likes ( By Indian Users) (Min:100 - Max 1000)</td>
+       
+       <td><span id="yourprice18"></span></td>
+       <td><span id="dollarprice18"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("18");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>14</td>
+        <td>Facebook - Post Likes USA ( Only For Page Post ) (MIn:3000)</td>
+       
+       <td><span id="yourprice19"></span></td>
+       <td><span id="dollarprice19"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("19");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>15</td>
+        <td>Facebook - Photo | Post Likes ( USA ) 24 Hrs Delivery</td>
+       
+       <td><span id="yourprice20"></span></td>
+       <td><span id="dollarprice20"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("20");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>16</td>
+        <td>Facebook - Friends Request on Profile</td>
+       
+       <td><span id="yourprice21"></span></td>
+       <td><span id="dollarprice21"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("21");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>17</td>
+        <td>Facebook - Event Join ( USA USers ) Min:100 Max:1500</td>
+       
+       <td><span id="yourprice22"></span></td>
+       <td><span id="dollarprice22"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("22");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>18</td>
+        <td>Facebook - FIVE Star Rating for Page</td>
+       
+       <td><span id="yourprice23"></span></td>
+       <td><span id="dollarprice23"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("23");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>19</td>
+        <td>Facebook - Groups Join</td>
+       
+       <td><span id="yourprice24"></span></td>
+       <td><span id="dollarprice24"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("24");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>20</td>
+        <td>Facebook - Website Likes ( Not for FB page ) Only add your website URl</td>
+       
+       <td><span id="yourprice25"></span></td>
+       <td><span id="dollarprice25"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("25");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>21</td>
+        <td>Instagram  Followers High Quality  Min-100</td>
+       
+       <td><span id="yourprice26"></span></td>
+       <td><span id="dollarprice26"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("26");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>22</td>
+        <td>Instagram Cheap Price Followers  ( Max 10k ) ( No Refund, No Gurrantee) </td>
+       
+       <td><span id="yourprice27"></span></td>
+       <td><span id="dollarprice27"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("27");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>23</td>
+        <td>Instagram  Real Followers Min : 100</td>
+       
+       <td><span id="yourprice28"></span></td>
+       <td><span id="dollarprice28"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("28");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>24</td>
+        <td>Instagram - Followers ( RUSSIA )  ( 24-48 hrs Delivery )</td>
+       
+       <td><span id="yourprice29"></span></td>
+       <td><span id="dollarprice29"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("29");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>25</td>
+        <td>Instagram - Followers ( ARAB ) ( Max 25k ) </td>
+       
+       <td><span id="yourprice30"></span></td>
+       <td><span id="dollarprice30"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("30");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>26</td>
+        <td>Instagram - Followers ( USA )</td>
+       
+       <td><span id="yourprice32"></span></td>
+       <td><span id="dollarprice32"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("32");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>27</td>
+        <td>Instagram Photo Comment   (Min: 5  Max:1000)</td>
+       
+       <td><span id="yourprice33"></span></td>
+       <td><span id="dollarprice33"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("33");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>28</td>
+        <td>Instagram Photo Likes in Cheap Price (Min:100  Max:6000)</td>
+       
+       <td><span id="yourprice35"></span></td>
+       <td><span id="dollarprice35"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("35");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>29</td>
+        <td>Instagram Likes High-quality  (Min:100   Max :5000   )</td>
+       
+       <td><span id="yourprice36"></span></td>
+       <td><span id="dollarprice36"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("36");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>30</td>
+        <td>Instagram - Video Views </td>
+       
+       <td><span id="yourprice37"></span></td>
+       <td><span id="dollarprice37"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("37");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>31</td>
+        <td>Instagram - Likes By  ARABIC Users</td>
+       
+       <td><span id="yourprice38"></span></td>
+       <td><span id="dollarprice38"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("38");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>32</td>
+        <td>Twitter Worldwide Followers High Quality (Min:100  Max: 200000)</td>
+       
+       <td><span id="yourprice39"></span></td>
+       <td><span id="dollarprice39"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("39");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>33</td>
+        <td>Twitter Worldwide Followers Low Quality (Min:100 Max: 200000)</td>
+       
+       <td><span id="yourprice40"></span></td>
+       <td><span id="dollarprice40"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("40");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>34</td>
+        <td>Twitter - Followers ( INDIAN ) Min:100  Max:25000</td>
+       
+       <td><span id="yourprice41"></span></td>
+       <td><span id="dollarprice41"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("41");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>35</td>
+        <td>Twitter - Followers ( INDIAN Permanent Followers ) Min:250  Max:1500</td>
+       
+       <td><span id="yourprice42"></span></td>
+       <td><span id="dollarprice42"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("42");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>36</td>
+        <td>Twitter - Followers ( USA )  Min:100    Max: 85000</td>
+       
+       <td><span id="yourprice44"></span></td>
+       <td><span id="dollarprice44"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("44");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>37</td>
+        <td>Twitter - Retweets ( Max 50k ) ( 100% Pic ) Fast</td>
+       
+       <td><span id="yourprice46"></span></td>
+       <td><span id="dollarprice46"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("46");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>38</td>
+        <td>Twitter - Likes ( Max 50k ) ( 100% Pic ) Fast</td>
+       
+       <td><span id="yourprice47"></span></td>
+       <td><span id="dollarprice47"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("47");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>39</td>
+        <td>Twitter - Retweets (USA) (High Quality) </td>
+       
+       <td><span id="yourprice50"></span></td>
+       <td><span id="dollarprice50"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("50");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>40</td>
+        <td>Twitter - Favorite (USA) (High Quality) </td>
+       
+       <td><span id="yourprice51"></span></td>
+       <td><span id="dollarprice51"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("51");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>41</td>
+        <td>YouTube -  Normal Video Views </td>
+       
+       <td><span id="yourprice52"></span></td>
+       <td><span id="dollarprice52"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("52");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>42</td>
+        <td>YouTube - Normal Video Fast Views (Speed 300-500K Per Day)</td>
+       
+       <td><span id="yourprice53"></span></td>
+       <td><span id="dollarprice53"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("53");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>43</td>
+        <td>YouTube Indian Views</td>
+       
+       <td><span id="yourprice54"></span></td>
+       <td><span id="dollarprice54"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("54");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>44</td>
+        <td>YouTube Channel Subcribers</td>
+       
+       <td><span id="yourprice55"></span></td>
+       <td><span id="dollarprice55"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("55");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>45</td>
+        <td>YouTube Cheap Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice56"></span></td>
+       <td><span id="dollarprice56"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("56");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>46</td>
+        <td>YouTube - Normal Video Fast Views (Speed 150-200K Per Day)</td>
+       
+       <td><span id="yourprice57"></span></td>
+       <td><span id="dollarprice57"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("57");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>47</td>
+        <td>YouTube Indian Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice58"></span></td>
+       <td><span id="dollarprice58"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("58");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>48</td>
+        <td>YouTube USA Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice59"></span></td>
+       <td><span id="dollarprice59"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("59");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>49</td>
+        <td>YouTube UK Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice60"></span></td>
+       <td><span id="dollarprice60"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("60");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>50</td>
+        <td>YouTube France Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice61"></span></td>
+       <td><span id="dollarprice61"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("61");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>51</td>
+        <td>YouTube Germany Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice62"></span></td>
+       <td><span id="dollarprice62"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("62");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>52</td>
+        <td>YouTube Canada Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice63"></span></td>
+       <td><span id="dollarprice63"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("63");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>53</td>
+        <td>YouTube English Countries Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice64"></span></td>
+       <td><span id="dollarprice64"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("64");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>54</td>
+        <td>YouTube Middle East Countries Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice65"></span></td>
+       <td><span id="dollarprice65"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("65");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>55</td>
+        <td>YouTube Arabic Adwords Views - Unlimited Fast Speed </td>
+       
+       <td><span id="yourprice66"></span></td>
+       <td><span id="dollarprice66"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("66");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>56</td>
+        <td>YouTube Video Likes Fast</td>
+       
+       <td><span id="yourprice67"></span></td>
+       <td><span id="dollarprice67"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("67");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>57</td>
+        <td>YouTube  Video Dislike ( Speed 500 Per day )</td>
+       
+       <td><span id="yourprice68"></span></td>
+       <td><span id="dollarprice68"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("68");
+        </script>
+       
+       <tr class="alert-warning">
+
+       <td>58</td>
+        <td>YouTube  Video Share </td>
+       
+       <td><span id="yourprice69"></span></td>
+       <td><span id="dollarprice69"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("69");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>59</td>
+        <td>Google Plus - Followers | Circles Real Users</td>
+       
+       <td><span id="yourprice71"></span></td>
+       <td><span id="dollarprice71"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("71");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>60</td>
+        <td>Google Plus - Post Likes ( High Quality ) Real Users</td>
+       
+       <td><span id="yourprice72"></span></td>
+       <td><span id="dollarprice72"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("72");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>61</td>
+        <td>Google Plus - Share ( Post )</td>
+       
+       <td><span id="yourprice73"></span></td>
+       <td><span id="dollarprice73"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("73");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>62</td>
+        <td>SoundCloud - Play ( Unlimited ) </td>
+       
+       <td><span id="yourprice75"></span></td>
+       <td><span id="dollarprice75"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("75");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>63</td>
+        <td>SoundCloud - Download ( Unlimited )</td>
+       
+       <td><span id="yourprice76"></span></td>
+       <td><span id="dollarprice76"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("76");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>64</td>
+        <td>Soundcloud - Followers ( Max 2000)</td>
+       
+       <td><span id="yourprice77"></span></td>
+       <td><span id="dollarprice77"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("77");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>65</td>
+        <td>Soundcloud - Likes ( High Quality )</td>
+       
+       <td><span id="yourprice78"></span></td>
+       <td><span id="dollarprice78"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("78");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>66</td>
+        <td>SoundCloud - Comment </td>
+       
+       <td><span id="yourprice79"></span></td>
+       <td><span id="dollarprice79"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("79");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>67</td>
+        <td>Pinterest - Likes ( High Quality Real )</td>
+       
+       <td><span id="yourprice80"></span></td>
+       <td><span id="dollarprice80"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("80");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>68</td>
+        <td>Pinterest - Repin ( High Quality }</td>
+       
+       <td><span id="yourprice81"></span></td>
+       <td><span id="dollarprice81"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("81");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>69</td>
+        <td>Pinterest - Repin ( High Quality }</td>
+       
+       <td><span id="yourprice82"></span></td>
+       <td><span id="dollarprice82"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("82");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>70</td>
+        <td>International Website Visitors (SEO traffic -110% REAL)</td>
+       
+       <td><span id="yourprice83"></span></td>
+       <td><span id="dollarprice83"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("83");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>71</td>
+        <td>Facebook - Page USA  Likes  (min 100, max 10k )  (United States of America)</td>
+       
+       <td><span id="yourprice8"></span></td>
+       <td><span id="dollarprice8"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("8");
+        </script>
+       
+       <tr class="alert-default">
+
+       <td>72</td>
+        <td>YouTube -  UP/Bihar/Delhi/Mumbai Video Views</td>
+       
+       <td><span id="yourprice84"></span></td>
+       <td><span id="dollarprice84"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("84");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>73</td>
+        <td>YouTube - Normal Video Indian Fast Views (Speed 100-150K Per Day)</td>
+       
+       <td><span id="yourprice85"></span></td>
+       <td><span id="dollarprice85"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("85");
+        </script>
+       
+       <tr class="alert-success">
+
+       <td>74</td>
+        <td>YouTube - Adword Views Normal Speed (30K-60K)</td>
+       
+       <td><span id="yourprice86"></span></td>
+       <td><span id="dollarprice86"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("86");
+        </script>
+       
+       <tr class="alert-primary">
+
+       <td>75</td>
+        <td>YouTube - Adword Indian Views Normal Speed (30K-60K)</td>
+       
+       <td><span id="yourprice87"></span></td>
+       <td><span id="dollarprice87"></span></td>
+       
+       </tr>
+
+        <script type="text/javascript">
+        getserviceprice("87");
+        </script>
+       
+       
+
+       </table>                             
+
+                                    
+
+                                    
+
+                                    
+
+                                    
 
 								</div>
-                                
-                               
 
 							</div>
-                             <div class="primary" style="background:#F7240F;">
-                             <div class="panel-heading">
-                             <div class="row" style="height:18px;margin-left:2px;">
-                                <span style="color:white;font-size:15px;"> INTERNATIONAL </span>
-                                </div>
-                               </div> 
-                                </div>
-
-							
-
-						</div>
-                </div>
-                    </div>
-                    
-
-                    </div>
-                    
 
 
-                   
-                    
 
-					
-                    </div>
-                    
-                    
-                    
-                    
-                     
-                    
-                    </div>
-                    
-                    
-				<div class="top-stat-box">
+</div>
 
-					
+</div>
 
-				</div>
 
-				
-
-				
-
-				
 
             
 
-			</div>
+</div>
 
-		</div>
+</div>
 
-   
+             
+
+
+
+
 <footer class="footer-container">
 
                 <div class="container-fluid">
@@ -1479,10 +2206,102 @@ The maintenance will be performed on January 25th duri <span class="notification
 
     </div>
 
- 
+    <!--<div class="conv-container">
+
+        <div class="conv-u-info chat-u-online">
+
+            <ul>
+
+                <li class="chat-avatar"><img src="images/avatar/adellecharles.jpg" alt="Avatar">
+
+                </li>
+
+                <li class="chat-u-info">adellecharles<span>New York</span>
+
+                </li>
+
+                <li><span data-tooltip="tooltip" data-placement="bottom" title="Call" class="waves-effect chat-u-call"><i class="fa fa-phone"></i></span>
+
+                </li>
+
+                <li><span data-tooltip="tooltip" data-placement="bottom" title="Exit" class="waves-effect chat-close"><i class="fa fa-angle-right"></i></span>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="converstaion-list">
+
+            <div class="conversation-back">
+
+                <div class="conv-thumb">
+
+                    <img src="images/avatar/uxceo.jpg" alt="user">
+
+                </div>
+
+                <div class="conv-text">
+
+                    Hello John, thank you for calling Provide Support. How may I help you?
+
+                </div>
+
+            </div>
+
+            <div class="conversation-front">
+
+                <div class="conv-text">
+
+                    Hello Mary. I understand the problem and will be happy to help you. Let's see what I can do.
+
+                </div>
+
+            </div>
+
+            <div class="conversation-front">
+
+                <div class="conv-text">
+
+                    Let me see if I have this correct, you want me to…" or "You would like for me to…?
+
+                </div>
+
+            </div>
+
+            <div class="conversation-back">
+
+                <div class="conv-thumb">
+
+                    <img src="images/avatar/uxceo.jpg" alt="user">
+
+                </div>
+
+                <div class="conv-text">
+
+                    I'm not sure, but let me find out for you.
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="chat-input-form">
+
+            <form>
+
+                <input name="chatbox" value="" class="form-control chat-input">
+
+            </form>
+
+        </div>
+
+    </div>-->
 
     </div>
-<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>   
+
 
 <style type="text/css">
     
@@ -1609,5 +2428,6 @@ $('#filtersearch').keyup(function(){
 
 
 </html>
-     
+
+
 

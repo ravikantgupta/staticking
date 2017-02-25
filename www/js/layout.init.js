@@ -1,6 +1,6 @@
 $.noConflict();
 jQuery(document).ready(function ($) {
-	alert('ram');
+	
     var pCon = $('.page-container'),
         sRight = $('.right-aside'),
         aRight = $('.right-aside'),

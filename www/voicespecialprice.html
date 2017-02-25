@@ -1,0 +1,933 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>StaticKing SMS Gateway</title>
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/waves.css" type="text/css">
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/components.css" type="text/css">
+    <link rel="stylesheet" href="css/plugins.css" type="text/css">
+    <link rel="stylesheet" href="css/common-styles.css" type="text/css">
+    <link rel="stylesheet" href="css/pages.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
+    
+     
+    
+    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    
+   
+    
+</head>
+
+<body>
+<div id="scrpadd">
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+</div>
+<script type="text/javascript">
+      // Load the Google Transliteration API
+      google.load("elements", "1", {
+            packages: "transliteration"
+          });
+
+      function onLoaddisable() {
+          var options = {
+            sourceLanguage: 'en',
+            destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+            shortcutKey: 'ctrl+g',
+            transliterationEnabled: false
+          };
+          // Create an instance on TransliterationControl with the required
+          // options.
+          var control =
+              new google.elements.transliteration.TransliterationControl(options);
+
+          // Enable transliteration in the textfields with the given ids.
+          var ids = [ "smscontent"];
+          //control.disableTransliteration(ids);
+        }
+        function onLoad() {
+            var options = {
+              sourceLanguage: 'en',
+              destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+              shortcutKey: 'ctrl+g',
+              transliterationEnabled: false
+            };
+
+            // Create an instance on TransliterationControl with the required
+            // options.
+            var control =
+                new google.elements.transliteration.TransliterationControl(options);
+
+            // Enable transliteration in the textfields with the given ids.
+            var ids = [ "smscontent"];
+            control.makeTransliteratable(ids);
+
+            // Show the transliteration control which can be used to toggle between
+            // English and Hindi and also choose other destination language.
+            control.showControl('translControl');
+          }
+        google.setOnLoadCallback(onLoad);
+	</script><link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
+
+
+<div class="page-container list-menu-view">
+
+    <!--Leftbar Start Here -->
+
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<div class="left-aside desktop-view">
+
+        <div class="aside-branding">
+
+     
+            <a href="http://manage.staticking.net/index.php" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
+
+            </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
+
+            <span class="aside-close waves-effect"><i class="fa fa-times"></i></span>
+
+        </div>
+
+        
+
+    <input type="text" id="filtersearch" class="form-control" placeholder="Search Page">        
+
+        <div class="left-navigation">
+
+         <ul class="list-accordion">
+
+                
+
+                <li><a href="index.html" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
+
+                </li>
+
+                 
+                
+
+               <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-comments"></i></span><span class="nav-label">SMS</span></a>
+
+                    <ul>
+
+                        <li><a href="composesms.html">Compose SMS</a>
+
+                        </li>
+
+                        <li><a href="allsentsms.html">All Sent Sms</a>
+
+                        </li>
+
+                        <li><a href="schedule.html">Schedule Sms</a>
+
+                        </li>
+                         
+                       <li><a href="dynamicsms.html">Dynamic Sms</a>
+
+                        </li>
+
+                        
+
+                        
+
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
+
+                    <ul>
+                    
+                    	<li><a href="uploadvoicefile.html">Upload Voice File</a>
+
+                        </li>
+                        <li><a href="mysounds.html">View Voice Files</a>
+
+                        </li>
+                        
+                        <li><a href="voicesms.html">Compose Voice SMS</a>
+
+                        </li>
+
+                        <li><a href="allvoicesentsms.html">All Sent Voice Sms</a>
+
+                        </li>
+                        
+                          <li><a href="voicespecialprice.html">Add Voice Special Price</a>
+
+                        </li>
+                        
+                        <li><a href="voicespecialpricelist.html">View Voice Special Price</a>
+
+                        </li>
+                                                
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-phone"></i></span><span class="nav-label">Miss Call Alerts</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="viewmisscall.html">View Miss Call Alerts</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-th"></i></span><span class="nav-label">Short/Long Code</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="viewlongcode.html">View Short/Long Code</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+                
+                
+               
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-facebook-official"></i></span><span class="nav-label">Social Media</span></a>
+
+                    <ul>        
+                        <li><a href="addpackage.html">Add Package</a></li>
+                        <li><a href="viewpackage.html">View Package</a></li>
+                       <li><a href="placeorder.html">Place Order</a></li>
+                        <li><a href="vieworder.html">View Order</a></li>
+                        <li><a href="socialpricing.html">Social Pricing</a></li>
+                       
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-android"></i></span><span class="nav-label">Android App Installation</span></a>
+
+                    <ul>
+
+                        <li><a href="add.html">Place Order</a>
+
+                        </li>
+                        
+                        <li><a href="viewcampaign.html">View Order</a>
+
+                        </li>
+                          <li><a href="pricing.html">Pricing</a>
+
+                        </li>
+                        
+                       
+                    </ul>
+
+                </li>
+
+
+                
+                
+                
+                
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-file"></i></span><span class="nav-label">Others</span></a>
+
+                    <ul>
+
+                        <li><a href="smstemplate.html">Add Template</a>
+
+                        </li>
+                        
+                        <li><a href="viewsmstemplate.html">View Templates</a>
+
+                        </li>
+                        
+                        <li><a href="newgroup.html">Add Group</a>
+
+                        </li>
+                        
+                        <li><a href="viewgroup.html">View Group</a>
+
+                        </li>
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-user"></i></span><span class="nav-label">Users</span></a>
+
+                    <ul>
+
+                        <li><a href="addusers.html">Add Users</a>
+
+                        </li>
+
+                        <li><a href="viewusers.html">View Users</a>
+
+                        </li>
+
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                 
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-users"></i></span><span class="nav-label">Reseller</span></a>
+
+                    <ul>
+
+                        <li><a href="addresellers.html">Add Reseller</a>
+
+                        </li>
+
+                        <li><a href="viewreseller.html">View Reseller</a>
+
+                        </li>
+                        <li><a href="usersmpp.html">Add Your Smpp</a>
+
+                        </li>
+						                        
+
+                    </ul>
+
+                </li>
+
+                                
+                 
+               
+
+                
+
+                
+
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-cogs"></i></span><span class="nav-label">Settings</span></a>
+
+                    <ul>
+
+						 <li><a href="viewusersmpp.html">Client Smpp</a>
+
+                        </li> 
+                                                
+						
+                        <li><a href="changeusertype.html">Change User Type</a>
+
+                        </li>
+							
+                            
+                         
+
+                    							
+                        <li><a href="transfercredits.html">Transfer Credits</a></li>
+
+                                                
+                        
+                        
+                        
+                                                
+                        
+                        
+                        
+
+                         <li><a href="transsactionin.html">Transactions In</a>
+
+                        </li>
+
+
+
+                        <li><a href="transsactionou.html">Transactions Out</a>
+
+                        </li>
+
+                        <li><a href="myshorturls.html">My Short Urls</a>
+
+                        </li>
+
+						<li><a href="smsapi.html">HTTP API</a>
+
+                        </li>
+                        
+                        <li><a href="bulksmsapi.html">Bulk SMS API</a>
+
+                        </li>
+
+                        <li><a href="xmlapi.html">XML API</a>
+
+                        </li>
+                        
+                        <li><a href="creditapi.html">Credits API</a>
+
+                        </li>
+                        
+                        <li><a href="deliveryapi.html">Delivery API</a>
+
+                        </li>
+                        
+                        
+
+                                                
+                        
+                        
+                        <li><a href="allsenderids.html">View Sender IDs</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="actualcredits.html">View Actual Credits</a>
+
+                        </li>
+                         <li><a href="notifications.html">Send Notifications</a>
+
+                        </li>
+                                                 
+
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/deliverycutting">Delivery Cutting</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="deliveryusers.html">Delivery Cutting Users List</a>
+
+                        </li>
+
+                                                  
+                         
+                         
+                        <li><a href="website.html">Website Settings</a>
+
+                        </li>
+						
+                          <li><a href="checkdnd.html">Check DND Number</a>
+                         <li><a href="blocknumber.html">Block Number</a>
+
+                        </li>
+                         <li><a href="mysmpptransactions.html">My Transactions</a></li>
+                        <li><a href="smppmycredits.html">Available Credits</a></li>
+												
+                        
+
+                    </ul>
+
+                </li>
+             
+
+               
+
+               
+
+            </ul>
+
+        </div>
+
+    </div>
+     <!--Leftbar End Here -->
+
+        <div class="page-content">
+
+        <!--Topbar Start Here -->
+
+         
+<header class="top-bar">
+
+            <div class="container-fluid top-nav">
+
+                <div class="search-form search-bar">
+
+                    
+
+                    <span class="search-close waves-effect"><i class="ico-cross"></i></span>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+
+                        <div class="clearfix top-bar-action">
+
+                            <span class="leftbar-action-mobile waves-effect"><i class="fa fa-bars "></i></span>
+
+                            <span class="leftbar-action desktop waves-effect"><i class="fa fa-bars "></i></span>
+
+						
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+
+					                    
+                                        <div class="col-md-4 responsive-fix top-mid">
+
+                        <div class="notification-nav">
+
+                            <ul class="clearfix">
+                        
+                        <li class="dropdown whenuserread" >
+                        
+                        <a href="#"  data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i>
+                                                </a>
+                        
+                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp noty-lists hide-small-device">
+                                <div class="notification-wrap">
+                                    <h4>You have 0 new notifications</h4>
+                                    <ul>
+                                    	                                        <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Please don't use @ symbol  in between the content on transactional 2 route.. we ware working on it. will fix it asap. thanks.
+ <span class="notification-time clearfix">2017-02-20 13:18:51  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">promosid route is under maintenance due to some errors. We are working on the issue and fix it asap. <span class="notification-time clearfix">2017-02-17 14:10:35  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Transactional 2 route is under maintenance, so messages will delivered with delay... sorry for the inconvenience. thanks. <span class="notification-time clearfix">2017-02-04 13:28:44  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Wishing You a very Happy Republic Day 
+--
+System Admin <span class="notification-time clearfix">2017-01-26 10:51:14  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Dear Team,
+
+Route: Transactional Route
+With further efforts to optimize our SMPP platform performance and scalability, we are making updates to our servers, which may affect services to the customers.
+The maintenance will be performed on January 25th duri <span class="notification-time clearfix">2017-01-25 14:25:04  </span></span></a>
+                                        </li>
+                                                                            </ul>
+                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="http://manage.staticking.net/index.php/settings/usernotifications"><span>View All</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        
+                                            </ul>
+
+                        </div>
+
+                       
+
+                    </div>
+
+                   	
+					
+                    <div class="col-md-6 responsive-fix">
+
+                        <div class="top-aside-right">
+								
+                              
+                            <div class="user-nav">
+
+                                <ul>
+
+                                    <li class="dropdown">
+
+                                        <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
+
+                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+
+                                            <span class="user-thumb" style="background:#15BDC3;" >
+                                            
+                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                            
+                                                                                        
+                                            
+                                            
+                                            </span>
+
+                                        </a>
+
+                                        <ul role="menu" class="dropdown-menu fadeInUp">
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/userprofile"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+
+                                            </li>
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/logout"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+							
+                                                        
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+        <!--Topbar End Here -->
+
+		
+
+
+
+
+
+<div class="main-container">
+
+<div class="container-fluid" style="padding:0px;">
+<div class="col-md-12" style="padding:0px;">
+
+<div class="box-widget widget-module">
+
+
+
+<div class="widget-container">
+
+<div class=" widget-block">
+
+<div class="page-header">
+
+	<h2>Voice Price</h2>
+
+</div>
+
+
+
+
+<form action="javascript:void(0)" id="specialpriceform">
+<div class="form-horizontal">
+
+										
+
+										<div class="form-group">
+
+											<label class="col-md-2 control-label">Select Reseller</label>
+
+											<div class="col-md-10">
+
+												<select class="form-control select2" id="username" name="username" required>
+
+                                                <option value="">Select User</option>
+
+                                                
+                                                <option value="2394" acctype="user">Demo123gurp (User)</option>
+
+                                                
+                                                <option value="57" acctype="reseller">Reseller1 (Reseller)</option>
+
+                                                
+                                                <option value="56" acctype="user">Demo111 (User)</option>
+
+                                                
+                                                </select>
+
+											</div>
+
+										</div>
+                                        
+                                        
+                                        <div class="form-group">
+
+											<label class="col-md-2 control-label">Select Route</label>
+
+											<div class="col-md-10">
+
+												<select class="form-control select2" id="service" name="route" required>
+
+                                                <option value="">Select Route</option>
+
+                                               <option value="Promo Answered">Promo Answered</option>
+                                               <option value="Promo Submission">Promo Submission</option>
+
+                                                </select>
+
+											</div>
+
+										</div>
+                                        
+                                        
+                                        	<div class="form-group">
+
+											<label class="col-md-2 control-label">Price</label>
+
+											<div class="col-md-10">
+
+                                            <input type="text" id="newprice" name="newprice" required class="form-control" placeholder="Add Price" />
+
+                                            </div>
+
+                                            </div>
+											
+                                            
+                                            
+                                            	
+
+										<div class="form-group">
+
+											<label class="col-md-2 control-label">&nbsp;</label>
+
+											<div class="col-md-10">
+
+												<div class="form-actions">
+
+													
+
+												<button type="submit" id="sendsmsfast" class="btn btn-primary">Save</button>	
+                                                
+
+                                                <span id="msgstatus"></span>
+
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+</form>
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+            
+
+</div>
+
+</div>
+
+             
+
+
+
+
+<footer class="footer-container">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-left">
+
+                                
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-right">
+
+                               
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+<style type="text/css">
+    
+ .navbgr
+ {
+    background: red;
+ }   
+</style>
+
+
+
+<script src="js/jquery-1.11.2.min.js"></script>
+
+ 
+
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jRespond.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/nav-accordion.js"></script>
+    <script src="js/hoverintent.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/switchery.js"></script>
+    <script src="js/jquery.loadmask.js"></script>
+    <script src="js/icheck.js"></script>
+    <script src="js/select2.js"></script>
+    <script src="js/bootstrap-filestyle.js"></script>
+    <script src="js/bootbox.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/colorpicker.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/calendar/fullcalendar.js"></script>
+    
+    <!--CHARTS-->
+    <script src="js/chart/sparkline/jquery.sparkline.js"></script>
+    <script src="js/chart/easypie/jquery.easypiechart.min.js"></script>
+    <script src="js/chart/flot/excanvas.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.min.js"></script>
+    <script src="js/chart/flot/curvedLines.js"></script>
+    <script src="js/chart/flot/jquery.flot.time.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.stack.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.axislabels.js"></script>
+    <script src="js/chart/flot/jquery.flot.resize.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.spline.js"></script>
+    <script src="js/chart/flot/jquery.flot.pie.min.js"></script>
+    <script src="js/chart.init.js"></script>
+    <script src="js/smart-resize.js"></script>
+    <script src="js/layout.init.js"></script>
+    <script src="js/matmix.init.js"></script>
+    <script src="js/retina.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/summernote.min.js"></script>
+    <script src="js/jquery.simple-dtpicker.js"></script>
+
+	<script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+        $(".whenuserread").on('click',function()
+		{
+			
+			$.get('http://manage.staticking.net/index.php/settings/notiread?notiread=yes',function(data)
+			{
+				if(data=='success')
+				{
+					$(".notitotalh").hide();
+				}
+			});
+		});
+    });
+	</script>
+    
+    <script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+		
+		$("#accountmanager").hover(function()
+		{
+			$("#accountmanagerdiv").show();
+		});
+		
+		$(document).on('click',function()
+		{
+			$("#accountmanagerdiv").hide();
+		});
+		
+		
+	});
+
+function capitalizeFirstLetter(string) {
+    return string[0].toUpperCase() + string.slice(1);
+}
+
+
+$('#filtersearch').keyup(function(){
+
+    var that = this, $allListElements = $('.list-accordion > li, .dcjq-parent-li > ul > li');
+
+    var $matchingListElements = $allListElements.filter(function(i, li){
+        var listItemText = $(li).text().toUpperCase(), 
+            searchText = that.value.toUpperCase();
+        return ~listItemText.indexOf(searchText);
+    });    
+    $allListElements.hide();
+    $matchingListElements.show();
+    
+    $(".dcjq-parent-li > ul").show();
+    
+    if($.trim($('#filtersearch').val())=='')
+    {
+        $(".dcjq-parent-li > ul").hide();
+    }
+});
+
+
+	</script>
+
+
+
+
+</body>
+
+
+
+</html>
+
+
+<script type="text/javascript">
+$=jQuery;
+
+$(document).ready(function(e) {
+    
+	$("#specialpriceform").on('submit',function(ev)
+	{
+		ev.preventDefault();
+		
+		$.ajax({
+				type:'POST',
+				url:'http://manage.staticking.net/index.php/pages/addvoicespecialprice',
+				data:$("#specialpriceform").serialize(),
+				beforeSend: function()
+				{
+					$("#msgstatus").text("Please Wait..");
+				},
+				success: function(data)
+				{
+					$("#msgstatus").text(data);
+				}
+				
+				
+		});
+		
+		
+	});
+	
+});
+
+</script>

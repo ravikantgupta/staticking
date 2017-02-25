@@ -1,0 +1,2788 @@
+
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>StaticKing SMS Gateway</title>
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+    <link rel="stylesheet" href="css/animate.css" type="text/css">
+    <link rel="stylesheet" href="css/waves.css" type="text/css">
+    <link rel="stylesheet" href="css/layout.css" type="text/css">
+    <link rel="stylesheet" href="css/components.css" type="text/css">
+    <link rel="stylesheet" href="css/plugins.css" type="text/css">
+    <link rel="stylesheet" href="css/common-styles.css" type="text/css">
+    <link rel="stylesheet" href="css/pages.css" type="text/css">
+    <link rel="stylesheet" href="css/responsive.css" type="text/css">
+    <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
+    
+     
+    
+    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    
+   
+    
+</head>
+
+<body>
+<div id="scrpadd">
+<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+
+</div>
+<script type="text/javascript">
+      // Load the Google Transliteration API
+      google.load("elements", "1", {
+            packages: "transliteration"
+          });
+
+      function onLoaddisable() {
+          var options = {
+            sourceLanguage: 'en',
+            destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+            shortcutKey: 'ctrl+g',
+            transliterationEnabled: false
+          };
+          // Create an instance on TransliterationControl with the required
+          // options.
+          var control =
+              new google.elements.transliteration.TransliterationControl(options);
+
+          // Enable transliteration in the textfields with the given ids.
+          var ids = [ "smscontent"];
+          //control.disableTransliteration(ids);
+        }
+        function onLoad() {
+            var options = {
+              sourceLanguage: 'en',
+              destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
+              shortcutKey: 'ctrl+g',
+              transliterationEnabled: false
+            };
+
+            // Create an instance on TransliterationControl with the required
+            // options.
+            var control =
+                new google.elements.transliteration.TransliterationControl(options);
+
+            // Enable transliteration in the textfields with the given ids.
+            var ids = [ "smscontent"];
+            control.makeTransliteratable(ids);
+
+            // Show the transliteration control which can be used to toggle between
+            // English and Hindi and also choose other destination language.
+            control.showControl('translControl');
+          }
+        google.setOnLoadCallback(onLoad);
+	</script><link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
+
+
+
+
+<style>
+
+#faceoff {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+#preloader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #2B8B90;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    z-index: 1001;
+}
+
+#preloader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #356F66;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+#preloader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #92E0D4;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+@-webkit-keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+@keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+
+#faceoff .preloader-section {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+	opacity:0.4;
+    z-index: 1000;
+    -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: translateX(0);  /* IE 9 */
+    transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
+}
+
+/* Loaded */
+.loaded #faceoff .preloader-section {
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
+            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.loaded #preloader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+}
+.loaded #faceoff {
+    visibility: hidden;
+
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.3s 1s ease-out;
+            transition: all 0.3s 1s ease-out;
+}
+
+</style>
+
+
+
+
+<div id="faceoff" style="display: none;">
+        <div id="preloader"></div>
+        <div class="preloader-section"></div>
+      </div>
+
+
+<div class="bb-alert alert alert-success noty_animated fadeInUp" id="bbalertd"></div>
+<input type="hidden" id="rows" value="0">
+<input type="hidden" id="totalrows" value="75">
+<div class="page-container list-menu-view">
+
+    <!--Leftbar Start Here -->
+
+    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+<div class="left-aside desktop-view">
+
+        <div class="aside-branding">
+
+     
+            <a href="http://manage.staticking.net/index.php" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
+
+            </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
+
+            <span class="aside-close waves-effect"><i class="fa fa-times"></i></span>
+
+        </div>
+
+        
+
+    <input type="text" id="filtersearch" class="form-control" placeholder="Search Page">        
+
+        <div class="left-navigation">
+
+          <ul class="list-accordion">
+
+                
+
+                <li><a href="index.html" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
+
+                </li>
+
+                 
+                
+
+               <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-comments"></i></span><span class="nav-label">SMS</span></a>
+
+                    <ul>
+
+                        <li><a href="composesms.html">Compose SMS</a>
+
+                        </li>
+
+                        <li><a href="allsentsms.html">All Sent Sms</a>
+
+                        </li>
+
+                        <li><a href="schedule.html">Schedule Sms</a>
+
+                        </li>
+                         
+                       <li><a href="dynamicsms.html">Dynamic Sms</a>
+
+                        </li>
+
+                        
+
+                        
+
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
+
+                    <ul>
+                    
+                    	<li><a href="uploadvoicefile.html">Upload Voice File</a>
+
+                        </li>
+                        <li><a href="mysounds.html">View Voice Files</a>
+
+                        </li>
+                        
+                        <li><a href="voicesms.html">Compose Voice SMS</a>
+
+                        </li>
+
+                        <li><a href="allvoicesentsms.html">All Sent Voice Sms</a>
+
+                        </li>
+                        
+                          <li><a href="voicespecialprice.html">Add Voice Special Price</a>
+
+                        </li>
+                        
+                        <li><a href="voicespecialpricelist.html">View Voice Special Price</a>
+
+                        </li>
+                                                
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-phone"></i></span><span class="nav-label">Miss Call Alerts</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="viewmisscall.html">View Miss Call Alerts</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-th"></i></span><span class="nav-label">Short/Long Code</span></a>
+
+                    <ul>
+                                                
+                        <li><a href="viewlongcode.html">View Short/Long Code</a>
+
+                        </li>
+                        
+                        
+                    </ul>
+
+                </li>
+                
+                
+               
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-facebook-official"></i></span><span class="nav-label">Social Media</span></a>
+
+                    <ul>        
+                        <li><a href="addpackage.html">Add Package</a></li>
+                        <li><a href="viewpackage.html">View Package</a></li>
+                       <li><a href="placeorder.html">Place Order</a></li>
+                        <li><a href="vieworder.html">View Order</a></li>
+                        <li><a href="socialpricing.html">Social Pricing</a></li>
+                       
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-android"></i></span><span class="nav-label">Android App Installation</span></a>
+
+                    <ul>
+
+                        <li><a href="add.html">Place Order</a>
+
+                        </li>
+                        
+                        <li><a href="viewcampaign.html">View Order</a>
+
+                        </li>
+                          <li><a href="pricing.html">Pricing</a>
+
+                        </li>
+                        
+                       
+                    </ul>
+
+                </li>
+
+
+                
+                
+                
+                
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-file"></i></span><span class="nav-label">Others</span></a>
+
+                    <ul>
+
+                        <li><a href="smstemplate.html">Add Template</a>
+
+                        </li>
+                        
+                        <li><a href="viewsmstemplate.html">View Templates</a>
+
+                        </li>
+                        
+                        <li><a href="newgroup.html">Add Group</a>
+
+                        </li>
+                        
+                        <li><a href="viewgroup.html">View Group</a>
+
+                        </li>
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-user"></i></span><span class="nav-label">Users</span></a>
+
+                    <ul>
+
+                        <li><a href="addusers.html">Add Users</a>
+
+                        </li>
+
+                        <li><a href="viewusers.html">View Users</a>
+
+                        </li>
+
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                 
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-users"></i></span><span class="nav-label">Reseller</span></a>
+
+                    <ul>
+
+                        <li><a href="addresellers.html">Add Reseller</a>
+
+                        </li>
+
+                        <li><a href="viewreseller.html">View Reseller</a>
+
+                        </li>
+                        <li><a href="usersmpp.html">Add Your Smpp</a>
+
+                        </li>
+						                        
+
+                    </ul>
+
+                </li>
+
+                                
+                 
+               
+
+                
+
+                
+
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-cogs"></i></span><span class="nav-label">Settings</span></a>
+
+                    <ul>
+
+						 <li><a href="viewusersmpp.html">Client Smpp</a>
+
+                        </li> 
+                                                
+						
+                        <li><a href="changeusertype.html">Change User Type</a>
+
+                        </li>
+							
+                            
+                         
+
+                    							
+                        <li><a href="transfercredits.html">Transfer Credits</a></li>
+
+                                                
+                        
+                        
+                        
+                                                
+                        
+                        
+                        
+
+                         <li><a href="transsactionin.html">Transactions In</a>
+
+                        </li>
+
+
+
+                        <li><a href="transsactionou.html">Transactions Out</a>
+
+                        </li>
+
+                        <li><a href="myshorturls.html">My Short Urls</a>
+
+                        </li>
+
+						<li><a href="smsapi.html">HTTP API</a>
+
+                        </li>
+                        
+                        <li><a href="bulksmsapi.html">Bulk SMS API</a>
+
+                        </li>
+
+                        <li><a href="xmlapi.html">XML API</a>
+
+                        </li>
+                        
+                        <li><a href="creditapi.html">Credits API</a>
+
+                        </li>
+                        
+                        <li><a href="deliveryapi.html">Delivery API</a>
+
+                        </li>
+                        
+                        
+
+                                                
+                        
+                        
+                        <li><a href="allsenderids.html">View Sender IDs</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="actualcredits.html">View Actual Credits</a>
+
+                        </li>
+                         <li><a href="notifications.html">Send Notifications</a>
+
+                        </li>
+                                                 
+
+                        
+                        <li><a href="http://manage.staticking.net/index.php/settings/deliverycutting">Delivery Cutting</a>
+
+                        </li>
+
+                        
+                        
+
+                        
+                        <li><a href="deliveryusers.html">Delivery Cutting Users List</a>
+
+                        </li>
+
+                                                  
+                         
+                         
+                        <li><a href="website.html">Website Settings</a>
+
+                        </li>
+						
+                          <li><a href="checkdnd.html">Check DND Number</a>
+                         <li><a href="blocknumber.html">Block Number</a>
+
+                        </li>
+                         <li><a href="mysmpptransactions.html">My Transactions</a></li>
+                        <li><a href="smppmycredits.html">Available Credits</a></li>
+												
+                        
+
+                    </ul>
+
+                </li>
+             
+
+               
+
+               
+
+            </ul>
+
+        </div>
+
+    </div>
+     <!--Leftbar End Here -->
+
+        <div class="page-content">
+
+        <!--Topbar Start Here -->
+
+         
+<header class="top-bar">
+
+            <div class="container-fluid top-nav">
+
+                <div class="search-form search-bar">
+
+                    
+
+                    <span class="search-close waves-effect"><i class="ico-cross"></i></span>
+
+                </div>
+
+                <div class="row">
+
+                    <div class="col-md-2">
+
+                        <div class="clearfix top-bar-action">
+
+                            <span class="leftbar-action-mobile waves-effect"><i class="fa fa-bars "></i></span>
+
+                            <span class="leftbar-action desktop waves-effect"><i class="fa fa-bars "></i></span>
+
+						
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+
+					                    
+                                        <div class="col-md-4 responsive-fix top-mid">
+
+                        <div class="notification-nav">
+
+                            <ul class="clearfix">
+                        
+                        <li class="dropdown whenuserread" >
+                        
+                        <a href="#"  data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i>
+                                                </a>
+                        
+                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp noty-lists hide-small-device">
+                                <div class="notification-wrap">
+                                    <h4>You have 0 new notifications</h4>
+                                    <ul>
+                                    	                                        <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Please don't use @ symbol  in between the content on transactional 2 route.. we ware working on it. will fix it asap. thanks.
+ <span class="notification-time clearfix">2017-02-20 13:18:51  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">promosid route is under maintenance due to some errors. We are working on the issue and fix it asap. <span class="notification-time clearfix">2017-02-17 14:10:35  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Transactional 2 route is under maintenance, so messages will delivered with delay... sorry for the inconvenience. thanks. <span class="notification-time clearfix">2017-02-04 13:28:44  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Wishing You a very Happy Republic Day 
+--
+System Admin <span class="notification-time clearfix">2017-01-26 10:51:14  </span></span></a>
+                                        </li>
+                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Dear Team,
+
+Route: Transactional Route
+With further efforts to optimize our SMPP platform performance and scalability, we are making updates to our servers, which may affect services to the customers.
+The maintenance will be performed on January 25th duri <span class="notification-time clearfix">2017-01-25 14:25:04  </span></span></a>
+                                        </li>
+                                                                            </ul>
+                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="http://manage.staticking.net/index.php/settings/usernotifications"><span>View All</span></a>
+                                </div>
+                            </div>
+                        </li>
+                        
+                                            </ul>
+
+                        </div>
+
+                       
+
+                    </div>
+
+                   	
+					
+                    <div class="col-md-6 responsive-fix">
+
+                        <div class="top-aside-right">
+								
+                              
+                            <div class="user-nav">
+
+                                <ul>
+
+                                    <li class="dropdown">
+
+                                        <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
+
+                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+
+                                            <span class="user-thumb" style="background:#15BDC3;" >
+                                            
+                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                            
+                                                                                        
+                                            
+                                            
+                                            </span>
+
+                                        </a>
+
+                                        <ul role="menu" class="dropdown-menu fadeInUp">
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/userprofile"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+
+                                            </li>
+
+                                            <li><a href="http://manage.staticking.net/index.php/pages/logout"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+
+                                            </li>
+
+                                        </ul>
+
+                                    </li>
+
+                                </ul>
+
+                            </div>
+							
+                                                        
+
+                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+        <!--Topbar End Here -->
+
+		
+
+
+
+
+
+<div class="main-container">
+
+<div class="container-fluid" style="padding:0px;">
+<div class="col-md-12" style="padding:0px;">
+
+<div class="box-widget widget-module">
+
+
+
+<div class="widget-container">
+
+<div class=" widget-block">
+
+<div class="page-header">
+
+	<h2>Add Package</h2>
+
+</div>
+
+<form action="javascript:void(0)" id="specialpriceform">
+<div class="form-horizontal">
+
+
+										<div class="form-group">
+
+											<label class="col-md-2 control-label">Add Package Name</label>
+
+											<div class="col-md-10">
+
+												<input type="text" name="packagename" class="form-control" placeholder="Add Package Name" required />
+
+											</div>
+
+										</div>
+
+                                           <div class="form-group">
+                                            
+                                            <label class="col-md-2 control-label"></label>
+
+                                            <div class="col-md-3">
+
+                                 
+
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellermarginprice" class="form-control" placeholder="Reseller Margin Price">
+                                            </div>
+                                           
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="customermarginprice" class="form-control" placeholder="Customer Margin Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+           
+                                        
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook Worldwide Likes</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice3" name="yourprice3" required class="form-control yourprice" placeholder="Your Price" serviceid="3" readonly="readonly" value="1" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice3" name="resellerprice3" class="form-control resellerprice" serviceid="3" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice3" name="customerprice3" class="form-control customerprice" serviceid="3" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Page Likes Middle East Countries</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice4" name="yourprice4" required class="form-control yourprice" placeholder="Your Price" serviceid="4" readonly="readonly" value="1.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice4" name="resellerprice4" class="form-control resellerprice" serviceid="4" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice4" name="customerprice4" class="form-control customerprice" serviceid="4" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook Page Indian Likes </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice6" name="yourprice6" required class="form-control yourprice" placeholder="Your Price" serviceid="6" readonly="readonly" value="2.4" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice6" name="resellerprice6" class="form-control resellerprice" serviceid="6" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice6" name="customerprice6" class="form-control customerprice" serviceid="6" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook UP/Bihar Likes</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice7" name="yourprice7" required class="form-control yourprice" placeholder="Your Price" serviceid="7" readonly="readonly" value="1.2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice7" name="resellerprice7" class="form-control resellerprice" serviceid="7" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice7" name="customerprice7" class="form-control customerprice" serviceid="7" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Page Likes  From Only Europe - Min Order: 200 , Max: 200,000</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice10" name="yourprice10" required class="form-control yourprice" placeholder="Your Price" serviceid="10" readonly="readonly" value="5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice10" name="resellerprice10" class="form-control resellerprice" serviceid="10" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice10" name="customerprice10" class="form-control customerprice" serviceid="10" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Page France Likes - Min Order: 500 , Max: 200,000</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice11" name="yourprice11" required class="form-control yourprice" placeholder="Your Price" serviceid="11" readonly="readonly" value="12.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice11" name="resellerprice11" class="form-control resellerprice" serviceid="11" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice11" name="customerprice11" class="form-control customerprice" serviceid="11" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Page Likes ( Guaranteed ) ( African Fans ) </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice12" name="yourprice12" required class="form-control yourprice" placeholder="Your Price" serviceid="12" readonly="readonly" value="4.2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice12" name="resellerprice12" class="form-control resellerprice" serviceid="12" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice12" name="customerprice12" class="form-control customerprice" serviceid="12" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook Video Views</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice13" name="yourprice13" required class="form-control yourprice" placeholder="Your Price" serviceid="13" readonly="readonly" value="0.26" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice13" name="resellerprice13" class="form-control resellerprice" serviceid="13" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice13" name="customerprice13" class="form-control customerprice" serviceid="13" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Photo | Post likes ( Worldwide ) </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice14" name="yourprice14" required class="form-control yourprice" placeholder="Your Price" serviceid="14" readonly="readonly" value="0.3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice14" name="resellerprice14" class="form-control resellerprice" serviceid="14" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice14" name="customerprice14" class="form-control customerprice" serviceid="14" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook Profile  Followers ( Worldwide ) ( Speed 100-500 )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice15" name="yourprice15" required class="form-control yourprice" placeholder="Your Price" serviceid="15" readonly="readonly" value="2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice15" name="resellerprice15" class="form-control resellerprice" serviceid="15" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice15" name="customerprice15" class="form-control customerprice" serviceid="15" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook Profile Indian Followers</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice16" name="yourprice16" required class="form-control yourprice" placeholder="Your Price" serviceid="16" readonly="readonly" value="6" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice16" name="resellerprice16" class="form-control resellerprice" serviceid="16" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice16" name="customerprice16" class="form-control customerprice" serviceid="16" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook Profile USA Followers</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice17" name="yourprice17" required class="form-control yourprice" placeholder="Your Price" serviceid="17" readonly="readonly" value="7" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice17" name="resellerprice17" class="form-control resellerprice" serviceid="17" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice17" name="customerprice17" class="form-control customerprice" serviceid="17" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Post / Photo Likes ( By Indian Users) (Min:100 - Max 1000)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice18" name="yourprice18" required class="form-control yourprice" placeholder="Your Price" serviceid="18" readonly="readonly" value="5.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice18" name="resellerprice18" class="form-control resellerprice" serviceid="18" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice18" name="customerprice18" class="form-control customerprice" serviceid="18" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Post Likes USA ( Only For Page Post ) (MIn:3000)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice19" name="yourprice19" required class="form-control yourprice" placeholder="Your Price" serviceid="19" readonly="readonly" value="1.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice19" name="resellerprice19" class="form-control resellerprice" serviceid="19" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice19" name="customerprice19" class="form-control customerprice" serviceid="19" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Photo | Post Likes ( USA ) 24 Hrs Delivery</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice20" name="yourprice20" required class="form-control yourprice" placeholder="Your Price" serviceid="20" readonly="readonly" value="1.7" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice20" name="resellerprice20" class="form-control resellerprice" serviceid="20" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice20" name="customerprice20" class="form-control customerprice" serviceid="20" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Friends Request on Profile</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice21" name="yourprice21" required class="form-control yourprice" placeholder="Your Price" serviceid="21" readonly="readonly" value="2.6" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice21" name="resellerprice21" class="form-control resellerprice" serviceid="21" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice21" name="customerprice21" class="form-control customerprice" serviceid="21" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Event Join ( USA USers ) Min:100 Max:1500</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice22" name="yourprice22" required class="form-control yourprice" placeholder="Your Price" serviceid="22" readonly="readonly" value="2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice22" name="resellerprice22" class="form-control resellerprice" serviceid="22" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice22" name="customerprice22" class="form-control customerprice" serviceid="22" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - FIVE Star Rating for Page</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice23" name="yourprice23" required class="form-control yourprice" placeholder="Your Price" serviceid="23" readonly="readonly" value="14" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice23" name="resellerprice23" class="form-control resellerprice" serviceid="23" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice23" name="customerprice23" class="form-control customerprice" serviceid="23" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Groups Join</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice24" name="yourprice24" required class="form-control yourprice" placeholder="Your Price" serviceid="24" readonly="readonly" value="0.6" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice24" name="resellerprice24" class="form-control resellerprice" serviceid="24" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice24" name="customerprice24" class="form-control customerprice" serviceid="24" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Website Likes ( Not for FB page ) Only add your website URl</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice25" name="yourprice25" required class="form-control yourprice" placeholder="Your Price" serviceid="25" readonly="readonly" value="1" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice25" name="resellerprice25" class="form-control resellerprice" serviceid="25" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice25" name="customerprice25" class="form-control customerprice" serviceid="25" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram  Followers High Quality  Min-100</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice26" name="yourprice26" required class="form-control yourprice" placeholder="Your Price" serviceid="26" readonly="readonly" value="1.6" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice26" name="resellerprice26" class="form-control resellerprice" serviceid="26" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice26" name="customerprice26" class="form-control customerprice" serviceid="26" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram Cheap Price Followers  ( Max 10k ) ( No Refund, No Gurrantee) </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice27" name="yourprice27" required class="form-control yourprice" placeholder="Your Price" serviceid="27" readonly="readonly" value="0.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice27" name="resellerprice27" class="form-control resellerprice" serviceid="27" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice27" name="customerprice27" class="form-control customerprice" serviceid="27" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram  Real Followers Min : 100</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice28" name="yourprice28" required class="form-control yourprice" placeholder="Your Price" serviceid="28" readonly="readonly" value="2.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice28" name="resellerprice28" class="form-control resellerprice" serviceid="28" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice28" name="customerprice28" class="form-control customerprice" serviceid="28" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram - Followers ( RUSSIA )  ( 24-48 hrs Delivery )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice29" name="yourprice29" required class="form-control yourprice" placeholder="Your Price" serviceid="29" readonly="readonly" value="2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice29" name="resellerprice29" class="form-control resellerprice" serviceid="29" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice29" name="customerprice29" class="form-control customerprice" serviceid="29" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram - Followers ( ARAB ) ( Max 25k ) </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice30" name="yourprice30" required class="form-control yourprice" placeholder="Your Price" serviceid="30" readonly="readonly" value="1.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice30" name="resellerprice30" class="form-control resellerprice" serviceid="30" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice30" name="customerprice30" class="form-control customerprice" serviceid="30" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram - Followers ( USA )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice32" name="yourprice32" required class="form-control yourprice" placeholder="Your Price" serviceid="32" readonly="readonly" value="2.2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice32" name="resellerprice32" class="form-control resellerprice" serviceid="32" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice32" name="customerprice32" class="form-control customerprice" serviceid="32" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram Photo Comment   (Min: 5  Max:1000)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice33" name="yourprice33" required class="form-control yourprice" placeholder="Your Price" serviceid="33" readonly="readonly" value="11" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice33" name="resellerprice33" class="form-control resellerprice" serviceid="33" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice33" name="customerprice33" class="form-control customerprice" serviceid="33" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram Photo Likes in Cheap Price (Min:100  Max:6000)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice35" name="yourprice35" required class="form-control yourprice" placeholder="Your Price" serviceid="35" readonly="readonly" value="0.4" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice35" name="resellerprice35" class="form-control resellerprice" serviceid="35" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice35" name="customerprice35" class="form-control customerprice" serviceid="35" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram Likes High-quality  (Min:100   Max :5000   )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice36" name="yourprice36" required class="form-control yourprice" placeholder="Your Price" serviceid="36" readonly="readonly" value="0.6" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice36" name="resellerprice36" class="form-control resellerprice" serviceid="36" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice36" name="customerprice36" class="form-control customerprice" serviceid="36" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram - Video Views </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice37" name="yourprice37" required class="form-control yourprice" placeholder="Your Price" serviceid="37" readonly="readonly" value="0.4" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice37" name="resellerprice37" class="form-control resellerprice" serviceid="37" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice37" name="customerprice37" class="form-control customerprice" serviceid="37" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Instagram - Likes By  ARABIC Users</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice38" name="yourprice38" required class="form-control yourprice" placeholder="Your Price" serviceid="38" readonly="readonly" value="0.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice38" name="resellerprice38" class="form-control resellerprice" serviceid="38" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice38" name="customerprice38" class="form-control customerprice" serviceid="38" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter Worldwide Followers High Quality (Min:100  Max: 200000)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice39" name="yourprice39" required class="form-control yourprice" placeholder="Your Price" serviceid="39" readonly="readonly" value="1" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice39" name="resellerprice39" class="form-control resellerprice" serviceid="39" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice39" name="customerprice39" class="form-control customerprice" serviceid="39" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter Worldwide Followers Low Quality (Min:100 Max: 200000)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice40" name="yourprice40" required class="form-control yourprice" placeholder="Your Price" serviceid="40" readonly="readonly" value="0.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice40" name="resellerprice40" class="form-control resellerprice" serviceid="40" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice40" name="customerprice40" class="form-control customerprice" serviceid="40" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter - Followers ( INDIAN ) Min:100  Max:25000</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice41" name="yourprice41" required class="form-control yourprice" placeholder="Your Price" serviceid="41" readonly="readonly" value="0.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice41" name="resellerprice41" class="form-control resellerprice" serviceid="41" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice41" name="customerprice41" class="form-control customerprice" serviceid="41" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter - Followers ( INDIAN Permanent Followers ) Min:250  Max:1500</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice42" name="yourprice42" required class="form-control yourprice" placeholder="Your Price" serviceid="42" readonly="readonly" value="6" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice42" name="resellerprice42" class="form-control resellerprice" serviceid="42" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice42" name="customerprice42" class="form-control customerprice" serviceid="42" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter - Followers ( USA )  Min:100    Max: 85000</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice44" name="yourprice44" required class="form-control yourprice" placeholder="Your Price" serviceid="44" readonly="readonly" value="0.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice44" name="resellerprice44" class="form-control resellerprice" serviceid="44" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice44" name="customerprice44" class="form-control customerprice" serviceid="44" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter - Retweets ( Max 50k ) ( 100% Pic ) Fast</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice46" name="yourprice46" required class="form-control yourprice" placeholder="Your Price" serviceid="46" readonly="readonly" value="0.3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice46" name="resellerprice46" class="form-control resellerprice" serviceid="46" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice46" name="customerprice46" class="form-control customerprice" serviceid="46" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter - Likes ( Max 50k ) ( 100% Pic ) Fast</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice47" name="yourprice47" required class="form-control yourprice" placeholder="Your Price" serviceid="47" readonly="readonly" value="0.3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice47" name="resellerprice47" class="form-control resellerprice" serviceid="47" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice47" name="customerprice47" class="form-control customerprice" serviceid="47" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter - Retweets (USA) (High Quality) </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice50" name="yourprice50" required class="form-control yourprice" placeholder="Your Price" serviceid="50" readonly="readonly" value="0.4" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice50" name="resellerprice50" class="form-control resellerprice" serviceid="50" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice50" name="customerprice50" class="form-control customerprice" serviceid="50" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Twitter - Favorite (USA) (High Quality) </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice51" name="yourprice51" required class="form-control yourprice" placeholder="Your Price" serviceid="51" readonly="readonly" value="0.4" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice51" name="resellerprice51" class="form-control resellerprice" serviceid="51" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice51" name="customerprice51" class="form-control customerprice" serviceid="51" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube -  Normal Video Views </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice52" name="yourprice52" required class="form-control yourprice" placeholder="Your Price" serviceid="52" readonly="readonly" value="0.1" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice52" name="resellerprice52" class="form-control resellerprice" serviceid="52" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice52" name="customerprice52" class="form-control customerprice" serviceid="52" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube - Normal Video Fast Views (Speed 300-500K Per Day)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice53" name="yourprice53" required class="form-control yourprice" placeholder="Your Price" serviceid="53" readonly="readonly" value="0.18" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice53" name="resellerprice53" class="form-control resellerprice" serviceid="53" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice53" name="customerprice53" class="form-control customerprice" serviceid="53" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Indian Views</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice54" name="yourprice54" required class="form-control yourprice" placeholder="Your Price" serviceid="54" readonly="readonly" value="0.18" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice54" name="resellerprice54" class="form-control resellerprice" serviceid="54" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice54" name="customerprice54" class="form-control customerprice" serviceid="54" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Channel Subcribers</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice55" name="yourprice55" required class="form-control yourprice" placeholder="Your Price" serviceid="55" readonly="readonly" value="7.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice55" name="resellerprice55" class="form-control resellerprice" serviceid="55" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice55" name="customerprice55" class="form-control customerprice" serviceid="55" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Cheap Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice56" name="yourprice56" required class="form-control yourprice" placeholder="Your Price" serviceid="56" readonly="readonly" value="0.66" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice56" name="resellerprice56" class="form-control resellerprice" serviceid="56" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice56" name="customerprice56" class="form-control customerprice" serviceid="56" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube - Normal Video Fast Views (Speed 150-200K Per Day)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice57" name="yourprice57" required class="form-control yourprice" placeholder="Your Price" serviceid="57" readonly="readonly" value="0.7" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice57" name="resellerprice57" class="form-control resellerprice" serviceid="57" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice57" name="customerprice57" class="form-control customerprice" serviceid="57" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Indian Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice58" name="yourprice58" required class="form-control yourprice" placeholder="Your Price" serviceid="58" readonly="readonly" value="1.36" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice58" name="resellerprice58" class="form-control resellerprice" serviceid="58" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice58" name="customerprice58" class="form-control customerprice" serviceid="58" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube USA Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice59" name="yourprice59" required class="form-control yourprice" placeholder="Your Price" serviceid="59" readonly="readonly" value="1.3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice59" name="resellerprice59" class="form-control resellerprice" serviceid="59" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice59" name="customerprice59" class="form-control customerprice" serviceid="59" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube UK Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice60" name="yourprice60" required class="form-control yourprice" placeholder="Your Price" serviceid="60" readonly="readonly" value="1.36" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice60" name="resellerprice60" class="form-control resellerprice" serviceid="60" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice60" name="customerprice60" class="form-control customerprice" serviceid="60" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube France Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice61" name="yourprice61" required class="form-control yourprice" placeholder="Your Price" serviceid="61" readonly="readonly" value="1.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice61" name="resellerprice61" class="form-control resellerprice" serviceid="61" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice61" name="customerprice61" class="form-control customerprice" serviceid="61" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Germany Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice62" name="yourprice62" required class="form-control yourprice" placeholder="Your Price" serviceid="62" readonly="readonly" value="1.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice62" name="resellerprice62" class="form-control resellerprice" serviceid="62" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice62" name="customerprice62" class="form-control customerprice" serviceid="62" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Canada Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice63" name="yourprice63" required class="form-control yourprice" placeholder="Your Price" serviceid="63" readonly="readonly" value="1.4" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice63" name="resellerprice63" class="form-control resellerprice" serviceid="63" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice63" name="customerprice63" class="form-control customerprice" serviceid="63" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube English Countries Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice64" name="yourprice64" required class="form-control yourprice" placeholder="Your Price" serviceid="64" readonly="readonly" value="0.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice64" name="resellerprice64" class="form-control resellerprice" serviceid="64" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice64" name="customerprice64" class="form-control customerprice" serviceid="64" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Middle East Countries Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice65" name="yourprice65" required class="form-control yourprice" placeholder="Your Price" serviceid="65" readonly="readonly" value="1.6" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice65" name="resellerprice65" class="form-control resellerprice" serviceid="65" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice65" name="customerprice65" class="form-control customerprice" serviceid="65" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Arabic Adwords Views - Unlimited Fast Speed </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice66" name="yourprice66" required class="form-control yourprice" placeholder="Your Price" serviceid="66" readonly="readonly" value="1.8" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice66" name="resellerprice66" class="form-control resellerprice" serviceid="66" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice66" name="customerprice66" class="form-control customerprice" serviceid="66" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube Video Likes Fast</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice67" name="yourprice67" required class="form-control yourprice" placeholder="Your Price" serviceid="67" readonly="readonly" value="2.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice67" name="resellerprice67" class="form-control resellerprice" serviceid="67" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice67" name="customerprice67" class="form-control customerprice" serviceid="67" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube  Video Dislike ( Speed 500 Per day )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice68" name="yourprice68" required class="form-control yourprice" placeholder="Your Price" serviceid="68" readonly="readonly" value="2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice68" name="resellerprice68" class="form-control resellerprice" serviceid="68" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice68" name="customerprice68" class="form-control customerprice" serviceid="68" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube  Video Share </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice69" name="yourprice69" required class="form-control yourprice" placeholder="Your Price" serviceid="69" readonly="readonly" value="0.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice69" name="resellerprice69" class="form-control resellerprice" serviceid="69" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice69" name="customerprice69" class="form-control customerprice" serviceid="69" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Google Plus - Followers | Circles Real Users</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice71" name="yourprice71" required class="form-control yourprice" placeholder="Your Price" serviceid="71" readonly="readonly" value="3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice71" name="resellerprice71" class="form-control resellerprice" serviceid="71" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice71" name="customerprice71" class="form-control customerprice" serviceid="71" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Google Plus - Post Likes ( High Quality ) Real Users</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice72" name="yourprice72" required class="form-control yourprice" placeholder="Your Price" serviceid="72" readonly="readonly" value="1.9" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice72" name="resellerprice72" class="form-control resellerprice" serviceid="72" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice72" name="customerprice72" class="form-control customerprice" serviceid="72" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Google Plus - Share ( Post )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice73" name="yourprice73" required class="form-control yourprice" placeholder="Your Price" serviceid="73" readonly="readonly" value="2.2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice73" name="resellerprice73" class="form-control resellerprice" serviceid="73" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice73" name="customerprice73" class="form-control customerprice" serviceid="73" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">SoundCloud - Play ( Unlimited ) </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice75" name="yourprice75" required class="form-control yourprice" placeholder="Your Price" serviceid="75" readonly="readonly" value="0.2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice75" name="resellerprice75" class="form-control resellerprice" serviceid="75" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice75" name="customerprice75" class="form-control customerprice" serviceid="75" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">SoundCloud - Download ( Unlimited )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice76" name="yourprice76" required class="form-control yourprice" placeholder="Your Price" serviceid="76" readonly="readonly" value="0.3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice76" name="resellerprice76" class="form-control resellerprice" serviceid="76" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice76" name="customerprice76" class="form-control customerprice" serviceid="76" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Soundcloud - Followers ( Max 2000)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice77" name="yourprice77" required class="form-control yourprice" placeholder="Your Price" serviceid="77" readonly="readonly" value="1.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice77" name="resellerprice77" class="form-control resellerprice" serviceid="77" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice77" name="customerprice77" class="form-control customerprice" serviceid="77" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Soundcloud - Likes ( High Quality )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice78" name="yourprice78" required class="form-control yourprice" placeholder="Your Price" serviceid="78" readonly="readonly" value="1.5" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice78" name="resellerprice78" class="form-control resellerprice" serviceid="78" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice78" name="customerprice78" class="form-control customerprice" serviceid="78" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">SoundCloud - Comment </label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice79" name="yourprice79" required class="form-control yourprice" placeholder="Your Price" serviceid="79" readonly="readonly" value="3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice79" name="resellerprice79" class="form-control resellerprice" serviceid="79" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice79" name="customerprice79" class="form-control customerprice" serviceid="79" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Pinterest - Likes ( High Quality Real )</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice80" name="yourprice80" required class="form-control yourprice" placeholder="Your Price" serviceid="80" readonly="readonly" value="2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice80" name="resellerprice80" class="form-control resellerprice" serviceid="80" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice80" name="customerprice80" class="form-control customerprice" serviceid="80" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Pinterest - Repin ( High Quality }</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice81" name="yourprice81" required class="form-control yourprice" placeholder="Your Price" serviceid="81" readonly="readonly" value="3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice81" name="resellerprice81" class="form-control resellerprice" serviceid="81" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice81" name="customerprice81" class="form-control customerprice" serviceid="81" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Pinterest - Repin ( High Quality }</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice82" name="yourprice82" required class="form-control yourprice" placeholder="Your Price" serviceid="82" readonly="readonly" value="3" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice82" name="resellerprice82" class="form-control resellerprice" serviceid="82" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice82" name="customerprice82" class="form-control customerprice" serviceid="82" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">International Website Visitors (SEO traffic -110% REAL)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice83" name="yourprice83" required class="form-control yourprice" placeholder="Your Price" serviceid="83" readonly="readonly" value="0.2" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice83" name="resellerprice83" class="form-control resellerprice" serviceid="83" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice83" name="customerprice83" class="form-control customerprice" serviceid="83" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">Facebook - Page USA  Likes  (min 100, max 10k )  (United States of America)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice8" name="yourprice8" required class="form-control yourprice" placeholder="Your Price" serviceid="8" readonly="readonly" value="13" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice8" name="resellerprice8" class="form-control resellerprice" serviceid="8" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice8" name="customerprice8" class="form-control customerprice" serviceid="8" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube -  UP/Bihar/Delhi/Mumbai Video Views</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice84" name="yourprice84" required class="form-control yourprice" placeholder="Your Price" serviceid="84" readonly="readonly" value="1.46" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice84" name="resellerprice84" class="form-control resellerprice" serviceid="84" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice84" name="customerprice84" class="form-control customerprice" serviceid="84" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube - Normal Video Indian Fast Views (Speed 100-150K Per Day)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice85" name="yourprice85" required class="form-control yourprice" placeholder="Your Price" serviceid="85" readonly="readonly" value="1" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice85" name="resellerprice85" class="form-control resellerprice" serviceid="85" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice85" name="customerprice85" class="form-control customerprice" serviceid="85" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube - Adword Views Normal Speed (30K-60K)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice86" name="yourprice86" required class="form-control yourprice" placeholder="Your Price" serviceid="86" readonly="readonly" value="1" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice86" name="resellerprice86" class="form-control resellerprice" serviceid="86" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice86" name="customerprice86" class="form-control customerprice" serviceid="86" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            
+                                        	<div class="form-group">
+                                            
+											<label class="col-md-2 control-label">YouTube - Adword Indian Views Normal Speed (30K-60K)</label>
+
+											<div class="col-md-3">
+                                  <input type="text" id="yourprice87" name="yourprice87" required class="form-control yourprice" placeholder="Your Price" serviceid="87" readonly="readonly" value="1" required />
+                                            </div>
+
+                                            <div class="col-md-3">
+                                            <input type="text" id="resellerprice87" name="resellerprice87" class="form-control resellerprice" serviceid="87" placeholder="Reseller Price">
+                                            </div>
+                                            
+                                            <div class="col-md-3">
+                                            <input type="text" id="customerprice87" name="customerprice87" class="form-control customerprice" serviceid="87" placeholder="Customer Price">
+                                            </div>
+
+
+                                            </div>
+
+                                        
+
+                                            									
+                                        <div class="form-group">
+
+                                            <label class="col-md-2 control-label">Default Package For User/Reseller Price</label>
+
+                                            <div class="col-md-10">
+
+                                                <select  name="priority" class="form-control" required>
+                                                <option value="0">No</option>
+                                                <option value="1">Yes</option>
+                                                </select>
+
+                                            </div>
+
+                                        </div>		 
+
+										<div class="form-group">
+
+											<label class="col-md-2 control-label">&nbsp;</label>
+
+											<div class="col-md-10">
+
+												<div class="form-actions">
+
+												<button type="submit" id="sendsmsfast" class="btn btn-primary">Save</button>	
+                                                
+                                                <span id="msgstatus"></span>
+
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+</form>
+
+
+
+
+
+
+
+
+</div>
+
+</div>
+
+
+
+</div>
+
+</div>
+
+
+
+            
+
+</div>
+
+</div>
+
+             
+
+
+
+
+<footer class="footer-container">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-left">
+
+                                
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-6 col-sm-6">
+
+                            <div class="footer-right">
+
+                               
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </footer>
+
+<style type="text/css">
+    
+ .navbgr
+ {
+    background: red;
+ }   
+</style>
+
+
+
+<script src="js/jquery-1.11.2.min.js"></script>
+
+ 
+
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jRespond.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/nav-accordion.js"></script>
+    <script src="js/hoverintent.js"></script>
+    <script src="js/waves.js"></script>
+    <script src="js/switchery.js"></script>
+    <script src="js/jquery.loadmask.js"></script>
+    <script src="js/icheck.js"></script>
+    <script src="js/select2.js"></script>
+    <script src="js/bootstrap-filestyle.js"></script>
+    <script src="js/bootbox.js"></script>
+    <script src="js/animation.js"></script>
+    <script src="js/colorpicker.js"></script>
+    <script src="js/bootstrap-datepicker.js"></script>
+    <script src="js/sweetalert.js"></script>
+    <script src="js/moment.js"></script>
+    <script src="js/calendar/fullcalendar.js"></script>
+    
+    <!--CHARTS-->
+    <script src="js/chart/sparkline/jquery.sparkline.js"></script>
+    <script src="js/chart/easypie/jquery.easypiechart.min.js"></script>
+    <script src="js/chart/flot/excanvas.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.min.js"></script>
+    <script src="js/chart/flot/curvedLines.js"></script>
+    <script src="js/chart/flot/jquery.flot.time.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.stack.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.axislabels.js"></script>
+    <script src="js/chart/flot/jquery.flot.resize.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.tooltip.min.js"></script>
+    <script src="js/chart/flot/jquery.flot.spline.js"></script>
+    <script src="js/chart/flot/jquery.flot.pie.min.js"></script>
+    <script src="js/chart.init.js"></script>
+    <script src="js/smart-resize.js"></script>
+    <script src="js/layout.init.js"></script>
+    <script src="js/matmix.init.js"></script>
+    <script src="js/retina.min.js"></script>
+    <script src="js/functions.js"></script>
+    <script src="js/summernote.min.js"></script>
+    <script src="js/jquery.simple-dtpicker.js"></script>
+
+	<script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+        $(".whenuserread").on('click',function()
+		{
+			
+			$.get('http://manage.staticking.net/index.php/settings/notiread?notiread=yes',function(data)
+			{
+				if(data=='success')
+				{
+					$(".notitotalh").hide();
+				}
+			});
+		});
+    });
+	</script>
+    
+    <script type="text/javascript">
+	$=jQuery;
+	$(document).ready(function() {
+		
+		$("#accountmanager").hover(function()
+		{
+			$("#accountmanagerdiv").show();
+		});
+		
+		$(document).on('click',function()
+		{
+			$("#accountmanagerdiv").hide();
+		});
+		
+		
+	});
+
+function capitalizeFirstLetter(string) {
+    return string[0].toUpperCase() + string.slice(1);
+}
+
+
+$('#filtersearch').keyup(function(){
+
+    var that = this, $allListElements = $('.list-accordion > li, .dcjq-parent-li > ul > li');
+
+    var $matchingListElements = $allListElements.filter(function(i, li){
+        var listItemText = $(li).text().toUpperCase(), 
+            searchText = that.value.toUpperCase();
+        return ~listItemText.indexOf(searchText);
+    });    
+    $allListElements.hide();
+    $matchingListElements.show();
+    
+    $(".dcjq-parent-li > ul").show();
+    
+    if($.trim($('#filtersearch').val())=='')
+    {
+        $(".dcjq-parent-li > ul").hide();
+    }
+});
+
+
+	</script>
+
+
+
+
+</body>
+
+
+
+</html>
+
+
+<script type="text/javascript">
+$=jQuery;
+
+$(document).ready(function(e) {
+    
+	$("#specialpriceform").on('submit',function(ev)
+	{
+		ev.preventDefault();
+		
+		$.ajax({
+				type:'POST',
+				url:'http://manage.staticking.net/index.php/social/addnewpackage',
+				data:$("#specialpriceform").serialize(),
+				beforeSend: function()
+				{
+					$("#msgstatus").text("Please Wait..");
+				},
+				success: function(data)
+				{
+					$("#msgstatus").text(data);
+				}
+				
+				
+		});
+		
+		
+	});
+	
+});
+
+
+$(".resellerprice").on('change',function()
+{
+    serviceid=$(this).attr('serviceid');
+    boxid=$(this).attr('id');
+    reselprice=parseFloat($(this).val());
+    mainprice=parseFloat($("#yourprice"+serviceid).val());
+    if(reselprice <= mainprice)
+    {
+        $("#bbalertd").fadeIn(0).fadeOut(4000).addClass('alert-danger').text("Reseller Price Must be Greater than Actual Price..");
+        $("#"+boxid).val("");
+        $("#"+boxid).focus();
+    }
+
+});
+
+
+$(".customerprice").on('change',function()
+{
+	serviceid=$(this).attr('serviceid');
+	boxid=$(this).attr('id');
+	reselprice=parseFloat($(this).val());
+	mainprice=parseFloat($("#yourprice"+serviceid).val());
+	if(reselprice <= mainprice)
+	{
+		$("#bbalertd").fadeIn(0).fadeOut(4000).addClass('alert-danger').text("Customer Price Must be Greater than Actual Price..");
+		$("#"+boxid).val("");
+		$("#"+boxid).focus();
+	}
+
+});
+
+
+$("#resellermarginprice").on('change',function()
+{
+    $("#faceoff").show();
+    if($.trim($("#resellermarginprice").val())!=='')
+    {
+        rmargin=$("#resellermarginprice").val();
+
+        $(".yourprice").each(function()
+        {
+            serviceid=$(this).attr('serviceid');
+
+            serviceval=parseFloat($(this).val());
+
+            percent=(serviceval * rmargin) / 100;
+
+            afterp=serviceval + percent;
+
+            $("#resellerprice"+serviceid).val(afterp);
+        });
+    }
+    $("#faceoff").hide();
+
+});
+
+
+
+$("#customermarginprice").on('change',function()
+{
+    $("#faceoff").show();
+    if($.trim($("#customermarginprice").val())!=='')
+    {
+        rmargin=$("#customermarginprice").val();
+
+        $(".yourprice").each(function()
+        {
+            serviceid=$(this).attr('serviceid');
+
+            serviceval=parseFloat($(this).val());
+
+            percent=(serviceval * rmargin) / 100;
+
+            afterp=serviceval + percent;
+
+            $("#customerprice"+serviceid).val(afterp);
+        });
+    }
+    $("#faceoff").hide();
+
+});
+
+
+
+</script>
+
+
+
+
