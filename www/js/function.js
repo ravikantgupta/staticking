@@ -69,7 +69,7 @@ function addmenu(){
 		 window.plugins.nativepagetransitions.flip({
 				 'backgroundColor' : "#BBBBBB",
 				'direction': 'up',
-				'duration': 1000,
+				'duration': 2000,
 				"href" : hrf
             });
 			  
