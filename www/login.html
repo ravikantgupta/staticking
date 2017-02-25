@@ -44,6 +44,26 @@
 <link rel="shortcut icon" href="images/" type="image/x-icon">
 <link href="css/my-csse256.css?1487915659" rel="stylesheet" type="text/css" />
 
+    
+  
+    
+   
+    <script type="text/javascript" src="cordova.js"></script>
+	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
+	  <script>
+	   app.initialize();
+	            document.addEventListener("deviceready", function() {
+			  // then override any default you want
+			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
+			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
+			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
+			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
+			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
+			  // these are used for slide left/right only currently
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+			}, false);
+       </script>
 </head>
 
 <body class="body-background" style="background:url(images/Softwares.jpg)">
@@ -170,8 +190,13 @@ else
 	else
 	{
 
-		window.localStorage.setItem("loggedIn", 1);
-					window.location.href ="index.html";
+		          window.localStorage.setItem("loggedIn", 1);
+					 window.plugins.nativepagetransitions.flip({
+				 'backgroundColor' : "#BBBBBB",
+				'direction': 'up',
+				'duration': 4000,
+				"href" : "index.html"
+                 });
 
 		jQuery.ajax({
 				
