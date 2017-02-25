@@ -27,7 +27,19 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
     
    
-    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="cordova.js">
+	document.addEventListener("deviceready", function() {
+			  // then override any default you want
+			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
+			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
+			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
+			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
+			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
+			  // these are used for slide left/right only currently
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+			}, false);
+</script>
 </head>
 
 <body>
@@ -37,14 +49,12 @@
 </div>
 
 <script>
-		 function slide(direction, color, slowdownfactor, hrf) {
-		 
-		  var duration = 2, // animation time in seconds
-             direction = "right"; // animation direction - left | right | top | bottom
-			   setTimeout(function() {
-				window.location.href="login.html";
-			}, 50);
-			nativetransitions.flip(duration, direction);
+		 function slide() {
+		  alert('ram');
+		 window.plugins.nativepagetransitions.slide({
+				// the defaults for direction, duration, etc are all fine
+				"href" : "login.html"
+            });
 			  
   }
 //window.localStorage.removeItem("loggedIn");
@@ -56,9 +66,9 @@
 		else
 		{
 		
-		   alert('ram');
+		  
 		 // window.location.href="login.html";
-		  slide('down', 'green', 1, 'login.html');
+		  slide();
 		// Redirect to login page.
 		}
 		
