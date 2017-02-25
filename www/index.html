@@ -38,22 +38,14 @@
 
 <script>
 		 function slide(direction, color, slowdownfactor, hrf) {
-   
-    // not passing in options makes the plugin fall back to the defaults defined in the JS API
-    var theOptions = {
-      'direction': direction,
-      'duration': 2000,
-      'slowdownfactor' : slowdownfactor,
-      'href': hrf
-    };
-    window.plugins.nativepagetransitions.slide(
-        theOptions,
-        function () {
-          console.log('------------------- slide transition finished');
-        },
-        function (msg) {
-          alert('error: ' + msg);
-        });
+		 
+		  var duration = 0.5, // animation time in seconds
+             direction = "right"; // animation direction - left | right | top | bottom
+			   setTimeout(function() {
+				window.location.href="login.html";
+			}, 50);
+			nativetransitions.flip(duration, direction);
+			  
   }
 //window.localStorage.removeItem("loggedIn");
 		if(window.localStorage.getItem("loggedIn") == 1) 
@@ -161,15 +153,15 @@
 
                     <ul>
 
-                        <li><a href="composesms.html">Compose SMS</a>
+                        <li><a onClick="window.location='composesms.html';" >Compose SMS</a>
 
                         </li>
 
-                        <li><a href="allsentsms.html">All Sent Sms</a>
+                        <li><a onClick="window.location='allsentsms.html';">All Sent Sms</a>
 
                         </li>
 
-                        <li><a href="schedule.html">Schedule Sms</a>
+                        <li><a onclick="slide()" href="#">Schedule Sms</a>
 
                         </li>
                          
