@@ -30,6 +30,7 @@
     <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	  <script>
+	   app.initialize();
 	            document.addEventListener("deviceready", function() {
 			  // then override any default you want
 			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
@@ -45,16 +46,12 @@
 </head>
 
 <body>
-<div id="scrpadd">
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
-
-</div>
 
 <script>
 		 function slide() {
 		  alert('ram');
 		 window.plugins.nativepagetransitions.slide({
-				// the defaults for direction, duration, etc are all fine
+				
 				"href" : "login.html"
             });
 			  
@@ -78,52 +75,6 @@
 
 
 </script>
-<script type="text/javascript">
-      // Load the Google Transliteration API
-      google.load("elements", "1", {
-            packages: "transliteration"
-          });
-
-      function onLoaddisable() {
-          var options = {
-            sourceLanguage: 'en',
-            destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
-            shortcutKey: 'ctrl+g',
-            transliterationEnabled: false
-          };
-          // Create an instance on TransliterationControl with the required
-          // options.
-          var control =
-              new google.elements.transliteration.TransliterationControl(options);
-
-          // Enable transliteration in the textfields with the given ids.
-          var ids = [ "smscontent"];
-          //control.disableTransliteration(ids);
-        }
-        function onLoad() {
-            var options = {
-              sourceLanguage: 'en',
-              destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
-              shortcutKey: 'ctrl+g',
-              transliterationEnabled: false
-            };
-
-            // Create an instance on TransliterationControl with the required
-            // options.
-            var control =
-                new google.elements.transliteration.TransliterationControl(options);
-
-            // Enable transliteration in the textfields with the given ids.
-            var ids = [ "smscontent"];
-            control.makeTransliteratable(ids);
-
-            // Show the transliteration control which can be used to toggle between
-            // English and Hindi and also choose other destination language.
-            control.showControl('translControl');
-          }
-        google.setOnLoadCallback(onLoad);
-	</script>
-
 
 <div class="page-container list-menu-view">
 
@@ -135,7 +86,7 @@
         <div class="aside-branding">
 
      
-            <a href="http://manage.staticking.net/index.php" class="large-logo">
+            <a href="index.html" class="large-logo">
 			<img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
 
             </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
