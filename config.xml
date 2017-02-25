@@ -20,7 +20,7 @@
 		 <plugin name="org.apache.cordova.inappbrowser" spec="0.5.2"  />
 		
     	<plugin name="org.apache.cordova.splashscreen" spec="0.2.7"  />
-    	<plugin name="com.telerik.plugins.nativepagetransitions" spec="0.2.2" source="pgb" />
+    	<plugin name="com.telerik.plugins.nativepagetransitions" spec="0.2.2"  />
 		
   	<!--	<gap:plugin name="nl.x-services.plugins.googleplus" source="plugins.cordova.io"/> -->
   		
