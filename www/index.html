@@ -46,9 +46,37 @@
 		else
 		{
 		
-		  window.location.href="login.html";
+		 // window.location.href="login.html";
+		  slide('down', 'green', 1, 'login.html');
 		// Redirect to login page.
 		}
+		
+		
+		 function slide(direction, color, slowdownfactor, hrf) {
+    if (!hrf) {
+      setTimeout(function () {
+        // update the page inside this timeout
+        document.querySelector("#title").innerHTML = direction;
+        document.querySelector("html").style.background = color;
+      }, 20);
+    }
+    // not passing in options makes the plugin fall back to the defaults defined in the JS API
+    var theOptions = {
+      'direction': direction,
+      'duration': 2000,
+      'slowdownfactor' : slowdownfactor,
+      'href': hrf
+    };
+    window.plugins.nativepagetransitions.slide(
+        theOptions,
+        function () {
+          console.log('------------------- slide transition finished');
+        },
+        function (msg) {
+          alert('error: ' + msg);
+        });
+  }
+
 </script>
 <script type="text/javascript">
       // Load the Google Transliteration API
