@@ -29,48 +29,19 @@
    
     <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
-	  <script>
-	   app.initialize();
-	            document.addEventListener("deviceready", function() {
-			  // then override any default you want
-			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
-			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
-			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
-			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
-			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
-			  // these are used for slide left/right only currently
-			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
-			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
-			}, false);
-       </script>
+	 <script type="text/javascript" src="js/function.js"></script>
 </head>
 
 <body>
 
 <script>
-		 function slide(hrf) {
-		 
-		 window.plugins.nativepagetransitions.flip({
-				 'backgroundColor' : "#BBBBBB",
-				'direction': 'up',
-				'duration': 1000,
-				"href" : hrf
-            });
-			  
-  }
-//window.localStorage.removeItem("loggedIn");
+	
+
 		if(window.localStorage.getItem("loggedIn") == 1) 
-		{
-		  // alert('ram1');
-		 
+		{ 
+		// alert('ram1');
 		}
-		else
-		{
-		
-		  
-		    window.location.href="login.html";
-		
-		}
+		else{  window.location.href="login.html"; }
 		
 		
 
@@ -82,12 +53,13 @@
     <!--Leftbar Start Here -->
 
     	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
 <div class="left-aside desktop-view">
 
         <div class="aside-branding">
 
      
-            <a href="index.html" class="large-logo">
+            <a onClick="slide('index.html')" class="large-logo">
 			<img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
 
             </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>

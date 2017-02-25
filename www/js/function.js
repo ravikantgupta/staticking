@@ -48,3 +48,29 @@ function addmenu(){
 }
 
 /********End Left menu********/
+
+ app.initialize();
+	            document.addEventListener("deviceready", function() {
+			  // then override any default you want
+			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
+			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
+			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
+			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
+			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
+			  // these are used for slide left/right only currently
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+			}, false);
+			
+			
+
+	 function slide(hrf) {
+		 
+		 window.plugins.nativepagetransitions.flip({
+				 'backgroundColor' : "#BBBBBB",
+				'direction': 'up',
+				'duration': 1000,
+				"href" : hrf
+            });
+			  
+  }
