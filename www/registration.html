@@ -43,9 +43,11 @@
 
 <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
 
-<link rel="shortcut icon" href="http://manage.staticking.net/public/images/" type="image/x-icon">
+<link rel="shortcut icon" href="images/" type="image/x-icon">
 <link href="css/my-css.css" rel="stylesheet" type="text/css" />
-<script src='../../../www.google.com/recaptcha/api.js'></script>
+<script type="text/javascript" src="cordova.js"></script>
+	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
+	 <script type="text/javascript" src="js/function.js"></script>
 </head>
 
 <body class="body-background" style="background:url(images/Softwares.jpg)">
@@ -149,7 +151,7 @@
 </div>
 
 
-<div class="col-md-12 login-page-ma" style="text-align:center;"><a href="http://manage.staticking.net/index.php" class="forgot-pass-link"><i class="fa fa-backward"></i> Back To Login Page</a></div>
+<div class="col-md-12 login-page-ma" style="text-align:center;"><a onClick="slide('login.html')" class="forgot-pass-link"><i class="fa fa-backward"></i> Back To Login Page</a></div>
 
 
 

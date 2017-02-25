@@ -27,61 +27,16 @@
     
     
     <script src='https://www.google.com/recaptcha/api.js'></script>
-    
+     <script type="text/javascript" src="cordova.js"></script>
+	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
+	 <script type="text/javascript" src="js/function.js"></script>
+   
    
     
 </head>
 
 <body>
-<div id="scrpadd">
-<script type="text/javascript" src="http://www.google.com/jsapi"></script>
 
-</div>
-<script type="text/javascript">
-      // Load the Google Transliteration API
-      google.load("elements", "1", {
-            packages: "transliteration"
-          });
-
-      function onLoaddisable() {
-          var options = {
-            sourceLanguage: 'en',
-            destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
-            shortcutKey: 'ctrl+g',
-            transliterationEnabled: false
-          };
-          // Create an instance on TransliterationControl with the required
-          // options.
-          var control =
-              new google.elements.transliteration.TransliterationControl(options);
-
-          // Enable transliteration in the textfields with the given ids.
-          var ids = [ "smscontent"];
-          //control.disableTransliteration(ids);
-        }
-        function onLoad() {
-            var options = {
-              sourceLanguage: 'en',
-              destinationLanguage: ['hi','kn','ml','ta','te','mr','gu','bn','pa','ar'],
-              shortcutKey: 'ctrl+g',
-              transliterationEnabled: false
-            };
-
-            // Create an instance on TransliterationControl with the required
-            // options.
-            var control =
-                new google.elements.transliteration.TransliterationControl(options);
-
-            // Enable transliteration in the textfields with the given ids.
-            var ids = [ "smscontent"];
-            control.makeTransliteratable(ids);
-
-            // Show the transliteration control which can be used to toggle between
-            // English and Hindi and also choose other destination language.
-            control.showControl('translControl');
-          }
-        google.setOnLoadCallback(onLoad);
-	</script>
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 
 <div class="page-container list-menu-view">
@@ -94,7 +49,7 @@
         <div class="aside-branding">
 
      
-            <a href="http://manage.staticking.net/index.php" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
+            <a onClick="slide('index.html')" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
 
             </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
 
@@ -108,11 +63,11 @@
 
         <div class="left-navigation">
 
-            <ul class="list-accordion">
+           <ul class="list-accordion">
 
                 
 
-                <li><a href="index.html" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
+                <li><a onClick="slide('index.html')" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
 
                 </li>
 
@@ -123,19 +78,19 @@
 
                     <ul>
 
-                        <li><a href="composesms.html">Compose SMS</a>
+                        <li><a onClick="slide('composesms.html')" >Compose SMS</a>
 
                         </li>
 
-                        <li><a href="allsentsms.html">All Sent Sms</a>
+                        <li><a onClick="slide('allsentsms.html')">All Sent Sms</a>
 
                         </li>
 
-                        <li><a href="schedule.html">Schedule Sms</a>
+                        <li><a onclick="slide('schedule.html')" >Schedule Sms</a>
 
                         </li>
                          
-                       <li><a href="dynamicsms.html">Dynamic Sms</a>
+                       <li><a onClick="slide('dynamicsms.html')" >Dynamic Sms</a>
 
                         </li>
 
@@ -147,30 +102,31 @@
 
                 </li>
                 
-                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
+                <li><a href="#" class="waves-effect">
+				<span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
 
                     <ul>
                     
-                    	<li><a href="uploadvoicefile.html">Upload Voice File</a>
+                    	<li><a onClick="slide('uploadvoicefile.html')" >Upload Voice File</a>
 
                         </li>
-                        <li><a href="mysounds.html">View Voice Files</a>
-
-                        </li>
-                        
-                        <li><a href="voicesms.html">Compose Voice SMS</a>
-
-                        </li>
-
-                        <li><a href="allvoicesentsms.html">All Sent Voice Sms</a>
+                        <li><a onClick="slide('mysounds.html')" >View Voice Files</a>
 
                         </li>
                         
-                          <li><a href="voicespecialprice.html">Add Voice Special Price</a>
+                        <li><a onClick="slide('voicesms.html')" >Compose Voice SMS</a>
+
+                        </li>
+
+                        <li><a onClick="slide('allvoicesentsms.html')" >All Sent Voice Sms</a>
 
                         </li>
                         
-                        <li><a href="voicespecialpricelist.html">View Voice Special Price</a>
+                          <li><a onClick="slide('voicespecialprice.html')" >Add Voice Special Price</a>
+
+                        </li>
+                        
+                        <li><a onClick="slide('voicespecialpricelist.html')" >View Voice Special Price</a>
 
                         </li>
                                                 
@@ -186,7 +142,7 @@
 
                     <ul>
                                                 
-                        <li><a href="viewmisscall.html">View Miss Call Alerts</a>
+                        <li><a onClick="slide('viewmisscall.html')">View Miss Call Alerts</a>
 
                         </li>
                         
@@ -199,7 +155,7 @@
 
                     <ul>
                                                 
-                        <li><a href="viewlongcode.html">View Short/Long Code</a>
+                        <li><a onClick="slide('viewlongcode.html')">View Short/Long Code</a>
 
                         </li>
                         
@@ -213,11 +169,11 @@
                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-facebook-official"></i></span><span class="nav-label">Social Media</span></a>
 
                     <ul>        
-                        <li><a href="addpackage.html">Add Package</a></li>
-                        <li><a href="viewpackage.html">View Package</a></li>
-                       <li><a href="placeorder.html">Place Order</a></li>
-                        <li><a href="vieworder.html">View Order</a></li>
-                        <li><a href="socialpricing.html">Social Pricing</a></li>
+                        <li><a onClick="slide('addpackage.html')" >Add Package</a></li>
+                        <li><a onClick="slide('viewpackage.html')" >View Package</a></li>
+                       <li><a onClick="slide('placeorder.html')" >Place Order</a></li>
+                        <li><a onClick="slide('vieworder.html')" >View Order</a></li>
+                        <li><a onClick="slide('socialpricing.html')" >Social Pricing</a></li>
                        
                     </ul>
 
@@ -227,14 +183,14 @@
 
                     <ul>
 
-                        <li><a href="add.html">Place Order</a>
+                        <li><a onClick="slide('add.html')" >Place Order</a>
 
                         </li>
                         
-                        <li><a href="viewcampaign.html">View Order</a>
+                        <li><a onClick="slide('viewcampaign.html')" >View Order</a>
 
                         </li>
-                          <li><a href="pricing.html">Pricing</a>
+                          <li><a onClick="slide('pricing.html')" >Pricing</a>
 
                         </li>
                         
@@ -252,19 +208,19 @@
 
                     <ul>
 
-                        <li><a href="smstemplate.html">Add Template</a>
+                        <li><a onClick="slide('smstemplate.html')" >Add Template</a>
 
                         </li>
                         
-                        <li><a href="viewsmstemplate.html">View Templates</a>
+                        <li><a onClick="slide('viewsmstemplate.html')" >View Templates</a>
 
                         </li>
                         
-                        <li><a href="newgroup.html">Add Group</a>
+                        <li><a onClick="slide('newgroup.html')" >Add Group</a>
 
                         </li>
                         
-                        <li><a href="viewgroup.html">View Group</a>
+                        <li><a onClick="slide('viewgroup.html')" >View Group</a>
 
                         </li>
                     </ul>
@@ -275,11 +231,11 @@
 
                     <ul>
 
-                        <li><a href="addusers.html">Add Users</a>
+                        <li><a onClick="slide('addusers.html')" >Add Users</a>
 
                         </li>
 
-                        <li><a href="viewusers.html">View Users</a>
+                        <li><a onClick="slide('viewusers.html')" >View Users</a>
 
                         </li>
 
@@ -295,14 +251,14 @@
 
                     <ul>
 
-                        <li><a href="addresellers.html">Add Reseller</a>
+                        <li><a onClick="slide('addresellers.html')" >Add Reseller</a>
 
                         </li>
 
-                        <li><a href="viewreseller.html">View Reseller</a>
+                        <li><a onClick="slide('viewreseller.html')" >View Reseller</a>
 
                         </li>
-                        <li><a href="usersmpp.html">Add Your Smpp</a>
+                        <li><a onClick="slide('usersmpp.html')" >Add Your Smpp</a>
 
                         </li>
 						                        
@@ -323,12 +279,12 @@
 
                     <ul>
 
-						 <li><a href="viewusersmpp.html">Client Smpp</a>
+						 <li><a onClick="slide('viewusersmpp.html')" >Client Smpp</a>
 
                         </li> 
                                                 
 						
-                        <li><a href="changeusertype.html">Change User Type</a>
+                        <li><a onClick="slide('changeusertype.html')">Change User Type</a>
 
                         </li>
 							
@@ -336,7 +292,7 @@
                          
 
                     							
-                        <li><a href="transfercredits.html">Transfer Credits</a></li>
+                        <li><a onClick="slide('transfercredits.html')" >Transfer Credits</a></li>
 
                                                 
                         
@@ -347,46 +303,41 @@
                         
                         
 
-                         <li><a href="transsactionin.html">Transactions In</a>
+                         <li><a onClick="slide('transsactionin.html')" >Transactions In</a>
 
                         </li>
 
 
 
-                        <li><a href="transsactionou.html">Transactions Out</a>
+                        <li><a onClick="slide('transsactionou.html')" >Transactions Out</a>
 
                         </li>
 
-                        <li><a href="myshorturls.html">My Short Urls</a>
+                        <li><a onClick="slide('myshorturls.html')" >My Short Urls</a>
 
                         </li>
 
-						<li><a href="smsapi.html">HTTP API</a>
-
-                        </li>
-                        
-                        <li><a href="bulksmsapi.html">Bulk SMS API</a>
-
-                        </li>
-
-                        <li><a href="xmlapi.html">XML API</a>
+						<li><a onClick="slide('smsapi.html')" >HTTP API</a>
 
                         </li>
                         
-                        <li><a href="creditapi.html">Credits API</a>
+                        <li><a onClick="slide('bulksmsapi.html')" >Bulk SMS API</a>
+
+                        </li>
+
+                        <li><a onClick="slide('xmlapi.html')" >XML API</a>
 
                         </li>
                         
-                        <li><a href="deliveryapi.html">Delivery API</a>
+                        <li><a onClick="slide('creditapi.html')" >Credits API</a>
 
                         </li>
                         
-                        
+                        <li><a onClick="slide('deliveryapi.html')" >Delivery API</a>
 
-                                                
-                        
-                        
-                        <li><a href="allsenderids.html">View Sender IDs</a>
+                        </li>
+                                                 
+                        <li><a onClick="slide('allsenderids.html')" >View Sender IDs</a>
 
                         </li>
 
@@ -394,16 +345,16 @@
                         
 
                         
-                        <li><a href="actualcredits.html">View Actual Credits</a>
+                        <li><a onClick="slide('actualcredits.html')" >View Actual Credits</a>
 
                         </li>
-                         <li><a href="notifications.html">Send Notifications</a>
+                         <li><a onClick="slide('notifications.html')">Send Notifications</a>
 
                         </li>
                                                  
 
                         
-                        <li><a href="http://manage.staticking.net/index.php/settings/deliverycutting">Delivery Cutting</a>
+                        <li><a onClick="slide('deliverycutting.html')" >Delivery Cutting</a>
 
                         </li>
 
@@ -411,23 +362,23 @@
                         
 
                         
-                        <li><a href="deliveryusers.html">Delivery Cutting Users List</a>
+                        <li><a onClick="slide('deliveryusers.html')" >Delivery Cutting Users List</a>
 
                         </li>
 
                                                   
                          
                          
-                        <li><a href="website.html">Website Settings</a>
+                        <li><a onClick="slide('website.html')" >Website Settings</a>
 
                         </li>
 						
-                          <li><a href="checkdnd.html">Check DND Number</a>
-                         <li><a href="blocknumber.html">Block Number</a>
+                          <li><a onClick="slide('checkdnd.html')" >Check DND Number</a>
+                         <li><a onClick="slide('blocknumber.html')" >Block Number</a>
 
                         </li>
-                         <li><a href="mysmpptransactions.html">My Transactions</a></li>
-                        <li><a href="smppmycredits.html">Available Credits</a></li>
+                         <li><a onClick="slide('mysmpptransactions.html')" >My Transactions</a></li>
+                        <li><a onClick="slide('smppmycredits.html')" >Available Credits</a></li>
 												
                         
 
