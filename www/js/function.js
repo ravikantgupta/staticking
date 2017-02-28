@@ -1,4 +1,4 @@
-
+var BASE_URL = config.data[0].baseurl;
 /********Left menu********/
 function addmenu(){
 	var res='sfsfs"f\'ww\'wr"wr';
@@ -74,3 +74,18 @@ function addmenu(){
             });
 			  
   }
+  
+  
+   function logout() {
+	   
+	   window.localStorage.removeItem("loggedIn");
+	   
+	   slide('login.html');
+	   
+   }
+   
+   function viewprofile() {
+	   
+   }
+   
+   

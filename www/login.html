@@ -37,9 +37,6 @@
 
 <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
 
-<link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
-
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
 
 <link rel="shortcut icon" href="images/" type="image/x-icon">
 <link href="css/my-csse256.css?1487915659" rel="stylesheet" type="text/css" />
@@ -50,6 +47,7 @@
    
     <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
+	  <script type="text/javascript" src="js/config.js"></script>
 	   <script type="text/javascript" src="js/function.js"></script>
 </head>
 
@@ -117,8 +115,8 @@
 <br/>
 <div class="col-md-12 socil-link">
 <div class="row">
-<div class="col-md-6 col-sm-6 col-xs-6"><a href="https://www.facebook.com/dialog/oauth?client_id=1481547032078075&amp;redirect_uri=http%3A%2F%2Fmanage.staticking.net%2Findex.php%2Fpages%2Flogin&amp;state=7ca43f9d5448dea0ce675da84e411ee3&amp;sdk=php-sdk-3.2.3&amp;scope=email"><img src="images/facebook-icon-login.png"  height="30" class="img-responsive"/></a></div>
-<div class="col-md-6 col-sm-6 col-xs-6"><a href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;redirect_uri=http%3A%2F%2Fmanage.staticking.net%2Findex.php%2Fpages%2Flogin&amp;client_id=95225454408-ouikghqqv3ggs7oggm1bgba8kesiqdm1.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;access_type=online&amp;approval_prompt=auto"><img src="images/google-icon-login.png"  height="30" /></a></div>
+<div class="col-md-6 col-sm-6 col-xs-6"><a href="#"><img src="images/facebook-icon-login.png"  height="30" class="img-responsive"/></a></div>
+<div class="col-md-6 col-sm-6 col-xs-6"><a href="#"><img src="images/google-icon-login.png"  height="30" /></a></div>
 </div>
 
 </div>
@@ -189,27 +187,16 @@ else
 	{
 
 	    
-		          window.localStorage.setItem("loggedIn", 1);
-					 window.plugins.nativepagetransitions.flip({
-				 'backgroundColor' : "#BBBBBB",
-				'direction': 'up',
-				'duration': 1000,
-				"href" : "index.html"
-                 });
+		        
 
 		jQuery.ajax({
 				
 				type:'GET',
-               
-				url:'http://manage.staticking.net/index.php/pages/loginuserid',
-				headers: {
-					  'MyCustomHeader': 'important information'
-				  },
-				  xhrFields: {
-					  withCredentials: true
-				  },
-
-				data:jQuery("#loginform").serialize(),
+                contentType: 'application/json',
+				 dataType: 'json',
+				
+				url:BASE_URL,
+				data:jQuery("#loginforms").serialize(),
 				
 
 				beforeSend:function()
@@ -222,9 +209,16 @@ else
 				success:function(data)
 
 				{
-                      alert(data)
-					window.localStorage.setItem("loggedIn", 1);
-					window.location.href ="index.html";
+                      alert(data);
+					  
+					  window.localStorage.setItem("loggedIn", 1);
+					  window.localStorage.setItem('productDetailslocal', JSON.stringify(data));
+						window.plugins.nativepagetransitions.flip({
+							 'backgroundColor' : "#BBBBBB",
+							'direction': 'up',
+							'duration': 2000,
+							"href" : "index.html"
+							 });
 
 				}
 
