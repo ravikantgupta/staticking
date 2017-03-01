@@ -47,9 +47,10 @@
 		
 		function setvalue()
 		{
-		    var userdetail= window.localStorage.getItem("userdetail");
-			
-			alert(userdetail.data.username);
+		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+						 		            
+			            alert(userdetail.id);
+						
 		
 		}
 

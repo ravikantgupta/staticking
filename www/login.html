@@ -214,8 +214,9 @@ else
 					  if(data.status=='true')
 					  {
 						  window.localStorage.setItem("loggedIn", 1);
-						  window.localStorage.setItem('userdetail', data);
-							window.plugins.nativepagetransitions.flip({
+						  window.localStorage.setItem('userdetail', JSON.stringify(data.data));
+						  
+						window.plugins.nativepagetransitions.flip({
 								 'backgroundColor' : "#BBBBBB",
 								'direction': 'up',
 								'duration': 2000,
