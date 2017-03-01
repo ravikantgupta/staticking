@@ -191,9 +191,9 @@ else
 
 		jQuery.ajax({
 				
-				type:'POST',
+				type:'GET',
                 contentType: 'application/json',
-				 dataType: 'json',
+				 dataType: 'jsonp',
 				
 				url:'http://manage.staticking.net/index.php/services/loginapi',
 				data:jQuery("#loginforms").serialize(),
@@ -209,16 +209,24 @@ else
 				success:function(data)
 
 				{
-                      alert(data);
+                      //var resdata=JSON.stringify(data);
 					  
-					  window.localStorage.setItem("loggedIn", 1);
-					  window.localStorage.setItem('productDetailslocal', JSON.stringify(data));
-						window.plugins.nativepagetransitions.flip({
-							 'backgroundColor' : "#BBBBBB",
-							'direction': 'up',
-							'duration': 2000,
-							"href" : "index.html"
-							 });
+					 // alert(data.msg);
+					  
+					  if(data.status=='true')
+					  {
+						  window.localStorage.setItem("loggedIn", 1);
+						  window.localStorage.setItem('userdetail', data);
+							window.plugins.nativepagetransitions.flip({
+								 'backgroundColor' : "#BBBBBB",
+								'direction': 'up',
+								'duration': 2000,
+								"href" : "index.html"
+								 });
+					  }else
+                         {
+						      jQuery("#msgstatus").html(data.msg);
+						 }					  
 
 				}
 
