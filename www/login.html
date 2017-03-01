@@ -191,11 +191,11 @@ else
 
 		jQuery.ajax({
 				
-				type:'GET',
+				type:'POST',
                 contentType: 'application/json',
 				 dataType: 'json',
 				
-				url:BASE_URL,
+				url:'http://manage.staticking.net/index.php/services/loginapi',
 				data:jQuery("#loginforms").serialize(),
 				
 
