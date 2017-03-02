@@ -49,19 +49,56 @@
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
 </head>
-
-<body class="body-background" style="background:url(images/Softwares.jpg)">
+<style>
+ .spacing{
+      height: 37px;
+ }
+ .login-page-ma{
+ color:#fff;
+ }
+ .body-background{
+      padding-top: 10px; 
+ }
+ 
+ .btn-primarya {
+    color: #ffffff;
+    background-color: non;
+    font-weight: bold !important;
+    border-color: #0096a9;
+    text-transform: uppercase;
+    padding: 10px !important;
+    background: transparent;
+    border-color: #fff;
+}
+.loginlink{
+      text-align: right;
+	   color: #ffffff;
+}
+.loginlink a {
+      
+	   color: #ffffff;
+}
+.forgetpasswrodlink a {
+      
+	   color: #ffffff;
+}
+</style>
+<body class="body-background" style="background: #f06146;">
 
     <div class="body-background">
 <div class="container">
 <div class="col-md-8"></div>
 
 <div class="col-md-4">
-<div class="login-formme">
 
 <div class="row">
-<div class="col-md-12"><img src="images/log.jpg" class="img-responsive" /></div>
 <div class="col-md-12 login-page-ma login-text">Registration</div>
+<div class="spacing"></div>
+</div>
+<div class="login-formmes">
+
+<div class="row">
+
 
 <form id="registerform">
 
@@ -128,33 +165,29 @@
 <div class="col-md-12">
 <div class="g-recaptcha" data-sitekey="6Ld_9BETAAAAANB_7xe6Z2DZz3pqWsfET6pWQ72c"></div>
 </div>
-<div class="col-md-12 socil-link"><button class="btn btn-primarya btn-block btn-signin" id="yuoji" name="submit" type="submit">Register</button></div>
+<div class="col-md-12 socil-link"><button class="btn btn-primarya btn-block btn-signin" id="yuoji" name="submit" type="submit">Sign up Now</button></div>
 
 <span id="msgstatus" style="font-size:15px;"></span>
 <input type="text"  id="isverified"  style="display:none">
 </form>
 
-<div class="col-md-12 forgot-pas">
-<div class="divi-new"><span>OR</span></div>
+
+<div class="col-md-12">
+<div class="row">
+<div class="col-md-6 col-sm-6 col-xs-6 forgetpasswrodlink"><a href="#">Forget Password ?</a></div>
+<div class="col-md-6 col-sm-6 col-xs-6 loginlink"><a onClick="slide('login.html')">Login In</a></div>
 
 </div>
-
-
-
-
+</div>
+<div class="spacing"></div>
 <div class="col-md-12 socil-link">
 <div class="row">
-<div class="col-md-6"><a href="https://www.facebook.com/dialog/oauth?client_id=1481547032078075&amp;redirect_uri=http%3A%2F%2Fmanage.staticking.net%2Findex.php%2Fpages%2Flogin&amp;state=7ca43f9d5448dea0ce675da84e411ee3&amp;sdk=php-sdk-3.2.3&amp;scope=email"><img src="images/facebook-icon-login.png" width="100%" class="img-responsive"/></a></div>
-<div class="col-md-6"><a href="https://accounts.google.com/o/oauth2/auth?response_type=code&amp;redirect_uri=http%3A%2F%2Fmanage.staticking.net%2Findex.php%2Fpages%2Flogin&amp;client_id=95225454408-ouikghqqv3ggs7oggm1bgba8kesiqdm1.apps.googleusercontent.com&amp;scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email&amp;access_type=online&amp;approval_prompt=auto"><img src="images/google-icon-login.png" width="100%" class="img-responsive"/></a></div>
-</div>
+<div class="col-md-6 col-sm-6 col-xs-6"><a href="#"><img src="images/facebook-icon-login.png"   class="img-responsive"/></a></div>
+<div class="col-md-6 col-sm-6 col-xs-6"><a href="#"><img src="images/google-icon-login.png"  height="30" /></a></div>
 
 </div>
 
-
-<div class="col-md-12 login-page-ma" style="text-align:center;"><a onClick="slide('login.html')" class="forgot-pass-link"><i class="fa fa-backward"></i> Back To Login Page</a></div>
-
-
-
+</div>
 
 
 </div>

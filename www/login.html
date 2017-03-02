@@ -49,9 +49,33 @@
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	  <script type="text/javascript" src="js/config.js"></script>
 	   <script type="text/javascript" src="js/function.js"></script>
+	   
+	   <style>
+ .spacing{
+      height: 37px;
+ }
+ .join-link{
+      text-align: right !important;
+	   color: #ffffff;
+}
+.join-link a {
+      
+	   color: #ffffff;
+}
+.forgot-pass-link{
+      
+	   color: #ffffff !important;
+	       margin-left: -26px;
+
+}
+.login-text{
+ color: #ffffff;
+}
+ </style>
+	   
 </head>
 
-<body style="background:#f33d1d;">
+<body style="background:#f06146;">
 
 <div class="body-background">
 <div class="container">
@@ -63,8 +87,9 @@
 <div class="row">
 
 
-<div class="col-md-12 login-page-ma login-text">Log In</div>
-
+<div class="col-md-12 login-page-ma login-text">LOG IN</div>
+<div class="spacing"></div>
+</div>
 <form id="loginforms">
 <div class="col-md-12 login-page-ma">
 
@@ -99,7 +124,7 @@
 
 <div class="row">
 <div class="col-md-6 col-sm-6 col-xs-6 forgot-pas"><a onClick="slide('forgotpassword.html')"  class="forgot-pass-link">Forgot password?</a></div>
-<div class="col-md-6 col-sm-6 col-xs-6 join-link">Not a member? <a onClick="slide('registration.html')">Join now</a></div>
+<div class="col-md-6 col-sm-6 col-xs-6 join-link"><a onClick="slide('registration.html')">Join now</a></div>
 </div>
 
 </div>
@@ -136,7 +161,7 @@
 
 </div>
 <style>
-.body-background{background:#f33d1d;}
+.body-background{background:#f06146;}
 .btn{
      background: transparent;
     color: wheat;
