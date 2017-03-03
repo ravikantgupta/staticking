@@ -282,9 +282,10 @@
 $=jQuery;
 $(function() {
   var txt = $("#username");
-  var alphanumbers=/^[0-9 a-z]+$/;
+  var alphanumbers=/^[a-z 0-9]+$/;
   var func = function()
   {
+  
     txt.val(txt.val().replace(/\s/g, ''));
 
 	  if(!txt.val().match(alphanumbers))
@@ -295,7 +296,11 @@ $(function() {
 	  else
 	  {
 		 $("#msgstatus").text(""); 
+		 
+		 
 	  }
+	  
+	  
   }
   
   txt.keyup(func).blur(func);
