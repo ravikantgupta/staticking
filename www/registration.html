@@ -353,7 +353,7 @@ $(document).ready(function()
 				{
 					$.ajax({
 							type:'POST',
-							url:'http://manage.staticking.net/index.php/pages/registeruser',
+							url:'http://manage.staticking.net/index.php/services/registeruser',
 							data:$("#registerform").serialize(),
 							beforeSend:function()
 							{
@@ -415,7 +415,7 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 				},
 				success:function(data)
 				{
-				  alert(JSON.stringify(data));
+				  //alert(JSON.stringify(data));
 				
 					if(data.status=='success')
 					{
@@ -428,7 +428,7 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 					}
 					else
 					{
-						alert(data);
+						//alert(data);
 						$("#verifymobno").removeAttr('disabled');
 						$("#verifymobno").val("Verify Mob No");
 					}
