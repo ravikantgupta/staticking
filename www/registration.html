@@ -406,7 +406,7 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 	{
 		$.ajax({
 				type:'POST',
-				url:"http://manage.staticking.net/index.php/pages/sendotpverifymobile",
+				url:"http://manage.staticking.net/index.php/services/sendotpverifymobileapi",
 				data:'mobileno='+$("#phoneno").val(),
 				beforeSend: function()
 				{
