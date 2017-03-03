@@ -415,7 +415,9 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 				},
 				success:function(data)
 				{
-					if(data=='success')
+				  alert(JSON.stringify(data));
+				
+					if(data.status=='success')
 					{
 					alert("OTP Sent");
 					$("#verifymobno").hide();
