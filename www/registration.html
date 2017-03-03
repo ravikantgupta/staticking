@@ -363,6 +363,9 @@ $(document).ready(function()
 							},
 							success:function(data)
 							{
+							
+							   alert(JSON.stringify(data));
+							   
 								$("#msgstatus").removeClass('alert-danger').addClass('alert-success').fadeIn(0).html(data);
 								$("#register").removeAttr('disabled');
 								if(data=='You Are Successfully Registered')
