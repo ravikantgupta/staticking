@@ -2252,7 +2252,7 @@ $(document).ready(function() {
 		if(routbval=='Promosid' || routbval=='Transactional' || routbval=='transactional2')
 		{
 			
-					
+					alert('ram');
 				$.ajax({
 					type:'POST',
 					url:'http://manage.staticking.net/index.php/servicessms/getsenderidbyrouteapi',
@@ -2261,9 +2261,9 @@ $(document).ready(function() {
 					success:function(data)
 					{
 					
-					  alert($.parseJSON(data));
+					  alert(data);
 						
-						$("#senderid").html($.parseJSON(data));
+						$("#senderid").html(data);
 						
 						
 						$("#senderid").css('display','none');
