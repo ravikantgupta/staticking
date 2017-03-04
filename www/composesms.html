@@ -1735,8 +1735,8 @@ $(document).ready(function()
 			$("#labelsms, #wordsremain, #labelchar, #countsms, #smscontent").hide();
 			$.ajax({
 					type:'POST',
-					url:'http://manage.staticking.net/index.php/sms/gettemplates',
-					data:'templates='+routch,
+					url:'http://manage.staticking.net/index.php/servicessms/gettemplatesapi',
+					data:'templates='+routch+'&logged_in=8',
 					beforeSend:function()
 					{
 						$("#smstabh").html("Please Wait. Fetching Data");
@@ -1836,10 +1836,10 @@ function checkroutes(str)
 	}
 	else
 	{
-		//$("#senderid").show();
-		//$("#labelsendid").show();
-		//$("#opensenderid").show();
-		//$("#senderidrowhi").show();
+		$("#senderid").show();
+		$("#labelsendid").show();
+		$("#opensenderid").show();
+		$("#senderidrowhi").show();
 	}
 	
 }
@@ -1985,7 +1985,7 @@ $("#clsosebutton").click(function()
 	location.reload(true);
 });	
 						
-$("#senderid").show();	
+
 
 });
 
