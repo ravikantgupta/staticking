@@ -30,12 +30,40 @@
     
    <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
+	  <script type="text/javascript" src="js/config.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
    
     
 </head>
 
-<body>
+<body onload="setvalue()">
+<script>
+	
+
+		if(window.localStorage.getItem("loggedIn") == 1) 
+		{ 
+		// alert('ram1');
+		}
+		else{  window.location.href="login.html"; }
+		
+		
+		function setvalue()
+		{
+		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+						 		            
+			           
+						var username = userdetail.username;
+						
+						jQuery('#uname').html(username);
+						
+						jQuery('#proicon').html(username.charAt(0));
+						
+						
+		
+		}
+
+
+</script>
 
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 <style>
@@ -624,11 +652,11 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                                         <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
 
-                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+                                            <span class="user-info"><span id="uname"></span>  <cite>manage.staticking.net</cite></span>
 
                                             <span class="user-thumb" style="background:#15BDC3;" >
                                             
-                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                             <p style="font-size:36px;color:white;margin-left:12px;" id="proicon">D</p>
                                             
                                                                                         
                                             
@@ -639,11 +667,11 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                                         <ul role="menu" class="dropdown-menu fadeInUp">
 
-                                            <li><a href="http://manage.staticking.net/index.php/pages/userprofile"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+                                            <li><a onclick="viewprofile()"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
 
                                             </li>
 
-                                            <li><a href="http://manage.staticking.net/index.php/pages/logout"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+                                            <li><a onclick="logout()"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
 
                                             </li>
 
@@ -770,138 +798,101 @@ text-decoration:none;
 
 <div class="main-container">
 
-<div class="container-fluid" style="padding:0px;">
-<div class="col-md-12" style="padding:0px;">
+  <div class="container-fluid" style="padding:0px;">
+        <div class="col-md-12" style="padding:0px;">
 
-<div class="box-widget widget-module">
+           <div class="box-widget widget-module">
 
+             <div class="widget-container">
 
+              <div class=" widget-block">
 
-<div class="widget-container">
+				<div class="page-header">
 
-<div class=" widget-block">
+					<h2>Compose SMS</h2>
 
-<div class="page-header">
-
-	<h2>Compose SMS</h2>
-
-</div>
+				</div>
 
 
-<div id="popup_box" style="height:310px;border-radius:8px;">
+						<div id="popup_box" style="height:310px;border-radius:8px;">
 
 
 
-<div id="msg_statusnewid" style="display:none;"></div>
+						<div id="msg_statusnewid" style="display:none;"></div>
 
-<br />
+						<br />
 
-<div class="row">
-<div class="col-md-3">
-<label>Route ID: <span style="color:red;">*</span> &nbsp;&nbsp;</label>
-</div>
-<div class="col-md-4">
-<select name="routeid" id="newrouteid" class="form-control" >
-
-<option value="">Select Route ID</option>
-
-
-
-<option value="Promosid">Promo. S ID</option>
-
-
-
+						<div class="row">
+						<div class="col-md-3">
+						<label>Route ID: <span style="color:red;">*</span> &nbsp;&nbsp;</label>
+						</div>
+						<div class="col-md-4">
+						<select name="routeid" id="newrouteid" class="form-control" >
+						<option value="">Select Route ID</option>
+						<option value="Promosid">Promo. S ID</option>
+						<option value="Transactional">Transactional</option>
+						<option value="transactional2">Transactional 2</option>
+						</select>
+						</div>
+						</div>
 
 
+						<br />
+						<div class="row">
+						<div class="col-md-3">
+						<label>Sender ID: <span style="color:red;">*</span>&nbsp;</label>
+						</div>
+						<div class="col-md-4 ">
+						<input type="text" class="form-control" name="addnewsenderid" id="addnewsenderid" maxlength="6" placeholder="New Sender ID" style="width:100%;" required/>
+						</div>
+						</div>
+						<br />
+						<div  class="row">
+						<div class="col-md-3">
+						<label>Sample Content: <span style="color:red;">*</span>&nbsp;</label>
+						</div>
+						<div class="col-md-4">
+						<textarea class="form-control" type="text" name="samplecontentmsg" id="samplecontentmsg" placeholder="Sample Message Content" style="width:100%;" required></textarea>
+						</div>
+						</div>
 
+						<br />
 
-<option value="Transactional">Transactional</option>
-
-
-<option value="transactional2">Transactional 2</option>
-
-
-
-
-
-
-</select>
-</div>
-</div>
-
-
-<br />
-<div class="row">
-<div class="col-md-3">
-<label>Sender ID: <span style="color:red;">*</span>&nbsp;</label>
-</div>
-<div class="col-md-4 ">
-<input type="text" class="form-control" name="addnewsenderid" id="addnewsenderid" maxlength="6" placeholder="New Sender ID" style="width:100%;" required/>
-</div>
-</div>
-<br />
-<div  class="row">
-<div class="col-md-3">
-<label>Sample Content: <span style="color:red;">*</span>&nbsp;</label>
-</div>
-<div class="col-md-4">
-<textarea class="form-control" type="text" name="samplecontentmsg" id="samplecontentmsg" placeholder="Sample Message Content" style="width:100%;" required></textarea>
-</div>
-</div>
-
-<br />
-
-<div  class="row">
-<div class="col-md-3"></div>
-<div class="col-md-4">
-<input type="button" name="submitsender" onclick="return addnewsendersnew()" value="Create" class="btn btn-primary" />
-</div>
-</div>
+						<div  class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-4">
+						<input type="button" name="submitsender" onclick="return addnewsendersnew()" value="Create" class="btn btn-primary" />
+						</div>
+						</div>
 
 
 
-<a id="popupBoxClose">Close</a>
+						<a id="popupBoxClose">Close</a>
 
-</div>
+						</div>
 
-<div id="cover"></div>
+                       <div id="cover"></div>
 
+                            <div class="form-horizontal">
 
-
-
-
-<div class="form-horizontal">
-
-<span class="alert-danger"></span>
+                              <span class="alert-danger"></span>
 
 										<div class="form-group">
 
 											<label class="col-md-2 control-label">Select Route</label>
 
 											<div class=" col-md-10">
-												
-                                                                                                
+											                                                                                              
 												<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required>
 
-                                                <option value=""><b>Select Route</b></option>
-
-                                               
-												                                                <option value="Promotional">Promotional</option>
-												                                                <option value="Promotional1">Promotional1</option>
-												                                                <option value="Promosid">Promosid</option>
-												                                                <option value="Transactional">Transactional</option>
-												                                                <option value="transactional2">Transactional2</option>
-												                                                <option value="international">International</option>
-												                                                
-
-                                                
-												
-                                                
-
-                                                </select>
-
-												
-
+                                                   <option value=""><b>Select Route</b></option>
+													<option value="Promotional">Promotional</option>
+													<option value="Promotional1">Promotional1</option>
+													<option value="Promosid">Promosid</option>
+													<option value="Transactional">Transactional</option>
+													<option value="transactional2">Transactional2</option>
+													<option value="international">International</option>
+												</select>
 											</div>
 
 										</div>
@@ -910,24 +901,14 @@ text-decoration:none;
 
 											<label class="col-md-2 control-label" id="labelsendid">Sender ID</label>
 
-                                            
-
 											<div class="col-xs-10 col-md-9 col-sm-10">
-
-                                             
 
 												<select name="senderid" class="form-control select2" id="senderid">
 												<option value="">Select Sender ID</option>
-                                                
-
-                                               
-
+                                              
                                                 </select>
 
-                                                
-
 											</div>
-                                            
                                             
 
 										</div>
@@ -989,12 +970,7 @@ text-decoration:none;
                                             
                                             
                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" data-target="#myModal" id="addgroup" class="btn btn-warning" title="Add Group"><i class="fa fa-users"></i></button>
-                                              
-                                              
-
-                                            
-                                            
-                                            
+                                                                                  
 
                                             </div>
 
@@ -1563,100 +1539,7 @@ text-decoration:none;
 
     </div>
 
-    <!--<div class="conv-container">
-
-        <div class="conv-u-info chat-u-online">
-
-            <ul>
-
-                <li class="chat-avatar"><img src="images/avatar/adellecharles.jpg" alt="Avatar">
-
-                </li>
-
-                <li class="chat-u-info">adellecharles<span>New York</span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Call" class="waves-effect chat-u-call"><i class="fa fa-phone"></i></span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Exit" class="waves-effect chat-close"><i class="fa fa-angle-right"></i></span>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-        <div class="converstaion-list">
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    Hello John, thank you for calling Provide Support. How may I help you?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Hello Mary. I understand the problem and will be happy to help you. Let's see what I can do.
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Let me see if I have this correct, you want me to…" or "You would like for me to…?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    I'm not sure, but let me find out for you.
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="chat-input-form">
-
-            <form>
-
-                <input name="chatbox" value="" class="form-control chat-input">
-
-            </form>
-
-        </div>
-
-    </div>-->
-
+    
     </div>
 
 
@@ -2102,7 +1985,7 @@ $("#clsosebutton").click(function()
 	location.reload(true);
 });	
 						
-	
+$("#senderid").show();	
 
 });
 
@@ -2444,7 +2327,7 @@ $(document).ready(function(e) {
 
 			$.ajax({
 					type:'POST',
-					url:'http://manage.staticking.net/index.php/pages/removedndnumbersfast',
+					url:'http://manage.staticking.net/index.php/services/removedndnumbersfastapi',
 					data:'alldndnumbers='+allmulnumbersple,
 					beforeSend: function()
 					{
