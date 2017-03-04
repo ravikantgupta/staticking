@@ -39,7 +39,7 @@
 <body onload="setvalue()">
 <script>
 	
-
+ var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 		if(window.localStorage.getItem("loggedIn") == 1) 
 		{ 
 		// alert('ram1');
@@ -49,7 +49,7 @@
 		
 		function setvalue()
 		{
-		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+		       
 						 		            
 			           
 						var username = userdetail.username;
@@ -62,7 +62,7 @@
 		
 		}
 
-
+var logged_in= userdetail.id;
 </script>
 
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
@@ -1199,7 +1199,7 @@ text-decoration:none;
       
       <div id="" class=" modal-body">
             
-           <a href="javascript:void(0)" target="_blank"> <img src="images/trans2.png?1487918736" style="width:549px;"></a>
+           <a href="javascript:void(0)" target="_blank"> <img src="http://manage.staticking.net/public/images/trans2.png?1487918736" style="width:549px;"></a>
             
         </div>
 
@@ -1736,7 +1736,7 @@ $(document).ready(function()
 			$.ajax({
 					type:'POST',
 					url:'http://manage.staticking.net/index.php/servicessms/gettemplatesapi',
-					data:'templates='+routch+'&logged_in=8',
+					data:'templates='+routch+'&logged_in='+logged_in,
 					beforeSend:function()
 					{
 						$("#smstabh").html("Please Wait. Fetching Data");
@@ -2252,15 +2252,25 @@ $(document).ready(function() {
 		if(routbval=='Promosid' || routbval=='Transactional' || routbval=='transactional2')
 		{
 			
-			$.get('http://manage.staticking.net/index.php/sms/getsenderidbyroute/'+routbval,function(data)
-			{
-				
-				$("#senderid").html($.parseJSON(data));
-				
-				
-				$("#senderid").css('display','none');
-				
+					
+				$.ajax({
+					type:'POST',
+					url:'http://manage.staticking.net/index.php/servicessms/getsenderidbyrouteapi',
+					data:'routbval='+routbval+'&logged_in='+logged_in,
+					
+					success:function(data)
+					{
+					
+					  alert($.parseJSON(data));
+						
+						$("#senderid").html($.parseJSON(data));
+						
+						
+						$("#senderid").css('display','none');
+					}
+					
 			});
+			
 		}
 		else
 		{
