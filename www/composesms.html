@@ -54,7 +54,7 @@
 			           
 						var username = userdetail.username;
 						
-						jQuery('#uname').html(username);
+						
 						
 						var ufna=username.charAt(0);
 						
@@ -63,12 +63,44 @@
 						
 						//getcontact();
 						
-						contactloadPopupBox() ;
+						
 						
 						
 		
 		}
+function contactunloadPopupBox() 
 
+		{    // TO Unload the Popupbox
+
+           jQuery('#contactpopup_box').fadeOut("slow");
+
+            jQuery("#container").css({ // this is just for style        
+
+                "opacity": "1"  
+
+            }); 
+
+			jQuery('#cover').fadeOut("slow");
+
+        }		
+
+		
+		 function contactloadPopupBox() 
+
+		{   
+		
+
+            jQuery('#contactpopup_box').fadeIn("slow");
+
+            jQuery("#container").css({ // this is just for style
+
+                "opacity": "0.3"  
+
+            });  
+
+			jQuery("#cover").fadeTo(500, 0.5);       
+
+        }
 var logged_in= userdetail.id;
 </script>
  <script type="text/javascript" charset="utf-8">
@@ -84,22 +116,32 @@ var logged_in= userdetail.id;
             // onSuccess: Get a snapshot of the current contacts
 						function gotContacts(c) {
 						
-						alert('shreeram12');
+						
 						 alert("gotContacts, number of results "+c.length);
 
 						
 						
 						 /* Retriving phoneNumbers */
+						 var mobilenmbr='';
 						 for(var i=0, len=c.length; i<len; i++) {
 						 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
 						 
-						 alert(c[i].phoneNumbers[0].value);
+						
 						 
 						 
-						// mobileDiv.innerHTML += "<p>"+c[i].displayName+"<br/>"+c[i].phoneNumbers[0].value+"</p>";
+						  mobilenmbr += "<option value='"+c[i].phoneNumbers[0].value+"'>"+c[i].displayName+":"+c[i].phoneNumbers[0].value+"</option>";
 						 }
 						 }
+						 jQuery('#mobilecontact').html(mobilenmbr);
 
+						   jQuery('#mobilecontact').multiselect({
+								enableClickableOptGroups: true,
+								enableCollapsibleOptGroups: true,
+								enableFiltering: true,
+								includeSelectAllOption: true
+							});
+                         
+						  contactloadPopupBox() ;
 						
 						}
 
@@ -110,6 +152,7 @@ var logged_in= userdetail.id;
             }
 			
         </script>
+		
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 <style>
 
@@ -899,7 +942,12 @@ text-decoration:none;
 }
 
 #cover{ position:fixed; top:0; left:0; background:rgba(0,0,0,0.6); z-index:5; width:100%; height:100%; display:none; } 
-
+.btn-group{
+  width: 100%;
+}
+.multiselect {
+ width: 100%;
+}
 </style>
 
 <div class="main-container">
@@ -980,17 +1028,45 @@ text-decoration:none;
 						
 						
 						<div id="contactpopup_box" style="height:310px;border-radius:8px;">
-
-
+						
+						
+						<div class="contactlist" >
 						<div  class="row">
-							<div class="col-md-4">ravi</div>
-							<div class="col-md-5">8287348908</div>
-							<div class="col-md-3"><a href="#">add</a></div>
+						<div class="col-md-12 col-sm-12 col-xs-12">
+						 <select id="mobilecontact" multiple="multiple" style="width:100%">
+
+							<option value="Javascript">Javascript</option>
+
+							<option value="Python">Python</option>
+
+							<option value="LISP">LISP</option>
+
+							<option value="C++">C++</option>
+
+							<option value="jQuery">jQuery</option>
+
+							<option value="Ruby">Ruby</option>
+							<option value="Javascript">Javascript</option>
+
+							<option value="Python">Python</option>
+
+							<option value="LISP">LISP</option>
+
+							<option value="C++">C++</option>
+
+							<option value="jQuery">jQuery</option>
+
+							<option value="Ruby">Ruby</option>
+
+                          </select>
+						  </div>
+						</div>
 						</div>
 
+                       
 
 
-						<a id="contactpopupBoxClose">Close</a>
+						
 
 						</div>
 						
@@ -1094,7 +1170,10 @@ text-decoration:none;
                                             
                                             
                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" data-target="#myModal" id="addgroup" class="btn btn-warning" title="Add Group"><i class="fa fa-users"></i></button>
-                                                                                  
+											  
+                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" onClick="getcontact()" id="addcontact" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
+                                               
+											    
 
                                             </div>
 
@@ -1700,7 +1779,9 @@ text-decoration:none;
     <script src="js/sweetalert.js"></script>
     <script src="js/moment.js"></script>
     <script src="js/calendar/fullcalendar.js"></script>
-    
+      <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css">
+        <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+
     <!--CHARTS-->
     <script src="js/chart/sparkline/jquery.sparkline.js"></script>
     <script src="js/chart/easypie/jquery.easypiechart.min.js"></script>
@@ -2156,8 +2237,16 @@ $("#clsosebutton").click(function()
 			contactunloadPopupBox();
 
         });
+		
+		
+        jQuery('#cover').click( function() {
 
+           
+			contactunloadPopupBox();
 
+        });
+
+   
 
         function unloadPopupBox() 
 
@@ -2175,39 +2264,9 @@ $("#clsosebutton").click(function()
 
         } 
 
-     function contactunloadPopupBox() 
-
-		{    // TO Unload the Popupbox
-
-           jQuery('#contactpopup_box').fadeOut("slow");
-
-            jQuery("#container").css({ // this is just for style        
-
-                "opacity": "1"  
-
-            }); 
-
-			jQuery('#cover').fadeOut("slow");
-
-        }		
-
+    
         
-   function contactloadPopupBox() 
-
-		{   
-		alert('shreeram');
-
-            jQuery('#contactpopup_box').fadeIn("slow");
-
-            jQuery("#container").css({ // this is just for style
-
-                "opacity": "0.3"  
-
-            });  
-
-			jQuery("#cover").fadeTo(500, 0.5);       
-
-        }
+  
         function loadPopupBox() 
 
 		{    // To Load the Popupbox
