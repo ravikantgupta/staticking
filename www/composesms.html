@@ -137,7 +137,7 @@ var logged_in= userdetail.id;
 
           
             function getcontact() {
-			alert('shreeram');
+			jQuery('#faceoff').show();
                 // find all contacts with 'Bob' in any name field
                navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);
             }
@@ -147,7 +147,7 @@ var logged_in= userdetail.id;
 						function gotContacts(c) {
 						
 						
-						 alert("gotContacts, number of results "+c.length);
+						 //alert("gotContacts, number of results "+c.length);
 
 						
 						
@@ -172,6 +172,7 @@ var logged_in= userdetail.id;
 							});
                          jQuery('.multiselect').click();
 						  contactloadPopupBox() ;
+						  jQuery('#faceoff').hide();
 						
 						}
 
