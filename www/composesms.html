@@ -2752,6 +2752,7 @@ $.each(files, function(key, value)
     data.append(key, value);
 });
 
+ jQuery('#faceoff').show();
 $.ajax({
     url: 'http://manage.staticking.net/index.php/servicessms/uploadcontactsapi',
     type: 'POST',
@@ -2762,18 +2763,18 @@ $.ajax({
     success: function(data, textStatus, jqXHR)
     {
 	
-	
-	if(data=='No')
-	{
-	  
-	
-	alert('Please select valide csv');
-	
-	}else
-	{
-	
-	 jQuery('#contactnumberst').val(data);
-	}
+	jQuery('#faceoff').hide();
+				if(data=='No')
+				{
+				  
+				
+				alert('Please select valide csv');
+				
+				}else
+				{
+				
+				 jQuery('#contactnumberst').val(data);
+				}
      
 					  
     },
