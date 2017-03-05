@@ -68,12 +68,8 @@ var logged_in= userdetail.id;
 </script>
  <script type="text/javascript" charset="utf-8">
 
-            // Wait for device API libraries to load
-            document.addEventListener("deviceready", onDeviceReady, false);
-
-            // device APIs are available
-
-            function onDeviceReady() {
+          
+            function getcontact() {
 			alert('shreeram');
                 // find all contacts with 'Bob' in any name field
                 var options = new ContactFindOptions();
@@ -82,6 +78,7 @@ var logged_in= userdetail.id;
                 navigator.contacts.find(fields, onSuccess, onError, options);
             }
 
+			 
             // onSuccess: Get a snapshot of the current contacts
 
             function onSuccess(contacts) {
@@ -95,6 +92,7 @@ var logged_in= userdetail.id;
             function onError(contactError) {
                 alert('onError!');
             }
+			getcontact()
         </script>
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 <style>
