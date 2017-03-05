@@ -61,6 +61,9 @@
 						jQuery('#proicon').html(ufna.toUpperCase());
 						
 						
+						getcontact();
+						
+						
 		
 		}
 
@@ -72,27 +75,32 @@ var logged_in= userdetail.id;
             function getcontact() {
 			alert('shreeram');
                 // find all contacts with 'Bob' in any name field
-                var options = new ContactFindOptions();
-                options.filter = "Bob";
-                var fields = ["displayName", "name"];
-                navigator.contacts.find(fields, onSuccess, onError, options);
+               navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);
             }
 
 			 
             // onSuccess: Get a snapshot of the current contacts
+						function gotContacts(c) {
+						 console.log("gotContacts, number of results "+c.length);
 
-            function onSuccess(contacts) {
-                for (var i = 0; i < contacts.length; i++) {
-                    alert("Display Name = " + contacts[i].displayName);
-                }
-            }
+						 mobileDiv = document.querySelector("#proicon");
+						
+						 /* Retriving phoneNumbers */
+						 for(var i=0, len=c.length; i<len; i++) {
+						 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
+						 mobileDiv.innerHTML += "<p>"+c[i].displayName+"<br/>"+c[i].phoneNumbers[0].value+"</p>";
+						 }
+						 }
+
+						
+						}
 
             // onError: Failed to get the contacts
 
-            function onError(contactError) {
+            function errorHandler(contactError) {
                 alert('onError!');
             }
-			getcontact()
+			
         </script>
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 <style>

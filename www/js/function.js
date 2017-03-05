@@ -60,6 +60,10 @@ function addmenu(){
 			  // these are used for slide left/right only currently
 			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
 			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+			  
+			  
+			  
+			  
 			}, false);
 			
 			
