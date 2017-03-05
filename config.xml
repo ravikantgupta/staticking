@@ -23,7 +23,7 @@
     	
         
 		 <plugin name="com.telerik.plugins.nativepagetransitions" source="npm" />
-		 <gap:plugin name="org.apache.cordova.contacts" />
+		 <plugin name="org.apache.cordova.contacts" source="npm" />
 		
   	<!--	<gap:plugin name="nl.x-services.plugins.googleplus" source="plugins.cordova.io"/> -->
   		
