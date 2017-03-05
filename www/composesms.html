@@ -85,12 +85,16 @@ var logged_in= userdetail.id;
 						alert('shreeram12');
 						 alert("gotContacts, number of results "+c.length);
 
-						 mobileDiv = document.querySelector("#proicon");
+						
 						
 						 /* Retriving phoneNumbers */
 						 for(var i=0, len=c.length; i<len; i++) {
 						 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
-						 mobileDiv.innerHTML += "<p>"+c[i].displayName+"<br/>"+c[i].phoneNumbers[0].value+"</p>";
+						 
+						 alert(c[i].phoneNumbers[0].value);
+						 
+						 
+						// mobileDiv.innerHTML += "<p>"+c[i].displayName+"<br/>"+c[i].phoneNumbers[0].value+"</p>";
 						 }
 						 }
 
