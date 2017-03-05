@@ -61,7 +61,9 @@
 						jQuery('#proicon').html(ufna.toUpperCase());
 						
 						
-						getcontact();
+						//getcontact();
+						
+						contactloadPopupBox() ;
 						
 						
 		
@@ -749,6 +751,49 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 /* popup_box DIV-Styles*/
 
+
+#contactpopup_box { 
+
+    display:none; /* Hide the DIV */
+
+    position:fixed;  
+
+    _position:absolute; /* hack for internet explorer 6 */  
+
+    height:250px;  
+
+    width:80%;  
+
+    background:white;
+
+   
+
+    top: 150px;
+
+    z-index:100; /* Layering ( on-top of others), if you have lots of layers: I just maximized, you can change it yourself */
+
+   
+
+    
+
+    /* additional features, can be omitted */    
+
+    padding:15px;  
+
+    font-size:15px;  
+
+    -moz-box-shadow: 0 0 5px #ff0000;
+
+    -webkit-box-shadow: 0 0 5px #ff0000;
+
+    box-shadow: 0 5px 5px #606060;
+
+	border:2px solid #adadad;
+
+    
+
+}
+
 #popup_box { 
 
     display:none; /* Hide the DIV */
@@ -818,6 +863,24 @@ text-decoration:none;
 /* This is for the positioning of the Close Link */
 
 #popupBoxClose {
+
+    font-size:20px;  
+
+    line-height:15px;  
+
+    right:5px;  
+
+    top:5px;  
+
+    position:absolute;  
+
+    color:#6fa5e2;  
+
+    font-weight:500;      
+
+}
+
+#contactpopupBoxClose {
 
     font-size:20px;  
 
@@ -913,6 +976,24 @@ text-decoration:none;
 						<a id="popupBoxClose">Close</a>
 
 						</div>
+						
+						
+						
+						<div id="contactpopup_box" style="height:310px;border-radius:8px;">
+
+
+						<div  class="row">
+							<div class="col-md-4">ravi</div>
+							<div class="col-md-5">8287348908</div>
+							<div class="col-md-3"><a href="#">add</a></div>
+						</div>
+
+
+
+						<a id="contactpopupBoxClose">Close</a>
+
+						</div>
+						
 
                        <div id="cover"></div>
 
@@ -2061,11 +2142,18 @@ $("#clsosebutton").click(function()
 
         });
 
+		 
+       jQuery('#contactpopupBoxClose').click( function() {            
+
+            contactunloadPopupBox();
+
+        });
         
 
         jQuery('#container').click( function() {
 
             unloadPopupBox();
+			contactunloadPopupBox()
 
         });
 
@@ -2085,10 +2173,40 @@ $("#clsosebutton").click(function()
 
 			jQuery('#cover').fadeOut("slow");
 
-        }    
+        } 
+
+     function contactunloadPopupBox() 
+
+		{    // TO Unload the Popupbox
+
+           jQuery('#contactpopup_box').fadeOut("slow");
+
+            jQuery("#container").css({ // this is just for style        
+
+                "opacity": "1"  
+
+            }); 
+
+			jQuery('#cover').fadeOut("slow");
+
+        }		
 
         
+   function contactloadPopupBox() 
 
+		{    // To Load the Popupbox
+
+            jQuery('#contactpopup_box').fadeIn("slow");
+
+            jQuery("#container").css({ // this is just for style
+
+                "opacity": "0.3"  
+
+            });  
+
+			jQuery("#cover").fadeTo(500, 0.5);       
+
+        }
         function loadPopupBox() 
 
 		{    // To Load the Popupbox
