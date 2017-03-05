@@ -63,8 +63,16 @@
 						
 						//getcontact();
 						
-						
-						
+						/*jQuery('#mobilecontact').multiselect({
+								enableClickableOptGroups: true,
+								enableCollapsibleOptGroups: true,
+								enableFiltering: true,
+								includeSelectAllOption: true
+							});
+					contactloadPopupBox() ;	
+					
+					jQuery('.multiselect').click();*/
+					
 						
 		
 		}
@@ -81,6 +89,13 @@ function contactunloadPopupBox()
             }); 
 
 			jQuery('#cover').fadeOut("slow");
+			
+			
+			var selectedmobno=jQuery('#mobilecontact').val();
+			
+			
+			
+			jQuery('#contactnumberst').html(selectedmobno);
 
         }		
 
@@ -140,7 +155,7 @@ var logged_in= userdetail.id;
 								enableFiltering: true,
 								includeSelectAllOption: true
 							});
-                         
+                         jQuery('.multiselect').click();
 						  contactloadPopupBox() ;
 						
 						}
@@ -1030,7 +1045,7 @@ text-decoration:none;
 						<div id="contactpopup_box" style="height:310px;border-radius:8px;">
 						
 						
-						<div class="contactlist" >
+						<div class="contactlist" style="height: 100%;overflow: scroll;">
 						<div  class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
 						 <select id="mobilecontact" multiple="multiple" style="width:100%">
