@@ -1066,28 +1066,7 @@ text-decoration:none;
 						<div class="col-md-12 col-sm-12 col-xs-12">
 						 <select id="mobilecontact" multiple="multiple" style="width:100%">
 
-							<option value="Javascript">Javascript</option>
-
-							<option value="Python">Python</option>
-
-							<option value="LISP">LISP</option>
-
-							<option value="C++">C++</option>
-
-							<option value="jQuery">jQuery</option>
-
-							<option value="Ruby">Ruby</option>
-							<option value="Javascript">Javascript</option>
-
-							<option value="Python">Python</option>
-
-							<option value="LISP">LISP</option>
-
-							<option value="C++">C++</option>
-
-							<option value="jQuery">jQuery</option>
-
-							<option value="Ruby">Ruby</option>
+						
 
                           </select>
 						  </div>
@@ -1166,9 +1145,9 @@ text-decoration:none;
 
                                             <div class="col-md-8" style="display:none;">
 
-			<form method="post" id="fileuploadform" action="http://manage.staticking.net/index.php/sms/uploadcontacts" enctype="multipart/form-data">
+			<form method="post" id="fileuploadform" action="http://manage.staticking.net/index.php/servicessms/uploadcontactsapi" enctype="multipart/form-data">
 
-                      <input type="file" id="contactnosfile" name="contactnosfile" onchange="document.getElementById('fileuploadform').submit()">
+                      <input type="file" id="contactnosfile" name="contactnosfile" >
 
              </form>
 
@@ -1841,7 +1820,7 @@ text-decoration:none;
         $(".whenuserread").on('click',function()
 		{
 			
-			$.get('http://manage.staticking.net/index.php/settings/notiread?notiread=yes&logged_in='+logged_in,function(data)
+			$.get('http://manage.staticking.net/index.php/servicessms/notireadapi?notiread=yes&logged_in='+logged_in,function(data)
 			{
 				if(data=='success')
 				{
@@ -2747,3 +2726,67 @@ $("#removeinvalid").on('click',function()
 });
 
 </script>
+<script type="text/javascript">
+
+
+var files;
+
+// Add events
+jQuery('#contactnosfile').on('change', prepareUpload);
+
+// Grab the files and set them to our variable
+function prepareUpload(event)
+{
+  files = event.target.files;
+  
+  
+  event.stopPropagation(); // Stop stuff happening
+    event.preventDefault(); // Totally stop stuff happening
+
+// START A LOADING SPINNER HERE
+
+// Create a formdata object and add the files
+var data = new FormData();
+$.each(files, function(key, value)
+{
+    data.append(key, value);
+});
+
+$.ajax({
+    url: 'http://manage.staticking.net/index.php/servicessms/uploadcontactsapi',
+    type: 'POST',
+    data: data,
+    cache: false,
+    dataType: 'json',
+    processData: false, // Don't process the files
+    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+    success: function(data, textStatus, jqXHR)
+    {
+      if(data.status=='true')
+					  {
+					    jQuery('#contactnumberst').val(data.content);
+                      }else{
+					      alert(data.content);
+					  }
+					  
+    },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+        // Handle errors here
+        console.log('ERRORS: ' + textStatus);
+        // STOP LOADING SPINNER
+    }
+});
+
+  
+  
+  
+  
+}
+
+
+  
+	
+
+
+    </script>
