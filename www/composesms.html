@@ -2756,18 +2756,13 @@ $.ajax({
     url: 'http://manage.staticking.net/index.php/servicessms/uploadcontactsapi',
     type: 'POST',
     data: data,
-    cache: false,
-    dataType: 'json',
+   
     processData: false, // Don't process the files
     contentType: false, // Set content type to false as jQuery will tell the server its a query string request
     success: function(data, textStatus, jqXHR)
     {
-      if(data.status=='true')
-					  {
-					    jQuery('#contactnumberst').val(data.content);
-                      }else{
-					      alert(data.content);
-					  }
+	alert(data);
+     
 					  
     },
     error: function(jqXHR, textStatus, errorThrown)
