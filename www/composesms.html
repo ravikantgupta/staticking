@@ -60,18 +60,63 @@
 						
 						jQuery('#proicon').html(ufna.toUpperCase());
 						
-						
-						//getcontact();
-						
-						/*jQuery('#mobilecontact').multiselect({
-								enableClickableOptGroups: true,
-								enableCollapsibleOptGroups: true,
-								enableFiltering: true,
-								includeSelectAllOption: true
+			datastring='logged_in='+logged_in;
+			
+											
+							jQuery.ajax({
+									
+									type:'GET',
+									contentType: 'application/json',
+									 dataType: 'jsonp',
+									
+									url:'http://manage.staticking.net/index.php/servicessms/composesmsapi',
+									data:datastring,
+									
+
+									beforeSend:function()
+									{
+
+										//jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Wait....");
+
+									},
+
+									success:function(data)
+									{
+										//  alert(JSON.stringify(data.routes));
+										  
+										  var routes =data.routes;
+										  var routeshtml='<option value=""><b>Select Route</b></option>';
+										  for (var key in routes) {
+										  
+										               routeshtml+='<option value="'+key+'">'+key+'</option>';
+													   
+													
+												}
+												
+											jQuery('#routeid').html(routeshtml);								
+												
+										  
+										   var group =data.group;
+										  var grouphtml='<option value=""><b>Select Group</b></option>';
+										  for (var key in group) {
+										  									  						              
+										 grouphtml+=' <option value="'+group[key]['grpfile']+'">'+group[key]['grpname']+'</option>';
+													
+												}
+												
+										
+										jQuery('#groupswithname').html(grouphtml);		
+												 
+										 			  
+
+									}
+
+									
+
+								
+
 							});
-					contactloadPopupBox() ;	
-					
-					jQuery('.multiselect').click();*/
+
 					
 						
 		
@@ -99,10 +144,10 @@ function contactunloadPopupBox()
 				 var txt =jQuery('#contactnumberst').val();
 						if(txt!='')
 						{
-						  var textval=txt+'\n'+entry;
+						  var textval=txt+'\n'+entry.replace("+91", "");
 						}else
 						{
-						  var textval=entry;
+						  var textval=entry.replace("+91", "");
 						}
 					
 	
@@ -1095,13 +1140,7 @@ text-decoration:none;
 											                                                                                              
 												<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required>
 
-                                                   <option value=""><b>Select Route</b></option>
-													<option value="Promotional">Promotional</option>
-													<option value="Promotional1">Promotional1</option>
-													<option value="Promosid">Promosid</option>
-													<option value="Transactional">Transactional</option>
-													<option value="transactional2">Transactional2</option>
-													<option value="international">International</option>
+                                                  
 												</select>
 											</div>
 
@@ -1339,7 +1378,7 @@ text-decoration:none;
       <div id="showthere" class=" modal-body alert-info">
      	<select id="groupswithname" class="form-control" onchange="getgroupnos(this.value);">
         <option value="">Select Group</option>
-                <option value="24-11-20151448378032.txt">test</option>
+               
                 </select>
       
         </div>
