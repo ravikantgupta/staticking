@@ -1,10 +1,7 @@
 var BASE_URL = config.data[0].baseurl;
 /********Left menu********/
 function addmenu(){
-	var res='sfsfs"f\'ww\'wr"wr';
-	
-	
-	
+		
 	var menuhtml='<li><a onClick="slide(\'index.html\')" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a></li>';
         menuhtml+='<li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-comments"></i></span><span class="nav-label">SMS</span></a>';
         menuhtml+='<ul><li><a onClick="slide(\'composesms.html\')" >Compose SMS</a></li><li><a onClick="slide(\'allsentsms.html\')">All Sent Sms</a></li><li><a onclick="slide(\'schedule.html\')" >Schedule Sms</a></li><li><a onClick="slide(\'dynamicsms.html\')" >Dynamic Sms</a></li></ul></li>';
@@ -49,6 +46,8 @@ function addmenu(){
 
 /********End Left menu********/
 
+
+
  app.initialize();
 	            document.addEventListener("deviceready", function() {
 			  // then override any default you want
@@ -91,5 +90,95 @@ function addmenu(){
    function viewprofile() {
 	   
    }
+   
+   
+   function addrightmenu(logged_in)
+   {
+	   
+	  
+		  
+		
+		  
+		  
+		  
+		   datastring='logged_in='+logged_in;
+			
+											
+							jQuery.ajax({
+									
+									type:'GET',
+									contentType: 'application/json',
+									 dataType: 'jsonp',
+									
+									url:'http://manage.staticking.net/index.php/servicessms/rightmenuapi',
+									data:datastring,
+									
+
+									
+									success:function(data)
+									{
+										//  alert(JSON.stringify(data.routes));
+										  
+										 var userdata =data.userdata;
+										 var acc_type=userdata.acc_type;
+										 var usercredits=data.usercredits;
+										 
+										 var actualcredits=data.actualcredits;
+										 
+																				 
+										 
+										 
+		 var creditmenu='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.promotional+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Promotional 1<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.promotional1+'</span></li>';
+          creditmenu+=' <li class="chat-u-online"><a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.promosenderid+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.transactional+'</span></li>';
+          creditmenu+=' <li class="chat-u-online"><a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.transactional2+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.apipromotional+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info"> API Promo Sender ID  (PSA)<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.apipromosenderid+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info"> API Transactional  (TA)<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+usercredits.apitransactional+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Voice Sms<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">Rs. '+usercredits.voicesms+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">Rs. '+usercredits.socialmedia+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">Rs. '+usercredits.bulkemail+'</span></li>';
+          creditmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Android App Installation<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">Rs. '+usercredits.androidapp+'</span></li>';
+		  
+		  jQuery('#creditslist').html(creditmenu);
+										  	
+			
+             if(Object.keys(actualcredits).length>0)
+			 {
+				  var acualmenu='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.promotional+'</span></li>';
+             acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Promotional1<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.promotional1+'</span></li>';
+             acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.promosenderid+'</span></li>';
+             acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.transactional+'</span></li>';
+             acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.transactional2+'</span></li>';
+             acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.apipromotional+'</span></li>';
+	         acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">API Promo Sender ID (PSA)<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.apipromosenderid+'</span></li>';
+             acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">API Transactional (TA)<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">'+actualcredits.apitransactional+'</span></li>';
+	         acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">Rs. '+actualcredits.socialmedia+'</span></li>';
+             acualmenu+='<li class="chat-u-online"><a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a><span class="chat-u-status" style="color:green;">Rs. '+actualcredits.bulkemail+'</span></li>';
+			
+		 
+		  jQuery('#actuallist').html(acualmenu);
+				 
+			 }else
+			 {
+				 
+				 jQuery('#actmn').hide();
+				 
+			 }
+			
+										 			  
+
+									}
+
+									
+
+								
+
+							});
+	
+	   
+   }
+   
    
    
