@@ -36,7 +36,8 @@
 <body onload="setvalue()">
 
 <script>
-	
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var logged_in= userdetail.id;
 
 		if(window.localStorage.getItem("loggedIn") == 1) 
 		{ 
@@ -59,7 +60,7 @@
 						jQuery('#proicon').html(ufna.toUpperCase());
 						
 						
-		
+	                  addrightmenu(logged_in);			
 		}
 
 
@@ -1162,7 +1163,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                 </li>
 
-                <li><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+                <li id="actmn"><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
 
                 </li>
                <!-- <li><a href="#notifications" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Notifications" class="waves-effect aside-notifications"><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
@@ -1191,117 +1192,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="creditslist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">2062</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional 1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-              
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">32</span>
-
-                </li>
-    
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">9</span>
-
-                </li>
-                
-               
-				
- 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promotional  (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promo Sender ID  (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Transactional  (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Voice Sms<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Android App Installation<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+ 			 
 
 
             </ul>
@@ -1321,107 +1215,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Actual Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="actuallist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-               
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-               
-                
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">49</span>
-
-                </li>
-                
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promo Sender ID (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Transactional (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-               
-                
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+    
 
             </ul>
 
@@ -1438,10 +1235,11 @@ The maintenance will be performed on January 25th duri <span class="notification
 
     </div>
 
- 
-
+    
     </div>
-<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>   
+
+	
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>   
 
 <style type="text/css">
     

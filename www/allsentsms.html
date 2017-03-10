@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 
@@ -35,7 +34,111 @@
     
 </head>
 
-<body>
+<body onload="setvalue()">
+
+<script>
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var logged_in= userdetail.id;
+
+		if(window.localStorage.getItem("loggedIn") == 1) 
+		{ 
+		// alert('ram1');
+		}
+		else{  window.location.href="login.html"; }
+		
+		
+		function setvalue()
+		{
+		             
+						var username = userdetail.username;
+						
+						jQuery('#uname').html(username);
+						
+					    var ufna=username.charAt(0);
+						
+						jQuery('#proicon').html(ufna.toUpperCase());
+						
+												
+	                  addrightmenu(logged_in);		
+
+					  getpageoption();
+					  getpageitem(1);
+		}
+		
+		
+	function getpageoption()
+		{
+		  
+		   
+		    var datastring='logged_in='+logged_in;
+			
+									
+							jQuery.ajax({
+									
+									type:'GET',
+									contentType: 'application/json',
+									 dataType: 'jsonp',
+									
+									url:'http://manage.staticking.net/index.php/servicessms/allsentsmsoption',
+									data:datastring,
+	
+									success:function(data)
+									{
+												
+										  
+										   var items =data.msenderids;
+										   
+										   
+										    var routeshtml='<option value="">Sort By Sender ID</option>';
+										  for (var key in items) {
+										  
+										               routeshtml+='<option value="'+items[key]+'">'+key+'</option>';
+													   
+													
+												}
+												
+												
+										jQuery('#sortbysenderid').html(routeshtml);		
+											
+											
+										   
+										  
+																			 			  
+
+									}
+
+									
+
+								
+
+							});
+		   
+		   
+		 
+		}	
+
+	function getpageitem(pageno)
+		{
+
+              
+			  
+			  	$.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
+				data:'pageno='+pageno+'&logged_in='+logged_in,
+				success:function(data)
+				{
+					alert(data);
+					$(".item").html(data);
+				}
+		      });
+
+			  
+		}	
+
+</script>
+
+
 <link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
 <style>
 .scrollbar
@@ -641,11 +744,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                                         <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
 
-                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+                                            <span class="user-info"><span id="uname"></span> <cite>manage.staticking.net</cite></span>
 
                                             <span class="user-thumb" style="background:#15BDC3;" >
-                                            
-                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                   <p style="font-size:36px;color:white;margin-left:12px;" id="proicon"></p>
                                             
                                                                                         
                                             
@@ -703,16 +805,8 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 <form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get" >
 <div class="col-md-2">
-<select name="senderids" class="form-control select2" onchange="this.form.submit();" required>
+<select name="senderids" id="sortbysenderid" class="form-control select2" onchange="this.form.submit();" required>
 
-<option value="">Sort By Sender ID</option>
-<option value="RGVmYXVsdA==">Default</option>
-<option value="U1RLSU5H">STKING</option>
-<option value="S0lOR0RM">KINGDL</option>
-<option value="U01TT1RQ">SMSOTP</option>
-<option value="QUxDQVJF">ALCARE</option>
-<option value="VFNUU01T">TSTSMS</option>
-<option value="ZGVtb29v">demooo</option>
 </select>
 </div>
 </form>
@@ -813,565 +907,8 @@ The maintenance will be performed on January 25th duri <span class="notification
               <th colspan="4">Report</th>
        </tr>
        </thead>
-       <tbody>
-              <tr>
-       <td>476189</td>
-       <td>
-	   Demo       </td>
-       <td>TSTSMS</td>
-              <td>2016-06-14 11:58:50</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>API.textmsg</td>
-       <td>API-Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=476189 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/476189 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>476188</td>
-       <td>
-	   Demo       </td>
-       <td>TSTSMS</td>
-              <td>2016-06-14 11:58:37</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>API.textmsg</td>
-       <td>API-Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=476188 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/476188 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>438953</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2016-05-24 17:59:53</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this test sms       <button type="button" originalmsg="hi this test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>API.textmsg</td>
-       <td>API-Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=438953 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/438953 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>357057</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2016-04-25 13:26:49</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">test sms       <button type="button" originalmsg="test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>API.textmsg</td>
-       <td>API-Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=357057 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/357057 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>357035</td>
-       <td>
-	   Demo       </td>
-       <td>TSTSMS</td>
-              <td>2016-04-25 13:18:02</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Hi, This is test sms from SMS panel.       <button type="button" originalmsg="Hi, This is test sms from SMS panel." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=357035 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/357035 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>350774</td>
-       <td>
-	   Demo       </td>
-       <td>demooo</td>
-              <td>2016-04-22 00:16:39</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Hi, This is test sms from SMS panel.       <button type="button" originalmsg="Hi, This is test sms from SMS panel." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=350774 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/350774 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>197949</td>
-       <td>
-	   Demo       </td>
-       <td>TSTSMS</td>
-              <td>2016-03-22 12:21:44</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>API.textmsg</td>
-       <td>API-Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=197949 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/197949 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>174734</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2016-03-07 13:29:55</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=174734 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/174734 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>174733</td>
-       <td>
-	   Demo       </td>
-       <td>TSTSMS</td>
-              <td>2016-03-07 13:29:29</td>
-       <td>2</td>
-       <td>1</td>
-       <td>2</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Hi, This is test sms from SMS panel.       <button type="button" originalmsg="Hi, This is test sms from SMS panel." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=174733 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/174733 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>160217</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2016-02-25 13:45:58</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test       <button type="button" originalmsg="hi this is test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=160217 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/160217 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>160216</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2016-02-25 13:44:50</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test       <button type="button" originalmsg="hi this is test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=160216 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/160216 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>160214</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2016-02-25 13:41:15</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=160214 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/160214 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>54511</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2016-02-05 20:53:32</td>
-       <td>4</td>
-       <td>1</td>
-       <td>4</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test sms       <button type="button" originalmsg="hi this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=54511 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/54511 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>11594</td>
-       <td>
-	   Demo       </td>
-       <td>ALCARE</td>
-              <td>2016-01-25 16:07:40</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test test       <button type="button" originalmsg="hi test test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Transactional2</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=11594 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/11594 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>3133</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-11-30 14:00:35</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3133 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/3133 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>3115</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-11-27 20:53:58</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">welcome staticking test sms       <button type="button" originalmsg="welcome staticking test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3115 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/3115 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>3006</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-11-20 17:57:53</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">Welcome to world       <button type="button" originalmsg="Welcome to world" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3006 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/3006 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>3005</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2015-11-20 17:32:20</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">yo test smsz       <button type="button" originalmsg="yo test smsz" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3005 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/3005 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>3004</td>
-       <td>
-	   Demo       </td>
-       <td>SMSOTP</td>
-              <td>2015-11-20 17:30:55</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test smsg pinnacle       <button type="button" originalmsg="hi test smsg pinnacle" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=3004 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/3004 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>229</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-10-14 12:46:33</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">welcome to the world of sms.       <button type="button" originalmsg="welcome to the world of sms." class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=229 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/229 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>226</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-10-14 12:36:11</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">welcome to the world of sms       <button type="button" originalmsg="welcome to the world of sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=226 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/226 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>225</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-10-14 12:23:55</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=225 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/225 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>221</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-10-14 12:06:50</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi test sms       <button type="button" originalmsg="hi test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=221 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/221 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>218</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-10-10 21:05:01</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">پنجابی       <button type="button" originalmsg="پنجابی" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>unicodemsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=218 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/218 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>207</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-10-07 22:07:02</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test       <button type="button" originalmsg="hi this is test" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=207 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/207 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>206</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-10-07 22:06:22</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">this is test sms       <button type="button" originalmsg="this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=206 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/206 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>202</td>
-       <td>
-	   Demo       </td>
-       <td>KINGDL</td>
-              <td>2015-10-07 17:51:19</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">this is test sms       <button type="button" originalmsg="this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=202 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/202 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>201</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-10-07 17:49:34</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">this is test sms       <button type="button" originalmsg="this is test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Transactional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=201 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/201 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>190</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-10-03 16:03:40</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi Hello - Testing the SErrvice       <button type="button" originalmsg="hi Hello - Testing the SErrvice" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=190 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/190 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>189</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-10-03 14:48:10</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">test sms       <button type="button" originalmsg="test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=189 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/189 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>178</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-09-29 18:27:14</td>
-       <td>2</td>
-       <td>1</td>
-       <td>2</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">6.27pm       <button type="button" originalmsg="6.27pm" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=178 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/178 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>177</td>
-       <td>
-	   Demo       </td>
-       <td>STKING</td>
-              <td>2015-09-29 17:45:19</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hi this is test promo s id       <button type="button" originalmsg="hi this is test promo s id" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promosid</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=177 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/transactionaldlr/177 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a>
-		   
-		   
-		   </td>       
-       </tr>
-              <tr>
-       <td>176</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-09-29 17:35:49</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hey this is Test sms       <button type="button" originalmsg="hey this is Test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=176 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/176 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              <tr>
-       <td>175</td>
-       <td>
-	   Demo       </td>
-       <td>Default</td>
-              <td>2015-09-29 17:34:07</td>
-       <td>1</td>
-       <td>1</td>
-       <td>1</td>
-       <td style="max-width:200px;word-wrap:breakword;"  class="msgcontentidadd" id="style-3">hey this is Test sms       <button type="button" originalmsg="hey this is Test sms" class="btn btn-primary originalmsg"><i class="fa fa-exclamation"></i></button>
-       </td>
-       <td>textmsg</td>
-       <td>Promotional</td>
-              <td><button id='viewreport' type='button' class='viewreport btn btn-info' data-toggle='modal' data-target='#myModal' style='width:50px;' value=175 title='View Report'><i class='fa fa-eye'></i></button></td><td><a href=http://manage.staticking.net/index.php/sms/promotionaldlr/175 class='btn btn-primary' style='width:50px;' title='Download Report'><i class='fa fa-download'></i></a></td>       
-       </tr>
-              
-       </tbody>
-       
+     <tbody class="item">
+	 </tbody>
        </table>
        
 
@@ -1501,6 +1038,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
             </footer>
 
+			
 <div class="right-aside">
 
     <div class="aside-branding">
@@ -1513,7 +1051,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                 </li>
 
-                <li><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+                <li id="actmn"><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
 
                 </li>
                <!-- <li><a href="#notifications" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Notifications" class="waves-effect aside-notifications"><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
@@ -1542,117 +1080,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="creditslist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">2062</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional 1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-              
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">32</span>
-
-                </li>
-    
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">9</span>
-
-                </li>
-                
-               
-				
- 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promotional  (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promo Sender ID  (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Transactional  (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Voice Sms<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Android App Installation<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+ 			 
 
 
             </ul>
@@ -1672,107 +1103,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Actual Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="actuallist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-               
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-               
-                
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">49</span>
-
-                </li>
-                
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promo Sender ID (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Transactional (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-               
-                
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+    
 
             </ul>
 
@@ -1789,102 +1123,11 @@ The maintenance will be performed on January 25th duri <span class="notification
 
     </div>
 
-    <!--<div class="conv-container">
-
-        <div class="conv-u-info chat-u-online">
-
-            <ul>
-
-                <li class="chat-avatar"><img src="images/avatar/adellecharles.jpg" alt="Avatar">
-
-                </li>
-
-                <li class="chat-u-info">adellecharles<span>New York</span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Call" class="waves-effect chat-u-call"><i class="fa fa-phone"></i></span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Exit" class="waves-effect chat-close"><i class="fa fa-angle-right"></i></span>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-        <div class="converstaion-list">
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    Hello John, thank you for calling Provide Support. How may I help you?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Hello Mary. I understand the problem and will be happy to help you. Let's see what I can do.
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Let me see if I have this correct, you want me to…" or "You would like for me to…?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    I'm not sure, but let me find out for you.
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="chat-input-form">
-
-            <form>
-
-                <input name="chatbox" value="" class="form-control chat-input">
-
-            </form>
-
-        </div>
-
-    </div>-->
-
+    
     </div>
-<style type="text/css">
+
+	
+	<style type="text/css">
     
  .navbgr
  {
