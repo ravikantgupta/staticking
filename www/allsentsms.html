@@ -125,7 +125,7 @@
 				data:'page='+pageno+'&logged_in='+logged_in,
 				success:function(data)
 				{
-					alert(data);
+					
 					$(".item").html(data);
 				}
 		      });
@@ -150,6 +150,66 @@ function querystring(senderids)
 				}
 		      });
 }		
+function  userquerystring()
+{
+   var pageno=1;
+  jQuery('#faceoff').show();
+  var usernameid=jQuery('#usernameid').val();
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
+				data:'page='+pageno+'&logged_in='+logged_in+'&usernameid='+usernameid,
+				success:function(data)
+				{
+					 jQuery('#faceoff').hide();
+					$(".item").html(data);
+				}
+		      });
+			  
+			  
+return false; 
+}
+
+function  smquerystring()
+{
+   var pageno=1;
+  jQuery('#faceoff').show();
+  var smsid=jQuery('#smsid').val();
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
+				data:'page='+pageno+'&logged_in='+logged_in+'&smsid='+smsid,
+				success:function(data)
+				{
+					 jQuery('#faceoff').hide();
+					$(".item").html(data);
+				}
+		      });
+			  
+			  
+return false; 
+}
+
+function  datequerystring()
+{
+   var pageno=1;
+  jQuery('#faceoff').show();
+  var fromdate=jQuery('#fromdate').val();
+   var todate=jQuery('#todate').val();
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
+				data:'page='+pageno+'&logged_in='+logged_in+'&fromdate='+fromdate+'&todate='+todate,
+				success:function(data)
+				{
+					 jQuery('#faceoff').hide();
+					$(".item").html(data);
+				}
+		      });
+			  
+			  
+return false; 
+}
 
 </script>
 
@@ -826,9 +886,9 @@ The maintenance will be performed on January 25th duri <span class="notification
 </div>
 </form>
 
-<form action="" onsubmit="userquerystring()" method="get">
+<form action="" onsubmit="return userquerystring()" method="get">
 <div class="col-md-2">
-<input type="text" name="usernameid" class="form-control" placeholder="Add Username & Hit Enter" required/>
+<input type="text" name="usernameid" id="usernameid" class="form-control" placeholder="Add Username & Hit Enter" required/>
 </div>
 </form>
 
@@ -843,16 +903,16 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 <form action="" onsubmit="smquerystring()" method="get">
 <div class="col-md-2">
-<input type="text" name="smsid" class="form-control" placeholder="Add SMS ID & Hit Enter" required/>
+<input type="text" name="smsid" id="smsid" class="form-control" placeholder="Add SMS ID & Hit Enter" required/>
 </div>
 </form>
 
 <form action="" method="get">
 <div class="col-md-2">
-<input type="text" name="fromdate" class="form-control input-date-picker" placeholder="From Date" required/>
+<input type="text" name="fromdate" id="fromdate" class="form-control input-date-picker" placeholder="From Date" required/>
 </div>
 <div class="col-md-2">
-<input type="text" name="todate" class="form-control input-date-picker" placeholder="To Date" required/>
+<input type="text" name="todate" id="todate" class="form-control input-date-picker" placeholder="To Date" required/>
 </div>
 
 <div class="col-md-2">
