@@ -33,7 +33,55 @@
     
 </head>
 
-<body>
+<body onload="setvalue()">
+<script>
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var logged_in= userdetail.id;
+
+		if(window.localStorage.getItem("loggedIn") == 1) 
+		{ 
+		// alert('ram1');
+		}
+		else{  window.location.href="login.html"; }
+		
+		
+		function setvalue()
+		{
+		             
+						var username = userdetail.username;
+						
+						jQuery('#uname').html(username);
+						
+					    var ufna=username.charAt(0);
+						
+						jQuery('#proicon').html(ufna.toUpperCase());
+						
+												
+	                  addrightmenu(logged_in);		
+
+
+					  getpageitem();
+					  
+					
+		}
+		
+		function getpageitem()
+		{
+            $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/scheduleapi",
+				data:'logged_in='+logged_in,
+				success:function(data)
+				{
+					
+					$(".item").html(data);
+				}
+		      });
+
+			  
+		}
+	</script>	
+
 <link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
 
 
@@ -478,13 +526,12 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                                     <li class="dropdown">
 
-                                        <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
+                                         <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
 
-                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+                                            <span class="user-info"><span id="uname"></span> <cite>manage.staticking.net</cite></span>
 
                                             <span class="user-thumb" style="background:#15BDC3;" >
-                                            
-                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                   <p style="font-size:36px;color:white;margin-left:12px;" id="proicon"></p>
                                             
                                                                                         
                                             
@@ -493,18 +540,18 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                                         </a>
 
+                                       
                                         <ul role="menu" class="dropdown-menu fadeInUp">
 
-                                            <li><a href="http://manage.staticking.net/index.php/pages/userprofile"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+                                            <li><a onclick="viewprofile()"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
 
                                             </li>
 
-                                            <li><a href="http://manage.staticking.net/index.php/pages/logout"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+                                            <li><a onclick="logout()"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
 
                                             </li>
 
                                         </ul>
-
                                     </li>
 
                                 </ul>
@@ -555,7 +602,8 @@ The maintenance will be performed on January 25th duri <span class="notification
        <th>Action</th>
        </tr>
        
-              
+            <tbody class="item">
+	 </tbody>   
        </table>
 
 
@@ -605,6 +653,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
             </footer>
 
+			
 <div class="right-aside">
 
     <div class="aside-branding">
@@ -617,7 +666,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                 </li>
 
-                <li><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+                <li id="actmn"><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
 
                 </li>
                <!-- <li><a href="#notifications" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Notifications" class="waves-effect aside-notifications"><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
@@ -646,117 +695,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="creditslist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">2062</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional 1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-              
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">32</span>
-
-                </li>
-    
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">9</span>
-
-                </li>
-                
-               
-				
- 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promotional  (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promo Sender ID  (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Transactional  (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Voice Sms<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Android App Installation<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+ 			 
 
 
             </ul>
@@ -776,107 +718,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Actual Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="actuallist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-               
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-               
-                
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">49</span>
-
-                </li>
-                
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promo Sender ID (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Transactional (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-               
-                
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+    
 
             </ul>
 
@@ -893,102 +738,13 @@ The maintenance will be performed on January 25th duri <span class="notification
 
     </div>
 
-    <!--<div class="conv-container">
-
-        <div class="conv-u-info chat-u-online">
-
-            <ul>
-
-                <li class="chat-avatar"><img src="images/avatar/adellecharles.jpg" alt="Avatar">
-
-                </li>
-
-                <li class="chat-u-info">adellecharles<span>New York</span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Call" class="waves-effect chat-u-call"><i class="fa fa-phone"></i></span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Exit" class="waves-effect chat-close"><i class="fa fa-angle-right"></i></span>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-        <div class="converstaion-list">
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    Hello John, thank you for calling Provide Support. How may I help you?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Hello Mary. I understand the problem and will be happy to help you. Let's see what I can do.
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Let me see if I have this correct, you want me to…" or "You would like for me to…?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    I'm not sure, but let me find out for you.
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="chat-input-form">
-
-            <form>
-
-                <input name="chatbox" value="" class="form-control chat-input">
-
-            </form>
-
-        </div>
-
-    </div>-->
-
+    
     </div>
-<style type="text/css">
+
+	
+	
+	
+	<style type="text/css">
     
  .navbgr
  {
