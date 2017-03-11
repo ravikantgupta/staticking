@@ -210,7 +210,76 @@ function  datequerystring()
 			  
 return false; 
 }
+function bulkdlrs()
+{
+       
+  jQuery('#faceoff').show();
+  var fromdate=jQuery('#fromdate1').val();
+   var todate=jQuery('#todate1').val();
+    var route=jQuery('#routeid').val();
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
+				data:'logged_in='+logged_in+'&fromdate='+fromdate+'&todate='+todate+'&route='+route,
+				success:function(data)
+				{
+					 jQuery('#faceoff').hide();
+					$(".msg").html(data);
+				}
+		      });
+			  
+			  
+}
 
+function transactionaldlr(smsid)
+{
+       
+  //jQuery('#faceoff').show();
+ 
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/transactionaldlrapi",
+				data:'logged_in='+logged_in+'&smsid='+smsid,
+				success:function(data)
+				{
+					 //jQuery('#faceoff').hide();
+					$(".item").html(data);
+				}
+		      });
+}
+function internationaldlr(smsid)
+{
+       
+  //jQuery('#faceoff').show();
+ 
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/internationaldlrapi",
+				data:'logged_in='+logged_in+'&smsid='+smsid,
+				success:function(data)
+				{
+					 //jQuery('#faceoff').hide();
+					$(".item").html(data);
+				}
+		      });
+}
+
+function promotionaldlr(smsid)
+{
+       
+  //jQuery('#faceoff').show();
+ 
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/promotionaldlrapi",
+				data:'logged_in='+logged_in+'&smsid='+smsid,
+				success:function(data)
+				{
+					 //jQuery('#faceoff').hide();
+					$(".item").html(data);
+				}
+		      });
+}
 </script>
 
 
@@ -896,6 +965,8 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 
 <div class="row" id="dlralldata">
+
+
 </div>
 
 <br />
@@ -929,10 +1000,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 <div class="col-md-1">
 <strong>Bulk DLRS</strong>
 </div>
-<form action="http://manage.staticking.net/index.php/pages/bulkdlrs" method="post">
+<form action="" method="post">
 
 <div class="col-md-2">
-<select class="form-control" name="route" id="" required="">
+<select class="form-control" name="route" id="routeid" required="">
 <option value="">Select Route</option>
 <option value="Promotional1">Promotional1</option>
 <option value="Promosid">Promosid</option>
@@ -945,14 +1016,17 @@ The maintenance will be performed on January 25th duri <span class="notification
 </select>
 </div>
 <div class="col-md-2">
-<input type="text" name="fromdate" class="form-control input-date-picker" placeholder="From Date" required/>
+<input type="text" name="fromdate" id="fromdate1" class="form-control input-date-picker" placeholder="From Date" required/>
 </div>
 <div class="col-md-2">
-<input type="text" name="todate" class="form-control input-date-picker" placeholder="To Date" required/>
+<input type="text" name="todate" id="todate1" class="form-control input-date-picker" placeholder="To Date" required/>
 </div>
 
 <div class="col-md-2">
-<input type="submit" name="submit" value="Export" class="btn btn-primary" />
+<input type="button" name="submit" onClick="bulkdlrs()" value="Export" class="btn btn-primary" />
+</div>
+<div class="col-md-2 msg">
+
 </div>
 
 </form>
