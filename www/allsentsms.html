@@ -119,13 +119,10 @@
 
 	function getpageitem(pageno)
 		{
-
-              
-			  
-			  	$.ajax({
+            $.ajax({
 				type:'POST',
 				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
-				data:'pageno='+pageno+'&logged_in='+logged_in,
+				data:'page='+pageno+'&logged_in='+logged_in,
 				success:function(data)
 				{
 					alert(data);
@@ -134,7 +131,25 @@
 		      });
 
 			  
-		}	
+		}
+
+
+function querystring(senderids)
+{
+
+  var pageno=1;
+  jQuery('#faceoff').show();
+     $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
+				data:'page='+pageno+'&logged_in='+logged_in+'&senderids='+senderids,
+				success:function(data)
+				{
+					 jQuery('#faceoff').hide();
+					$(".item").html(data);
+				}
+		      });
+}		
 
 </script>
 
@@ -803,15 +818,15 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 
 
-<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get" >
+<form  method="get" >
 <div class="col-md-2">
-<select name="senderids" id="sortbysenderid" class="form-control select2" onchange="this.form.submit();" required>
+<select name="senderids" id="sortbysenderid" class="form-control select2" onchange="querystring(this.value)" required>
 
 </select>
 </div>
 </form>
 
-<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get">
+<form action="" onsubmit="userquerystring()" method="get">
 <div class="col-md-2">
 <input type="text" name="usernameid" class="form-control" placeholder="Add Username & Hit Enter" required/>
 </div>
@@ -826,13 +841,13 @@ The maintenance will be performed on January 25th duri <span class="notification
 <br />
 <div class="row">
 
-<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get">
+<form action="" onsubmit="smquerystring()" method="get">
 <div class="col-md-2">
 <input type="text" name="smsid" class="form-control" placeholder="Add SMS ID & Hit Enter" required/>
 </div>
 </form>
 
-<form action="http://manage.staticking.net/index.php/sms/allsentsms" method="get">
+<form action="" method="get">
 <div class="col-md-2">
 <input type="text" name="fromdate" class="form-control input-date-picker" placeholder="From Date" required/>
 </div>
@@ -841,7 +856,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 </div>
 
 <div class="col-md-2">
-<input type="submit" name="submit" value="Date Search" class="btn btn-primary" />
+<input type="button" name="submit" onClick="datequerystring()" value="Date Search" class="btn btn-primary" />
 </div>
 
 </form>
