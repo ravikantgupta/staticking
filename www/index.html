@@ -56,6 +56,18 @@ alert('ram1');
 		
 		function setvalue()
 		{
+		
+			if(logged_in) 
+			{ 
+			 alert('ram2');
+			}
+			else{ 
+				alert('ram1');
+						logout();
+
+
+
+						}
 		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 						 		            
 			           
