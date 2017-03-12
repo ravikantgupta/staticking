@@ -39,14 +39,14 @@
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
  
-   alert(window.localStorage.getItem("loggedIn"));
+   
  
-		if(logged_in) 
+		if(window.localStorage.getItem("loggedIn")==1) 
 		{ 
-		 alert('ram2');
+		 //alert('ram2');
 		}
 		else{ 
-alert('ram1');
+
 		window.location.href="login.html";
 
 
@@ -57,17 +57,11 @@ alert('ram1');
 		function setvalue()
 		{
 		
-			if(logged_in) 
+			if(!logged_in) 
 			{ 
-			 alert('ram2');
+			 logout();
 			}
-			else{ 
-				alert('ram1');
-						logout();
-
-
-
-						}
+			
 		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 						 		            
 			           
