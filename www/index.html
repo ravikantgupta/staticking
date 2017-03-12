@@ -38,8 +38,10 @@
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
-
-		if(window.localStorage.getItem("loggedIn") == 1) 
+ 
+   alert(window.localStorage.getItem("loggedIn"));
+ 
+		if(logged_in) 
 		{ 
 		// alert('ram1');
 		}
