@@ -80,6 +80,21 @@
 
 			  
 		}
+		
+	function  cancelschedulesms(smsid)
+		{
+           $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/scheduleapi",
+				data:'smsid='+smsid,
+				success:function(data)
+				{
+					
+					alert(data);
+				}
+		      });
+		   
+		}	
 	</script>	
 
 <link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
