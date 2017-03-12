@@ -26,7 +26,7 @@
      
     
     
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+
     <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
@@ -35,7 +35,45 @@
     
 </head>
 
-<body>
+<body onload="setvalue()">
+
+  <script>
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var logged_in= userdetail.id;
+
+		if(window.localStorage.getItem("loggedIn") == 1) 
+		{ 
+		// alert('ram1');
+		}
+		else{  window.location.href="login.html"; }
+		
+		
+		function setvalue()
+		{
+		             
+						var username = userdetail.username;
+						
+						jQuery('#uname').html(username);
+						
+					    var ufna=username.charAt(0);
+						
+						jQuery('#proicon').html(ufna.toUpperCase());
+						
+												
+	                  addrightmenu(logged_in);		
+
+
+					 
+					  
+					
+		}
+		
+		
+		
+	
+	</script>	
+
+
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 
 <div class="page-container list-menu-view">
