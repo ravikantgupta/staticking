@@ -49,14 +49,23 @@
                 if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
                     localPath = localPath.substring(7);
                 }
+				
+				alert(localPath);
                 var ft = new FileTransfer();
-                ft.download(remoteFile,
-                    localPath, function(entry) {
-                        var dwnldImg = document.getElementById("dwnldImg");
-                        dwnldImg.src = entry.fullPath;
-                        dwnldImg.style.visibility = "visible";
-                        dwnldImg.style.display = "block";
-                    }, fail);
+                ft.download(
+						 remoteFile, // what u download
+						 localPath, // this is the filename as well complete url
+						  
+						  function(entry) {
+							alert("success");
+							alert(JSON.stringify(entry));
+
+						  },
+						  function(err) {
+							alert(err);
+							alert(JSON.stringify(err));
+						  }
+						);
             }, fail);
         }, fail);
     }
