@@ -369,7 +369,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 <div class="col-md-2">
 <form id="searchbystatus">
 <label>Sort By Status</label>
-<select class="form-control" name="status" id="status" onchange="this.form.submit()" required>
+<select class="form-control" name="status" id="status" onchange="sortbystatus(this.value)" required>
 <option value="">Select Status</option>
 <option value="active">Active</option>
 <option value="deactive">Deactive</option>
@@ -748,17 +748,15 @@ $(document).ready(function(e) {
 </script>
 
 <script type="text/javascript">
-$(document).ready(function(e) {
-    $("#searchbystatus").on('submit',function(ev)
+
+ function  sortbystatus(status)
 	{
-		ev.preventDefault();
 		
-		var number=$("#status").val();
 		
 		$.ajax({
 			 type:'GET',
 			 url:'http://manage.staticking.net/index.php/servicessms/viewmisscallapi',
-			 data:'number='+number+'&logged_in='+logged_in,
+			 data:'status='+status+'&logged_in='+logged_in,
 			
 			 success: function(data)
 			 {
@@ -767,8 +765,7 @@ $(document).ready(function(e) {
 		});
 		
 		
-	});
-});
+	}
 </script>
 
 
