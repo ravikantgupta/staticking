@@ -43,7 +43,7 @@ function Download() {
 	var ft = new FileTransfer();
 ft.download(
   "http://manage.staticking.net/webservice/delivery.zip", 
-  "", 
+  "/test.zip", 
  
   function(entry) {
     alert("success");
@@ -55,8 +55,8 @@ ft.download(
     alert(JSON.stringify(err));
   }
 );
-
-    document.getElementById('my_iframe').src = 'http://manage.staticking.net/index.php/servicessms/promotionaldlr/2301021';
+alert('jayshreeram');
+    
 };
 </script>
 <script>
