@@ -35,29 +35,35 @@
 </head>
 
 <body onload="setvalue()">
-<iframe id="my_iframe" style="display:none;"></iframe>
+
  <script>
-function Download() {
-
-   alert('jayshreeram');
-	var ft = new FileTransfer();
-ft.download(
-  "http://manage.staticking.net/webservice/delivery.zip", 
-  "/test.zip", 
- 
-  function(entry) {
-    alert("success");
-    alert(JSON.stringify(entry));
-
-  },
-  function(err) {
-    alert(err);
-    alert(JSON.stringify(err));
-  }
-);
-alert('jayshreeram');
+   function download() {
+   
+   alert('ss');
+        var remoteFile = "http://manage.staticking.net/webservice/delivery.zip";
+        var localFileName = remoteFile.substring(remoteFile.lastIndexOf('/')+1);
+        
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+            fileSystem.root.getFile(localFileName, {create: true, exclusive: false}, function(fileEntry) {
+                var localPath = fileEntry.fullPath;
+                if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
+                    localPath = localPath.substring(7);
+                }
+                var ft = new FileTransfer();
+                ft.download(remoteFile,
+                    localPath, function(entry) {
+                        var dwnldImg = document.getElementById("dwnldImg");
+                        dwnldImg.src = entry.fullPath;
+                        dwnldImg.style.visibility = "visible";
+                        dwnldImg.style.display = "block";
+                    }, fail);
+            }, fail);
+        }, fail);
+    }
     
-};
+    function fail(error) {
+        console.log(error.code);
+    }
 </script>
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
@@ -86,7 +92,7 @@ alert('jayshreeram');
 
 					  getpageoption();
 					  getpageitem(1);
-					 Download(); 
+					 download();
 					
 		}
 		
