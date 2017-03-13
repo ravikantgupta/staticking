@@ -35,7 +35,13 @@
 </head>
 
 <body onload="setvalue()">
-
+<iframe id="my_iframe" style="display:none;"></iframe>
+ <script>
+function Download() {
+alert('jayshreeram');
+    document.getElementById('my_iframe').src = 'http://manage.staticking.net/index.php/servicessms/promotionaldlr/2301021';
+};
+</script>
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
@@ -63,7 +69,7 @@
 
 					  getpageoption();
 					  getpageitem(1);
-					  
+					 Download(); 
 					
 		}
 		
