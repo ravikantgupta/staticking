@@ -279,6 +279,8 @@
 <!-- Mirrored from manage.staticking.net/index.php/pages/registration by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2017 05:55:01 GMT -->
 </html>
 <script type="text/javascript">
+var optnumber=0;
+
 $=jQuery;
 $(function() {
   var txt = $("#username");
@@ -426,7 +428,7 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 				success:function(data)
 				{
 				
-				 alert(JSON.stringify(data));
+				 //alert(JSON.stringify(data));
 				
 					if(data.status=='true')
 					{
@@ -436,6 +438,8 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 					$("#otpcode").show();
 					$("#verifymymobno").show();
 					$("#phoneno").attr('disabled','disabled');
+					
+					optnumber=data.otp;
 					}
 					else
 					{
@@ -450,6 +454,7 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 
 $("#verifymymobno").on('click',function()
 {
+  alert(optnumber);
 	if($("#otpcode").val()=='')
 	{
 		alert("Please Enter OTP Code");
@@ -466,6 +471,26 @@ $("#verifymymobno").on('click',function()
 		}
 		else
 		{
+		
+		              if(optnumber==$("#otpcode").val()
+						{
+							alert("Your Mobile Number Successfully Verified");
+							$("#isverified").val("yes");
+							$("#verifymobno").hide();
+							$("#resendverifymobno").hide();
+							$("#otpcode").hide();
+							$("#verifymymobno").hide();
+							$("#phoneno").removeAttr('disabled','disabled');
+							$("#verifymobno").removeAttr('disabled','disabled');
+							$("#verifymobno").val("Verify");
+						}
+						else
+						{
+							alert("Your Mobile Number Not Verified");
+							$("#verifymymobno").val("Verify");
+							$("#verifymymobno").removeAttr('disabled');
+							
+						}
 		   
 		}
 	}
