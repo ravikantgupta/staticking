@@ -102,7 +102,7 @@
 
 <form id="registerform">
 
-
+<span id="msgstatus" style="font-size:15px;"></span>
 <div class="col-md-12 login-page-ma">
 
 <div class="input-group">
@@ -152,7 +152,7 @@
 
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-mobile pass-text"></i></span>
-<input type="text" class="form-control" id="phoneno" name="phoneno" maxlength="10" placeholder="Mobile No."  required>
+<input type="number" class="form-control" id="phoneno" name="phoneno" maxlength="10" placeholder="Mobile No."  required>
 <input type="button" id="verifymobno" class="btn btn-primary" style="width:87px;display:none;" value="Verify No">
 <input type="text" id="otpcode" placeholder="Enter OTP Code" class="form-control" style="display:none;">
 <input type="button" id="verifymymobno" class="btn btn-primary" style="width:87px;display:none;" value="Verify">
@@ -167,7 +167,7 @@
 </div>
 <div class="col-md-12 socil-link"><button class="btn btn-primarya1 btn-block btn-signin" id="yuoji" name="submit" type="submit">Sign up Now</button></div>
 
-<span id="msgstatus" style="font-size:15px;"></span>
+
 <input type="text"  id="isverified"  style="display:none">
 </form>
 
@@ -284,7 +284,7 @@ var optnumber=0;
 $=jQuery;
 $(function() {
   var txt = $("#username");
-  var alphanumbers=/^[a-z 0-9]+$/;
+  var alphanumbers=/^[a-z0-9]+$/;
   var func = function()
   {
   
@@ -293,7 +293,7 @@ $(function() {
 	  if(!txt.val().match(alphanumbers))
 	  {
 		 txt.val("");
-		 $("#msgstatus").text("Username must be alphanumeric");
+		 $("#msgstatus").text("Username must be alphanumeric with small latter");
 	  }
 	  else
 	  {
@@ -373,7 +373,7 @@ $(document).ready(function()
 							success:function(data)
 							{
 							
-							   alert(JSON.stringify(data));
+							  // alert(JSON.stringify(data));
 							   
 								$("#msgstatus").removeClass('alert-danger').addClass('alert-success').fadeIn(0).html(data.msg);
 								$("#register").removeAttr('disabled');
