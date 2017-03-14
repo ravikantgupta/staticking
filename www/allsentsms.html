@@ -45,7 +45,7 @@
   {
   var url = "http://manage.staticking.net/webservice/test.jpg"; 
   window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function (fs) {
-      var imagePath = fs.root.fullPath + "/test.jpg";
+      var imagePath = fs.root.fullPath + "test.jpg";
          alert(imagePath);	  
       var fileTransfer = new FileTransfer();
       fileTransfer.download(url, imagePath, function (entry) {
