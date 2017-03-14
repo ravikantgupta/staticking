@@ -30,7 +30,7 @@
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
    
-    <script type="text/javascript" charset="utf-8" src="cordova.android.js"></script>
+    
     
 </head>
 
@@ -40,16 +40,24 @@
  
    
   function storeIntelligrapeLogo(){
+  
+  try
+  {
   var url = "http://manage.staticking.net/webservice/test.jpg"; // image url
   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
       var imagePath = fs.root.fullPath + "/test.jpg"; // full file path
       var fileTransfer = new FileTransfer();
       fileTransfer.download(url, imagePath, function (entry) {
-               console.log(entry.fullPath); // entry is fileEntry object
+               alert(entry.fullPath); // entry is fileEntry object
       }, function (error) {
-               console.log("Some error");
+               alert("Some error");
       });
-   })
+   });
+   }
+   catch(err) {
+    	
+	 alert( err.message);
+}
 }
 
     
