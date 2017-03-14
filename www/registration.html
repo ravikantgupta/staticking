@@ -360,7 +360,9 @@ $(document).ready(function()
 				{
 					$.ajax({
 							type:'POST',
-							url:'http://manage.staticking.net/index.php/services/registeruser',
+							 contentType: 'application/json',
+				             dataType: 'jsonp',
+							url:'http://manage.staticking.net/index.php/services/registeruserapi',
 							data:$("#registerform").serialize(),
 							beforeSend:function()
 							{
@@ -371,11 +373,11 @@ $(document).ready(function()
 							success:function(data)
 							{
 							
-							   alert(JSON.stringify(data));
+							   //alert(JSON.stringify(data));
 							   
-								$("#msgstatus").removeClass('alert-danger').addClass('alert-success').fadeIn(0).html(data);
+								$("#msgstatus").removeClass('alert-danger').addClass('alert-success').fadeIn(0).html(data.msg);
 								$("#register").removeAttr('disabled');
-								if(data=='You Are Successfully Registered')
+								if(data.status=='true')
 								{
 									$("#registerform").trigger('reset');
 								}
@@ -454,7 +456,7 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 
 $("#verifymymobno").on('click',function()
 {
-  alert(optnumber);
+ 
 	if($("#otpcode").val()=='')
 	{
 		alert("Please Enter OTP Code");
