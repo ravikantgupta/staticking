@@ -423,9 +423,9 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 				},
 				success:function(data)
 				{
-				  //alert(JSON.stringify(data));
+				  alert(data.otp);
 				
-					if(data.status=='success')
+					if(data.status=='true')
 					{
 					alert("OTP Sent");
 					$("#verifymobno").hide();
@@ -463,39 +463,7 @@ $("#verifymymobno").on('click',function()
 		}
 		else
 		{
-			$.ajax({
-					type:'POST',
-					url:"http://manage.staticking.net/index.php/pages/verifyotpcode",
-					data:'otpcode='+$("#otpcode").val()+'&mobno='+$("#phoneno").val(),
-					beforeSend: function()
-					{
-						$("#verifymymobno").val("Verifying...");
-						$("#verifymymobno").attr('disabled','disabled');
-					},
-					success:function(data)
-					{
-						if(data=='success')
-						{
-							alert("Your Mobile Number Successfully Verified");
-							$("#isverified").val("yes");
-							$("#verifymobno").hide();
-							$("#resendverifymobno").hide();
-							$("#otpcode").hide();
-							$("#verifymymobno").hide();
-							$("#phoneno").removeAttr('disabled','disabled');
-							$("#verifymobno").removeAttr('disabled','disabled');
-							$("#verifymobno").val("Verify");
-						}
-						else
-						{
-							alert(data);
-							$("#verifymymobno").val("Verify");
-							$("#verifymymobno").removeAttr('disabled');
-							
-						}
-					}
-					
-			});
+		   
 		}
 	}
 });
