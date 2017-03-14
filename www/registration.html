@@ -414,6 +414,8 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 	{
 		$.ajax({
 				type:'POST',
+				 contentType: 'application/json',
+				 dataType: 'jsonp',
 				url:"http://manage.staticking.net/index.php/services/sendotpverifymobileapi",
 				data:'mobileno='+$("#phoneno").val(),
 				beforeSend: function()
@@ -423,7 +425,8 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 				},
 				success:function(data)
 				{
-				  alert(data.otp);
+				
+				 alert(JSON.stringify(data));
 				
 					if(data.status=='true')
 					{
