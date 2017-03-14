@@ -44,7 +44,7 @@
   try
   {
   var url = "http://manage.staticking.net/webservice/test.jpg"; 
-  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+  window.resolveLocalFileSystemURL(LocalFileSystem.PERSISTENT, 0, function (fs) {
       var imagePath = fs.root.fullPath + "/test.jpg";
          alert(imagePath);	  
       var fileTransfer = new FileTransfer();
