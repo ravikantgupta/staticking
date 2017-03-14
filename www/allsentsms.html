@@ -37,42 +37,23 @@
 <body onload="setvalue()">
 
  <script>
-   function download() {
+ 
    
-   alert('ss');
-        var remoteFile = "http://manage.staticking.net/webservice/delivery.zip";
-        var localFileName = remoteFile.substring(remoteFile.lastIndexOf('/')+1);
-        
-        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
-            fileSystem.root.getFile(localFileName, {create: true, exclusive: false}, function(fileEntry) {
-                var localPath = fileEntry.fullPath;
-                if (device.platform === "Android" && localPath.indexOf("file://") === 0) {
-                    localPath = localPath.substring(7);
-                }
-				
-				alert(localPath);
-                var ft = new FileTransfer();
-                ft.download(
-						 remoteFile, // what u download
-						 localPath, // this is the filename as well complete url
-						  
-						  function(entry) {
-							alert("success");
-							alert(JSON.stringify(entry));
+  function storeIntelligrapeLogo(){
+  var url = "http://manage.staticking.net/webservice/test.jpg"; // image url
+  window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+      var imagePath = fs.root.fullPath + "/test.jpg"; // full file path
+      var fileTransfer = new FileTransfer();
+      fileTransfer.download(url, imagePath, function (entry) {
+               console.log(entry.fullPath); // entry is fileEntry object
+      }, function (error) {
+               console.log("Some error");
+      });
+   })
+}
 
-						  },
-						  function(err) {
-							alert(err);
-							alert(JSON.stringify(err));
-						  }
-						);
-            }, fail);
-        }, fail);
-    }
     
-    function fail(error) {
-        console.log(error.code);
-    }
+  
 </script>
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
@@ -101,7 +82,7 @@
 
 					  getpageoption();
 					  getpageitem(1);
-					 download();
+					storeIntelligrapeLogo();
 					
 		}
 		
