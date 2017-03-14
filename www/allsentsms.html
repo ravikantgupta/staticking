@@ -43,12 +43,13 @@
   
   try
   {
-  var url = "http://manage.staticking.net/webservice/test.jpg"; // image url
+  var url = "http://manage.staticking.net/webservice/test.jpg"; 
   window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
-      var imagePath = fs.root.fullPath + "/test.jpg"; // full file path
+      var imagePath = fs.root.fullPath + "/test.jpg";
+         alert(imagePath);	  
       var fileTransfer = new FileTransfer();
       fileTransfer.download(url, imagePath, function (entry) {
-               alert(entry.fullPath); // entry is fileEntry object
+               alert(entry.fullPath); 
       }, function (error) {
                alert("Some error");
       });
