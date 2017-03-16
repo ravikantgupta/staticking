@@ -22,212 +22,34 @@
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
     <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
-        
     
-     <script type="text/javascript" src="cordova.js"></script>
+     
+    
+    
+    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
+   
+  
+    
    
     
 </head>
 
-<body onload="setvalue()">
+<body>
 
-
-<script>
-	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
- var logged_in= userdetail.id;
-
-		if(window.localStorage.getItem("loggedIn") == 1) 
-		{ 
-		// alert('ram1');
-		}
-		else{  window.location.href="login.html"; }
-		
-		
-		function setvalue()
-		{
-		             
-						var username = userdetail.username;
-						
-						jQuery('#uname').html(username);
-						
-					    var ufna=username.charAt(0);
-						
-						jQuery('#proicon').html(ufna.toUpperCase());
-						
-												
-	                  addrightmenu(logged_in);	
-                   getpageitem();					  
-
-
-						  
-					
-		}
-		
-		 function getpageitem()
-		{
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/servicessms/viewmisscallapi",
-				data:'logged_in='+logged_in,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			  
-		}
-	
-	 function viewmisscalldetails()
-		{
-			  
-		}
-		
-		 function misscallsettings()
-			{
-				  
-			}
-		
-	</script>	
-
-
-
-<style>
-
-#faceoff {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-}
-#preloader {
-    display: block;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #2B8B90;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-    z-index: 1001;
-}
-
-#preloader:before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #356F66;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
-
-#preloader:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #92E0D4;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
-
-@-webkit-keyframes spin {
-    0%   { 
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-}
-@keyframes spin {
-    0%   { 
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-}
-
-#faceoff .preloader-section {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-	opacity:0.4;
-    z-index: 1000;
-    -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: translateX(0);  /* IE 9 */
-    transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
-}
-
-/* Loaded */
-.loaded #faceoff .preloader-section {
-    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: translateY(-100%);  /* IE 9 */
-            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
-            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-}
-
-.loaded #preloader {
-    opacity: 0;
-    -webkit-transition: all 0.3s ease-out;
-            transition: all 0.3s ease-out;
-}
-.loaded #faceoff {
-    visibility: hidden;
-
-    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: translateY(-100%);  /* IE 9 */
-            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.3s 1s ease-out;
-            transition: all 0.3s 1s ease-out;
-}
-
-</style>
-
-<div id="faceoff" style="display: none;">
-        <div id="preloader"></div>
-        <div class="preloader-section"></div>
-      </div>
 
 <div class="page-container list-menu-view">
 
     <!--Leftbar Start Here -->
 
     	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+		
+		
 <div class="left-aside desktop-view">
 
-        <div class="aside-branding">
+      <div class="aside-branding">
 
      
             <a onClick="slide('index.html')" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
@@ -238,13 +60,14 @@
 
         </div>
 
+
         
 
     <input type="text" id="filtersearch" class="form-control" placeholder="Search Page">        
 
         <div class="left-navigation">
 
-      <ul class="list-accordion">
+           <ul class="list-accordion">
 
                 
 
@@ -314,11 +137,7 @@
                 
               
             </ul>
-			
-			
-			
-			
- </div>
+		
     </div>
      <!--Leftbar End Here -->
 
@@ -423,10 +242,10 @@
             </div>
 
         </header>
-        <!--Topbar End Here -->
+          <!--Topbar End Here -->
 
-<link href="js/jquery.datetimepicker.css" rel="stylesheet">
 
+<link href="http://manage.staticking.net/public/js/jquery.datetimepicker.css" rel="stylesheet">
 
 
 
@@ -449,57 +268,238 @@
 	<h2>View Miss Call Data</h2>
 
 </div>
-<span class="alert-success"></span>
 <div class="bb-alert alert alert-success noty_animated fadeInUp" id="bbalertd"></div>
-
-
+<!--<span class="alert-success"></span>-->
 
 <div class="col-md-2">
-<form id="searchbynumber">
+<form>
 <label>Search By Number</label>
-<input type="text" class="form-control" placeholder="Search By Number" id="number" name="number" required>
+<input type="text" class="form-control" placeholder="Search By Number" name="number" required>
 <input type="submit" style="visibility:hidden">
 </form>
 </div>
 
 <div class="col-md-2">
-<form id="searchbystatus">
-<label>Sort By Status</label>
-<select class="form-control" name="status" id="status" onchange="sortbystatus(this.value)" required>
-<option value="">Select Status</option>
-<option value="active">Active</option>
-<option value="deactive">Deactive</option>
-<option value="expired">Expired</option>
+<form>
+<label>Sort By Circle</label>
+<select class="form-control" name="circle" onchange="this.form.submit()" required>
+<option value="">Select Circle</option>
+<option value="Delhi Metro">Delhi Metro</option>
+<option value="Delhi NCR">Delhi NCR</option>
+<option value="Bihar And Jharkhand">Bihar And Jharkhand</option>
+<option value="Bihar & Jharkhand">Bihar & Jharkhand</option>
+<option value="Gujarat">Gujarat</option>
+<option value="Madhya Pradesh And Chhattisgar">Madhya Pradesh And Chhattisgar</option>
+<option value="Uttar Pradesh East.">Uttar Pradesh East.</option>
+<option value="Karnataka">Karnataka</option>
+<option value="Rajasthan">Rajasthan</option>
+<option value="Maharashtra">Maharashtra</option>
+<option value="Assam">Assam</option>
+<option value="Kolkata Metro.">Kolkata Metro.</option>
+<option value="Punjab">Punjab</option>
+<option value="Orissa">Orissa</option>
 </select>
 </form>
 </div>
 
 
+<div class="col-md-2">
+<form>
+<label>Sort By Operator</label>
+<select class="form-control" name="operator" onchange="this.form.submit()" required>
+<option value="">Select Operator</option>
+<option value="Airtel">Airtel</option>
+<option value="Vodafone">Vodafone</option>
+<option value="Aircel">Aircel</option>
+<option value="Uninor">Uninor</option>
+<option value="Idea">Idea</option>
+<option value="Reliance GSM">Reliance GSM</option>
+<option value="MTS">MTS</option>
+<option value="Reliance CDMA">Reliance CDMA</option>
+<option value="TATA Indicom">TATA Indicom</option>
+<option value="TATA DOCOMO">TATA DOCOMO</option>
+<option value="BSNL">BSNL</option>
+</select>
+</form>
+</div>
+
+<div class="col-md-4">
+<form>
+<div class="col-md-4">
+<label>From  Date</label>
+<input type="text" class="form-control datepicker" id="datepicker1" readonly="readonly" placeholder="From  Date" name="fromdate" required>
+</div>
+<div class="col-md-4">
+<label>To Date</label>
+<input type="text" class="form-control datepicker" id="datepicker2" readonly="readonly" placeholder="To Date" name="todate" required>
+</div>
+<div class="col-md-4" style="">
+<label></label>
+<input type="submit" value="Date Search" class="btn btn-primary">
+</div>
+</form>
+</div>
+<div class="col-md-1">
+<a href="http://manage.staticking.net/index.php/pages/misscallexport/18" title="Export" class="btn btn-primary"><i class="fa fa-download"></i></a>
+</div>
 
 
-     <div style="height:50px;"></div>
 
-     <div style="width:100%;overflow: scroll;">
-       <table class="table table-bordered item" >
+
+<div style="height:50px;"></div>
+<div class="row"></div>
+
+       <table class="table table-bordered">
 
        <tr>
 
        <th>Id</th>
-              <th>Number</th>
-       <th>Created Date</th>
-       <th>Expiry Date</th>
-       <th>Status</th>
-       <th>Total Hits</th>
-       <th>Today Hits</th>
        <th>Date/Time</th>
+       <th>Number</th>
+       <th>Circle</th>
+       <th>Operator</th>
+       <th>Comment</th>
+       
        <th>Action</th>
        </tr>
 
-               
+       
+
+       
+       <tr>
+
+       <td>913</td>
+       <td>3/11/2017 10:39:43 PM</td>
+       <td>8658523344</td>
+       <td>Orissa</td>
+       <td>Airtel</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17657" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>912</td>
+       <td>3/11/2017 10:32:00 PM</td>
+       <td>8658523344</td>
+       <td>Orissa</td>
+       <td>Airtel</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17656" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>911</td>
+       <td>3/11/2017 10:31:11 PM</td>
+       <td>8658523344</td>
+       <td>Orissa</td>
+       <td>Airtel</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17655" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>910</td>
+       <td>3/11/2017 9:08:20 PM</td>
+       <td>9507597067</td>
+       <td>Bihar And Jharkhand</td>
+       <td>Idea</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17648" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>909</td>
+       <td>3/11/2017 8:39:43 PM</td>
+       <td>7545940242</td>
+       <td>Bihar And Jharkhand</td>
+       <td>Vodafone</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17645" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>908</td>
+       <td>3/11/2017 11:53:08 AM</td>
+       <td>7930261700</td>
+       <td>Maharashtra</td>
+       <td>Reliance CDMA</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17494" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>907</td>
+       <td>3/9/2017 10:48:06 PM</td>
+       <td>8709822824</td>
+       <td>NA</td>
+       <td>NA</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17314" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>906</td>
+       <td>3/9/2017 6:38:41 PM</td>
+       <td>7930261700</td>
+       <td>Maharashtra</td>
+       <td>Reliance CDMA</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17279" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>905</td>
+       <td>3/9/2017 2:13:53 PM</td>
+       <td>7930261700</td>
+       <td>Maharashtra</td>
+       <td>Reliance CDMA</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17249" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       <tr>
+
+       <td>904</td>
+       <td>3/8/2017 6:38:20 AM</td>
+       <td>8228062712</td>
+       <td>Bihar And Jharkhand</td>
+       <td>Idea</td>
+       <td></td>
+       
+       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17034" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
+       </tr>
+
+       
+       
 
        </table>                             
-    </div>
-                                    
+<a class='btn btn-info'>1</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="start">2</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/20" class="btn btn-default" data-ci-pagination-page="20">3</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="next">&gt;</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/910" class="btn btn-default" data-ci-pagination-page="910">Last &rsaquo;</a>                                     
 
                                     
 
@@ -518,6 +518,60 @@
 </div>
 
 
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+  
+    <!-- Modal content-->
+    <div class="modal-content">
+      <span id="msgload"></span>
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title alert-success">Comment</h4>
+      </div>
+      <div id="showtheredisp" class=" modal-body alert-info">
+     <form action='javascript:void(0)' id='commentform'>
+  <div class='form-horizontal'>
+  <div class='form-group'>
+
+  <label class='col-md-4 control-label'>Comment</label>
+
+  <div class=' col-md-8'>
+  <input type="text" name="detailid" id="detailid" style="display:none;">
+  <textarea name='comment' id='reasonfordisp' class='form-control' placeholder='Add Comment' required></textarea>
+  </div>
+
+  </div>
+
+  <div class='form-group'>
+
+  <label class='col-md-4 control-label'>&nbsp;</label>
+
+  <div class='col-md-8'>
+
+  <div class='form-actions'>
+
+  <button type='submit' id="cmtsubmit"  class='btn btn-primary'>Comment</button> 
+
+  <span id='msgstatuscmt'></span>
+
+  </div>
+
+  </div>
+
+  </div>
+
+  </div>
+  </form>
+      
+  </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" id="close" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
             
 
@@ -561,6 +615,7 @@
                 </div>
 
             </footer>
+
 
 <div class="right-aside">
 
@@ -649,7 +704,6 @@
     
     </div>
 
-
 <style type="text/css">
     
  .navbgr
@@ -708,10 +762,10 @@
 	<script type="text/javascript">
 	$=jQuery;
 	$(document).ready(function() {
-         $(".whenuserread").on('click',function()
+        $(".whenuserread").on('click',function()
 		{
 			
-			$.get('http://manage.staticking.net/index.php/servicessms/notireadapi?notiread=yes&logged_in='+logged_in,function(data)
+			$.get('http://manage.staticking.net/index.php/settings/notiread?notiread=yes',function(data)
 			{
 				if(data=='success')
 				{
@@ -721,7 +775,7 @@
 		});
     });
 	</script>
-	
+    
     <script type="text/javascript">
 	$=jQuery;
 	$(document).ready(function() {
@@ -777,38 +831,68 @@ $('#filtersearch').keyup(function(){
 </html>
 
 
-
-          <script type="text/javascript" src="js/jquery.datetimepicker.js"></script>
-       
-
- <script type="text/javascript">
+<script type="text/javascript">
   
- 
+$(".openmodal").on('click',function()
+{ 
+  detid=$(this).attr('detid');
+  $("#detailid").val(detid);
 
- </script>  
+  comment=$(this).attr('comment');
+  $("#reasonfordisp").val(comment);
 
- <script type="text/javascript">
- 	
- 	$("#datepicker1").datetimepicker({
-		timepicker:false,
-  		format:'Y/m/d'	
-			}); 
+});  
+
+$("#commentform").on('submit',function()
+{
+    $.ajax({
+        type:'POST',
+        url:'http://manage.staticking.net/index.php/pages/misscallcomment',
+        data:$("#commentform").serialize(),
+        beforeSend:function()
+        {
+          $("#cmtsubmit").attr('disabled','disabled');
+          $("#msgstatuscmt").html("Please Wait..");
+        },
+        success:function(data)
+        {
+          $("#cmtsubmit").removeAttr('disabled');
+          $("#msgstatuscmt").html(data);
+          if($.trim(data)=='SuccessfullySubmitted')
+          {
+            $("#commentform").trigger('reset');
+          }
+        }
+
+    });
+});
+
+</script>
+          
+          <script type="text/javascript" src="http://manage.staticking.net/public/js/jquery.datetimepicker.js"></script>
+
+<script type="text/javascript">
+  
+  $("#datepicker1").datetimepicker({
+    timepicker:false,
+      format:'Y/m/d'  
+      }); 
 
 $("#datepicker1").on('change',function()
   {
-	  date1=$(this).val();
-	  //date1.setDate(date1.getDate()+3);
-	  
+    date1=$(this).val();
+    //date1.setDate(date1.getDate()+3);
+    
   $("#datepicker2").datetimepicker({
-		timepicker:false,
-  		format:'Y/m/d',
-		onShow:function( ct ){
+    timepicker:false,
+      format:'Y/m/d',
+    onShow:function( ct ){
    this.setOptions({
     minDate:date1?date1:false
    })
   },
-			
-			}); 
+      
+      }); 
   });
 
 $(document).ready(function()
@@ -816,54 +900,4 @@ $(document).ready(function()
 $(".leftbar-action").click();
 });
 
-
  </script> 
- 
- <script type="text/javascript">
-$(document).ready(function(e) {
-    $("#searchbynumber").on('submit',function(ev)
-	{
-		ev.preventDefault();
-		
-		var number=$("#number").val();
-		jQuery('#faceoff').show();
-		$.ajax({
-			 type:'GET',
-			 url:'http://manage.staticking.net/index.php/servicessms/viewmisscallapi',
-			 data:'number='+number+'&logged_in='+logged_in,
-			
-			 success: function(data)
-			 {
-			 jQuery('#faceoff').hide();
-				$(".item").html(data);
-			 }
-		});
-		
-		
-	});
-});
-</script>
-
-<script type="text/javascript">
-
- function  sortbystatus(status)
-	{
-		jQuery('#faceoff').show();
-		
-		$.ajax({
-			 type:'GET',
-			 url:'http://manage.staticking.net/index.php/servicessms/viewmisscallapi',
-			 data:'status='+status+'&logged_in='+logged_in,
-			
-			 success: function(data)
-			 {
-			   jQuery('#faceoff').hide();
-				$(".item").html(data);
-			 }
-		});
-		
-		
-	}
-</script>
-
-

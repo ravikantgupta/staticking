@@ -640,46 +640,7 @@ function promotionaldlr(smsid)
 					                    
                                         <div class="col-md-4 responsive-fix top-mid">
 
-                        <div class="notification-nav">
-
-                            <ul class="clearfix">
-                        
-                        <li class="dropdown whenuserread" >
-                        
-                        <a href="#"  data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i>
-                                                </a>
-                        
-                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp noty-lists hide-small-device">
-                                <div class="notification-wrap">
-                                    <h4>You have 0 new notifications</h4>
-                                    <ul>
-                                    	                                        <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Please don't use @ symbol  in between the content on transactional 2 route.. we ware working on it. will fix it asap. thanks.
- <span class="notification-time clearfix">2017-02-20 13:18:51  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">promosid route is under maintenance due to some errors. We are working on the issue and fix it asap. <span class="notification-time clearfix">2017-02-17 14:10:35  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Transactional 2 route is under maintenance, so messages will delivered with delay... sorry for the inconvenience. thanks. <span class="notification-time clearfix">2017-02-04 13:28:44  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Wishing You a very Happy Republic Day 
---
-System Admin <span class="notification-time clearfix">2017-01-26 10:51:14  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Dear Team,
-
-Route: Transactional Route
-With further efforts to optimize our SMPP platform performance and scalability, we are making updates to our servers, which may affect services to the customers.
-The maintenance will be performed on January 25th duri <span class="notification-time clearfix">2017-01-25 14:25:04  </span></span></a>
-                                        </li>
-                                                                            </ul>
-                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="http://manage.staticking.net/index.php/settings/usernotifications"><span>View All</span></a>
-                                </div>
-                            </div>
-                        </li>
-                        
-                                            </ul>
-
-                        </div>
-
+                       
                        
 
                     </div>
@@ -751,7 +712,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 <div class="box-widget widget-module">
 
 <div class="widget-container">
-<div class=" widget-block">
+<div class=" row">
 <div class="page-header">
 	<h2>All Sent SMS</h2>
 </div>
@@ -759,19 +720,14 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 
 <form  method="get" >
+
 <div class="col-md-2">
-<select name="senderids" id="sortbysenderid" class="form-control select2" onchange="querystring(this.value)" required>
+<select name="senderids" id="sortbysenderid" placeholder="Select Sender ID" class="form-control select2" onchange="querystring(this.value)" required>
 
 </select>
 </div>
 </form>
-
-<form action="" onsubmit="return userquerystring()" method="get">
-<div class="col-md-2">
-<input type="text" name="usernameid" id="usernameid" class="form-control" placeholder="Add Username & Hit Enter" required/>
-</div>
-</form>
-
+<br/>
 </div>
 
 
@@ -780,7 +736,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
 </div>
 
-<br />
+
 <div class="row">
 
 <form action="" onsubmit="smquerystring()" method="get">
@@ -788,7 +744,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 <input type="text" name="smsid" id="smsid" class="form-control" placeholder="Add SMS ID & Hit Enter" required/>
 </div>
 </form>
-
+<br/>
 <form action="" method="get">
 <div class="col-md-2">
 <input type="text" name="fromdate" id="fromdate" class="form-control input-date-picker" placeholder="From Date" required/>
@@ -802,45 +758,8 @@ The maintenance will be performed on January 25th duri <span class="notification
 </div>
 
 </form>
-<div class="row">
-<br>
-<br>
-<br>
-<br>
-</div>
-<div class="col-md-1">
-<strong>Bulk DLRS</strong>
-</div>
-<form action="" method="post">
 
-<div class="col-md-2">
-<select class="form-control" name="route" id="routeid" required="">
-<option value="">Select Route</option>
-<option value="Promotional1">Promotional1</option>
-<option value="Promosid">Promosid</option>
-<option value="Transactional">Transactional</option>
-<option value="transactional2">Transactional2</option>
-<option value="international">International</option>
-<option value="Apitransactional">Api Transactional</option>
-<option value="Apipromosenderid">Api Promosenderid</option>
-<option value="Apipromotional">Api Promotional</option>
-</select>
-</div>
-<div class="col-md-2">
-<input type="text" name="fromdate" id="fromdate1" class="form-control input-date-picker" placeholder="From Date" required/>
-</div>
-<div class="col-md-2">
-<input type="text" name="todate" id="todate1" class="form-control input-date-picker" placeholder="To Date" required/>
-</div>
 
-<div class="col-md-2">
-<input type="button" name="submit" onClick="bulkdlrs()" value="Export" class="btn btn-primary" />
-</div>
-<div class="col-md-2 msg">
-
-</div>
-
-</form>
 
 </div>
 </div>
