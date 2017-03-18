@@ -81,8 +81,21 @@
 			  
 		}
 	
-	 function viewmisscalldetails()
+	 function viewmisscalldetails(viewid)
 		{
+		
+		alert(viewid);
+		
+		 try {
+             window.localStorage.setItem("viewedmisscall", viewid);
+            
+        }
+        catch(err) {
+            console.error(err.message);
+            alert("params function "+err.message);
+        }
+		
+		 slide('viewmisscalldetail.html')
 			  
 		}
 		
