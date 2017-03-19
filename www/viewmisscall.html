@@ -98,8 +98,20 @@
 			  
 		}
 		
-		 function misscallsettings()
+		 function misscallsettings(settingsid)
 			{
+			
+			
+			        try {
+                          window.localStorage.setItem("misscallsettings", settingsid);
+            
+						}
+						catch(err) {
+							console.error(err.message);
+							alert("params function "+err.message);
+						}
+						
+						 slide('misscallsettings.html')
 				  
 			}
 		
