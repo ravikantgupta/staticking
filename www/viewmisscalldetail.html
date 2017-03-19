@@ -90,13 +90,15 @@
 			
 			   alert(pageno);
 			   
+			   var curpage=(parseInt(pageno)-1)*10;
+			   
 			     var miscallviewid= window.localStorage.getItem("viewedmisscall");
 					 
 					   
 		   
 		          $.ajax({
 							type:'POST',
-							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
+							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi/"+logged_in+'/'+curpage,
 							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid+'&pageno='+pageno,
 							
 							success:function(data)
