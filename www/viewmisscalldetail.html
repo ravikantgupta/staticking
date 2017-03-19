@@ -71,7 +71,8 @@
 		          $.ajax({
 							type:'POST',
 							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
-							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid,
+							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid+'&pageno=0',
+							
 							success:function(data)
 							{
 								
@@ -376,53 +377,23 @@
 </form>
 </div>
 
-<div class="col-md-4">
-<form>
-<div class="col-md-4">
-<label>From  Date</label>
-<input type="text" class="form-control datepicker" id="datepicker1" readonly="readonly" placeholder="From  Date" name="fromdate" required>
-</div>
-<div class="col-md-4">
-<label>To Date</label>
-<input type="text" class="form-control datepicker" id="datepicker2" readonly="readonly" placeholder="To Date" name="todate" required>
-</div>
-<div class="col-md-4" style="">
-<label></label>
-<input type="submit" value="Date Search" class="btn btn-primary">
-</div>
-</form>
-</div>
-<div class="col-md-1">
-<a href="http://manage.staticking.net/index.php/pages/misscallexport/18" title="Export" class="btn btn-primary"><i class="fa fa-download"></i></a>
-</div>
 
 
 
+   <div style="height:50px;"></div>
+    <div class="row"></div>
 
-<div style="height:50px;"></div>
-<div class="row"></div>
-
-       <table class="table table-bordered item">
-
-       
-
-       </table>    
-	   
-<a class='btn btn-info'>1</a>
-<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="start">2</a>
-<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/20" class="btn btn-default" data-ci-pagination-page="20">3</a>
-<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="next">&gt;</a>
-<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/910" class="btn btn-default" data-ci-pagination-page="910">Last &rsaquo;</a>                                     
-
+		<div class="item" style="width:100%;overflow: scroll;">
+			   
+											
+	    </div>
                                     
 
                                     
 
-                                    
+		</div>
 
-								</div>
-
-							</div>
+	</div>
 
 
 
