@@ -49,16 +49,24 @@
 						
 						jQuery('#proicon').html(ufna.toUpperCase());
 						
-												
-	                  
+					   addrightmenu(logged_in);
 
-					 var miscallviewid= window.localStorage.getItem("viewedmisscall");
+                       getitem();					  
+
+
+						  
+					
+		}
+		
+				
+		function getitem()
+		   {
+		   
+		          var miscallviewid= window.localStorage.getItem("viewedmisscall");
 					 
-					  alert(miscallviewid);
-					  alert(logged_in);
-					  
-					 
-					  $.ajax({
+					   
+		   
+		          $.ajax({
 							type:'POST',
 							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
 							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid,
@@ -69,12 +77,9 @@
 							}
 						  });
 
-                				  
-
-
-						  
-					
-		}
+		   
+		   
+		   }
 		
 		
 	
