@@ -42,7 +42,7 @@
 		{
 		             
 						var username = userdetail.username;
-						var userin=username+' <cite>'+userdetail.email+'</cite>'
+						var userin=-+' <cite>'+userdetail.email+'</cite>'
 						jQuery('#uname').html(userin);
 						
 					    var ufna=username.charAt(0);
@@ -50,7 +50,22 @@
 						jQuery('#proicon').html(ufna.toUpperCase());
 						
 												
-	                  addrightmenu(logged_in);	
+	                  addrightmenu(logged_in);
+
+					 var miscallviewid= window.localStorage.getItem("viewedmisscall");
+					 
+					 
+					  $.ajax({
+							type:'POST',
+							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
+							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid,
+							success:function(data)
+							{
+								
+								$(".item").html(data);
+							}
+						  });
+
                 				  
 
 
@@ -377,157 +392,17 @@
 <div style="height:50px;"></div>
 <div class="row"></div>
 
-       <table class="table table-bordered">
-
-       <tr>
-
-       <th>Id</th>
-       <th>Date/Time</th>
-       <th>Number</th>
-       <th>Circle</th>
-       <th>Operator</th>
-       <th>Comment</th>
-       
-       <th>Action</th>
-       </tr>
+       <table class="table table-bordered item">
 
        
 
-       
-       <tr>
-
-       <td>913</td>
-       <td>3/11/2017 10:39:43 PM</td>
-       <td>8658523344</td>
-       <td>Orissa</td>
-       <td>Airtel</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17657" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>912</td>
-       <td>3/11/2017 10:32:00 PM</td>
-       <td>8658523344</td>
-       <td>Orissa</td>
-       <td>Airtel</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17656" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>911</td>
-       <td>3/11/2017 10:31:11 PM</td>
-       <td>8658523344</td>
-       <td>Orissa</td>
-       <td>Airtel</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17655" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>910</td>
-       <td>3/11/2017 9:08:20 PM</td>
-       <td>9507597067</td>
-       <td>Bihar And Jharkhand</td>
-       <td>Idea</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17648" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>909</td>
-       <td>3/11/2017 8:39:43 PM</td>
-       <td>7545940242</td>
-       <td>Bihar And Jharkhand</td>
-       <td>Vodafone</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17645" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>908</td>
-       <td>3/11/2017 11:53:08 AM</td>
-       <td>7930261700</td>
-       <td>Maharashtra</td>
-       <td>Reliance CDMA</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17494" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>907</td>
-       <td>3/9/2017 10:48:06 PM</td>
-       <td>8709822824</td>
-       <td>NA</td>
-       <td>NA</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17314" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>906</td>
-       <td>3/9/2017 6:38:41 PM</td>
-       <td>7930261700</td>
-       <td>Maharashtra</td>
-       <td>Reliance CDMA</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17279" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>905</td>
-       <td>3/9/2017 2:13:53 PM</td>
-       <td>7930261700</td>
-       <td>Maharashtra</td>
-       <td>Reliance CDMA</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17249" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       <tr>
-
-       <td>904</td>
-       <td>3/8/2017 6:38:20 AM</td>
-       <td>8228062712</td>
-       <td>Bihar And Jharkhand</td>
-       <td>Idea</td>
-       <td></td>
-       
-       <td><button type="button" comment="" class="btn btn-info openmodal" detid="17034" data-toggle='modal' data-target='#myModal'><i class="fa fa-comments"></i></td>
-       </tr>
-
-       
-       
-
-       </table>                             
-<a class='btn btn-info'>1</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="start">2</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/20" class="btn btn-default" data-ci-pagination-page="20">3</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="next">&gt;</a><a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/910" class="btn btn-default" data-ci-pagination-page="910">Last &rsaquo;</a>                                     
+       </table>    
+	   
+<a class='btn btn-info'>1</a>
+<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="start">2</a>
+<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/20" class="btn btn-default" data-ci-pagination-page="20">3</a>
+<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/10" class="btn btn-default" data-ci-pagination-page="10" rel="next">&gt;</a>
+<a href="http://manage.staticking.net/index.php/pages/viewmisscalldetails/18/910" class="btn btn-default" data-ci-pagination-page="910">Last &rsaquo;</a>                                     
 
                                     
 
