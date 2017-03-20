@@ -50,7 +50,8 @@
 		             
 						var username = userdetail.username;
 						
-						jQuery('#uname').html(username);
+							var userin='<cite>'+userdetail.email+'</cite>'
+						jQuery('#uname').html(userin);
 						
 					    var ufna=username.charAt(0);
 						
@@ -94,7 +95,7 @@
             alert("params function "+err.message);
         }
 		
-		 slide('viewmisscalldetail.html')
+		 slide('viewmisscalldetail.html');
 			  
 		}
 		
@@ -111,7 +112,7 @@
 							alert("params function "+err.message);
 						}
 						
-						 slide('misscallsettings.html')
+						 slide('misscallsettings.html');
 				  
 			}
 		
@@ -404,7 +405,7 @@
 
                                          <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
 
-                                            <span class="user-info"><span id="uname"></span> <cite>manage.staticking.net</cite></span>
+                                            <span class="user-info" id="uname"></span>
 
                                             <span class="user-thumb" style="background:#15BDC3;" >
                                    <p style="font-size:36px;color:white;margin-left:12px;" id="proicon"></p>

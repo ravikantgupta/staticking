@@ -34,34 +34,7 @@
 
 <body onload="setvalue()">
 
- <script>
  
-   
-  function storeIntelligrapeLogo(){
-  
-  try
-  {
-  var url = "http://manage.staticking.net/webservice/test.jpg"; 
-  window.requestFileSystem(LocalFileSystem.TEMPORARY, 0, function (fs) {
-      var imagePath = fs.root.fullPath + "test.jpg";
-         alert(imagePath);	  
-      var fileTransfer = new FileTransfer();
-      fileTransfer.download(url, imagePath, function (entry) {
-               alert(entry.fullPath); 
-      }, function (error) {
-               alert("Some error");
-      });
-   });
-   }
-   catch(err) {
-    	
-	 alert( err.message);
-}
-}
-
-    
-  
-</script>
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
