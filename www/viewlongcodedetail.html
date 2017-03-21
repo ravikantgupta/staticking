@@ -224,14 +224,14 @@
 		function getitem()
 		   {
 		   
-		          var miscallviewid= window.localStorage.getItem("viewedmisscall");
+		          var viewlongcode= window.localStorage.getItem("viewlongcode");
 					 
 					   
 		   
 		          $.ajax({
 							type:'POST',
-							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
-							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid+'&pageno=0',
+							url:"http://manage.staticking.net/index.php/servicessms/viewlongcodedetailsapi",
+							data:'logged_in='+logged_in+'&viewlongcode='+viewlongcode+'&pageno=0',
 							
 							success:function(data)
 							{
@@ -252,14 +252,14 @@
 			   
 			   var curpage=(parseInt(pageno)-1)*10;
 			   
-			     var miscallviewid= window.localStorage.getItem("viewedmisscall");
+			     var viewlongcode= window.localStorage.getItem("viewlongcode");
 					 
 					   
 		            jQuery('#faceoff').show();
 		          $.ajax({
 							type:'POST',
-							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi/"+logged_in+'/'+curpage,
-							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid+'&pageno='+pageno,
+							url:"http://manage.staticking.net/index.php/servicessms/viewlongcodedetailsapi/"+logged_in+'/'+curpage,
+							data:'logged_in='+logged_in+'&viewlongcode='+viewlongcode+'&pageno='+pageno,
 							
 							success:function(data)
 							{
@@ -944,7 +944,7 @@ $("#commentform").on('submit',function()
 
    function  smquerystring()
 			{
-			    var miscallviewid= window.localStorage.getItem("viewedmisscall");
+			    var viewlongcode= window.localStorage.getItem("viewlongcode");
 					 
 					   var number=jQuery('#sebynumber').val();
 					   
@@ -952,8 +952,8 @@ $("#commentform").on('submit',function()
 		   
 		          $.ajax({
 							type:'POST',
-							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
-							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid+'&pageno=0'+'&number='+number,
+							url:"http://manage.staticking.net/index.php/servicessms/viewlongcodedetailsapi",
+							data:'logged_in='+logged_in+'&viewlongcode='+viewlongcode+'&pageno=0'+'&number='+number,
 							
 							success:function(data)
 							{
@@ -971,14 +971,14 @@ $("#commentform").on('submit',function()
 			
 		 function  querystring(circle)
 			{
-			    var miscallviewid= window.localStorage.getItem("viewedmisscall");
+			    var viewlongcode= window.localStorage.getItem("viewlongcode");
 					 
 					 jQuery('#faceoff').show();
 		   
 		          $.ajax({
 							type:'POST',
-							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
-							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid+'&pageno=0'+'&circle='+circle,
+							url:"http://manage.staticking.net/index.php/servicessms/viewlongcodedetailsapi",
+							data:'logged_in='+logged_in+'&viewlongcode='+viewlongcode+'&pageno=0'+'&circle='+circle,
 							
 							success:function(data)
 							{
@@ -996,14 +996,14 @@ $("#commentform").on('submit',function()
 			
 			 function  operatorquery(operator)
 			{
-			    var miscallviewid= window.localStorage.getItem("viewedmisscall");
+			    var viewlongcode= window.localStorage.getItem("viewlongcode");
 					 
 					 jQuery('#faceoff').show();
 		   
 		          $.ajax({
 							type:'POST',
-							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi",
-							data:'logged_in='+logged_in+'&miscallviewid='+miscallviewid+'&pageno=0'+'&operator='+operator,
+							url:"http://manage.staticking.net/index.php/servicessms/viewlongcodedetailsapi",
+							data:'logged_in='+logged_in+'&viewlongcode='+viewlongcode+'&pageno=0'+'&operator='+operator,
 							
 							success:function(data)
 							{
