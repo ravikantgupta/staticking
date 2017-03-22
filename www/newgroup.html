@@ -20,12 +20,7 @@
     <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
     
-     
-    
-    
-    <script src='https://www.google.com/recaptcha/api.js'></script>
      <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
@@ -33,8 +28,62 @@
     
 </head>
 
-<body>
+<body onload="setvalue()">
+<script>
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var logged_in= userdetail.id;
+ 
+   
+ 
+		if(window.localStorage.getItem("loggedIn")==1) 
+		{ 
+		 //alert('ram2');
+		}
+		else{ 
 
+		window.location.href="login.html";
+
+
+
+		}
+		
+		
+		function setvalue()
+		{
+		
+			if(!logged_in) 
+			{ 
+			 logout();
+			}
+			
+		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+						 		            
+			           
+						var username = userdetail.username;
+						var userin=username+' <cite>'+userdetail.email+'</cite>'
+						jQuery('#uname').html(userin);
+						
+						jQuery('#uname1').html(username);
+						
+					    var ufna=username.charAt(0);
+						
+						jQuery('#proicon').html(ufna.toUpperCase());
+						
+						
+	                  addrightmenu(logged_in);	
+
+              
+      		  
+
+				  
+		}
+		
+		
+   
+		
+		
+
+</script>
 
 <div class="page-container list-menu-view">
 
@@ -60,7 +109,7 @@
 
         <div class="left-navigation">
 
-          <ul class="list-accordion">
+              <ul class="list-accordion">
 
                 
 
@@ -87,7 +136,7 @@
 
                         </li>
                          
-                       <li><a onClick="slide('dynamicsms.html')" >Dynamic Sms</a>
+                       <li><a onClick="slide('dynamicsms.html')" >Quick Sent Sms</a>
 
                         </li>
 
@@ -99,39 +148,7 @@
 
                 </li>
                 
-                <li><a href="#" class="waves-effect">
-				<span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
-
-                    <ul>
-                    
-                    	<li><a onClick="slide('uploadvoicefile.html')" >Upload Voice File</a>
-
-                        </li>
-                        <li><a onClick="slide('mysounds.html')" >View Voice Files</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('voicesms.html')" >Compose Voice SMS</a>
-
-                        </li>
-
-                        <li><a onClick="slide('allvoicesentsms.html')" >All Sent Voice Sms</a>
-
-                        </li>
-                        
-                          <li><a onClick="slide('voicespecialprice.html')" >Add Voice Special Price</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('voicespecialpricelist.html')" >View Voice Special Price</a>
-
-                        </li>
-                                                
-                        
-
-                    </ul>
-
-                </li>
+              
 
                 
                 
@@ -161,43 +178,11 @@
 
                 </li>
                 
-                
+              
                
-                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-facebook-official"></i></span><span class="nav-label">Social Media</span></a>
-
-                    <ul>        
-                        <li><a onClick="slide('addpackage.html')" >Add Package</a></li>
-                        <li><a onClick="slide('viewpackage.html')" >View Package</a></li>
-                       <li><a onClick="slide('placeorder.html')" >Place Order</a></li>
-                        <li><a onClick="slide('vieworder.html')" >View Order</a></li>
-                        <li><a onClick="slide('socialpricing.html')" >Social Pricing</a></li>
-                       
-                    </ul>
-
-                </li>
                 
-                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-android"></i></span><span class="nav-label">Android App Installation</span></a>
-
-                    <ul>
-
-                        <li><a onClick="slide('add.html')" >Place Order</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('viewcampaign.html')" >View Order</a>
-
-                        </li>
-                          <li><a onClick="slide('pricing.html')" >Pricing</a>
-
-                        </li>
-                        
-                       
-                    </ul>
-
-                </li>
-
-
                 
+              
                 
                 
                 
@@ -264,131 +249,45 @@
 
                 </li>
 
-                                
-                 
                
-
-                
-
-                
 
                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-cogs"></i></span><span class="nav-label">Settings</span></a>
 
                     <ul>
-
-						 <li><a onClick="slide('viewusersmpp.html')" >Client Smpp</a>
-
-                        </li> 
-                                                
-						
                         <li><a onClick="slide('changeusertype.html')">Change User Type</a>
 
                         </li>
-							
-                            
-                         
-
-                    							
+						                     							
                         <li><a onClick="slide('transfercredits.html')" >Transfer Credits</a></li>
-
-                                                
-                        
-                        
-                        
-                                                
-                        
-                        
-                        
-
+                     
                          <li><a onClick="slide('transsactionin.html')" >Transactions In</a>
 
                         </li>
-
-
-
                         <li><a onClick="slide('transsactionou.html')" >Transactions Out</a>
+                        </li>
+                          <li><a onClick="slide('allsenderids.html')" >View Sender IDs</a>
 
                         </li>
-
-                        <li><a onClick="slide('myshorturls.html')" >My Short Urls</a>
-
-                        </li>
-
-						<li><a onClick="slide('smsapi.html')" >HTTP API</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('bulksmsapi.html')" >Bulk SMS API</a>
-
-                        </li>
-
-                        <li><a onClick="slide('xmlapi.html')" >XML API</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('creditapi.html')" >Credits API</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('deliveryapi.html')" >Delivery API</a>
-
-                        </li>
-                                                 
-                        <li><a onClick="slide('allsenderids.html')" >View Sender IDs</a>
-
-                        </li>
-
-                        
-                        
-
-                        
-                        <li><a onClick="slide('actualcredits.html')" >View Actual Credits</a>
-
-                        </li>
+                       
                          <li><a onClick="slide('notifications.html')">Send Notifications</a>
 
                         </li>
-                                                 
-
-                        
-                        <li><a onClick="slide('deliverycutting.html')" >Delivery Cutting</a>
+                       <li><a onClick="slide('website.html')" >Website Settings</a>
 
                         </li>
-
-                        
-                        
-
-                        
-                        <li><a onClick="slide('deliveryusers.html')" >Delivery Cutting Users List</a>
-
-                        </li>
-
-                                                  
-                         
-                         
-                        <li><a onClick="slide('website.html')" >Website Settings</a>
-
-                        </li>
-						
-                          <li><a onClick="slide('checkdnd.html')" >Check DND Number</a>
-                         <li><a onClick="slide('blocknumber.html')" >Block Number</a>
-
-                        </li>
-                         <li><a onClick="slide('mysmpptransactions.html')" >My Transactions</a></li>
-                        <li><a onClick="slide('smppmycredits.html')" >Available Credits</a></li>
-												
-                        
+					     
 
                     </ul>
 
                 </li>
              
-
+             
                
 
                
 
             </ul>
+		
 
         </div>
 
@@ -434,49 +333,9 @@
 					                    
                                         <div class="col-md-4 responsive-fix top-mid">
 
-                        <div class="notification-nav">
+                    
 
-                            <ul class="clearfix">
-                        
-                        <li class="dropdown whenuserread" >
-                        
-                        <a href="#"  data-toggle="dropdown" class="hide-small-device waves-effect "><i class="fa fa-bell"></i>
-                                                </a>
-                        
-                            <div role="menu" class="dropdown-menu notification-dropdown fadeInUp noty-lists hide-small-device">
-                                <div class="notification-wrap">
-                                    <h4>You have 0 new notifications</h4>
-                                    <ul>
-                                    	                                        <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Please don't use @ symbol  in between the content on transactional 2 route.. we ware working on it. will fix it asap. thanks.
- <span class="notification-time clearfix">2017-02-20 13:18:51  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">promosid route is under maintenance due to some errors. We are working on the issue and fix it asap. <span class="notification-time clearfix">2017-02-17 14:10:35  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Transactional 2 route is under maintenance, so messages will delivered with delay... sorry for the inconvenience. thanks. <span class="notification-time clearfix">2017-02-04 13:28:44  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Wishing You a very Happy Republic Day 
---
-System Admin <span class="notification-time clearfix">2017-01-26 10:51:14  </span></span></a>
-                                        </li>
-                                                                                <li><a href="http://manage.staticking.net/index.php/settings/usernotifications" class="clearfix"><span class="ni w-green"><i class="fa fa-bullhorn"></i></span><span class="notification-message">Dear Team,
-
-Route: Transactional Route
-With further efforts to optimize our SMPP platform performance and scalability, we are making updates to our servers, which may affect services to the customers.
-The maintenance will be performed on January 25th duri <span class="notification-time clearfix">2017-01-25 14:25:04  </span></span></a>
-                                        </li>
-                                                                            </ul>
-                                    <a class="btn btn-primary btn-block notification-btn clearfix waves-effect" href="http://manage.staticking.net/index.php/settings/usernotifications"><span>View All</span></a>
-                                </div>
-                            </div>
-                        </li>
-                        
-                                            </ul>
-
-                        </div>
-
-                       
-
-                    </div>
+                                         </div>
 
                    	
 					
@@ -487,17 +346,17 @@ The maintenance will be performed on January 25th duri <span class="notification
                               
                             <div class="user-nav">
 
-                                <ul>
+                                     <ul>
 
                                     <li class="dropdown">
 
                                         <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
 
-                                            <span class="user-info">Demo <cite>manage.staticking.net</cite></span>
+                                            <span class="user-info" id="uname"></span>
 
                                             <span class="user-thumb" style="background:#15BDC3;" >
                                             
-                                                                                        <p style="font-size:36px;color:white;margin-left:12px;">D</p>
+                                                 <p style="font-size:36px;color:white;margin-left:12px;" id="proicon"></p>
                                             
                                                                                         
                                             
@@ -508,11 +367,11 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                                         <ul role="menu" class="dropdown-menu fadeInUp">
 
-                                            <li><a href="http://manage.staticking.net/index.php/pages/userprofile"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+                                            <li><a onclick="viewprofile()" ><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
 
                                             </li>
 
-                                            <li><a href="http://manage.staticking.net/index.php/pages/logout"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
+                                            <li><a onclick="logout()"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
 
                                             </li>
 
@@ -590,7 +449,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                                             <div class="col-md-8" style="display:none;">
 
-												<form method="post" action="http://manage.staticking.net/index.php/sms/uploadgroupcontacts" enctype="multipart/form-data">
+												<form method="post" action="http://manage.staticking.net/index.php/servicessms/uploadcontactsapi" enctype="multipart/form-data">
 
                                                 <input type="file" id="contactnosfile" name="contactnosfile" onchange="this.form.submit();">
 
@@ -714,7 +573,6 @@ The maintenance will be performed on January 25th duri <span class="notification
 
             </footer>
 
-
 <div class="right-aside">
 
     <div class="aside-branding">
@@ -727,7 +585,7 @@ The maintenance will be performed on January 25th duri <span class="notification
 
                 </li>
 
-                <li><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
+                <li id="actmn"><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
 
                 </li>
                <!-- <li><a href="#notifications" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Notifications" class="waves-effect aside-notifications"><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
@@ -756,117 +614,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="creditslist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">2062</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional 1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-              
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">32</span>
-
-                </li>
-    
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">9</span>
-
-                </li>
-                
-               
-				
- 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promotional  (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Promo Sender ID  (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-                
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info"> API Transactional  (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">10</span>
-
-                </li>
-				
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Voice Sms<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Android App Installation<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+ 			 
 
 
             </ul>
@@ -886,107 +637,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 			
             <h3 class="clearfix"><br /><span class="pull-left">Actual Credits</span><span class="pull-right online-counter"></span></h3>
 
-            <ul class="chat-list">
+            <ul id="actuallist" class="chat-list">
 				
                 
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promotional1<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-               
-				
-                 <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Promo Sender ID<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">3</span>
-
-                </li>
-                
-               
-                
-				
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Transactional 2<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">49</span>
-
-                </li>
-                
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promotional (PA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-                
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Promo Sender ID (PSA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-                
-				
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">API Transactional (TA)<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">0</span>
-
-                </li>
-				
-               
-                
-               
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Social Media<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-                
-                <li class="chat-u-online">
-
-                    <a href="#"><span class="chat-u-info">Bulk Email<cite>Route</cite></span></a>
-
-                    <span class="chat-u-status" style="color:green;">Rs. 0</span>
-
-                </li>
-				
+    
 
             </ul>
 
@@ -1003,102 +657,12 @@ The maintenance will be performed on January 25th duri <span class="notification
 
     </div>
 
-    <!--<div class="conv-container">
-
-        <div class="conv-u-info chat-u-online">
-
-            <ul>
-
-                <li class="chat-avatar"><img src="images/avatar/adellecharles.jpg" alt="Avatar">
-
-                </li>
-
-                <li class="chat-u-info">adellecharles<span>New York</span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Call" class="waves-effect chat-u-call"><i class="fa fa-phone"></i></span>
-
-                </li>
-
-                <li><span data-tooltip="tooltip" data-placement="bottom" title="Exit" class="waves-effect chat-close"><i class="fa fa-angle-right"></i></span>
-
-                </li>
-
-            </ul>
-
-        </div>
-
-        <div class="converstaion-list">
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    Hello John, thank you for calling Provide Support. How may I help you?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Hello Mary. I understand the problem and will be happy to help you. Let's see what I can do.
-
-                </div>
-
-            </div>
-
-            <div class="conversation-front">
-
-                <div class="conv-text">
-
-                    Let me see if I have this correct, you want me to…" or "You would like for me to…?
-
-                </div>
-
-            </div>
-
-            <div class="conversation-back">
-
-                <div class="conv-thumb">
-
-                    <img src="images/avatar/uxceo.jpg" alt="user">
-
-                </div>
-
-                <div class="conv-text">
-
-                    I'm not sure, but let me find out for you.
-
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="chat-input-form">
-
-            <form>
-
-                <input name="chatbox" value="" class="form-control chat-input">
-
-            </form>
-
-        </div>
-
-    </div>-->
-
+    
     </div>
-<style type="text/css">
+
+
+	
+	<style type="text/css">
     
  .navbgr
  {
@@ -1156,10 +720,10 @@ The maintenance will be performed on January 25th duri <span class="notification
 	<script type="text/javascript">
 	$=jQuery;
 	$(document).ready(function() {
-        $(".whenuserread").on('click',function()
+         $(".whenuserread").on('click',function()
 		{
 			
-			$.get('http://manage.staticking.net/index.php/settings/notiread?notiread=yes',function(data)
+			$.get('http://manage.staticking.net/index.php/servicessms/notireadapi?notiread=yes&logged_in='+logged_in,function(data)
 			{
 				if(data=='success')
 				{
@@ -1242,13 +806,13 @@ $(document).ready(function()
 			}
 			else
 			{
-				datastring='groupname='+groupname+'&contactnumberst='+contactnumberst+'&customernames='+customernames;
+				datastring='groupname='+groupname+'&contactnumberst='+contactnumberst+'&customernames='+customernames+'&logged_in='+logged_in;
 
 				$.ajax({
 
 					type:'POST',
 
-					url:'http://manage.staticking.net/index.php/sms/addnewgroup',
+					url:'http://manage.staticking.net/index.php/servicessms/addnewgroupapi',
 
 					data:datastring,
 
