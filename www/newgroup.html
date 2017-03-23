@@ -85,6 +85,72 @@
 
 </script>
 
+<script type="text/javascript" charset="utf-8">
+
+          
+            function getcontact() {
+			
+			
+			jQuery('#opentrans2').click();
+			
+			jQuery('#clsosebuttontrans1').click(function(){
+
+
+					  alert('ram');
+
+
+
+					});
+			/*jQuery('#faceoff').show();
+                // find all contacts with 'Bob' in any name field
+               navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);*/
+			   
+			   
+			   
+            }
+
+			 
+            // onSuccess: Get a snapshot of the current contacts
+						function gotContacts(c) {
+						
+						
+						 //alert("gotContacts, number of results "+c.length);
+
+						
+						
+						 /* Retriving phoneNumbers */
+						 var mobilenmbr='';
+						 for(var i=0, len=c.length; i<len; i++) {
+						 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
+						 
+						
+						 
+						 
+						  mobilenmbr += "<option value='"+c[i].phoneNumbers[0].value+"'>"+c[i].displayName+":"+c[i].phoneNumbers[0].value+"</option>";
+						 }
+						 }
+						 jQuery('#mobilecontact').html(mobilenmbr);
+
+						   jQuery('#mobilecontact').multiselect({
+								enableClickableOptGroups: true,
+								enableCollapsibleOptGroups: true,
+								enableFiltering: true,
+								includeSelectAllOption: true
+							});
+                         jQuery('.multiselect').click();
+						  contactloadPopupBox() ;
+						  jQuery('#faceoff').hide();
+						
+						}
+
+            // onError: Failed to get the contacts
+
+            function errorHandler(contactError) {
+                alert('onError!');
+            }
+			
+        </script>
+
 <div class="page-container list-menu-view">
 
     <!--Leftbar Start Here -->
@@ -480,6 +546,9 @@
                                             <button style="margin-top:5px;margin-left:10px;" id="removeduplicate" class="btn btn-warning" title="Remove Duplicate Numbers"><i class="fa fa-minus"></i></button>
 
                                             
+                                            <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" onClick="getcontact()" id="addcontact" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
+                                               
+											  
 
                                             </div>
 
@@ -538,6 +607,91 @@
 
 </div>
 
+</div>
+<style>
+
+.modal-body {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+.search-container
+{
+   
+    padding-top: 10px;
+    padding-bottom: 0px;
+    width: 100%;
+	padding-left: 9px;
+}
+  #myModaltrans2
+  {
+    overflow: hidden;
+  }
+  #searchsubmit
+  {
+    position: absolute;
+	
+	border-radius: 0;
+
+	height: 26px;
+	padding-top: 0px;
+	padding-left: 0px;
+	border: 1px solid;
+  }
+  .contactlist li
+  {
+      list-style: none;
+  }
+
+</style>
+
+<div id="myModaltrans2" class="modal fade" role="dialog" data-backdrop="static">
+  <div class="modal-dialog">
+    
+    <!-- Modal content-->
+    <div class="modal-content">
+	   <div class="modal-header fixedHeader">
+         <center>
+
+		<div class="closebuton">
+          <button type="button" class="btn btn-default" id="clsosebuttontrans1" data-dismiss="modal">Done</button>
+	      <button type="button" class="btn btn-default" id="clsosebuttontrans2" data-dismiss="modal">Cancel</button>
+	   </div>
+	   </center>
+	   <div class="search-container">
+	   
+	   <input type="search" placeholder="Search"  style="width:88%" name="seracnumber" id="seracnumber">
+	   <button type="submit" id="searchsubmit"><i class="fa fa-search"></i></button>
+	   </div>
+	  
+	  
+	  </div>
+      
+       <div id="mobcontactlist" class="modal-body">
+            
+           <ul class="contactlist">
+		    <li class="item" ><span><input value="8287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="783487682" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="8287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="783487682" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="8287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="783487682" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="8287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="783487682" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="8287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="783487682" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		   
+		  	 
+		   </ul>
+            
+        </div>
+
+        
+      
+      
+
+    <button type="button" style="margin-top:5px;margin-left:0px;display:none;" data-toggle="modal" data-target="#myModaltrans2" id="opentrans2" class="btn btn-warning" title=""></button>  
+    </div>
+  </div>
 </div>
 
 
@@ -771,6 +925,29 @@ $('#filtersearch').keyup(function(){
     $(".dcjq-parent-li > ul").show();
     
     if($.trim($('#filtersearch').val())=='')
+    {
+        $(".dcjq-parent-li > ul").hide();
+    }
+});
+
+
+
+
+$('#seracnumber').keyup(function(){
+
+    var that = this, $allListElements = $('.contactlist > li, .dcjq-parent-li > ul > li');
+
+    var $matchingListElements = $allListElements.filter(function(i, li){
+        var listItemText = $(li).text().toUpperCase(), 
+            searchText = that.value.toUpperCase();
+        return ~listItemText.indexOf(searchText);
+    });    
+    $allListElements.hide();
+    $matchingListElements.show();
+    
+    $(".dcjq-parent-li > ul").show();
+    
+    if($.trim($('#seracnumber').val())=='')
     {
         $(".dcjq-parent-li > ul").hide();
     }
