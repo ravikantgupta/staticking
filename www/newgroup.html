@@ -84,34 +84,22 @@
 			function gotContacts(c) {
 						
 						
-						 //alert("gotContacts, number of results "+c.length);
-
-						
-						
-						 /* Retriving phoneNumbers */
 			 var mobilenmbr='';
 			 for(var i=0, len=c.length; i<len; i++) {
 			 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
 						
 			 
-			   mobilenmbr +='<li class="item" ><span><input value="'+c[i].phoneNumbers[0].value+'" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">'+c[i].displayName+': '+c[i].phoneNumbers[0].value+'</span></li>';
+			 mobilenmbr +='<li class="item" ><span><input value="'+c[i].phoneNumbers[0].value+'" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">'+c[i].displayName+': '+c[i].phoneNumbers[0].value+'</span></li>';
 		   
 			 
 			
 			 
 			    }
 			 }
-						 jQuery('#mobilecontact').html(mobilenmbr);
+						 jQuery('.contactlist').html(mobilenmbr);
 
-						   jQuery('#mobilecontact').multiselect({
-								enableClickableOptGroups: true,
-								enableCollapsibleOptGroups: true,
-								enableFiltering: true,
-								includeSelectAllOption: true
-							});
-                         jQuery('.multiselect').click();
-						  contactloadPopupBox() ;
-						  jQuery('#faceoff').hide();
+						  
+                       
 						
 						}
 
@@ -129,48 +117,13 @@
             function getcontact() {
 			
 			
-			jQuery('#opentrans2').click();
-			
-			
-			/*jQuery('#faceoff').show();
-                // find all contacts with 'Bob' in any name field
-              */
-			   
-			   
+			   jQuery('#opentrans2').click();
+								   
 			   
             }
 
 			 
-            // onSuccess: Get a snapshot of the current contacts
-						function gotContacts(c) {
-						
-						
-						 //alert("gotContacts, number of results "+c.length);
-
-						
-						
-						 /* Retriving phoneNumbers */
-						 var mobilenmbr='';
-						 for(var i=0, len=c.length; i<len; i++) {
-						 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
-						 
-						
-						 
-						 
-						  mobilenmbr += "<option value='"+c[i].phoneNumbers[0].value+"'>"+c[i].displayName+":"+c[i].phoneNumbers[0].value+"</option>";
-						 }
-						 }
-						 jQuery('.contactlist').html(mobilenmbr);
-
-						                        
-						
-						}
-
-            // onError: Failed to get the contacts
-
-            function errorHandler(contactError) {
-                alert('onError!');
-            }
+          
 			
         </script>
 
@@ -692,6 +645,16 @@
        <div id="mobcontactlist" class="modal-body">
             
            <ul class="contactlist">
+		    <li class="item" ><span><input value="+918287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="+917834876821" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="08287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="07834876827" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="+918287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="07834876826" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="+918287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="07834876824" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
+		    <li class="item" ><span><input value="08287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
+		    <li class="item" ><span><input value="+91783487682" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
 		   
 		  	 
 		   </ul>
