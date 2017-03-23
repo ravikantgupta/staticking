@@ -93,14 +93,7 @@
 			
 			jQuery('#opentrans2').click();
 			
-			jQuery('#clsosebuttontrans1').click(function(){
-
-
-					  alert('ram');
-
-
-
-					});
+			
 			/*jQuery('#faceoff').show();
                 // find all contacts with 'Bob' in any name field
                navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);*/
@@ -953,7 +946,16 @@ $('#seracnumber').keyup(function(){
     }
 });
 
+             jQuery('#clsosebuttontrans1').click(function(){
 
+
+					 jQuery('input.itemchek:checkbox:checked').each(function () {
+                           alert($(this).val());
+                       });
+
+
+
+					});
 	</script>
 
 
