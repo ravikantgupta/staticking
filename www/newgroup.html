@@ -493,7 +493,7 @@
 
 												<form method="post" action="http://manage.staticking.net/index.php/servicessms/uploadcontactsapi" enctype="multipart/form-data">
 
-                                                <input type="file" id="contactnosfile" name="contactnosfile" onchange="this.form.submit();">
+                                                <input type="file" id="contactnosfile" name="contactnosfile">
 
                                                 </form>
 
@@ -645,16 +645,6 @@
        <div id="mobcontactlist" class="modal-body">
             
            <ul class="contactlist">
-		    <li class="item" ><span><input value="+918287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
-		    <li class="item" ><span><input value="+917834876821" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
-		    <li class="item" ><span><input value="08287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
-		    <li class="item" ><span><input value="07834876827" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
-		    <li class="item" ><span><input value="+918287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
-		    <li class="item" ><span><input value="07834876826" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
-		    <li class="item" ><span><input value="+918287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
-		    <li class="item" ><span><input value="07834876824" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
-		    <li class="item" ><span><input value="08287348908" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">Rajan: +918287348908</span></li>
-		    <li class="item" ><span><input value="+91783487682" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">frfr: +91783487682</span></li>
 		   
 		  	 
 		   </ul>
@@ -1025,3 +1015,75 @@ $(document).ready(function()
 
 });
 </script>
+<script type="text/javascript">
+
+
+var files;
+
+// Add events
+jQuery('#contactnosfile').on('change', prepareUpload);
+
+// Grab the files and set them to our variable
+function prepareUpload(event)
+{
+  files = event.target.files;
+  
+  
+  event.stopPropagation(); // Stop stuff happening
+    event.preventDefault(); // Totally stop stuff happening
+
+// START A LOADING SPINNER HERE
+
+// Create a formdata object and add the files
+var data = new FormData();
+$.each(files, function(key, value)
+{
+    data.append(key, value);
+});
+
+ jQuery('#faceoff').show();
+$.ajax({
+    url: 'http://manage.staticking.net/index.php/servicessms/uploadcontactsapi',
+    type: 'POST',
+    data: data,
+   
+    processData: false, // Don't process the files
+    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+    success: function(data, textStatus, jqXHR)
+    {
+	
+	jQuery('#faceoff').hide();
+				if(data=='No')
+				{
+				  
+				
+				alert('Please select valide csv');
+				
+				}else
+				{
+				
+				 jQuery('#contactnumberst').val(data);
+				}
+     
+					  
+    },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+        // Handle errors here
+        console.log('ERRORS: ' + textStatus);
+        // STOP LOADING SPINNER
+    }
+});
+
+  
+  
+  
+  
+}
+
+
+  
+	
+
+
+    </script>
