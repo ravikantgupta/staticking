@@ -107,7 +107,20 @@
                  
 				 jQuery('#faceoff').show();
 			
-				alert('rrrr');
+				$.ajax({
+					type:'POST',
+					url:"http://manage.staticking.net/index.php/servicessms/delgroupapi",
+					data:'logged_in='+logged_in+'&grpid='+grpid,
+					success:function(data)
+					{
+					
+					   jQuery('#faceoff').hide();
+						
+						alert(data);
+						
+						
+					}
+				  });
 
 			}		
 	
