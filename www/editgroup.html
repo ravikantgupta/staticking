@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html>
 
@@ -21,7 +20,7 @@
     <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
-   
+    
      <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
@@ -52,10 +51,10 @@
 		function setvalue()
 		{
 		
-					if(!logged_in) 
-					{ 
-					 logout();
-					}
+			if(!logged_in) 
+			{ 
+			 logout();
+			}
 			
 		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 						 		            
@@ -73,216 +72,116 @@
 						
 	                  addrightmenu(logged_in);	
 
+               getgroupdata();
+      		   navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);
               
-      		 getpageitem();
-
+			  getgroupdata();
 				  
 		}
 		
 		
    
-		 function getpageitem()
-			{
-			 jQuery('#faceoff').show();
+		
+			function gotContacts(c) {
+						
+						
+			 var mobilenmbr='';
+			 for(var i=0, len=c.length; i<len; i++) {
+			 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
+						
+			 
+			 mobilenmbr +='<li class="item" ><span><input value="'+c[i].phoneNumbers[0].value+'" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">'+c[i].displayName+': '+c[i].phoneNumbers[0].value+'</span></li>';
+		   
+			 
 			
-				$.ajax({
-					type:'POST',
-					url:"http://manage.staticking.net/index.php/servicessms/viewgroupapi",
-					data:'logged_in='+logged_in,
-					success:function(data)
-					{
-						
-						$(".item").html(data);
-						
-						 jQuery('#faceoff').hide();
-					}
-				  });
+			 
+			    }
+			 }
+						 jQuery('.contactlist').html(mobilenmbr);
 
-				  
-			}
+						  
+                       
+						
+						}
+
+            // onError: Failed to get the contacts
+
+            function errorHandler(contactError) {
+                alert('onError!');
+            }
 			
 			
-		function delgroup(grpid)
+	function  getgroupdata()
 			{
 			
+			 var grpid=window.localStorage.getItem("grpid");
+			 
+			 var datastring='grpid='+grpid+'&logged_in='+logged_in;
+       
+		  jQuery.ajax({
+				
+				type:'GET',
+                contentType: 'application/json',
+				 dataType: 'jsonp',
+				
+				url:'http://manage.staticking.net/index.php/servicessms/editgroupapi',
+				data:datastring,
+								
+				success:function(data)
+
+				{
+                      //alert(data.data.username);
+					  
+					  if(data.status=='true')
+					  {
+					  
+					     jQuery('#groupname').val(data.grpname);
+						 jQuery('#contactnumberst').val(data.numbers);
+						 jQuery('#customernames').val(data.names);
+					 
+						 
+					  }else
+                         {
+						      jQuery("#msgstatus").html(data.msg);
+						 }					  
+
+				}
+
+				
+
 			
-                 var r= confirm('Are You Sure'); 
-	 
-	       if (r == true) {
-						 jQuery('#faceoff').show();
-					
-						  $.ajax({
-							type:'POST',
-							url:"http://manage.staticking.net/index.php/servicessms/delgroupapi",
-							data:'logged_in='+logged_in+'&grpid='+grpid,
-							success:function(data)
-							{
-							
-							   jQuery('#faceoff').hide();
-								
-								alert(data);
-								
-								
-							}
-						  });
-				}  
+
+		         });   
+						   
+						   
+						   
+						   
+						   
 
 			}	
 
-
-       function editgroup(grpid)
-			{
-			
-			   
-			    try {
-             window.localStorage.setItem("grpid", grpid);
-            
-					}
-					catch(err) {
-						console.error(err.message);
-						alert("params function "+err.message);
-					}
-					
-					 slide('editgroup.html');
-			    
-			}	   
-	
-
 </script>
-<link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
 
+<script type="text/javascript" charset="utf-8">
 
-<style>
+          
+            function getcontact() {
+			
+			
+			   jQuery('#opentrans2').click();
+								   
+			   
+            }
 
-#faceoff {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-}
-#preloader {
-    display: block;
-    position: relative;
-    left: 50%;
-    top: 50%;
-    width: 150px;
-    height: 150px;
-    margin: -75px 0 0 -75px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #2B8B90;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-    z-index: 1001;
-}
-
-#preloader:before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #356F66;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
-
-#preloader:after {
-    content: "";
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    right: 15px;
-    bottom: 15px;
-    border-radius: 50%;
-    border: 3px solid transparent;
-    border-top-color: #92E0D4;
-    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
-      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
-}
-
-@-webkit-keyframes spin {
-    0%   { 
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-}
-@keyframes spin {
-    0%   { 
-        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(0deg);  /* IE 9 */
-        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-    100% {
-        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: rotate(360deg);  /* IE 9 */
-        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
-    }
-}
-
-#faceoff .preloader-section {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: black;
-	opacity:0.4;
-    z-index: 1000;
-    -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
-    -ms-transform: translateX(0);  /* IE 9 */
-    transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
-}
-
-/* Loaded */
-.loaded #faceoff .preloader-section {
-    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: translateY(-100%);  /* IE 9 */
-            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
-            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
-}
-
-.loaded #preloader {
-    opacity: 0;
-    -webkit-transition: all 0.3s ease-out;
-            transition: all 0.3s ease-out;
-}
-.loaded #faceoff {
-    visibility: hidden;
-
-    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
-        -ms-transform: translateY(-100%);  /* IE 9 */
-            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
-
-    -webkit-transition: all 0.3s 1s ease-out;
-            transition: all 0.3s 1s ease-out;
-}
-
-</style>
-
-
-
-
-<div id="faceoff" style="display: none;">
-        <div id="preloader"></div>
-        <div class="preloader-section"></div>
-      </div>
-
+			 
+          
+			
+        </script>
 
 <div class="page-container list-menu-view">
+
     <!--Leftbar Start Here -->
+
     	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <div class="left-aside desktop-view">
 
@@ -303,7 +202,6 @@
 
         <div class="left-navigation">
 
-		          
               <ul class="list-accordion">
 
                 
@@ -483,12 +381,16 @@
 
             </ul>
 		
-      
+
         </div>
 
-    </div>     <!--Leftbar End Here -->
+    </div>
+     <!--Leftbar End Here -->
+
         <div class="page-content">
+
         <!--Topbar Start Here -->
+
          
 <header class="top-bar">
 
@@ -524,10 +426,9 @@
 					                    
                                         <div class="col-md-4 responsive-fix top-mid">
 
-                      
-                       
+                    
 
-                                             </div>
+                                         </div>
 
                    	
 					
@@ -537,7 +438,8 @@
 								
                               
                             <div class="user-nav">
-                                <ul>
+
+                                     <ul>
 
                                     <li class="dropdown">
 
@@ -586,43 +488,228 @@
 
             </div>
 
-        </header>        <!--Topbar End Here -->
-		
+        </header>
+        <!--Topbar End Here -->
 
 
 <div class="main-container">
+
 <div class="container-fluid" style="padding:0px;">
 <div class="col-md-12" style="padding:0px;">
+
 <div class="box-widget widget-module">
 
+
+
 <div class="widget-container">
+
 <div class=" widget-block">
+
 <div class="page-header">
-	<h2>View Groups</h2>
+
+	<h2>Add Group</h2>
+
+</div>
+
+
+
+
+<div class="form-horizontal">
+<span class="alert-danger"></span>
+
+
+										<div class="form-group">
+                                        
+                                       	 <label class="col-md-2 control-label">Group Name</label>
+
+											<div class="col-md-10">
+                                            <input type="text" name="groupname" id="groupname" class="form-control" />
+                                            </div>
+                                        
+                                        
+                                        </div>
+										
+
+										<div class="form-group">
+
+											<label class="col-md-2 control-label">Contact No (1/line)</label>
+
+											<div class="col-md-10">
+
+												<textarea class="form-control" id="contactnumberst" style="width:100%;" rows="10" cols="15" onchange="countwordcontact();" onmouseover="countwordcontact();" onkeyup="countwordcontact();" onkeydown="countwordcontact();" ></textarea>	<span style="color:red;font-size:15px;">Total Contact No's: <span id="totalcontacts"> </span>  <input type="hidden" id="totalcontactrow" /></span>
+
+											</div>
+
+                                            <div class="col-md-8" style="display:none;">
+
+												<form method="post" action="http://manage.staticking.net/index.php/servicessms/uploadcontactsapi" enctype="multipart/form-data">
+
+                                                <input type="file" id="contactnosfile" name="contactnosfile">
+
+                                                </form>
+
+											</div>
+                                            
+                                            
+
+                                              <div class="col-md-2">
+
+                                              
+
+                                              </div>
+
+                                             <div class="col-md-10">
+
+                                            <button style="margin-top:5px;" id="fileupload" onclick="document.getElementById('contactnosfile').click();" class="btn btn-primary" title="Upload File"><i class="fa fa-upload"></i></button>
+
+                                            <button style="margin-top:5px;margin-left:10px;" id="countnos" onclick="countwordcontact();" class="btn btn-info" title="Count No's"><i class="fa fa-tags"></i></button>
+
+                                            
+
+                                            <button style="margin-top:5px;margin-left:10px;" id="clearall" onclick="document.getElementById('contactnumberst').value='';" title="Clear All"  class="btn btn-danger"><i class="fa fa-eraser"></i></button>
+
+                                            
+
+                                            <button style="margin-top:5px;margin-left:10px;" id="removeduplicate" class="btn btn-warning" title="Remove Duplicate Numbers"><i class="fa fa-minus"></i></button>
+
+                                            
+                                            <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" onClick="getcontact()" id="addcontact" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
+                                               
+											  
+
+                                            </div>
+
+										</div>
+										
+                                        
+                                        <div class="form-group">
+
+											<label class="col-md-2 control-label">Names (Optional) 1/line</label>
+
+											<div class="col-md-10">
+
+												<textarea class="form-control" id="customernames" style="width:100%;" rows="10" cols="15" ></textarea>
+
+											</div>
+
+                                            
+										</div>
+                                        
+
+										<div class="form-group">
+
+											<label class="col-md-2 control-label">&nbsp;</label>
+
+											<div class="col-md-10">
+
+												<div class="form-actions">
+
+													
+
+												<input type="submit" id="sendsmsfastt" class="btn btn-primary" value="Add Group">
+
+                                                <span id="msgstatus"></span>
+
+												</div>
+
+											</div>
+
+										</div>
+
+									</div>
+
+</div>
+
 </div>
 
 
-</div>
-<br />
 
-<span></span>
-	
-	<div class="item" style="width:100%;overflow: scroll;">
-
-    </div>
-
-
-
-</div>
 </div>
 
 </div>
-</div>
+
+
 
             
+
 </div>
+
 </div>
-             
+<style>
+
+.modal-body {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+.search-container
+{
+   
+    padding-top: 10px;
+    padding-bottom: 0px;
+    width: 100%;
+	padding-left: 9px;
+}
+  #myModaltrans2
+  {
+    overflow: hidden;
+  }
+  #searchsubmit
+  {
+    position: absolute;
+	
+	border-radius: 0;
+
+	height: 26px;
+	padding-top: 0px;
+	padding-left: 0px;
+	border: 1px solid;
+  }
+  .contactlist li
+  {
+      list-style: none;
+  }
+
+</style>
+
+<div id="myModaltrans2" class="modal fade" role="dialog" data-backdrop="static">
+  <div class="modal-dialog">
+    
+    <!-- Modal content-->
+    <div class="modal-content">
+	   <div class="modal-header fixedHeader">
+         <center>
+
+		<div class="closebuton">
+          <button type="button" class="btn btn-default" id="clsosebuttontrans1" data-dismiss="modal">Done</button>
+	      <button type="button" class="btn btn-default" id="clsosebuttontrans2" data-dismiss="modal">Cancel</button>
+	   </div>
+	   </center>
+	   <div class="search-container">
+	   
+	   <input type="search" placeholder="Search"  style="width:88%;border: 1px solid;height: 26px;" name="seracnumber" id="seracnumber">
+	   <button type="submit" id="searchsubmit"><i class="fa fa-search" style="padding-left: 7px;"></i></button>
+	   </div>
+	  
+	  
+	  </div>
+      
+       <div id="mobcontactlist" class="modal-body">
+            
+           <ul class="contactlist">
+		   
+		  	 
+		   </ul>
+            
+        </div>
+
+        
+      
+      
+
+    <button type="button" style="margin-top:5px;margin-left:0px;display:none;" data-toggle="modal" data-target="#myModaltrans2" id="opentrans2" class="btn btn-warning" title=""></button>  
+    </div>
+  </div>
+</div>
 
 
 <footer class="footer-container">
@@ -656,8 +743,6 @@
                 </div>
 
             </footer>
-			
-			
 
 <div class="right-aside">
 
@@ -745,6 +830,7 @@
 
     
     </div>
+
 
 	
 	<style type="text/css">
@@ -862,6 +948,63 @@ $('#filtersearch').keyup(function(){
 });
 
 
+
+
+$('#seracnumber').keyup(function(){
+
+    var that = this, $allListElements = $('.contactlist > li, .dcjq-parent-li > ul > li');
+
+    var $matchingListElements = $allListElements.filter(function(i, li){
+        var listItemText = $(li).text().toUpperCase(), 
+            searchText = that.value.toUpperCase();
+        return ~listItemText.indexOf(searchText);
+    });    
+    $allListElements.hide();
+    $matchingListElements.show();
+    
+    $(".dcjq-parent-li > ul").show();
+    
+    if($.trim($('#seracnumber').val())=='')
+    {
+        $(".dcjq-parent-li > ul").hide();
+    }
+});
+
+             jQuery('#clsosebuttontrans1').click(function(){
+
+
+					 jQuery('input.itemchek:checkbox:checked').each(function () {
+					 
+					 
+					 
+                           
+						   
+						   var entry=jQuery(this).val();
+						   if(entry.length>10)
+						   {
+						    entry=entry.substring(1, entry.length-1);
+						   }	
+						    var txt =jQuery('#contactnumberst').val();
+								if(txt!='')
+								{
+								  var textval=txt+'\n'+entry.replace("91", "");
+								}else
+								{
+								  var textval=entry.replace("91", "");
+								}
+					
+	                        
+	                            
+							
+								  
+				            jQuery('#contactnumberst').val(textval);
+						   
+						   
+                       });
+
+
+
+					});
 	</script>
 
 
@@ -874,4 +1017,124 @@ $('#filtersearch').keyup(function(){
 </html>
 
 
+<script type="text/javascript">
+$=jQuery;
+$(document).ready(function()
+{
+	$("#sendsmsfastt").click(function()
+	{
+		groupname=$("#groupname").val();
+		
+		contactnumberst=$("#contactnumberst").val();
+		customernames=$("#customernames").val();
 
+			if(groupname=='' || contactnumberst=='')
+			{
+				$("#msgstatus").fadeIn(10).addClass("alert-danger").html("Please Enter Required Values");	
+			}
+			else
+			{
+				datastring='groupname='+groupname+'&contactnumberst='+contactnumberst+'&customernames='+customernames+'&logged_in='+logged_in;
+
+				$.ajax({
+
+					type:'POST',
+
+					url:'http://manage.staticking.net/index.php/servicessms/addnewgroupapi',
+
+					data:datastring,
+
+					beforeSend:function()
+					{
+						$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass("alert-info").text("Please Wait...");
+						$("#sendsmsfastt").attr('disabled','disabled');
+					},
+
+					success:function(data)
+					{
+						$("#msgstatus").fadeIn(10).removeClass("alert-info").addClass('alert-success').html(data);
+						$("#sendsmsfastt").removeAttr('disabled');
+					}
+
+				});
+			
+			}
+
+	});
+
+	
+
+});
+</script>
+<script type="text/javascript">
+
+
+var files;
+
+// Add events
+jQuery('#contactnosfile').on('change', prepareUpload);
+
+// Grab the files and set them to our variable
+function prepareUpload(event)
+{
+  files = event.target.files;
+  
+  
+  event.stopPropagation(); // Stop stuff happening
+    event.preventDefault(); // Totally stop stuff happening
+
+// START A LOADING SPINNER HERE
+
+// Create a formdata object and add the files
+var data = new FormData();
+$.each(files, function(key, value)
+{
+    data.append(key, value);
+});
+
+ jQuery('#faceoff').show();
+$.ajax({
+    url: 'http://manage.staticking.net/index.php/servicessms/uploadcontactsapi',
+    type: 'POST',
+    data: data,
+   
+    processData: false, // Don't process the files
+    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+    success: function(data, textStatus, jqXHR)
+    {
+	
+	jQuery('#faceoff').hide();
+				if(data=='No')
+				{
+				  
+				
+				alert('Please select valide csv');
+				
+				}else
+				{
+				
+				 jQuery('#contactnumberst').val(data);
+				}
+     
+					  
+    },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+        // Handle errors here
+        console.log('ERRORS: ' + textStatus);
+        // STOP LOADING SPINNER
+    }
+});
+
+  
+  
+  
+  
+}
+
+
+  
+	
+
+
+    </script>
