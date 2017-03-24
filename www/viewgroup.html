@@ -104,23 +104,28 @@
 			
 		function delgroup(grpid)
 			{
-                 
-				 jQuery('#faceoff').show();
 			
-				$.ajax({
-					type:'POST',
-					url:"http://manage.staticking.net/index.php/servicessms/delgroupapi",
-					data:'logged_in='+logged_in+'&grpid='+grpid,
-					success:function(data)
-					{
+			
+                 var r= confirm('Are You Sure'); 
+	 
+	       if (r == true) {
+						 jQuery('#faceoff').show();
 					
-					   jQuery('#faceoff').hide();
-						
-						alert(data);
-						
-						
-					}
-				  });
+						  $.ajax({
+							type:'POST',
+							url:"http://manage.staticking.net/index.php/servicessms/delgroupapi",
+							data:'logged_in='+logged_in+'&grpid='+grpid,
+							success:function(data)
+							{
+							
+							   jQuery('#faceoff').hide();
+								
+								alert(data);
+								
+								
+							}
+						  });
+				}  
 
 			}		
 	
