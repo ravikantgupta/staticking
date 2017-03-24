@@ -75,7 +75,7 @@
                getgroupdata();
       		   navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);
               
-			  getgroupdata();
+			 
 				  
 		}
 		
@@ -1027,20 +1027,21 @@ $(document).ready(function()
 		
 		contactnumberst=$("#contactnumberst").val();
 		customernames=$("#customernames").val();
-
+		
 			if(groupname=='' || contactnumberst=='')
 			{
 				$("#msgstatus").fadeIn(10).addClass("alert-danger").html("Please Enter Required Values");	
 			}
 			else
 			{
-				datastring='groupname='+groupname+'&contactnumberst='+contactnumberst+'&customernames='+customernames+'&logged_in='+logged_in;
-
+				var datastring='groupname='+groupname+'&contactnumberst='+contactnumberst+'&customernames='+customernames+'&logged_in='+logged_in;
+                    
+			 var grpid=window.localStorage.getItem("grpid");		
 				$.ajax({
 
 					type:'POST',
 
-					url:'http://manage.staticking.net/index.php/servicessms/addnewgroupapi',
+					url:'http://manage.staticking.net/index.php/servicessms/editoldgroupapi/'+grpid,
 
 					data:datastring,
 
@@ -1066,6 +1067,16 @@ $(document).ready(function()
 
 });
 </script>
+
+
+
+
+
+
+
+
+
+
 <script type="text/javascript">
 
 
