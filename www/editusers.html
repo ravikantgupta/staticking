@@ -22,17 +22,17 @@
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
    
-	
-	 <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
-    
+   
    
     
 </head>
 
 <body onload="setvalue()">
-<script>
+
+    <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
  
@@ -54,10 +54,10 @@
 		function setvalue()
 		{
 		
-			if(!logged_in) 
-			{ 
-			 logout();
-			}
+					if(!logged_in) 
+					{ 
+					 logout();
+					}
 			
 		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 						 		            
@@ -75,69 +75,171 @@
 						
 	                  addrightmenu(logged_in);	
 
-                 getpageitem();
-      		  
-
+              
+      		
+              getpageitem();
+			  
 				  
 		}
 		
 		
-    function getpageitem()
-		{
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/servicessms/viewusersapi",
-				data:'logged_in='+logged_in,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			  
-		}
+   
 		
-	 function searchitem()
-		{
-		
-		  var searchuser=jQuery('#searchuser').val();
-		
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/servicessms/searchusersapi",
-				data:'logged_in='+logged_in+'&searchuser='+searchuser,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			return false;  
-		}
-		
-		
-		
-		 
-		  function edituser(userid)
-		 {
-		 
-		 
-		          try {
-                       window.localStorage.setItem("userid", userid);
-            
+	 function getpageitem()
+			{
+			 jQuery('#faceoff').show();
+			 var userid=window.localStorage.getItem("userid");
+				$.ajax({
+					type:'POST',
+					url:"http://manage.staticking.net/index.php/servicessms/edituserapi",
+					data:'logged_in='+logged_in+'&userid='+userid,
+					success:function(data)
+					{
+						
+						$(".item").html(data);
+						
+						 jQuery('#faceoff').hide();
 					}
-					catch(err) {
-						console.error(err.message);
-						alert("params function "+err.message);
-					}
-					
-					 slide('editusers.html');
-		
-		 }
+				  });
+
+				  
+			}
+
+        
+	
 
 </script>
+
+
+
+<style>
+
+#faceoff {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+#preloader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 150px;
+    height: 150px;
+    margin: -75px 0 0 -75px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #2B8B90;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+    z-index: 1001;
+}
+
+#preloader:before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #356F66;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+    animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+#preloader:after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #92E0D4;
+    -webkit-animation: spin 3s linear infinite; /* Chrome, Opera 15+, Safari 5+ */
+      animation: spin 3s linear infinite; /* Chrome, Firefox 16+, IE 10+, Opera */
+}
+
+@-webkit-keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+@keyframes spin {
+    0%   { 
+        -webkit-transform: rotate(0deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(0deg);  /* IE 9 */
+        transform: rotate(0deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+    100% {
+        -webkit-transform: rotate(360deg);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: rotate(360deg);  /* IE 9 */
+        transform: rotate(360deg);  /* Firefox 16+, IE 10+, Opera */
+    }
+}
+
+#faceoff .preloader-section {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+	opacity:0.4;
+    z-index: 1000;
+    -webkit-transform: translateX(0);  /* Chrome, Opera 15+, Safari 3.1+ */
+    -ms-transform: translateX(0);  /* IE 9 */
+    transform: translateX(0);  /* Firefox 16+, IE 10+, Opera */
+}
+
+/* Loaded */
+.loaded #faceoff .preloader-section {
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);  
+            transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+}
+
+.loaded #preloader {
+    opacity: 0;
+    -webkit-transition: all 0.3s ease-out;
+            transition: all 0.3s ease-out;
+}
+.loaded #faceoff {
+    visibility: hidden;
+
+    -webkit-transform: translateY(-100%);  /* Chrome, Opera 15+, Safari 3.1+ */
+        -ms-transform: translateY(-100%);  /* IE 9 */
+            transform: translateY(-100%);  /* Firefox 16+, IE 10+, Opera */
+
+    -webkit-transition: all 0.3s 1s ease-out;
+            transition: all 0.3s 1s ease-out;
+}
+
+</style>
+
+
+
+
+<div id="faceoff" style="display: none;">
+        <div id="preloader"></div>
+        <div class="preloader-section"></div>
+      </div>
+
 
 <div class="page-container list-menu-view">
 
@@ -163,6 +265,7 @@
 
         <div class="left-navigation">
 
+              
               <ul class="list-accordion">
 
                 
@@ -389,7 +492,7 @@
 
                        
 
-                                           </div>
+                                     </div>
 
                    	
 					
@@ -400,7 +503,7 @@
                               
                             <div class="user-nav">
 
-                                 <ul>
+                                   <ul>
 
                                     <li class="dropdown">
 
@@ -435,6 +538,7 @@
 
                                 </ul>
 
+                            
                             </div>
 							
                                                         
@@ -473,63 +577,13 @@
 
 <div class="page-header">
 
-	<h2>View Users</h2>
+	<h2>Add Users</h2>
 
 </div>
-<!--<span class="alert-success"></span>-->
-<form  method="post" onsubmit="return searchitem()">
-	   
-        <div class="col-md-7">
-    <input type="text" name="searchuser" id="searchuser" placeholder="Search Via Username, Mobile No, Phone No, Place" class="form-control" />
-    </div>	
-    				
-</form>
-	     <div style="height:50px;"></div>                               
-		<div class="table-responsive">
-       <table class="table table-bordered">
 
-       
+									<div class="form-horizontal item">
 
-       <tr>
-
-       <th>Id</th>
-
-       <th>Username</th>
-
-       <th>Email</th>
-
-       <th>P,PS,T,PA,PSA,TA,V,T2, P1, I</th>
-
-       <th>Password</th>
-
-       <th>Phone No</th>
-
-       <th>Pin Code</th>
-
-       <th>Status</th>
-       <th>Date</th>
-
-       <th>Action</th>
-
-       </tr>
-
-       
-      <tbody class="item">
-	  
-	  </tbody>
-      
-       
-       
-
-       </table>                             
-		</div>
-                                    
-
-                                    
-
-                                    
-
-                                    
+										</div>
 
 								</div>
 
@@ -674,7 +728,8 @@
     
     </div>
 
-
+	
+	<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>   
 
 <style type="text/css">
     
@@ -747,8 +802,8 @@
 		});
     });
 	</script>
-    
-    <script type="text/javascript">
+   
+   <script type="text/javascript">
 	$=jQuery;
 	$(document).ready(function() {
 		
@@ -801,3 +856,127 @@ $('#filtersearch').keyup(function(){
 
 
 </html>
+
+
+<script type="text/javascript">
+$(function() {
+  var txt = $("#username");
+  var alphanumbers=/^[0-9 a-z]+$/;
+  var func = function()
+  {
+    txt.val(txt.val().replace(/\s/g, ''));
+
+	  if(!txt.val().match(alphanumbers))
+	  {
+		 txt.val("");
+		 $("#msgstatus").text("Username must be alphanumeric");
+	  }
+	  else
+	  {
+		 $("#msgstatus").text(""); 
+	  }
+  }
+  
+  txt.keyup(func).blur(func);
+});
+
+</script>
+          
+
+<script type="text/javascript">
+
+function adduser()
+
+{
+
+username=$("#username").val();
+
+email=$("#email").val();
+
+password=$("#password").val();
+
+place=$("#place").val();
+
+pincode=$("#pincode").val();
+
+phoneno=$("#phoneno").val();
+
+status=$("#status").val();
+
+perpromo=$("#perpromo:checked").val();
+
+perpromosid=$("#perpromosid:checked").val();
+
+pertrans=$("#pertrans:checked").val();
+
+pervoice=$("#pervoice:checked").val();
+
+tempapp=$("#tempapp:checked").val();
+openvoicetemp=$("#openvoicetemp:checked").val();
+
+dlrtype=$("#dlrtype").val();
+smshit=$("#smshit").val();
+permaskingno=$("#permaskingno").val();
+
+socialpack=$("#socialpack").val();
+
+
+if(username=='' || email=='' || password=='' || place=='' || phoneno=='' || status=='')
+
+{
+
+	$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required Values");
+
+}
+
+else
+{
+
+datastring='username='+username+'&email='+email+'&password='+password+'&place='+place+'&phoneno='+phoneno+'&status='+status+'&perpromo='+perpromo+'&perpromosid='+perpromosid+'&pertrans='+pertrans+'&pervoice='+pervoice+'&tempapp='+tempapp+'&openvoicetemp='+openvoicetemp+'&dlrtype='+dlrtype+'&smshit='+smshit+'&socialpack='+socialpack+'&pincode='+pincode+'&permaskingno='+permaskingno+'&logged_in='+logged_in;
+
+if($("#username").val().length < 5)
+				{
+					$("#msgstatus").text("Username Must be Of 5 Characters or more than 5 Characters");
+				}
+				else
+				{
+				
+				
+			 var userid=window.localStorage.getItem("userid");	
+
+	$.ajax({
+
+			type:'POST',
+
+			url:'http://manage.staticking.net/index.php/servicessms/edituserwithidapi/'+userid,
+
+			data:datastring,
+
+			beforeSend:function()
+
+			{
+
+				$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass("alert-info").text("Please Wait");
+
+			},
+
+			success:function(data)
+
+			{
+
+				$("#msgstatus").fadeIn(10).removeClass("alert-info").addClass("alert-success").text(data);
+
+			}
+
+	});
+				}
+
+}
+
+}
+
+</script>
+
+			 
+
+             
