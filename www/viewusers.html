@@ -98,6 +98,25 @@
 			  
 		}
 		
+	 function searchitem()
+		{
+		
+		  var searchuser=jQuery('#searchuser').val();
+		
+            $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/searchusersapi",
+				data:'logged_in='+logged_in+'&searchuser='+searchuser,
+				success:function(data)
+				{
+					
+					$(".item").html(data);
+				}
+		      });
+
+			return false;  
+		}
+		
 		
 		
 		 
@@ -449,10 +468,10 @@
 
 </div>
 <!--<span class="alert-success"></span>-->
-<form action="http://manage.staticking.net/index.php/pages/searchusers/" method="post">
+<form  method="post" onsubmit="return searchitem()">
 	   
         <div class="col-md-7">
-    <input type="text" name="searchuser" placeholder="Search Via Username, Mobile No, Phone No, Place" class="form-control" />
+    <input type="text" name="searchuser" id="searchuser" placeholder="Search Via Username, Mobile No, Phone No, Place" class="form-control" />
     </div>	
     				
 </form>
