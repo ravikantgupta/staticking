@@ -2383,6 +2383,41 @@ $.ajax({
 
 
   
+   jQuery('#clsosebuttontrans1').click(function(){
+
+
+					 jQuery('input.itemchek:checkbox:checked').each(function () {
+					 
+					 
+					 
+                           
+						   
+						   var entry=jQuery(this).val();
+						   if(entry.length>10)
+						   {
+						    entry=entry.substring(1, entry.length-1);
+						   }	
+						    var txt =jQuery('#contactnumberst').val();
+								if(txt!='')
+								{
+								  var textval=txt+'\n'+entry.replace("91", "");
+								}else
+								{
+								  var textval=entry.replace("91", "");
+								}
+					
+	                        
+	                            
+							
+								  
+				            jQuery('#contactnumberst').val(textval);
+						   
+						   
+                       });
+
+
+
+					});
 	
 
 
