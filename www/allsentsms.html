@@ -51,7 +51,10 @@
 		             
 						var username = userdetail.username;
 						
-						jQuery('#uname').html(username);
+							var userin=username+' <cite>'+userdetail.email+'</cite>'
+						     jQuery('#uname').html(userin);
+						
+										
 						
 					    var ufna=username.charAt(0);
 						
@@ -468,7 +471,7 @@ function promotionaldlr(smsid)
 
         <div class="left-navigation">
 
-         <ul class="list-accordion">
+           <ul class="list-accordion">
 
                 
 
@@ -495,7 +498,7 @@ function promotionaldlr(smsid)
 
                         </li>
                          
-                       <li><a onClick="slide('dynamicsms.html')" >Dynamic Sms</a>
+                       <li><a onClick="slide('dynamicsms.html')" >Quick Sent Sms</a>
 
                         </li>
 
@@ -507,39 +510,7 @@ function promotionaldlr(smsid)
 
                 </li>
                 
-                <!--<li><a href="#" class="waves-effect">
-				<span class="nav-icon"><i class="fa fa-microphone"></i></span><span class="nav-label">Voice SMS</span></a>
-
-                    <ul>
-                    
-                    	<li><a onClick="slide('uploadvoicefile.html')" >Upload Voice File</a>
-
-                        </li>
-                        <li><a onClick="slide('mysounds.html')" >View Voice Files</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('voicesms.html')" >Compose Voice SMS</a>
-
-                        </li>
-
-                        <li><a onClick="slide('allvoicesentsms.html')" >All Sent Voice Sms</a>
-
-                        </li>
-                        
-                          <li><a onClick="slide('voicespecialprice.html')" >Add Voice Special Price</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('voicespecialpricelist.html')" >View Voice Special Price</a>
-
-                        </li>
-                                                
-                        
-
-                    </ul>
-
-                </li>-->
+              
 
                 
                 
@@ -569,11 +540,119 @@ function promotionaldlr(smsid)
 
                 </li>
                 
+              
+               
+                
+                
+              
+                
+                
+                
+                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-file"></i></span><span class="nav-label">Others</span></a>
+
+                    <ul>
+
+                        <li><a onClick="slide('smstemplate.html')" >Add Template</a>
+
+                        </li>
+                        
+                        <li><a onClick="slide('viewsmstemplate.html')" >View Templates</a>
+
+                        </li>
+                        
+                        <li><a onClick="slide('newgroup.html')" >Add Group</a>
+
+                        </li>
+                        
+                        <li><a onClick="slide('viewgroup.html')" >View Group</a>
+
+                        </li>
+                    </ul>
+
+                </li>
+                
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-user"></i></span><span class="nav-label">Users</span></a>
+
+                    <ul>
+
+                        <li><a onClick="slide('addusers.html')" >Add Users</a>
+
+                        </li>
+
+                        <li><a onClick="slide('viewusers.html')" >View Users</a>
+
+                        </li>
+
+                        
+
+                    </ul>
+
+                </li>
+
+                
+                 
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-users"></i></span><span class="nav-label">Reseller</span></a>
+
+                    <ul>
+
+                        <li><a onClick="slide('addresellers.html')" >Add Reseller</a>
+
+                        </li>
+
+                        <li><a onClick="slide('viewreseller.html')" >View Reseller</a>
+
+                        </li>
+                        <li><a onClick="slide('usersmpp.html')" >Add Your Smpp</a>
+
+                        </li>
+						                        
+
+                    </ul>
+
+                </li>
+
+               
+
+                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-cogs"></i></span><span class="nav-label">Settings</span></a>
+
+                    <ul>
+                        <li><a onClick="slide('changeusertype.html')">Change User Type</a>
+
+                        </li>
+						                     							
+                        <li><a onClick="slide('transfercredits.html')" >Transfer Credits</a></li>
+                     
+                         <li><a onClick="slide('transsactionin.html')" >Transactions In</a>
+
+                        </li>
+                        <li><a onClick="slide('transsactionou.html')" >Transactions Out</a>
+                        </li>
+                          <li><a onClick="slide('allsenderids.html')" >View Sender IDs</a>
+
+                        </li>
+                       
+                         <li><a onClick="slide('notifications.html')">Send Notifications</a>
+
+                        </li>
+                       <li><a onClick="slide('website.html')" >Website Settings</a>
+
+                        </li>
+					     
+
+                    </ul>
+
+                </li>
+             
+             
                
 
                
 
             </ul>
+		
+		
+			
+			
                </div>
     </div>     <!--Leftbar End Here -->
         <div class="page-content">
@@ -627,16 +706,17 @@ function promotionaldlr(smsid)
                               
                             <div class="user-nav">
 
-                                <ul>
+                                  <ul>
 
                                     <li class="dropdown">
 
                                         <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
 
-                                            <span class="user-info"><span id="uname"></span> <cite>manage.staticking.net</cite></span>
+                                            <span class="user-info" id="uname"></span>
 
                                             <span class="user-thumb" style="background:#15BDC3;" >
-                                   <p style="font-size:36px;color:white;margin-left:12px;" id="proicon"></p>
+                                            
+                                                 <p style="font-size:36px;color:white;margin-left:12px;" id="proicon"></p>
                                             
                                                                                         
                                             
@@ -647,7 +727,7 @@ function promotionaldlr(smsid)
 
                                         <ul role="menu" class="dropdown-menu fadeInUp">
 
-                                            <li><a onclick="viewprofile()"><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
+                                            <li><a onclick="viewprofile()" ><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
 
                                             </li>
 
