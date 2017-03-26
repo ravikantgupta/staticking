@@ -120,106 +120,31 @@
 							});
 
 					
-				addrightmenu(logged_in);		
+				addrightmenu(logged_in);	
+
+			navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);	
 		
 		}
-function contactunloadPopupBox() 
-
-		{    // TO Unload the Popupbox
-
-           jQuery('#contactpopup_box').fadeOut("slow");
-
-            jQuery("#container").css({ // this is just for style        
-
-                "opacity": "1"  
-
-            }); 
-
-			jQuery('#cover').fadeOut("slow");
-			
-			
-			var selectedmobno=jQuery('#mobilecontact').val();
-			
-			
-			
-			selectedmobno.forEach(function(entry) {
-				 var txt =jQuery('#contactnumberst').val();
-						if(txt!='')
-						{
-						  var textval=txt+'\n'+entry.replace("+91", "");
-						}else
-						{
-						  var textval=entry.replace("+91", "");
-						}
-					
-	
-	
-				jQuery('#contactnumberst').val(textval);
-			});
-			
-			jQuery('#contactnumberst').html(selectedmobno);
-
-        }		
-
 		
-		 function contactloadPopupBox() 
-
-		{   
-		
-
-            jQuery('#contactpopup_box').fadeIn("slow");
-
-            jQuery("#container").css({ // this is just for style
-
-                "opacity": "0.3"  
-
-            });  
-
-			jQuery("#cover").fadeTo(500, 0.5);       
-
-        }
-
-</script>
- <script type="text/javascript" charset="utf-8">
-
-          
-            function getcontact() {
-			jQuery('#faceoff').show();
-                // find all contacts with 'Bob' in any name field
-               navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);
-            }
-
+       function gotContacts(c) {
+						
+						
+			 var mobilenmbr='';
+			 for(var i=0, len=c.length; i<len; i++) {
+			 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
+						
 			 
-            // onSuccess: Get a snapshot of the current contacts
-						function gotContacts(c) {
-						
-						
-						 //alert("gotContacts, number of results "+c.length);
+			 mobilenmbr +='<li class="item" ><span><input value="'+c[i].phoneNumbers[0].value+'" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">'+c[i].displayName+': '+c[i].phoneNumbers[0].value+'</span></li>';
+		   
+			 
+			
+			 
+			    }
+			 }
+						 jQuery('.contactlist').html(mobilenmbr);
 
-						
-						
-						 /* Retriving phoneNumbers */
-						 var mobilenmbr='';
-						 for(var i=0, len=c.length; i<len; i++) {
-						 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
-						 
-						
-						 
-						 
-						  mobilenmbr += "<option value='"+c[i].phoneNumbers[0].value+"'>"+c[i].displayName+":"+c[i].phoneNumbers[0].value+"</option>";
-						 }
-						 }
-						 jQuery('#mobilecontact').html(mobilenmbr);
-
-						   jQuery('#mobilecontact').multiselect({
-								enableClickableOptGroups: true,
-								enableCollapsibleOptGroups: true,
-								enableFiltering: true,
-								includeSelectAllOption: true
-							});
-                         jQuery('.multiselect').click();
-						  contactloadPopupBox() ;
-						  jQuery('#faceoff').hide();
+						  
+                       
 						
 						}
 
@@ -228,6 +153,20 @@ function contactunloadPopupBox()
             function errorHandler(contactError) {
                 alert('onError!');
             }
+		
+		
+		
+
+</script>
+ <script type="text/javascript" charset="utf-8">
+
+          
+            function getcontact() {
+			 jQuery('#opentrans02').click();
+            }
+
+			 
+           
 			
         </script>
 		
@@ -1205,6 +1144,83 @@ text-decoration:none;
 </div>
  
   <input type="hidden" id="istendigitid" />           
+
+ <style>
+
+.modal-body {
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+.search-container
+{
+   
+    padding-top: 10px;
+    padding-bottom: 0px;
+    width: 100%;
+	padding-left: 9px;
+}
+  #myModaltrans2
+  {
+    overflow: hidden;
+  }
+  #searchsubmit
+  {
+    position: absolute;
+	
+	border-radius: 0;
+
+	height: 26px;
+	padding-top: 0px;
+	padding-left: 0px;
+	border: 1px solid;
+  }
+  .contactlist li
+  {
+      list-style: none;
+  }
+
+</style>
+<div id="myModaltrans02" class="modal fade" role="dialog" data-backdrop="static">
+  <div class="modal-dialog">
+    
+    <!-- Modal content-->
+    <div class="modal-content">
+	   <div class="modal-header fixedHeader">
+         <center>
+
+		<div class="closebuton">
+          <button type="button" class="btn btn-default" id="clsosebuttontrans1" data-dismiss="modal">Done</button>
+	      <button type="button" class="btn btn-default" id="clsosebuttontrans2" data-dismiss="modal">Cancel</button>
+	   </div>
+	   </center>
+	   <div class="search-container">
+	   
+	   <input type="search" placeholder="Search"  style="width:88%;border: 1px solid;height: 26px;" name="seracnumber" id="seracnumber">
+	   <button type="submit" id="searchsubmit"><i class="fa fa-search" style="padding-left: 7px;"></i></button>
+	   </div>
+	  
+	  
+	  </div>
+      
+       <div id="mobcontactlist" class="modal-body">
+            
+           <ul class="contactlist">
+		   
+		  	 
+		   </ul>
+            
+        </div>
+
+        
+      
+      
+
+    <button type="button" style="margin-top:5px;margin-left:0px;display:none;" data-toggle="modal" data-target="#myModaltrans02" id="opentrans02" class="btn btn-warning" title=""></button> 
+
+	
+    </div>
+  </div>
+</div>
 
 
 
