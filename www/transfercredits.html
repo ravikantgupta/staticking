@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html>
 
@@ -20,15 +21,17 @@
     <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
+       
     
-     <script type="text/javascript" src="cordova.js"></script>
+	    <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
-   
-    
+	
+	
 </head>
 
 <body onload="setvalue()">
+
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
@@ -82,7 +85,7 @@
 		{
             $.ajax({
 				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/changeusertypeapi",
+				url:"http://manage.staticking.net/index.php/services/transfercreditsapi",
 				data:'logged_in='+logged_in,
 				success:function(data)
 				{
@@ -98,6 +101,8 @@
 		
 </script>
 
+	
+	<link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
 
 
 <div class="page-container list-menu-view">
@@ -117,6 +122,7 @@
             <span class="aside-close waves-effect"><i class="fa fa-times"></i></span>
 
         </div>
+
 
         
 
@@ -346,11 +352,12 @@
 
 
 					                    
-                                        <div class="col-md-4 responsive-fix top-mid">
+							<div class="col-md-4 responsive-fix top-mid">
 
-                    
+		   
+		   
 
-                                         </div>
+						   </div>
 
                    	
 					
@@ -362,8 +369,7 @@
                             <div class="user-nav">
 							
 							
-
-                                     <ul>
+                             <ul>
 
                                     <li class="dropdown">
 
@@ -398,9 +404,9 @@
 
                                 </ul>
 
-                          
+                         
 
-						  </div>
+						 </div>
 							
                                                         
 
@@ -416,6 +422,11 @@
 
         </header>
         <!--Topbar End Here -->
+
+		
+
+
+
 
 
 <div class="main-container">
@@ -433,17 +444,26 @@
 
 <div class="page-header">
 
-	<h2>Change User Type</h2>
+	<h2>Transfer Credits</h2>
 
 </div>
 
 
 
 
+			<form action="javascript:void(0)">
 			<div class="form-horizontal item">
-              item
 
-			</div>
+													
+			 </div>
+			</form>
+
+
+
+
+
+
+
 
 </div>
 
@@ -457,11 +477,33 @@
 
 
 
-            
+       <div id="myModalload" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	
+    <!-- Modal content-->
+    <div class="modal-content">
+
+      
+      <div id="showthereload" class=" modal-body">
+			
+            <center><img src="http://manage.staticking.net/public/images/animated_loading.gif" /></center>
+        </div>
+
+      	
+        <center>
+        <h4 id="waitmsg">Please Wait... </h4>
+        <button type="button" class="btn btn-default" id="clsosebutton" data-dismiss="modal" style="display:none;">Close</button></center>
+      
+    </div>
+  </div>
+</div>     
 
 </div>
 
 </div>
+
+             
+
 
 
 
@@ -496,6 +538,7 @@
                 </div>
 
             </footer>
+
 
 <div class="right-aside">
 
@@ -585,8 +628,7 @@
     </div>
 
 
-	
-	<style type="text/css">
+<style type="text/css">
     
  .navbgr
  {
@@ -705,48 +747,6 @@ $('#filtersearch').keyup(function(){
 
 
 
-<script type="text/javascript">
-$=jQuery;
-$(document).ready(function()
-{
-	$("#changeuser").click(function()
-	{
-username= $("#username").val();	
-transtype=$("#transtype").val();
-
-if(username=='' || transtype=='')
-{
-	$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required values");
-}
-
-else
-{
-	datastring='username='+username+'&transtype='+transtype;	
-
-	$.ajax({
-	type:'POST',
-	url:'http://manage.staticking.net/index.php/services/usertypechapi',
-	data:datastring,
-		beforeSend:function()
-		{
-		$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass('alert-info').text("Please Wait....");	
-		},
-
-		success:function(data)
-		{
-		$("#msgstatus").fadeIn(1000).html(data);
-		$("#transtype").val("");
-		$("#username").val("");
-		}
-
-	});
-}
-
-	});
-});
-
-
-</script>
 
 </body>
 
@@ -754,6 +754,126 @@ else
 
 </html>
 
+<script type="text/javascript" src="js/transfercredits.js"> </script>
 
 
 
+
+<script type="text/javascript">
+function transfercredits()
+{
+
+	$=jQuery;
+
+username= $("#username").val();
+
+transfertype= $("#transtype").val();
+
+creditstype=$("#creditstype").val();
+
+volume= $("#volumeofcredits").val();
+
+routeid= $("#routeid").val();
+
+creditprice= $("#pricing").val();
+
+credittax= $("#taxonsms").val();
+
+creditamt= $("#totalamt").val();
+
+password= $("#password").val();
+note= $("#note").val();
+
+
+
+if(transfertype=='add' || transfertype=='')
+
+{
+
+if(transfertype=='' || username=='' || volume=='' || routeid=='' || creditprice=='' || credittax=='' || creditamt=='' || password=='' || creditstype=='')
+	{
+		$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required values");
+		return false;
+	}
+}
+
+else
+
+{
+
+	if(transfertype=='deduct' || transfertype=='')
+
+	{
+
+		if(transfertype=='' || username=='' ||  volume=='' || routeid=='' || password=='' || creditstype=='')
+
+		{
+
+		$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required values");	
+
+		return false;
+
+		}
+
+	}
+
+	
+
+}
+
+
+
+
+
+datastring='username='+username+'&transfertype='+transfertype+'&volume='+volume+'&routeid='+routeid+'&creditprice='+creditprice+'&credittax='+credittax+'&creditamt='+creditamt+'&password='+password+'&creditstype='+creditstype+'&note='+note+'&logged_in='+logged_in;
+
+
+			$.ajax(
+
+			{
+
+				type:'POST',
+
+				url:'http://manage.staticking.net/index.php/services/addcreditsapi',
+
+				data:datastring,
+
+				beforeSend: function()
+				{
+					
+					
+					$("#showloadf").click();
+					$("#showthereload").show();
+					$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass("alert-info").text("Please Wait..");
+					$("#sendsmsfast").attr('disabled','disabled');
+				},
+				
+				success:function(data)
+
+				{
+
+					$("#showthereload").hide();
+									$("#waitmsg").fadeIn(10).html(data);
+									
+									$("#msgstatus").fadeIn(10).removeClass("alert-info").html(data);
+									$("#sendsmsfast").removeAttr('disabled');
+									$(".close").removeAttr('disabled');
+									
+									$("#clsosebutton").show();
+					$("#password").val("");
+
+					$("#volume").val("");
+
+				}
+
+			} );
+
+
+
+
+
+
+
+}
+
+</script>
