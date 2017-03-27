@@ -83,7 +83,7 @@
 		{
             $.ajax({
 				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactioninapi",
+				url:"http://manage.staticking.net/index.php/services/transsactionoutapi",
 				data:'logged_in='+logged_in,
 				success:function(data)
 				{
@@ -102,7 +102,7 @@
 		  var route=jQuery('#routeid').val();
             $.ajax({
 				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactioninapi",
+				url:"http://manage.staticking.net/index.php/services/transsactionoutapi",
 				data:'logged_in='+logged_in+'&route='+route,
 				success:function(data)
 				{
@@ -121,7 +121,7 @@
 		  var user=jQuery('#username').val();
             $.ajax({
 				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactioninapi",
+				url:"http://manage.staticking.net/index.php/services/transsactionoutapi",
 				data:'logged_in='+logged_in+'&user='+user,
 				success:function(data)
 				{
@@ -456,7 +456,7 @@
 <div class="widget-container">
 <div class=" widget-block">
 <div class="page-header">
-	<h2>Transactions In</h2>
+	<h2>Transactions Out</h2>
 </div>
 <div class="row">
 
