@@ -35,7 +35,12 @@
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
  
-   
+   if(navigator.onLine){
+  alert('online');
+ } else {
+  alert('offline');
+ }
+
  
 		if(window.localStorage.getItem("loggedIn")==1) 
 		{ 
