@@ -43,34 +43,31 @@
     
 	if(networkState=='unknown')
 	{
-	
-	   alert('No Internet Connection');
-	       window.location.reload(true);
-	 
+	    
+	 return false;
 	
 	}
+	
+	 return true;
 }
  
 
 
  
-		if(window.localStorage.getItem("loggedIn")==1) 
-		{ 
-		 //alert('ram2');
-		}
-		else{ 
-
-		window.location.href="login.html";
-
-
-
-		}
+		
 		
 		
 		function setvalue()
 		{
 		
-		   checkConnection();
+		if(!checkConnection())
+		{
+		  alert('Your phone’s web connection is not working. Please check and relaunch app');
+		  
+		  return false;
+				
+		}	     
+		  
 		   
 			if(!logged_in) 
 			{ 
