@@ -53,7 +53,7 @@
 		
 		function setvalue()
 		{
-		 getpagehtml();
+		
 			if(!logged_in) 
 			{ 
 			 logout();
@@ -717,11 +717,12 @@ if(username=='' || message=='')
 
 else
 {
-datastring='username='+username+'&message='+message;	
+
+datastring='username='+username+'&message='+message+'&logged_in='+logged_in;	
 
 $.ajax({
 type:'POST',
-url:'http://manage.staticking.net/index.php/settings/sendnotifications',
+url:'http://manage.staticking.net/index.php/services/sendnotificationsapi',
 data:datastring,
 	beforeSend:function()
 	{

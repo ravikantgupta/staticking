@@ -21,14 +21,15 @@
     <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
-     
-     <script type="text/javascript" src="cordova.js"></script>
+    
+    <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	 <script type="text/javascript" src="js/function.js"></script>
+   
+    
 </head>
 
 <body onload="setvalue()">
-
 	
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
@@ -73,7 +74,7 @@
 						
 	                  addrightmenu(logged_in);	
 
-                getpagehtml();
+              
       	
 
 				  
@@ -83,7 +84,7 @@
 		{
             $.ajax({
 				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactionoutapi",
+				url:"http://manage.staticking.net/index.php/services/websiteapi",
 				data:'logged_in='+logged_in,
 				success:function(data)
 				{
@@ -96,55 +97,24 @@
 		}
 		
 		
-		function setquery()
-		{
 		
-		  var route=jQuery('#routeid').val();
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactionoutapi",
-				data:'logged_in='+logged_in+'&route='+route,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			return false;    
-		}
-		
-		
-		function setquery1()
-		{
-		
-		  var user=jQuery('#username').val();
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactionoutapi",
-				data:'logged_in='+logged_in+'&user='+user,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			return false;  
-		}
 		
 		
 </script>
+<link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
 
-	<link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
+
+
 
 
 <div class="page-container list-menu-view">
+
     <!--Leftbar Start Here -->
+
     	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 <div class="left-aside desktop-view">
 
-         <div class="aside-branding">
+       <div class="aside-branding">
 
      
             <a onClick="slide('index.html')" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
@@ -160,20 +130,11 @@
     <input type="text" id="filtersearch" class="form-control" placeholder="Search Page">        
 
         <div class="left-navigation">
-
-              <ul class="list-accordion">
-
-                
-
-                <li><a onClick="slide('index.html')" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
-
+                 <ul class="list-accordion">
+               <li><a onClick="slide('index.html')" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
                 </li>
 
-                 
-                
-
                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-comments"></i></span><span class="nav-label">SMS</span></a>
-
                     <ul>
 
                         <li><a onClick="slide('composesms.html')" >Compose SMS</a>
@@ -191,18 +152,10 @@
                        <li><a onClick="slide('dynamicsms.html')" >Quick Sent Sms</a>
 
                         </li>
-
-                        
-
-                        
-
+    
                     </ul>
 
                 </li>
-                
-              
-
-                
                 
                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-phone"></i></span><span class="nav-label">Miss Call Alerts</span></a>
 
@@ -229,15 +182,7 @@
                     </ul>
 
                 </li>
-                
               
-               
-                
-                
-              
-                
-                
-                
                  <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-file"></i></span><span class="nav-label">Others</span></a>
 
                     <ul>
@@ -333,20 +278,18 @@
 
                 </li>
              
-             
-               
-
-               
-
-            </ul>
-		
-
-
+              </ul>
+		 
+          
         </div>
 
-    </div>     <!--Leftbar End Here -->
+    </div>
+     <!--Leftbar End Here -->
+
         <div class="page-content">
+
         <!--Topbar Start Here -->
+
          
 <header class="top-bar">
 
@@ -380,10 +323,11 @@
 
 
 					                    
-                         <div class="col-md-4 responsive-fix top-mid">
+                                        <div class="col-md-4 responsive-fix top-mid">
 
+                       
 
-                                  </div>
+                                       </div>
 
                    	
 					
@@ -394,7 +338,7 @@
                               
                             <div class="user-nav">
 
-                                 <ul>
+                                   <ul>
 
                                     <li class="dropdown">
 
@@ -429,7 +373,6 @@
 
                                 </ul>
 
-                         
                             </div>
 							
                                                         
@@ -444,79 +387,65 @@
 
             </div>
 
-        </header>        <!--Topbar End Here -->
+        </header>
+        <!--Topbar End Here -->
+
 		
+
+
+
 
 
 <div class="main-container">
+
 <div class="container-fluid" style="padding:0px;">
 <div class="col-md-12" style="padding:0px;">
+
 <div class="box-widget widget-module">
 
-<div class="widget-container">
-<div class=" widget-block">
-<div class="page-header">
-	<h2>Transactions Out</h2>
-</div>
-<div class="row">
 
-<form   >
-<div class="col-md-3">
-<select name="route" id="routeid" class="form-control" onchange="setquery()">
-<option value="">Route</option>
-<option value="promotional">Promotional</option>
-<option value="promosenderid">Promo S.ID</option>
-<option value="transactional">Transactional</option>
-</select>
-</div>
-</form>
 
-<form  method="get" onsubmit="return setquery1();">
-<div class="col-md-4">
-<input type="text" name="user" id="username" class="form-control" placeholder="Add Username & Hit Enter" required/>
-</div>
-</form>
+			<div class="widget-container">
 
-</div>
-</div>
- <div style="width:100%;overflow: scroll;">
-<table class="table table-bordered">
-       
-       <tr>
-       <th>Id</th>
-       <th>Username</th>
-       <th>Volume</th>
-       <th>Type</th>
-       <th>Route</th>
-       <th>Price</th>
-       <th>Tax</th>
-       <th>Amount</th>
-       <th>Credits</th>
-       <th>Note</th>
-       <th>Added By</th>
-       <th>Date</th>
-       </tr>
-       
-       <tbody class="item">
-		
-	    </tbody>   
+					<div class=" widget-block">
 
-              
-       </table>
+						<div class="page-header">
+
+							<h2>Website Settings</h2>
+
+						</div>
+
+
+
+
+						  <div class="form-horizontal item">
+
+
+                                page not available
+									
+
+							</div>
+					</div>
+
+			</div>
+
 
 
 </div>
 
 </div>
-</div>
 
-</div>
-</div>
+
 
             
+
 </div>
+
 </div>
+
              
+
+
 
 
 <footer class="footer-container">
@@ -550,8 +479,7 @@
                 </div>
 
             </footer>
-			
-			
+
 
 <div class="right-aside">
 
@@ -641,8 +569,7 @@
     </div>
 
 
-	
-	<style type="text/css">
+<style type="text/css">
     
  .navbgr
  {
@@ -697,7 +624,8 @@
     <script src="js/summernote.min.js"></script>
     <script src="js/jquery.simple-dtpicker.js"></script>
 
-		<script type="text/javascript">
+
+	<script type="text/javascript">
 	$=jQuery;
 	$(document).ready(function() {
          $(".whenuserread").on('click',function()
