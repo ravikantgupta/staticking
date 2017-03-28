@@ -36,6 +36,8 @@
  var logged_in= userdetail.id;
  
   function checkConnection() {
+  
+  alert('shreeram');
     var networkState = navigator.connection.type;
  
     var states = {};
@@ -53,7 +55,7 @@
 	alert(networkState);
 }
  
-checkConnection();
+
 
  
 		if(window.localStorage.getItem("loggedIn")==1) 
@@ -71,7 +73,7 @@ checkConnection();
 		
 		function setvalue()
 		{
-		
+		checkConnection();
 			if(!logged_in) 
 			{ 
 			 logout();
