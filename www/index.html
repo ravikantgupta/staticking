@@ -35,29 +35,12 @@
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
  
-  function checkConnection() {
-  
-  
-    var networkState = navigator.connection.type;
- 
-    
-	if(networkState=='unknown')
-	{
-	
-	
-	 return false;
-	
-	}
-	
-	 return true;
-}
- 
-	
+  	
 		
 		function setvalue()
 		{
-		
-		if(!checkConnection())
+		var networkState = navigator.connection.type;
+		if(networkState=='unknown')
 		{
 		  alert('Your phone’s web connection is not working. Please check and relaunch app');
 		 
