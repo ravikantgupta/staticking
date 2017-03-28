@@ -103,6 +103,7 @@
 .left-navigation > ul {
   margin: 0px;
   padding: 0px;
+   margin: 0 0 35px;
 }
 .left-navigation > ul > li {
   list-style: none;
