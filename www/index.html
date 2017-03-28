@@ -45,8 +45,8 @@
 	{
 	
 	   alert('No Internet Connection');
-	  window.location.reload();
-	  slide('index.html');
+	       window.location.reload(true);
+	 
 	
 	}
 }
@@ -69,7 +69,9 @@
 		
 		function setvalue()
 		{
-		checkConnection();
+		
+		   checkConnection();
+		   
 			if(!logged_in) 
 			{ 
 			 logout();
