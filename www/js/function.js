@@ -3,13 +3,7 @@
 
 	            document.addEventListener("deviceready", function() {
 					
-					  var networkState = navigator.connection.type;
-				 if(networkState!='wifi')
-				   {
-					  navigator.app.exitApp();
-				   }
-		         alert(networkState);
-				 
+									 
 				 
 			  // then override any default you want
 			  window.plugins.nativepagetransitions.globalOptions.duration = 700;

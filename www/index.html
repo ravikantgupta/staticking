@@ -35,11 +35,27 @@
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
  
+   function checkconnection()
+   {
+   
+   
+      $.ajax({
+			url: "http://www.google.com",
+			context: document.body,
+			error: function(jqXHR, exception) {
+				alert('offline')
+			},
+			success: function() {
+				alert('ONline')
+			}
+		})
+   
+   }
   	
 		
 		function setvalue()
 		{
-		
+		checkconnection();
 		   
 			if(!logged_in) 
 			{ 
