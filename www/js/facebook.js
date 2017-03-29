@@ -80,7 +80,7 @@ var facebook = {
 	onFacebookGetInfo: function() {
 		
 		
-		alert(window.localStorage.getItem('facebook_accessToken'));
+		
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
@@ -90,12 +90,11 @@ var facebook = {
 			alert('shreeram');
 			alert(data.id);
 			
-			alert(JSON.stringify(data));
-			alert(data.email);
-			alert(data.name);
 			window.localStorage.setItem('facebook_uid', data.id);
 		})
 		.error(function() {
+			
+			alert('fail');
 			window.localStorage.setItem('facebook_accessToken', null);
 			window.localStorage.setItem('facebook_uid', null);
 		});
