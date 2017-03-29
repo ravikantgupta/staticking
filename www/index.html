@@ -30,7 +30,19 @@
 </head>
 
 <body onload="setvalue()">
+<script>
+	document.addEventListener("deviceready", onDeviceReady, false);
+function onDeviceReady() {
 
+var networkState = navigator.connection.type;
+   if(networkState!='wifi')
+   {
+      navigator.app.exitApp();
+   }
+        alert(networkState);
+
+}
+	</script>
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
@@ -39,16 +51,7 @@
 		
 		function setvalue()
 		{
-		var networkState = navigator.connection.type;
-		if(networkState=='unknown')
-		{
-		  alert('Your phone’s web connection is not working. Please check and relaunch app');
-		 
-		  navigator.app.exitApp();
-		  return false;
-				
-		}	     
-		  
+		
 		   
 			if(!logged_in) 
 			{ 
