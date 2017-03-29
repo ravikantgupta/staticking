@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+	<meta http-equiv="Cache-control" content="no-cache">
+   <meta http-equiv="Expires" content="-1">
     <title>StaticKing SMS Gateway</title>
     <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
@@ -30,38 +31,39 @@
 </head>
 
 <body onload="setvalue()">
-
+<div id="net" style="display:none;">
+<img src='http://manage.staticking.net/public/images/log.jpg' onerror='checkconnection()' />
+</div>
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
  
-   function checkconnection()
-   {
-   
-   
-     
-               $.ajax({
-						type:'POST',
-						url:"http://manage.staticking.net/index.php/services/homedataapi",
-						data:'logged_in=8',
-						success:function(data)
-						{
-							
-							alert('online');
-						},
-						 error: function(jqXHR, exception) {
-							alert('offline');
-						}
-					  });
-
-   
-   }
+  var flag=1;
+ 
+	   function checkconnection()
+	   {
+	   
+	   
+	   
+	   
+			var inrhtml="<img src='http://manage.staticking.net/public/images/log.jpg' onerror='setTimeout(function(){ checkconnection(); }, 3000)' />";
+			
+			document.getElementById('net').innerHTML = inrhtml;
+			
+			flag++;
+			
+			if(flag>2)
+			{
+			  alert('offline');
+			}
+			
+			
+	   }
   	
 		
 		function setvalue()
 		{
-		checkconnection();
-		   
+	
 			if(!logged_in) 
 			{ 
 			 logout();
