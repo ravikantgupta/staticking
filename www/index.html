@@ -30,19 +30,7 @@
 </head>
 
 <body onload="setvalue()">
-<script>
-	document.addEventListener("deviceready", onDeviceReady, false);
-function onDeviceReady() {
 
-var networkState = navigator.connection.type;
-   if(networkState!='wifi')
-   {
-      navigator.app.exitApp();
-   }
-        alert(networkState);
-
-}
-	</script>
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;

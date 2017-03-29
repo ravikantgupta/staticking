@@ -61,8 +61,13 @@ function addmenu(){
 			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
 			  
 			  
-			  
-			  
+			  var networkState = navigator.connection.type;
+         if(networkState!='wifi')
+	   {
+		  navigator.app.exitApp();
+	   }
+		   alert(networkState);
+				  
 			}, false);
 			
 			
