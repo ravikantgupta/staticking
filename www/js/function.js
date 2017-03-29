@@ -1,4 +1,33 @@
-var BASE_URL = config.data[0].baseurl;
+
+
+
+	            document.addEventListener("deviceready", function() {
+					
+					  var networkState = navigator.connection.type;
+				 if(networkState!='wifi')
+				   {
+					  navigator.app.exitApp();
+				   }
+		         alert(networkState);
+				 
+				 
+			  // then override any default you want
+			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
+			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
+			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
+			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
+			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
+			  // these are used for slide left/right only currently
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+			  
+			  
+			
+				  
+			}, false);
+			
+			
+
 /********Left menu********/
 function addmenu(){
 		
@@ -46,29 +75,6 @@ function addmenu(){
 
 /********End Left menu********/
 
-
-	            document.addEventListener("deviceready", function() {
-			  // then override any default you want
-			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
-			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
-			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
-			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
-			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
-			  // these are used for slide left/right only currently
-			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
-			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
-			  
-			  
-			  var networkState = navigator.connection.type;
-				 if(networkState!='wifi')
-				   {
-					  navigator.app.exitApp();
-				   }
-		         alert(networkState);
-				  
-			}, false);
-			
-			
 
  
 
