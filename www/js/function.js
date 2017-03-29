@@ -47,8 +47,6 @@ function addmenu(){
 /********End Left menu********/
 
 
-
- app.initialize();
 	            document.addEventListener("deviceready", function() {
 			  // then override any default you want
 			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
@@ -62,15 +60,17 @@ function addmenu(){
 			  
 			  
 			  var networkState = navigator.connection.type;
-         if(networkState!='wifi')
-	   {
-		  navigator.app.exitApp();
-	   }
-		   alert(networkState);
+				 if(networkState!='wifi')
+				   {
+					  navigator.app.exitApp();
+				   }
+		         alert(networkState);
 				  
 			}, false);
 			
 			
+
+ 
 
 	 function slide(hrf) {
 		 
@@ -184,6 +184,8 @@ function addmenu(){
 	
 	   
    }
+   
+   app.initialize();
    
    
    
