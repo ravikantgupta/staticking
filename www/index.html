@@ -39,15 +39,21 @@
    {
    
    
-      $.ajax({
-			url: "https://www.google.co.in",
-			error: function(jqXHR, exception) {
-				alert('offline')
-			},
-			success: function() {
-				alert('ONline')
-			}
-		})
+     
+               $.ajax({
+						type:'POST',
+						url:"http://manage.staticking.net/index.php/services/homedataapi",
+						data:'logged_in=8',
+						success:function(data)
+						{
+							
+							alert('online');
+						},
+						 error: function(jqXHR, exception) {
+							alert('offline');
+						}
+					  });
+
    
    }
   	
