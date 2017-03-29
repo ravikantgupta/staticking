@@ -79,13 +79,20 @@ var facebook = {
 	//Function get info
 	onFacebookGetInfo: function() {
 		
-		alert('shreeram');
+		
 		
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
 		var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('facebook_accessToken');
 		$.getJSON(url, function(data) {
+			
+			alert('shreeram');
+			alert(data.id);
+			
+			alert(JSON.stringify(data));
+			alert(data.email);
+			alert(data.name);
 			window.localStorage.setItem('facebook_uid', data.id);
 		})
 		.error(function() {
