@@ -72,6 +72,7 @@ var facebook = {
 
 	//Function get info
 	onFacebookGetInfo: function() {
+		alert('ram');
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
