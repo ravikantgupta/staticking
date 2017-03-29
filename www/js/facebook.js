@@ -33,7 +33,7 @@ var facebook = {
 				window.localStorage.setItem('facebook_accessToken', access_token);
 				appInBrowser.close();
 				
-				this.onFacebookGetInfo();
+				onFacebookGetInfo();
 			}
 
 			if (location.url.indexOf("error_reason=user_denied") !== -1) {
