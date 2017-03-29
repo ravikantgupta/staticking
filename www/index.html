@@ -46,17 +46,14 @@
 	   
 	   
 	   
-			var inrhtml="<img src='http://manage.staticking.net/public/images/log.jpg' onerror='setTimeout(function(){ checkconnection(); }, 3000)' />";
+			var inrhtml="<img src='http://manage.staticking.net/public/images/log.jpg' onerror='checkconnection()' />";
 			
 			document.getElementById('net').innerHTML = inrhtml;
 			
 			flag++;
 			
-			if(flag>2)
-			{
-			  alert('offline');
-			}
 			
+			 alert('offline');
 			
 	   }
   	
