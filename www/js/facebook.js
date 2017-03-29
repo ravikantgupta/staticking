@@ -33,7 +33,7 @@ var facebook = {
 				window.localStorage.setItem('facebook_accessToken', access_token);
 				appInBrowser.close();
 				
-				
+				alert('shreeram');
 			}
 
 			if (location.url.indexOf("error_reason=user_denied") !== -1) {
@@ -44,7 +44,7 @@ var facebook = {
 				
 			}
 			
-			alert('shreeram');
+			
 		});
 	},
 
