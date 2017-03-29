@@ -32,13 +32,19 @@ var facebook = {
 				var access_token = location.url.match(/access_token=(.*)$/)[1].split('&expires_in')[0];
 				window.localStorage.setItem('facebook_accessToken', access_token);
 				appInBrowser.close();
+				
+				
 			}
 
 			if (location.url.indexOf("error_reason=user_denied") !== -1) {
 				// User denied
 				window.localStorage.setItem('facebook_accessToken', null);
 				appInBrowser.close();
+				
+				
 			}
+			
+			alert('shreeram');
 		});
 	},
 
