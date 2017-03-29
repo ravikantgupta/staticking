@@ -80,7 +80,7 @@ var facebook = {
 	onFacebookGetInfo: function() {
 		
 		
-		
+		alert(window.localStorage.getItem('facebook_accessToken'));
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
