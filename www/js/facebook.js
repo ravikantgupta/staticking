@@ -79,7 +79,9 @@ var facebook = {
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
-		alert('facebook_accessToken1');
+		
+	
+		
 		var url = "https://graph.facebook.com/me?fields=id,name,email,picture&access_token=" + window.localStorage.getItem('facebook_accessToken');
 		$.getJSON(url, function(data) {
 			

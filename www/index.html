@@ -35,11 +35,31 @@
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var logged_in= userdetail.id;
  
-  	
+  	function checkconnection()
+	{
+	
+	
+	      	var url = "http://manage.staticking.net/index.php/services/homedataapi?logged_in=1";
+		   $.getJSON(url, function(data) {
+			
+			alert('facebook_accessToken2');
+			
+		})
+		.error(function() {
+			alert('facebook_accessToken2');
+			
+		});
+	
+	}
 		
 		function setvalue()
 		{
+		
+		  checkconnection();
 		var networkState = navigator.connection.type;
+		
+		
+		
 		     var loggedwithfb= window.localStorage.getItem("loggedwithfb");
 				  
 				  if(loggedwithfb==1)
