@@ -40,43 +40,34 @@
 		function setvalue()
 		{
 		var networkState = navigator.connection.type;
-		
-		/*alert(networkState);
-		if(networkState=='unknown')
-		{
-		  alert('Your phone’s web connection is not working. Please check and relaunch app');
-		 
-		  navigator.app.exitApp();
-		  return false;
-				
-		}	*/     
-		  
-		   
-			if(!logged_in) 
-			{ 
-			 logout();
-			}
-			
-			
-			      var loggedwithfb= window.localStorage.getItem("loggedwithfb");
-				    alert(loggedwithfb);
+		     var loggedwithfb= window.localStorage.getItem("loggedwithfb");
+				  
 				  if(loggedwithfb==1)
 				  {
 				  
 				      alert('fb');
-				  
+					  logged_in=window.localStorage.getItem("id");
+				         if(!logged_in) 
+						{ 
+						 logout();
+						}
 				        var username = window.localStorage.getItem("username");
 						var userin=username+' <cite>'+window.localStorage.getItem("email")+'</cite>'
 						jQuery('#uname').html(userin);
 						
-						var picture='<img src="'+window.localStorage.getItem("picture")+'" class="img-responsive">';
+						var picture='<img src="'+window.localStorage.getItem("picture")+'"  height="30"  width="30" class="img-responsive">';
 						jQuery('#proicon').html(picture);
 				  
 				  
 				  }else
 				  
 				  {
-				    alert('notfb');
+				  
+					 if(!logged_in) 
+						{ 
+						 logout();
+						}
+				   
 				  
 				      var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 						 		            
