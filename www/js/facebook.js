@@ -92,9 +92,17 @@ var facebook = {
 			window.localStorage.setItem("username", data.name);
 			window.localStorage.setItem("email", data.email);
 			
-			window.localStorage.setItem("email", data.picture.data.url);
+			window.localStorage.setItem("picture", data.picture.data.url);
 						
 			window.localStorage.setItem('facebook_uid', data.id);
+			
+				window.plugins.nativepagetransitions.flip({
+								 'backgroundColor' : "#BBBBBB",
+								'direction': 'up',
+								'duration': 2000,
+								"href" : "index.html"
+								 });
+			
 		})
 		.error(function() {
 			alert('facebook_accessToken2');
