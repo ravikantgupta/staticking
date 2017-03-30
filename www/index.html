@@ -40,24 +40,36 @@
 		function setvalue()
 		{
 		var networkState = navigator.connection.type;
-		
-		/*alert(networkState);
-		if(networkState=='unknown')
-		{
-		  alert('Your phone’s web connection is not working. Please check and relaunch app');
-		 
-		  navigator.app.exitApp();
-		  return false;
-				
-		}	*/     
-		  
-		   
-			if(!logged_in) 
-			{ 
-			 logout();
-			}
-			
-		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+		     var loggedwithfb= window.localStorage.getItem("loggedwithfb");
+				  
+				  if(loggedwithfb==1)
+				  {
+				  
+				    
+					  logged_in=window.localStorage.getItem("id");
+				         if(!logged_in) 
+						{ 
+						 logout();
+						}
+				        var username = window.localStorage.getItem("username");
+						var userin=username+' <cite>'+window.localStorage.getItem("email")+'</cite>'
+						jQuery('#uname').html(userin);
+						jQuery('#uname1').html(username);
+						var picture='<img src="'+window.localStorage.getItem("picture")+'"  height="100"  width="100" class="img-responsive">';
+						jQuery('#proicon').html(picture);
+				  
+				  
+				  }else
+				  
+				  {
+				  
+					 if(!logged_in) 
+						{ 
+						 logout();
+						}
+				   
+				  
+				      var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 						 		            
 			           
 						var username = userdetail.username;
@@ -69,6 +81,11 @@
 					    var ufna=username.charAt(0);
 						
 						jQuery('#proicon').html(ufna.toUpperCase());
+				  
+				  }
+					
+					
+		           
 						
 						
 	                  addrightmenu(logged_in);		

@@ -40,11 +40,7 @@ var facebook = {
 				// User denied
 				window.localStorage.setItem('facebook_accessToken', null);
 				appInBrowser.close();
-				
-				
 			}
-			
-			
 		});
 	},
 
@@ -80,21 +76,36 @@ var facebook = {
 	onFacebookGetInfo: function() {
 		
 		
-		
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
-		var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('facebook_accessToken');
+		alert('facebook_accessToken1');
+		var url = "https://graph.facebook.com/me?fields=id,name,email,picture&access_token=" + window.localStorage.getItem('facebook_accessToken');
 		$.getJSON(url, function(data) {
 			
-			alert('shreeram');
-			alert(data.id);
 			
+		
+			window.localStorage.setItem("loggedIn", 1);
+			window.localStorage.setItem("loggedwithfb", 1);
+			
+			window.localStorage.setItem("id", data.id);
+			window.localStorage.setItem("username", data.name);
+			window.localStorage.setItem("email", data.email);
+			
+			window.localStorage.setItem("picture", data.picture.data.url);
+						
 			window.localStorage.setItem('facebook_uid', data.id);
+			
+				window.plugins.nativepagetransitions.flip({
+								 'backgroundColor' : "#BBBBBB",
+								'direction': 'up',
+								'duration': 2000,
+								"href" : "index.html"
+								 });
+			
 		})
 		.error(function() {
-			
-			alert('fail');
+			alert('facebook_accessToken2');
 			window.localStorage.setItem('facebook_accessToken', null);
 			window.localStorage.setItem('facebook_uid', null);
 		});
@@ -114,7 +125,7 @@ var facebook = {
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
-		var url = "https://graph.facebook.com/me/feed?access_token="+window.localStorage.getItem('facebook_accessToken');
+		var url = "https://graph.facebook.com/me/feed?fields=id,name,email,picture&access_token="+window.localStorage.getItem('facebook_accessToken');
 		$.post(url, post)
 		.error(function() {
 			window.localStorage.setItem('facebook_accessToken', null);
