@@ -88,6 +88,7 @@ var facebook = {
 			alert( JSON.stringify(data));
 			alert( data.email);
 			alert( data.name);
+			
 			window.localStorage.setItem('facebook_uid', data.id);
 		})
 		.error(function() {
