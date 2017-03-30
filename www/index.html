@@ -45,7 +45,7 @@
 				  if(loggedwithfb==1)
 				  {
 				  
-				      alert('fb');
+				    
 					  logged_in=window.localStorage.getItem("id");
 				         if(!logged_in) 
 						{ 
@@ -54,8 +54,8 @@
 				        var username = window.localStorage.getItem("username");
 						var userin=username+' <cite>'+window.localStorage.getItem("email")+'</cite>'
 						jQuery('#uname').html(userin);
-						
-						var picture='<img src="'+window.localStorage.getItem("picture")+'"  height="30"  width="30" class="img-responsive">';
+						jQuery('#uname1').html(username);
+						var picture='<img src="'+window.localStorage.getItem("picture")+'"  height="100"  width="100" class="img-responsive">';
 						jQuery('#proicon').html(picture);
 				  
 				  
