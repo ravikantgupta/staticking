@@ -84,18 +84,16 @@ var facebook = {
 		$.getJSON(url, function(data) {
 			
 			
-			alert( data.id);
-			alert( data.picture.data.url);
+		
 			window.localStorage.setItem("loggedIn", 1);
 			window.localStorage.setItem("loggedwithfb", 1);
-				
-				
-		 
-						  
-			alert( JSON.stringify(data));
-			alert( data.email);
-			alert( data.name);
 			
+			window.localStorage.setItem("id", data.id);
+			window.localStorage.setItem("username", data.name);
+			window.localStorage.setItem("email", data.email);
+			
+			window.localStorage.setItem("email", data.picture.data.url);
+						
 			window.localStorage.setItem('facebook_uid', data.id);
 		})
 		.error(function() {

@@ -57,7 +57,28 @@
 			 logout();
 			}
 			
-		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+			
+			      var loggedwithfb= window.localStorage.getItem("loggedwithfb");
+				    alert(loggedwithfb);
+				  if(loggedwithfb==1)
+				  {
+				  
+				      alert('fb');
+				  
+				        var username = window.localStorage.getItem("username");
+						var userin=username+' <cite>'+window.localStorage.getItem("email")+'</cite>'
+						jQuery('#uname').html(userin);
+						
+						var picture='<img src="'+window.localStorage.getItem("picture")+'" class="img-responsive">';
+						jQuery('#proicon').html(picture);
+				  
+				  
+				  }else
+				  
+				  {
+				    alert('notfb');
+				  
+				      var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
 						 		            
 			           
 						var username = userdetail.username;
@@ -69,6 +90,11 @@
 					    var ufna=username.charAt(0);
 						
 						jQuery('#proicon').html(ufna.toUpperCase());
+				  
+				  }
+					
+					
+		           
 						
 						
 	                  addrightmenu(logged_in);		
