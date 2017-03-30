@@ -40,11 +40,7 @@ var facebook = {
 				// User denied
 				window.localStorage.setItem('facebook_accessToken', null);
 				appInBrowser.close();
-				
-				
 			}
-			
-			
 		});
 	},
 
@@ -79,22 +75,23 @@ var facebook = {
 	//Function get info
 	onFacebookGetInfo: function() {
 		
-		
-		
+		alert(window.localStorage.getItem('facebook_accessToken'));
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
-		var url = "https://graph.facebook.com/me?access_token=" + window.localStorage.getItem('facebook_accessToken');
+		alert('facebook_accessToken');
+		var url = "https://graph.facebook.com/me?fields=id,name,email,picture&access_token=" + window.localStorage.getItem('facebook_accessToken');
 		$.getJSON(url, function(data) {
+			alert('facebook_accessToken1');
+			alert( data.id);
 			
-			alert('shreeram');
-			alert(data.id);
-			
+			alert( JSON.stringify(data));
+			alert( data.email);
+			alert( data.name);
 			window.localStorage.setItem('facebook_uid', data.id);
 		})
 		.error(function() {
-			
-			alert('fail');
+			alert('facebook_accessToken2');
 			window.localStorage.setItem('facebook_accessToken', null);
 			window.localStorage.setItem('facebook_uid', null);
 		});
@@ -114,7 +111,7 @@ var facebook = {
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
-		var url = "https://graph.facebook.com/me/feed?access_token="+window.localStorage.getItem('facebook_accessToken');
+		var url = "https://graph.facebook.com/me/feed?fields=id,name,email,picture&access_token="+window.localStorage.getItem('facebook_accessToken');
 		$.post(url, post)
 		.error(function() {
 			window.localStorage.setItem('facebook_accessToken', null);
