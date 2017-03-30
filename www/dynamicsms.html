@@ -21,13 +21,11 @@
     <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
-    
+   
      
     
-    
-    <script src='https://www.google.com/recaptcha/api.js'></script>
-    
+     <link rel="stylesheet" type="text/css" href="css/app.css" />
+   
    <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	  <script type="text/javascript" src="js/config.js"></script>
@@ -951,9 +949,10 @@ text-decoration:none;
                                              <div class="col-md-10">
 
                                              
-                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal"  id="pickContact" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
+                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal"  id="" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
                                                
-											    
+											    <button id="pickContact">Pick Contact</button>
+                                            	<div id="selectedContact"></div>
 
                                             </div>
 
@@ -1353,10 +1352,10 @@ text-decoration:none;
  }   
 </style>
 
-
+ <script src="app.js"></script>
 
 <script src="js/jquery-1.11.2.min.js"></script>
-  <script src="app.js"></script>
+ 
  
 
     <script src="js/jquery-migrate-1.2.1.min.js"></script>
