@@ -128,53 +128,42 @@
 	navigator.contacts.pickContact(function(contact){
 		console.log('The following contact has been selected:' + JSON.stringify(contact));
 		//Build a simple string to display the Contact - would be better in Handlebars
-		var s = "";
-		s += "<h2>"+getName(contact)+"</h2>";
+		var entry = 0;
+		
 
-		if(contact.emails && contact.emails.length) {
-			s+= "Email: "+contact.emails[0].value+"<br/>";
-		}
-
+		 var txt =jQuery('#contactnumberst').val();
+		 
 		if(contact.phoneNumbers && contact.phoneNumbers.length) {
-			s+= "Phone: "+contact.phoneNumbers[0].value+"<br/>";
+			entry=contact.phoneNumbers[0].value;
+			
+			  if(entry.length>10)
+						   {
+						    entry=entry.substring(1, entry.length-1);
+						   }
+						   
+						   
+						   if(txt!='')
+								{
+								  var textval=txt+'\n'+entry.replace("91", "");
+								}else
+								{
+								  var textval=entry.replace("91", "");
+								}
+						   
+						   
 		}
 
-		if(contact.photos && contact.photos.length) {
-			s+= "<p><img src='"+contact.photos[0].value+"'></p>";
-		}
-
-		document.querySelector("#selectedContact").innerHTML=s;
+			
+		 jQuery('#contactnumberst').val(textval);	
+			
 	},function(err){
 		console.log('Error: ' + err);
 	});
 }
 
-/*
-Handles iOS not returning displayName or returning null/""
-*/
-function getName(c) {
-	var name = c.displayName;
-	if(!name || name === "") {
-		if(c.name.formatted) return c.name.formatted;
-		if(c.name.givenName && c.name.familyName) return c.name.givenName +" "+c.name.familyName;
-		return "Nameless";
-	}
-	return name;
-}	
 
 </script>
- <script type="text/javascript" charset="utf-8">
-
-          
-            function getcontact() {
-			 jQuery('#opentrans02').click();
-            }
-
-			 
-           
-			
-        </script>
-		
+ 
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 <style>
 
@@ -957,10 +946,9 @@ text-decoration:none;
                                              <div class="col-md-10">
 
                                              
-                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal"  id="" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
+                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal"  id="pickContact" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
                                                
-											    <button id="pickContact">Pick Contact</button>
-                                            	<div id="selectedContact"></div>
+											    
 
                                             </div>
 
@@ -1150,83 +1138,6 @@ text-decoration:none;
 </div>
  
   <input type="hidden" id="istendigitid" />           
-
- <style>
-
-.modal-body {
-    max-height: calc(100vh - 100px);
-    overflow-y: auto;
-}
-.search-container
-{
-   
-    padding-top: 10px;
-    padding-bottom: 0px;
-    width: 100%;
-	padding-left: 9px;
-}
-  #myModaltrans2
-  {
-    overflow: hidden;
-  }
-  #searchsubmit
-  {
-    position: absolute;
-	
-	border-radius: 0;
-
-	height: 26px;
-	padding-top: 0px;
-	padding-left: 0px;
-	border: 1px solid;
-  }
-  .contactlist li
-  {
-      list-style: none;
-  }
-
-</style>
-<div id="myModaltrans02" class="modal fade" role="dialog" data-backdrop="static">
-  <div class="modal-dialog">
-    
-    <!-- Modal content-->
-    <div class="modal-content">
-	   <div class="modal-header fixedHeader">
-         <center>
-
-		<div class="closebuton">
-          <button type="button" class="btn btn-default" id="clsosebuttontrans1" data-dismiss="modal">Done</button>
-	      <button type="button" class="btn btn-default" id="clsosebuttontrans2" data-dismiss="modal">Cancel</button>
-	   </div>
-	   </center>
-	   <div class="search-container">
-	   
-	   <input type="search" placeholder="Search"  style="width:88%;border: 1px solid;height: 26px;" name="seracnumber" id="seracnumber">
-	   <button type="submit" id="searchsubmit"><i class="fa fa-search" style="padding-left: 7px;"></i></button>
-	   </div>
-	  
-	  
-	  </div>
-      
-       <div id="mobcontactlist" class="modal-body">
-            
-           <ul class="contactlist">
-		   
-		  	 
-		   </ul>
-            
-        </div>
-
-        
-      
-      
-
-    <button type="button" style="margin-top:5px;margin-left:0px;display:none;" data-toggle="modal" data-target="#myModaltrans02" id="opentrans02" class="btn btn-warning" title=""></button> 
-
-	
-    </div>
-  </div>
-</div>
 
 
 
@@ -2387,43 +2298,4 @@ $.ajax({
 }
 
 
-  
-   jQuery('#clsosebuttontrans1').click(function(){
-
-
-					 jQuery('input.itemchek:checkbox:checked').each(function () {
-					 
-					 
-					 
-                           
-						   
-						   var entry=jQuery(this).val();
-						   if(entry.length>10)
-						   {
-						    entry=entry.substring(1, entry.length-1);
-						   }	
-						    var txt =jQuery('#contactnumberst').val();
-								if(txt!='')
-								{
-								  var textval=txt+'\n'+entry.replace("91", "");
-								}else
-								{
-								  var textval=entry.replace("91", "");
-								}
-					
-	                        
-	                            
-							
-								  
-				            jQuery('#contactnumberst').val(textval);
-						   
-						   
-                       });
-
-
-
-					});
-	
-
-
-    </script>
+      </script>
