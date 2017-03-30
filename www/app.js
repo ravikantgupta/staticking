@@ -5,8 +5,7 @@ function init() {
 }
 
 function doContactPicker() {
-	alert('rrrrr');
-	
+		
 	navigator.contacts.pickContact(function(contact){
 		console.log('The following contact has been selected:' + JSON.stringify(contact));
 		//Build a simple string to display the Contact - would be better in Handlebars
