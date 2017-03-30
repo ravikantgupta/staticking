@@ -21,12 +21,7 @@
     <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
-    <link rel="shortcut icon" href="http://manage.staticking.net//public/images/" type="image/x-icon">
     
-     
-    
-    
-    <script src='https://www.google.com/recaptcha/api.js'></script>
     
    <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
@@ -122,59 +117,52 @@
 					
 				addrightmenu(logged_in);	
 
-			 navigator.contacts.find([navigator.contacts.fieldType.displayName],gotContacts,errorHandler);	
+				document.querySelector("#pickContact").addEventListener("touchend", doContactPicker, false);
 		
 		}
 		
-		function gotContacts(c) {
-						
-						
-			 var mobilenmbr='';
-			 for(var i=0, len=c.length; i<len; i++) {
-			 if(c[i].phoneNumbers && c[i].phoneNumbers.length > 0) {
-						
-			 
-			 mobilenmbr +='<li class="item" ><span><input value="'+c[i].phoneNumbers[0].value+'" class="itemchek" type="checkbox"  name="contactnumber">&nbsp;</span> <span class="mobnumber">'+c[i].displayName+': '+c[i].phoneNumbers[0].value+'</span></li>';
-		   
-			 
+		
+		function doContactPicker() {
+		
+	navigator.contacts.pickContact(function(contact){
+		console.log('The following contact has been selected:' + JSON.stringify(contact));
+		//Build a simple string to display the Contact - would be better in Handlebars
+		var entry = 0;
+		
+
+		 var txt =jQuery('#contactnumberst').val();
+		 
+		if(contact.phoneNumbers && contact.phoneNumbers.length) {
+			entry=contact.phoneNumbers[0].value;
 			
-			 
-			    }
-			 }
-						 jQuery('.contactlist').html(mobilenmbr);
+			  if(entry.length>10)
+						   {
+						    entry=entry.substring(1, entry.length-1);
+						   }
+						   
+						   
+						   if(txt!='')
+								{
+								  var textval=txt+'\n'+entry.replace("91", "");
+								}else
+								{
+								  var textval=entry.replace("91", "");
+								}
+						   
+						   
+		}
 
-						  
-                       
-						
-						}
-
-            // onError: Failed to get the contacts
-
-            function errorHandler(contactError) {
-                alert('onError!');
-            }
+			
+		 jQuery('#contactnumberst').val(textval);	
+			
+	},function(err){
+		console.log('Error: ' + err);
+	});
+}
 		
 		
-		
-
-		
-		
-
 </script>
- <script type="text/javascript" charset="utf-8">
-
-          
-            function getcontact() {
-			
-			  jQuery('#opentrans02').click();
-			
-            }
-
-			 
-          
-         
-			
-        </script>
+ 
 		
 <link href="js/jquery.datetimepicker.css" rel="stylesheet">
 <style>
@@ -866,32 +854,7 @@ text-decoration:none;
 
 						</div>
 						
-						
-						
-						<div id="contactpopup_box" style="height:310px;border-radius:8px;">
-						
-						
-						<div class="contactlist" style="height: 100%;overflow: scroll;">
-						<div  class="row">
-						<div class="col-md-12 col-sm-12 col-xs-12">
-						 <select id="mobilecontact" multiple="multiple" style="width:100%">
-
-						
-
-                          </select>
-						  </div>
-						</div>
-						</div>
-
-                       
-
-
-						
-
-						</div>
-						
-
-                       <div id="cover"></div>
+				     <div id="cover"></div>
 
                             <div class="form-horizontal">
 
@@ -985,7 +948,7 @@ text-decoration:none;
                                             
                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" data-target="#myModal" id="addgroup" class="btn btn-warning" title="Add Group"><i class="fa fa-users"></i></button>
 											  
-                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal" onClick="getcontact()" id="addcontact" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
+                                               <button type="button" style="margin-top:5px;margin-left:0px;" data-toggle="modal"  id="pickContact" class="btn btn-warning" title="Add Contact"><i class="fa fa-contact">c</i></button>
                                                
 											    
 
@@ -1180,9 +1143,6 @@ text-decoration:none;
 </div>
 
 
-
-
-
  
  <div id="myModalload" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -1269,47 +1229,7 @@ text-decoration:none;
   }
 
 </style>
-<div id="myModaltrans02" class="modal fade" role="dialog" data-backdrop="static">
-  <div class="modal-dialog">
-    
-    <!-- Modal content-->
-    <div class="modal-content">
-	   <div class="modal-header fixedHeader">
-         <center>
 
-		<div class="closebuton">
-          <button type="button" class="btn btn-default" id="clsosebuttontrans1" data-dismiss="modal">Done</button>
-	      <button type="button" class="btn btn-default" id="clsosebuttontrans2" data-dismiss="modal">Cancel</button>
-	   </div>
-	   </center>
-	   <div class="search-container">
-	   
-	   <input type="search" placeholder="Search"  style="width:88%;border: 1px solid;height: 26px;" name="seracnumber" id="seracnumber">
-	   <button type="submit" id="searchsubmit"><i class="fa fa-search" style="padding-left: 7px;"></i></button>
-	   </div>
-	  
-	  
-	  </div>
-      
-       <div id="mobcontactlist" class="modal-body">
-            
-           <ul class="contactlist">
-		   
-		  	 
-		   </ul>
-            
-        </div>
-
-        
-      
-      
-
-    <button type="button" style="margin-top:5px;margin-left:0px;display:none;" data-toggle="modal" data-target="#myModaltrans02" id="opentrans02" class="btn btn-warning" title=""></button> 
-
-	
-    </div>
-  </div>
-</div>
 
 
 
@@ -1981,8 +1901,7 @@ $("#clsosebutton").click(function()
  
 
  function addnewsendersnew()
-
- {
+  {
 
 		inroute=jQuery("#newrouteid").val();
 
@@ -2469,43 +2388,6 @@ $.ajax({
   
 }
 
-
-   jQuery('#clsosebuttontrans1').click(function(){
-
-
-					 jQuery('input.itemchek:checkbox:checked').each(function () {
-					 
-					 
-					 
-                           
-						   
-						   var entry=jQuery(this).val();
-						   if(entry.length>10)
-						   {
-						    entry=entry.substring(1, entry.length-1);
-						   }	
-						    var txt =jQuery('#contactnumberst').val();
-								if(txt!='')
-								{
-								  var textval=txt+'\n'+entry.replace("91", "");
-								}else
-								{
-								  var textval=entry.replace("91", "");
-								}
-					
-	                        
-	                            
-							
-								  
-				            jQuery('#contactnumberst').val(textval);
-						   
-						   
-                       });
-
-
-
-					});
-	
 
 
     </script>
