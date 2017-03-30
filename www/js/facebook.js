@@ -75,16 +75,23 @@ var facebook = {
 	//Function get info
 	onFacebookGetInfo: function() {
 		
-		alert(window.localStorage.getItem('facebook_accessToken'));
+		
 		if(window.localStorage.getItem('facebook_accessToken') === null) {
 			return false;
 		}
-		alert('facebook_accessToken');
+		alert('facebook_accessToken1');
 		var url = "https://graph.facebook.com/me?fields=id,name,email,picture&access_token=" + window.localStorage.getItem('facebook_accessToken');
 		$.getJSON(url, function(data) {
-			alert('facebook_accessToken1');
-			alert( data.id);
 			
+			
+			alert( data.id);
+			alert( data.picture.data.url);
+			window.localStorage.setItem("loggedIn", 1);
+			window.localStorage.setItem("loggedwithfb", 1);
+				
+				
+		 
+						  
 			alert( JSON.stringify(data));
 			alert( data.email);
 			alert( data.name);
