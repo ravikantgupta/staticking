@@ -196,7 +196,7 @@ function addmenu(){
 	   
    }
    
-   setuserinfo(logged_in)
+   function setuserinfo(logged_in)
    {
 	   
 	           var loggedwithfb= window.localStorage.getItem("loggedwithfb");
@@ -234,7 +234,7 @@ function addmenu(){
 	   
    }
    
-   setuserinfoinner(logged_in)
+  function setuserinfoinner(logged_in)
    {
 	   
 	      var loggedwithfb= window.localStorage.getItem("loggedwithfb");
