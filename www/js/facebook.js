@@ -86,7 +86,7 @@ var facebook = {
 		$.getJSON(url, function(data) {
 			
 			
-		  window.localStorage.setItem('userdetail', data);
+		  window.localStorage.setItem('userdetail', JSON.stringify(data));
 		  
 			window.localStorage.setItem("loggedIn", 1);
 			window.localStorage.setItem("loggedwithfb", 1);
