@@ -87,7 +87,7 @@ var facebook = {
 			
 			
 		  window.localStorage.setItem('userdetail', JSON.stringify(data));
-		  
+		  window.localStorage.setItem("picture", data.picture.data.url);
 			window.localStorage.setItem("loggedIn", 1);
 			window.localStorage.setItem("loggedwithfb", 1);
 								

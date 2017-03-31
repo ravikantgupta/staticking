@@ -212,7 +212,7 @@ function addmenu(){
 						var userin=username+' <cite>'+userdetail.email+'</cite>'
 						jQuery('#uname').html(userin);
 						jQuery('#uname1').html(username);
-						var picture='<img src="'+userdetail.picture+'"   class="img-responsive">';
+						var picture='<img src="'+window.localStorage.getItem("picture")+'"   class="img-responsive">';
 						jQuery('#proicon').html(picture);
 				  
 				  
@@ -250,7 +250,7 @@ function addmenu(){
 						var userin=username+' <cite>'+userdetail.email+'</cite>'
 						jQuery('#uname').html(userin);
 						jQuery('#uname1').html(username);
-						var picture='<img src="'+userdetail.picture+'"   class="img-responsive">';
+						var picture='<img src="'+window.localStorage.getItem("picture")+'"   class="img-responsive">';
 						jQuery('#proicon').html(picture);
 				  
 				  
