@@ -39,14 +39,14 @@
 	{
 	
 	
-	      	var url = "http://manage.staticking.net/index.php/services/homedataapi?logged_in=1";
+	      	var url = "http://manage.staticking.net/index.php/services/connectionapi";
 		   $.getJSON(url, function(data) {
 			
 			alert('facebook_accessToken1');
 			
 		})
 		.error(function() {
-			alert('facebook_accessToken2');
+				alert('No Internet Connection Please Try Again!');
 			
 		});
 	
