@@ -86,18 +86,11 @@ var facebook = {
 		$.getJSON(url, function(data) {
 			
 			
-		
+		  window.localStorage.setItem('userdetail', data);
+		  
 			window.localStorage.setItem("loggedIn", 1);
 			window.localStorage.setItem("loggedwithfb", 1);
-			
-			window.localStorage.setItem("id", data.id);
-			window.localStorage.setItem("username", data.name);
-			window.localStorage.setItem("email", data.email);
-			
-			window.localStorage.setItem("picture", data.picture.data.url);
-						
-			window.localStorage.setItem('facebook_uid', data.id);
-			
+								
 				window.plugins.nativepagetransitions.flip({
 								 'backgroundColor' : "#BBBBBB",
 								'direction': 'up',

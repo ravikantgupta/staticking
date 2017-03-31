@@ -196,6 +196,82 @@ function addmenu(){
 	   
    }
    
+   setuserinfo(logged_in)
+   {
+	   
+	           var loggedwithfb= window.localStorage.getItem("loggedwithfb");
+			   
+			     var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+				  
+				  if(loggedwithfb==1)
+				  {
+				  
+				    
+					 
+				        var username = userdetail.name;
+						var userin=username+' <cite>'+userdetail.email+'</cite>'
+						jQuery('#uname').html(userin);
+						jQuery('#uname1').html(username);
+						var picture='<img src="'+userdetail.picture+'"   class="img-responsive">';
+						jQuery('#proicon').html(picture);
+				  
+				  
+				  }else
+				  
+				  {
+
+						var username = userdetail.username;
+						var userin=username+' <cite>'+userdetail.email+'</cite>'
+						jQuery('#uname').html(userin);
+						
+						jQuery('#uname1').html(username);
+						
+					    var ufna=username.charAt(0);
+						
+						jQuery('#proicon').html(ufna.toUpperCase());
+				  
+				  }  
+	   
+   }
+   
+   setuserinfoinner(logged_in)
+   {
+	   
+	      var loggedwithfb= window.localStorage.getItem("loggedwithfb");
+			   
+			     var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+				  
+				  if(loggedwithfb==1)
+				  {
+				  
+				    
+					 
+				        var username = userdetail.name;
+						var userin=username+' <cite>'+userdetail.email+'</cite>'
+						jQuery('#uname').html(userin);
+						jQuery('#uname1').html(username);
+						var picture='<img src="'+userdetail.picture+'"   class="img-responsive">';
+						jQuery('#proicon').html(picture);
+				  
+				  
+				  }else
+				  
+				  {
+
+						var username = userdetail.username;
+						var userin=username+' <cite>'+userdetail.email+'</cite>'
+						jQuery('#uname').html(userin);
+						
+						jQuery('#uname1').html(username);
+						
+					    var ufna=username.charAt(0);
+						
+						jQuery('#proicon').html(ufna.toUpperCase());
+				  
+				  } 
+	   
+   }
+   
    app.initialize();
    
    
