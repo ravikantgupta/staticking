@@ -29,7 +29,7 @@
 	 <script type="text/javascript" src="js/function.js"></script>
 </head>
 
-<body onload="setvalue()">
+<body onload="checkconnection()">
 
 <script>
 	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
@@ -42,11 +42,12 @@
 	      	var url = "http://manage.staticking.net/index.php/services/connectionapi";
 		   $.getJSON(url, function(data) {
 			
-			alert('facebook_accessToken1');
+			setvalue();
 			
 		})
 		.error(function() {
 				alert('No Internet Connection Please Try Again!');
+				checkconnection();
 			
 		});
 	
@@ -55,11 +56,8 @@
 		function setvalue()
 		{
 		
-		  checkconnection();
-		var networkState = navigator.connection.type;
 		
-		
-		
+	
 		     var loggedwithfb= window.localStorage.getItem("loggedwithfb");
 				  
 				  if(loggedwithfb==1)
