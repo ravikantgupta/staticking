@@ -90,7 +90,7 @@ var googleapi = {
 						
 						},
 						error: function(e) {
-						  alert( 'error');
+						 alert( JSON.stringify(e));
 
 						}
 					  });
