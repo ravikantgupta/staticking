@@ -250,8 +250,8 @@ function addmenu(){
 						var userin=username+' <cite>'+userdetail.email+'</cite>'
 						jQuery('#uname').html(userin);
 						
-						var picture='<img src="'+window.localStorage.getItem("picture")+'"   class="img-responsive">';
-						jQuery('#proicon').html(picture);
+						var picture='<img src="'+window.localStorage.getItem("picture")+'" style="height: 50px;"  class="img-responsive">';
+						jQuery('.user-thumb').html(picture);
 				  
 				  
 				  }else
