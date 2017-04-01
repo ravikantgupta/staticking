@@ -76,6 +76,25 @@ var googleapi = {
 			
             $loginStatus.html('Access Token: ' + data.access_token);
 				alert( JSON.stringify(data));
+				
+				
+				 var url = 'https://www.googleapis.com/plus/v1/people/me?access_token=' + data.access_token;
+
+					  $.ajax({
+						type: 'GET',
+						url: url,
+						async: false,
+						success: function(userInfo) {
+						  alert( JSON.stringify(userInfo));
+						  
+						    alert( userInfo);
+						
+						},
+						error: function(e) {
+						  console.log('error');
+
+						}
+					  });
 			
         }).fail(function(data) {
             $loginStatus.html(data.error);
