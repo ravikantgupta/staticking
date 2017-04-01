@@ -78,7 +78,7 @@ var googleapi = {
 				alert( JSON.stringify(data));
 				
 				
-				 var url = 'https://www.googleapis.com/plus/v1/people/me?access_token=' + data.access_token;
+				 var url = 'https://www.googleapis.com/plus/v1/people/me?access_token='+data.access_token;
 
 					  $.ajax({
 						type: 'GET',
@@ -91,7 +91,7 @@ var googleapi = {
 						
 						},
 						error: function(e) {
-						  console.log('error');
+						  alert( 'error');
 
 						}
 					  });
