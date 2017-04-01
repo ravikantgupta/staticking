@@ -85,8 +85,20 @@ var googleapi = {
 						url: url,
 					    	success: function(userInfo) {
 						  alert( JSON.stringify(userInfo));
+						   alert( userInfo.picture);
+						   window.localStorage.setItem('userdetail', JSON.stringify(userInfo));
+							  window.localStorage.setItem("picture", userInfo.picture);
+								window.localStorage.setItem("loggedIn", 1);
+								window.localStorage.setItem("loggedwithfb", 1);
+													
+									window.plugins.nativepagetransitions.flip({
+													 'backgroundColor' : "#BBBBBB",
+													'direction': 'up',
+													'duration': 2000,
+													"href" : "index.html"
+													 });
 						  
-						    alert( userInfo);
+						   
 						
 						},
 						error: function(e) {
