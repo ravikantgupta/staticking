@@ -59,18 +59,7 @@
 					 logout();
 					}
 			
-		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
-						 		            
-			           
-						var username = userdetail.username;
-						var userin=username+' <cite>'+userdetail.email+'</cite>'
-						jQuery('#uname').html(userin);
-						
-						jQuery('#uname1').html(username);
-						
-					    var ufna=username.charAt(0);
-						
-						jQuery('#proicon').html(ufna.toUpperCase());
+		              setuserinfoinner(logged_in);
 						
 						
 	                  addrightmenu(logged_in);	

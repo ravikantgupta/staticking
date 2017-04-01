@@ -56,21 +56,9 @@
 			 logout();
 			}
 			
-		        var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
-						 		            
-			           
-						var username = userdetail.username;
-						var userin=username+' <cite>'+userdetail.email+'</cite>'
-						jQuery('#uname').html(userin);
-						
-						
-						
-					    var ufna=username.charAt(0);
-						
-						jQuery('#proicon').html(ufna.toUpperCase());
-						
-						
-	                  addrightmenu(logged_in);	
+		          setuserinfoinner(logged_in);
+										
+	              addrightmenu(logged_in);	
 
               
       		document.querySelector("#pickContact").addEventListener("touchend", doContactPicker, false);
