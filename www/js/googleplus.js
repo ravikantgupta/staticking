@@ -75,11 +75,11 @@ var googleapi = {
         }).done(function(data) {
 			
             $loginStatus.html('Access Token: ' + data.access_token);
-				alert( JSON.stringify(data));
+			
 				
 				
 				 var url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+data.access_token;
-
+	alert( JSON.stringify(url));
 					  $.ajax({
 						type: 'GET',
 						url: url,
