@@ -98,7 +98,9 @@ function addmenu(){
    function logout() {
 	   
 	   window.localStorage.removeItem("loggedIn");
-	   
+	     window.localStorage.removeItem("userdetail");
+	    window.localStorage.removeItem("loggedwithfb");
+	      
 	   slide('login.html');
 	   
    }
