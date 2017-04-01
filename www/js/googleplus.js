@@ -78,13 +78,12 @@ var googleapi = {
 				alert( JSON.stringify(data));
 				
 				
-				 var url = 'https://www.googleapis.com/plus/v1/people/me?access_token='+data.access_token;
+				 var url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+data.access_token;
 
 					  $.ajax({
 						type: 'GET',
 						url: url,
-						async: false,
-						success: function(userInfo) {
+					    	success: function(userInfo) {
 						  alert( JSON.stringify(userInfo));
 						  
 						    alert( userInfo);
