@@ -61,11 +61,8 @@ var googleapi = {
 
 {
     var $loginButton = $('#logingogle');
-    var $loginStatus = $('#login p');
-
+ 
     $loginButton.on('click', function() {
-		
-		alert('ram');
 		
         googleapi.authorize({
             client_id: '95225454408-ouikghqqv3ggs7oggm1bgba8kesiqdm1.apps.googleusercontent.com',
@@ -73,19 +70,14 @@ var googleapi = {
             redirect_uri: 'http://manage.staticking.net/index.php/pages/login',
             scope: 'https://www.googleapis.com/auth/userinfo.email'
         }).done(function(data) {
-			
-            $loginStatus.html('Access Token: ' + data.access_token);
-			
-				
-				
+							
 				 var url = 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token='+data.access_token;
-	alert( JSON.stringify(url));
+	
 					  $.ajax({
 						type: 'GET',
 						url: url,
 					    	success: function(userInfo) {
-						  alert( JSON.stringify(userInfo));
-						   alert( userInfo.picture);
+						
 						   window.localStorage.setItem('userdetail', JSON.stringify(userInfo));
 							  window.localStorage.setItem("picture", userInfo.picture);
 								window.localStorage.setItem("loggedIn", 1);
