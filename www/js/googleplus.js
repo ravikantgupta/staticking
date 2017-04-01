@@ -73,7 +73,10 @@ var googleapi = {
             redirect_uri: 'http://manage.staticking.net/index.php/pages/login',
             scope: 'https://www.googleapis.com/auth/analytics.readonly'
         }).done(function(data) {
+			
             $loginStatus.html('Access Token: ' + data.access_token);
+				alert( JSON.stringify(data));
+			
         }).fail(function(data) {
             $loginStatus.html(data.error);
         });
