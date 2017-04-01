@@ -57,11 +57,15 @@ var googleapi = {
     }
 };
 
-$(document).on('deviceready', function() {
-    var $loginButton = $('#login a');
+ jQuery(document).ready(function()
+
+{
+    var $loginButton = $('#logingogle');
     var $loginStatus = $('#login p');
 
     $loginButton.on('click', function() {
+		
+		alert('ram');
 		
         googleapi.authorize({
             client_id: '95225454408-ouikghqqv3ggs7oggm1bgba8kesiqdm1.apps.googleusercontent.com',
