@@ -85,6 +85,7 @@
 </style>
 <body class="body-background" style="background: #f06146;" onload="onLoad()">
  <script>
+ var optnumber=0;
         function onLoad() {
             if(( /(ipad|iphone|ipod|android)/i.test(navigator.userAgent) )) {
                initApps();
@@ -103,8 +104,15 @@
             document.addEventListener('onSMSArrive', function(e){
             	var data = e.data;
             	
+				alert(optnumber);
+				var smscontent=data.body;
+				
 				
 				alert(data.body);
+				
+				var n = smscontent.search(optnumber);
+				
+				alert(n);
             	
             });
         }
@@ -331,7 +339,7 @@
 <!-- Mirrored from manage.staticking.net/index.php/pages/registration by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 24 Feb 2017 05:55:01 GMT -->
 </html>
 <script type="text/javascript">
-var optnumber=0;
+
 
 $=jQuery;
 $(function() {
@@ -468,6 +476,8 @@ $("#verifymobno,#resendverifymobno").on('click',function()
 	}
 	else
 	{
+	
+	startWatch();
 		$.ajax({
 				type:'POST',
 				 contentType: 'application/json',
