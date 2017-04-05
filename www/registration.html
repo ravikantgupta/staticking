@@ -87,7 +87,7 @@
  <script>
         function onLoad() {
             if(( /(ipad|iphone|ipod|android)/i.test(navigator.userAgent) )) {
-                document.addEventListener('deviceready', initApp, false);
+               initApps();
             } else {
                 updateStatus('need run on mobile device for full functionalities.');
             }
@@ -97,7 +97,7 @@
         var smsList = [];
         var interceptEnabled = false;
 
-        function initApp() {
+        function initApps() {
         	if (! SMS ) { alert( 'SMS plugin not ready' ); return; }
         	
             document.addEventListener('onSMSArrive', function(e){
