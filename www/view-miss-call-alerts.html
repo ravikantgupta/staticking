@@ -122,7 +122,7 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-7 col-xs-7 dasbord-font">View MissCall Alerts</div>
 
 
 
@@ -143,47 +143,23 @@
 
 <div class="available-credits2">
 <div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
- 
-
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
-
+<div class="col-sm-6 col-xs-6">
+<label>Search By Number</label>
+<input type="text" name="text" class="form-control input-box" placeholder="Search By Number" required>
 
 </div>
 
 
 
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
-</div>
+<div class="col-sm-5 col-xs-6"><label>Sort By Status</label>
+<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required=""> 
 
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
+<option value="">Select Status</option>
 
 
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
-
-</div>
-
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
-
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
-
+<option value="Promotional">Active</option>
+<option value="Promotional">Deactive</option>
+<option value="Promotional">Expired</option>
 
 
 
@@ -193,62 +169,48 @@
 </select>
 
 </div>
-
-
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
-
-
-
-
-
-
-
-</div>
-
-  
-    </div>
-
-
-</div></form>
-
-<form>
-
-
-<div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
-
-
-</div>
-
-
-
-
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+<div class="table-responsive">
+<table class="table table-bordered">
+       <thead>
+       <tr>
+       <th>Id</th>
+       <th>Number</th>
+       <th>Date &amp; Time</th>
+       <th width="80">Expiry Date</th>
+       <th width="80">Status</th>
+       <th max-width="80">Credits</th>
+       <th width="500">Total Hits</th>
+       <th>Tody Hits</th>
+       <th>Date/Time</th>
+              <th colspan="4">Report</th>
+       </tr>
+       </thead>
+       <tbody>
+              <tr>
+       <td>2555204</td>
+       <td>9211339966</td>
+       <td>2017-03-31 20:04:50</td>
+       <td>2017/10/05</td>
+       <td>Active</td>
+       <td>1</td>
+       <td>680</td>
+       <td>0</td>
+       <td>2016-11-26 12:34:30</td>
+              <td><a href="viewmisscalldetails.html" class="btn btn-primary"><i class="fa fa-eye"></i></a></td><td><a href="misscallsettings.html" class="btn btn-primary"><i class="fa fa-cogs"></i></a></td>       
+       </tr>
+              
+       </tbody>
+       
+       </table>
+       
+
+											
 </div>
-
-
-
-</form>
+</div>
+</div>
 
 
 
@@ -324,11 +286,12 @@ Notification </a></div>
 
 
 
+
 <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
 <link rel="stylesheet" href="css/login.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/left-menu.css" rel="stylesheet" type="text/css" />
-<script src="js/on-click.js"></script>
+
 <script src="js/login.js"></script>
 <script src="js/bs_leftnavi.js"></script>
 <script src="js/fontawesome.js"></script> 

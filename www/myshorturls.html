@@ -41,7 +41,7 @@
 <ul class="gw-nav gw-nav-list">
 <li class="init-un-active" style="height:60px;"> <a href="index.html" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>
 <li class="init-un-active" style="">  <input type="text" id="filtersearch" class="form-control" placeholder="Search Page" style="border-radius:0px; border:none !important; height:40px;"> </li>
-<li class="init-un-active"> <a href="index.html"> <i class="fa fa-align-justify"></i> DASHBOARD </a> </li>
+<li class="init-un-active"> <a href="index.html"> DASHBOARD </a> </li>
 <li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-comments"></i> SMS</span> <b class="gw-arrow"></b> </a>
 
 <ul class="gw-submenu">
@@ -93,6 +93,7 @@
 <li><a href="transfer-credits.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transfer Credits </a></li>
 <li><a href="transsactionin.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions In </a></li>
 <li><a href="transsactionout.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions Out </a></li>
+<li><a href="myshorturls.html"><i class="fa fa-angle-right" aria-hidden="true"></i> My Short Urls </a></li>
 <li><a href="smsapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> HTTP API </a></li>
 
 <li><a href="bulksmsapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Bulk SMS API </a></li>
@@ -122,9 +123,9 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-5 col-xs-5 dasbord-font">Dashboard</div>
 
-
+<div class="col-sm-2 col-xs-2"></div>
 
 <div class="col-sm-3 col-xs-3" style="text-align:center;"><div id="loginContainer">
 <a href="#" id="loginButton"><span>A</span></a>
@@ -143,46 +144,6 @@
 
 <div class="available-credits2">
 <div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
- 
-
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
-
-
-</div>
-
-
-
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
-</div>
-
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
-
-</div>
-
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
-
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
 
 
 
@@ -190,70 +151,79 @@
 
 
 
-</select>
 
-</div>
-
-
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
-
-
-
-
-
-
-
-</div>
-
-  
-    </div>
-
-
-</div></form>
-
-<form>
-
-
-<div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
-
-
-</div>
 
 
 
 
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+<div class="table-responsive">
+<table class="table table-bordered">
+
+       <tbody><tr>
+
+       <th>Id</th>
+       <th>Added By</th>
+       <th>Short Url</th>
+       <th>Original Url</th>
+       <th>Mobile</th>
+       
+       <th>Unique Clicks</th>
+       <th>Total Clicks</th>
+       <th>Date</th>
+       <th>Action</th>
+       </tr>
+
+       
+
+       
+       <tr>
+
+       <td>5301</td>
+       
+       <td>Misscall</td>
+       <td><a href="#">http://1tx.in/bcdp</a></td>
+       <td>https://twitter.com/borbelsecuritie</td>
+       <td>9739796677</td>
+       
+       <td>0</td>
+       <td></td>
+       <td>2016-12-13 15:46:57</td>
+       <td>
+       
+       <a href="javascript:void(0)" id="viewurlreport" urlid="5301" data-toggle="modal" data-target="#myModal" class="btn btn-info viewurlreport" title="View Report"><i class="fa fa-eye"></i></a>
+       </td>
+
+       </tr>
+
+       
+       
+
+       </tbody></table>
+       
+
+
+											
+</div>
+</div>
 </div>
 
 
 
-</form>
 
 
 
 
 
+
+
+
+
+<div class="col-md-12">
+<!--<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Send Message">-->
+</div>
 </div>
 
 
@@ -334,6 +304,5 @@ Notification </a></div>
 <script src="js/fontawesome.js"></script> 
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
-
 </body>
 </html>

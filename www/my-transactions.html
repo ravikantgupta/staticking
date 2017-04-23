@@ -122,7 +122,7 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-7 col-xs-7 dasbord-font">My Transactions</div>
 
 
 
@@ -143,112 +143,58 @@
 
 <div class="available-credits2">
 <div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
- 
 
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
-
-
-</div>
-
-
-
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
-</div>
-
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
-
-</div>
-
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
-
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
-
-
-
-
-
-
-
-</select>
-
-</div>
-
-
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
-
-
-
-
-
-
-
-</div>
-
-  
-    </div>
-
-
-</div></form>
-
-<form>
-
-
-<div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
-
-
-</div>
 
 
 
 
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+<div class="table-responsive">
+<table class="table table-bordered">
+       
+       <tbody><tr>
+       <th>Id</th>
+        <th>Username</th>
+       <th>Volume</th>
+       
+       <th>Route</th>
+       <th>Price</th>
+       <th>Tax</th>
+       <th>Amount</th>
+       <th>Type</th>
+       
+       <th>Date</th>
+       </tr>
+       
+              
+       <tr>
+       <td>652</td>
+        <td>demo</td>
+       <td>1000</td>
+       
+       <td>Promotional </td>
+       <td>10</td>
+       <td>13</td>
+       <td>113</td>
+       <td>Add</td>
+       
+       <td>2016-02-24 22:46:15</td>
+       </tr>
+       
+              
+       </tbody></table>
+       
+
+
+													
+</div>
+</div>
 </div>
 
 
 
-</form>
 
 
 
@@ -324,11 +270,12 @@ Notification </a></div>
 
 
 
+
 <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
 <link rel="stylesheet" href="css/login.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/left-menu.css" rel="stylesheet" type="text/css" />
-<script src="js/on-click.js"></script>
+
 <script src="js/login.js"></script>
 <script src="js/bs_leftnavi.js"></script>
 <script src="js/fontawesome.js"></script> 

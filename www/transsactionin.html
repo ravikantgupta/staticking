@@ -1,476 +1,212 @@
 
-<!doctype html>
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <title>StaticKing SMS Gateway</title>
-    <link rel="stylesheet" href="css/font-awesome.css" type="text/css">
-    <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
-    <link rel="stylesheet" href="css/animate.css" type="text/css">
-    <link rel="stylesheet" href="css/waves.css" type="text/css">
-    <link rel="stylesheet" href="css/layout.css" type="text/css">
-    <link rel="stylesheet" href="css/components.css" type="text/css">
-    <link rel="stylesheet" href="css/plugins.css" type="text/css">
-    <link rel="stylesheet" href="css/common-styles.css" type="text/css">
-    <link rel="stylesheet" href="css/pages.css" type="text/css">
-    <link rel="stylesheet" href="css/responsive.css" type="text/css">
-    <link rel="stylesheet" href="css/matmix-iconfont.css" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,500italic" rel="stylesheet" type="text/css">
-    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet" type="text/css">
-     
-     <script type="text/javascript" src="cordova.js"></script>
-	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
-	 <script type="text/javascript" src="js/function.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Dashboard</title>
+<link href="images/fav.jpg" rel="shortcut icon" />
+<link href="css/my-css.css" rel="stylesheet" type="text/css" />
+
 </head>
 
-<body onload="setvalue()">
+<body style="background:#fff; color:#000;">
 
-	
-<script>
-	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
- var logged_in= userdetail.id;
- 
-   
- 
-		if(window.localStorage.getItem("loggedIn")==1) 
-		{ 
-		 //alert('ram2');
-		}
-		else{ 
+<div class="container">
 
-		window.location.href="login.html";
 
+<div class="header">
 
-
-		}
-		
-		
-		function setvalue()
-		{
-		
-			if(!logged_in) 
-			{ 
-			 logout();
-			}
-			
-		         setuserinfoinner(logged_in);
-				 
-				 addrightmenu(logged_in);	
-
-                getpagehtml();
-      	
-
-				  
-		}
-		
-		function getpagehtml()
-		{
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactioninapi",
-				data:'logged_in='+logged_in,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			  
-		}
-		
-		
-		function setquery()
-		{
-		
-		  var route=jQuery('#routeid').val();
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactioninapi",
-				data:'logged_in='+logged_in+'&route='+route,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			return false;    
-		}
-		
-		
-		function setquery1()
-		{
-		
-		  var user=jQuery('#username').val();
-            $.ajax({
-				type:'POST',
-				url:"http://manage.staticking.net/index.php/services/transsactioninapi",
-				data:'logged_in='+logged_in+'&user='+user,
-				success:function(data)
-				{
-					
-					$(".item").html(data);
-				}
-		      });
-
-			return false;  
-		}
-		
-		
-</script>
-
-	<link href="js/jquery.simple-dtpicker.css" rel="stylesheet">
-
-
-<div class="page-container list-menu-view">
-    <!--Leftbar Start Here -->
-    	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
-<div class="left-aside desktop-view">
-
-         <div class="aside-branding">
-
-     
-            <a onClick="slide('index.html')" class="large-logo"><img src="images/log.jpg" style="width:260px;height:60px;" alt="Sms Panel">
-
-            </a><span class="aside-pin waves-effect"><i class="fa fa-thumb-tack"></i></span>
-
-            <span class="aside-close waves-effect"><i class="fa fa-times"></i></span>
-
-        </div>
-
-        
-
-    <input type="text" id="filtersearch" class="form-control" placeholder="Search Page">        
-
-        <div class="left-navigation">
-
-              <ul class="list-accordion">
-
-                
-
-                <li><a onClick="slide('index.html')" class="waves-effect"><span class="nav-icon"><i class="fa fa-align-justify"></i></span><span class="nav-label">Dashboard</span></a>
-
-                </li>
-
-                 
-                
-
-               <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-comments"></i></span><span class="nav-label">SMS</span></a>
-
-                    <ul>
-
-                        <li><a onClick="slide('composesms.html')" >Compose SMS</a>
-
-                        </li>
-
-                        <li><a onClick="slide('allsentsms.html')">All Sent Sms</a>
-
-                        </li>
-
-                        <li><a onclick="slide('schedule.html')" >Schedule Sms</a>
-
-                        </li>
-                         
-                       <li><a onClick="slide('dynamicsms.html')" >Quick Sent Sms</a>
-
-                        </li>
-
-                        
-
-                        
-
-                    </ul>
-
-                </li>
-                
-              
-
-                
-                
-                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-phone"></i></span><span class="nav-label">Miss Call Alerts</span></a>
-
-                    <ul>
-                                                
-                        <li><a onClick="slide('viewmisscall.html')">View Miss Call Alerts</a>
-
-                        </li>
-                        
-                        
-                    </ul>
-
-                </li>
-
-                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-th"></i></span><span class="nav-label">Short/Long Code</span></a>
-
-                    <ul>
-                                                
-                        <li><a onClick="slide('viewlongcode.html')">View Short/Long Code</a>
-
-                        </li>
-                        
-                        
-                    </ul>
-
-                </li>
-                
-              
-               
-                
-                
-              
-                
-                
-                
-                 <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-file"></i></span><span class="nav-label">Others</span></a>
-
-                    <ul>
-
-                        <li><a onClick="slide('smstemplate.html')" >Add Template</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('viewsmstemplate.html')" >View Templates</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('newgroup.html')" >Add Group</a>
-
-                        </li>
-                        
-                        <li><a onClick="slide('viewgroup.html')" >View Group</a>
-
-                        </li>
-                    </ul>
-
-                </li>
-                
-                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-user"></i></span><span class="nav-label">Users</span></a>
-
-                    <ul>
-
-                        <li><a onClick="slide('addusers.html')" >Add Users</a>
-
-                        </li>
-
-                        <li><a onClick="slide('viewusers.html')" >View Users</a>
-
-                        </li>
-
-                        
-
-                    </ul>
-
-                </li>
-
-                
-                 
-                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-users"></i></span><span class="nav-label">Reseller</span></a>
-
-                    <ul>
-
-                        <li><a onClick="slide('addresellers.html')" >Add Reseller</a>
-
-                        </li>
-
-                        <li><a onClick="slide('viewreseller.html')" >View Reseller</a>
-
-                        </li>
-                        <li><a onClick="slide('usersmpp.html')" >Add Your Smpp</a>
-
-                        </li>
-						                        
-
-                    </ul>
-
-                </li>
-
-               
-
-                <li><a href="#" class="waves-effect"><span class="nav-icon"><i class="fa fa-cogs"></i></span><span class="nav-label">Settings</span></a>
-
-                    <ul>
-                        <li><a onClick="slide('changeusertype.html')">Change User Type</a>
-
-                        </li>
-						                     							
-                        <li><a onClick="slide('transfercredits.html')" >Transfer Credits</a></li>
-                     
-                         <li><a onClick="slide('transsactionin.html')" >Transactions In</a>
-
-                        </li>
-                        <li><a onClick="slide('transsactionou.html')" >Transactions Out</a>
-                        </li>
-                          <li><a onClick="slide('allsenderids.html')" >View Sender IDs</a>
-
-                        </li>
-                       
-                         <li><a onClick="slide('notifications.html')">Send Notifications</a>
-
-                        </li>
-                       <li><a onClick="slide('website.html')" >Website Settings</a>
-
-                        </li>
-					     
-
-                    </ul>
-
-                </li>
-             
-             
-               
-
-               
-
-            </ul>
-		
-
-
-        </div>
-
-    </div>     <!--Leftbar End Here -->
-        <div class="page-content">
-        <!--Topbar Start Here -->
-         
-<header class="top-bar">
-
-            <div class="container-fluid top-nav">
-
-                <div class="search-form search-bar">
-
-                    
-
-                    <span class="search-close waves-effect"><i class="ico-cross"></i></span>
-
-                </div>
-
-                <div class="row">
-
-                    <div class="col-md-2">
-
-                        <div class="clearfix top-bar-action">
-
-                            <span class="leftbar-action-mobile waves-effect"><i class="fa fa-bars "></i></span>
-
-                            <span class="leftbar-action desktop waves-effect"><i class="fa fa-bars "></i></span>
-
-						
-
-                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
-
-                        </div>
-
-                    </div>
-
-
-					                    
-                         <div class="col-md-4 responsive-fix top-mid">
-
-
-                                  </div>
-
-                   	
-					
-                    <div class="col-md-6 responsive-fix">
-
-                        <div class="top-aside-right">
-								
-                              
-                            <div class="user-nav">
-
-                                 <ul>
-
-                                    <li class="dropdown">
-
-                                        <a data-toggle="dropdown" href="#" class="clearfix dropdown-toggle waves-effect waves-block waves-classic">
-
-                                            <span class="user-info" id="uname"></span>
-
-                                            <span class="user-thumb" style="background:#15BDC3;" >
-                                            
-                                                 <p style="font-size:36px;color:white;margin-left:12px;" id="proicon"></p>
-                                            
-                                                                                        
-                                            
-                                            
-                                            </span>
-
-                                        </a>
-
-                                        <ul role="menu" class="dropdown-menu fadeInUp">
-
-                                            <li><a onclick="viewprofile()" ><span class="user-nav-icon"><i class="fa fa-user"></i></span><span class="user-nav-label">User Profile</span></a>
-
-                                            </li>
-
-                                            <li><a onclick="logout()"><span class="user-nav-icon"><i class="fa fa-lock"></i></span><span class="user-nav-label">Logout</span></a>
-
-                                            </li>
-
-                                        </ul>
-
-                                    </li>
-
-                                </ul>
-
-                         
-                            </div>
-							
-                                                        
-
-                            <span class="rightbar-action waves-effect"><i class="fa fa-bars"></i></span>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </header>        <!--Topbar End Here -->
-		
-
-
-<div class="main-container">
-<div class="container-fluid" style="padding:0px;">
-<div class="col-md-12" style="padding:0px;">
-<div class="box-widget widget-module">
-
-<div class="widget-container">
-<div class=" widget-block">
-<div class="page-header">
-	<h2>Transactions In</h2>
-</div>
 <div class="row">
+<div class="col-sm-2 col-xs-2"><div id="menu-toggle">
+<div id="menu-icon">
 
-<form   >
-<div class="col-md-3">
-<select name="route" id="routeid" class="form-control" onchange="setquery()">
-<option value="">Route</option>
-<option value="promotional">Promotional</option>
-<option value="promosenderid">Promo S.ID</option>
-<option value="transactional">Transactional</option>
+<div style="background:#000 !important;"><span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span></div>
+
+</div>
+
+</div>
+<div id="menu-overlay"></div>
+<ul id="menu">
+
+<div class="gw-sidebar">
+<div id="gw-sidebar" class="gw-sidebar">
+<div class="nano-content">
+<ul class="gw-nav gw-nav-list">
+<li class="init-un-active" style="height:60px;"> <a href="index.html" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>
+<li class="init-un-active" style="">  <input type="text" id="filtersearch" class="form-control" placeholder="Search Page" style="border-radius:0px; border:none !important; height:40px;"> </li>
+<li class="init-un-active"> <a href="index.html"> <i class="fa fa-align-justify"></i> DASHBOARD </a> </li>
+<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-comments"></i> SMS</span> <b class="gw-arrow"></b> </a>
+
+<ul class="gw-submenu">
+<li><a href="compose-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Compose SMS</a></li>
+<li><a href="all-sent-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> All Sent SMS</a></li>
+<li><a href="schedule-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Schedule SMS</a>
+<li><a href="quick-compose.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Quick Compose</a></li>
+<li><a href="quick-sent-item.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Quick Sent Item</a></li>
+</ul>
+</li>
+<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-phone"></i> Miss Call Alerts</span> <b class="gw-arrow icon-arrow-up8"></b> </a>
+<ul class="gw-submenu">
+<li><a href="view-miss-call-alerts.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Miss Call Alerts</a></li>
+</ul>
+</li>
+<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-th"></i> Short/Long Code</span> <b></b> </a>
+<ul class="gw-submenu">
+<li><a href="view-short-long-code.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Short/Long Code</a></li>
+</ul>
+</li>
+
+<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-file"></i> Others</span> <b></b> </a>
+<ul class="gw-submenu">
+<li><a href="add-template.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Template</a></li>
+<li><a href="view-template.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Template</a></li>
+<li><a href="add-group.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Group</a></li>
+<li><a href="view-group.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Group</a></li>
+</ul>
+</li>
+
+<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-user"></i> Users</span> <b></b> </a>
+<ul class="gw-submenu">
+<li><a href="add-user.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add User</a></li>
+<li><a href="view-user.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View User</a></li>
+</ul>
+</li>
+
+<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-users"></i> Reseller</span> <b></b> </a>
+<ul class="gw-submenu">
+<li><a href="add-reseller.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Reseller</a></li>
+<li><a href="view-reseller.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Reseller</a></li>
+</ul>
+</li>
+
+<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-cogs"></i> Settings</span> <b></b> </a>
+<ul class="gw-submenu">
+
+<li><a href="changeusertype.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Change User Type </a></li>
+<li><a href="transfer-credits.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transfer Credits </a></li>
+<li><a href="transsactionin.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions In </a></li>
+<li><a href="transsactionout.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions Out </a></li>
+<li><a href="smsapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> HTTP API </a></li>
+
+<li><a href="bulksmsapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Bulk SMS API </a></li>
+<li><a href="xmlapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> XML API </a></li>
+<li><a href="credit-api.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Credits API </a></li>
+<li><a href="delivery-api.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery API </a></li>
+<li><a href="view-sender-ids.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Sender IDs </a></li>
+<li><a href="viewactualcredits.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Actual Credits </a></li>
+<li><a href="send-notifications.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Send Notifications </a></li>
+<li><a href="delivery-cutting.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting </a></li>
+<li><a href="delivery-cutting-users-list.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting Users List</a></li>
+<li><a href="website-settings.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Website Settings</a></li>
+<li><a href="check-dnd-number.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Check DND Number</a></li>
+<li><a href="block-number.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Block Number</a></li>
+<li><a href="my-transactions.html"><i class="fa fa-angle-right" aria-hidden="true"></i> My Transactions </a></li>
+
+</ul>
+</li>
+
+</ul>
+</div>
+</div>
+</div>
+
+</ul>
+
+
+</div>
+
+<div class="col-sm-7 col-xs-7 dasbord-font">Transaction In</div>
+
+
+
+<div class="col-sm-3 col-xs-3" style="text-align:center;"><div id="loginContainer">
+<a href="#" id="loginButton"><span>A</span></a>
+<div style="clear:both"></div>
+<div id="loginBox">                
+<form id="loginForm">
+<span><a href="my-profile.html"><i class="fa fa-user"></i> My Profile</a></span>
+<span><a href="#"><i class="fa fa-lock"></i> Log Out</a></span>
+</form>
+</div>
+</div></div>
+
+</div>
+
+</div>
+
+<div class="available-credits2">
+<div class="row compose">
+<div class="col-sm-4 col-xs-6"><label>Short</label>
+<select name="list" class="form-control" onchange="this.form.submit();">
+<option value="">Sort</option>
+<option value="20">20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+<option value="300">300</option>
+<option value="500">500</option>
+<option value="1000">1000</option>
 </select>
-</div>
-</form>
-
-<form  method="get" onsubmit="return setquery1();">
-<div class="col-md-4">
-<input type="text" name="user" id="username" class="form-control" placeholder="Add Username & Hit Enter" required/>
-</div>
-</form>
 
 </div>
+
+
+
+<div class="col-sm-4 col-xs-6"><label>Select Route</label>
+<select class="form-control" id="routeid" required="">
+
+                                                <option value="">Select Route</option>
+
+                                                
+
+                                               
+
+                                                <option value="UHJvbW90aW9uYWw=">Promotional</option>
+												<option value="YXBpUHJvbW90aW9uYWw=">API Promotional</option>
+                                                <option value="UHJvbW90aW9uYWwx">Promotional 1</option>
+                                                
+
+                                                <option value="cHJvbW9zZW5kZXJpZA==">Promo S.ID</option>
+												<option value="YXBpcHJvbW9zZW5kZXJpZA==">API Promo S.ID</option>
+                                                
+
+                                                <option value="VHJhbnNhY3Rpb25hbA==">Transactional</option>
+												<option value="YXBpVHJhbnNhY3Rpb25hbA==">API Transactional</option>
+                                                
+                                                <option value="dm9pY2VzbXM=">Voice SMS</option>
+												
+                                                
+
+                                                 <option value="c29jaWFsbWVkaWE=">Social Media</option>
+                                                                                                  <option value="YW5kcm9pZGFwcA==">Android App</option>
+                                                 <option value="VHJhbnNhY3Rpb25hbDI=">Transactional 2</option>
+                                                 <option value="aW50ZXJuYXRpb25hbA==">International</option>
+                                                </select>
+
 </div>
- <div style="width:100%;overflow: scroll;">
+
+
+<div class="col-sm-4 col-xs-12"><label>Add Username & Hit Enter</label>
+<input type="text" name="text" class="form-control input-box" placeholder="Add Username" required>
+
+</div>
+
+
+
+
+<div class="col-md-12">
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+<div class="table-responsive">
 <table class="table table-bordered">
        
-       <tr>
+       <tbody><tr>
        <th>Id</th>
        <th>Username</th>
        <th>Volume</th>
@@ -485,274 +221,157 @@
        <th>Date</th>
        </tr>
        
-       <tbody class="item">
-		
-	    </tbody>   
-
               
-       </table>
+       <tr>
+       <td>5544</td>
+       <td>Misscall</td>
+       <td>50</td>
+       <td>add</td>
+       <td>apitransactional</td>
+       <td>0</td>
+       <td>0</td>
+       <td>0</td>
+       <td>Credits</td>
+       <td>0</td>
+       <td>Admin</td>
+       <td>2016-12-07 15:20:09</td>
+       </tr>
+       
+              
+       <tr>
+       <td>5363</td>
+       <td>Misscall</td>
+       <td>100</td>
+       <td>add</td>
+       <td>apitransactional</td>
+       <td>0</td>
+       <td>0</td>
+       <td>0</td>
+       <td>Credits</td>
+       <td>0</td>
+       <td>Admin</td>
+       <td>2016-11-26 12:42:53</td>
+       </tr>
+       
+              
+       <tr>
+       <td>4224</td>
+       <td>Misscall</td>
+       <td>25</td>
+       <td>add</td>
+       <td>apitransactional</td>
+       <td>0</td>
+       <td>0</td>
+       <td>0</td>
+       <td>Credits</td>
+       <td>0</td>
+       <td>Admin</td>
+       <td>2016-10-05 13:29:28</td>
+       </tr>
+       
+              
+       </tbody></table>
+       
+
+
+											
+</div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-md-12">
+<!--<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Send Message">-->
+</div>
+</div>
+
+
+
+
+
+
+
 
 
 </div>
 
-</div>
-</div>
+
+
+
+
+
+<div style="margin:40px; float:left;"></div>
+
+<div class="footer-credits">
+
+<div class="row">
+
+
+<div class="col-sm-3 col-xs-3 col-sm-3-me">
+<a href="index.html">
+<i class="fa fa-home fav-icon"></i><br>
+Dashboard </a></div>
+
+
+
+<div class="col-sm-3 col-xs-3 col-sm-3-me">
+<a href="quick-compose.html">
+<i class="fa fa-envelope-o fav-icon"></i><br>
+Quick SMS </a></div>
+
+
+<div class="col-sm-3 col-xs-3 col-sm-3-me">
+<a href="quick-sent-item.html">
+<i class="fa fa-pencil-square-o fav-icon"></i><br>
+Sent Item</a> </div>
+
+<div class="col-sm-3 col-xs-3 col-sm-3-me">
+<a href="view-group.html">
+<i class="fa fa-users fav-icon"></i><br>
+Group </a></div>
+
+
+
+
+<div class="col-sm-3 col-xs-3 col-sm-3-me">
+<span class="notifactions-icon">12</span>
+<a href="notification.html">
+<i class="fa fa-bell fav-icon"></i><br>
+Notification </a></div>
 
 </div>
+
+
+
+
 </div>
 
-            
+
+
+
 </div>
-</div>
-             
 
 
-<footer class="footer-container">
 
-                <div class="container-fluid">
-
-                    <div class="row">
-
-                        <div class="col-md-6 col-sm-6">
-
-                            <div class="footer-left">
-
-                                
-
-                            </div>
-
-                        </div>
-
-                        <div class="col-md-6 col-sm-6">
-
-                            <div class="footer-right">
-
-                               
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </footer>
-			
-			
-
-<div class="right-aside">
-
-    <div class="aside-branding">
-
-        <div class="aside-tab">
-
-            <ul class="nav nav-tabs pull-left">
-
-                <li class="active"><a href="#coversetaion"  data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
-
-                </li>
-
-                <li id="actmn"><a href="#server-stats" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Actual Credits" class="waves-effect"><i class="fa fa-comments"></i></a>
-
-                </li>
-               <!-- <li><a href="#notifications" data-toggle="tab" data-tooltip="tooltip" data-placement="bottom" title="Notifications" class="waves-effect aside-notifications"><i class="fa fa-bell"></i><span class="alert-bubble">10</span></a>
-
-                </li>-->
-
-            </ul>
-
-        </div>
-
-        <span class="rightbar-action waves-effect"><i class="fa fa-times"></i></span>
-
-    </div>
-
-    <div class="aside-tab-wigets">
-
-    <div class="tab-content">
-
-    <div class="tab-pane active" id="coversetaion">
-
-        
-
-        <div class="block-content chat-user-list">
-
-            <span class="piechart"></span>
-			
-            <h3 class="clearfix"><br /><span class="pull-left">Credits</span><span class="pull-right online-counter"></span></h3>
-
-            <ul id="creditslist" class="chat-list">
-				
-                
- 			 
-
-
-            </ul>
-
-            
-
-            
-
-        </div>
-
-    </div>
-	    <div class="tab-pane" id="server-stats">
-
-        <div class="block-content chat-user-list">
-
-            <span class="piechart"></span>
-			
-            <h3 class="clearfix"><br /><span class="pull-left">Actual Credits</span><span class="pull-right online-counter"></span></h3>
-
-            <ul id="actuallist" class="chat-list">
-				
-                
-    
-
-            </ul>
-
-            
-
-            
-
-        </div>
-
-    </div>
-
-    
-    </div>
-
-    </div>
-
-    
-    </div>
-
-
-	
-	<style type="text/css">
-    
- .navbgr
- {
-    background: red;
- }   
-</style>
-
-
-
-<script src="js/jquery-1.11.2.min.js"></script>
-
- 
-
-    <script src="js/jquery-migrate-1.2.1.min.js"></script>
-    <script src="js/jRespond.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/nav-accordion.js"></script>
-    <script src="js/hoverintent.js"></script>
-    <script src="js/waves.js"></script>
-    <script src="js/switchery.js"></script>
-    <script src="js/jquery.loadmask.js"></script>
-    <script src="js/icheck.js"></script>
-    <script src="js/select2.js"></script>
-    <script src="js/bootstrap-filestyle.js"></script>
-    <script src="js/bootbox.js"></script>
-    <script src="js/animation.js"></script>
-    <script src="js/colorpicker.js"></script>
-    <script src="js/bootstrap-datepicker.js"></script>
-    <script src="js/sweetalert.js"></script>
-    <script src="js/moment.js"></script>
-    <script src="js/calendar/fullcalendar.js"></script>
-    
-    <!--CHARTS-->
-    <script src="js/chart/sparkline/jquery.sparkline.js"></script>
-    <script src="js/chart/easypie/jquery.easypiechart.min.js"></script>
-    <script src="js/chart/flot/excanvas.min.js"></script>
-    <script src="js/chart/flot/jquery.flot.min.js"></script>
-    <script src="js/chart/flot/curvedLines.js"></script>
-    <script src="js/chart/flot/jquery.flot.time.min.js"></script>
-    <script src="js/chart/flot/jquery.flot.stack.min.js"></script>
-    <script src="js/chart/flot/jquery.flot.axislabels.js"></script>
-    <script src="js/chart/flot/jquery.flot.resize.min.js"></script>
-    <script src="js/chart/flot/jquery.flot.tooltip.min.js"></script>
-    <script src="js/chart/flot/jquery.flot.spline.js"></script>
-    <script src="js/chart/flot/jquery.flot.pie.min.js"></script>
-    <script src="js/chart.init.js"></script>
-    <script src="js/smart-resize.js"></script>
-    <script src="js/layout.init.js"></script>
-    <script src="js/matmix.init.js"></script>
-    <script src="js/retina.min.js"></script>
-    <script src="js/functions.js"></script>
-    <script src="js/summernote.min.js"></script>
-    <script src="js/jquery.simple-dtpicker.js"></script>
-
-		<script type="text/javascript">
-	$=jQuery;
-	$(document).ready(function() {
-         $(".whenuserread").on('click',function()
-		{
-			
-			$.get('http://manage.staticking.net/index.php/servicessms/notireadapi?notiread=yes&logged_in='+logged_in,function(data)
-			{
-				if(data=='success')
-				{
-					$(".notitotalh").hide();
-				}
-			});
-		});
-    });
-	</script>
-    
-    <script type="text/javascript">
-	$=jQuery;
-	$(document).ready(function() {
-		
-		$("#accountmanager").hover(function()
-		{
-			$("#accountmanagerdiv").show();
-		});
-		
-		$(document).on('click',function()
-		{
-			$("#accountmanagerdiv").hide();
-		});
-		
-		
-	});
-
-function capitalizeFirstLetter(string) {
-    return string[0].toUpperCase() + string.slice(1);
-}
-
-
-$('#filtersearch').keyup(function(){
-
-    var that = this, $allListElements = $('.list-accordion > li, .dcjq-parent-li > ul > li');
-
-    var $matchingListElements = $allListElements.filter(function(i, li){
-        var listItemText = $(li).text().toUpperCase(), 
-            searchText = that.value.toUpperCase();
-        return ~listItemText.indexOf(searchText);
-    });    
-    $allListElements.hide();
-    $matchingListElements.show();
-    
-    $(".dcjq-parent-li > ul").show();
-    
-    if($.trim($('#filtersearch').val())=='')
-    {
-        $(".dcjq-parent-li > ul").hide();
-    }
-});
-
-
-	</script>
-
-
-
-
+<link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
+<link rel="stylesheet" href="css/login.css" />
+<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+<link href="css/left-menu.css" rel="stylesheet" type="text/css" />
+<script src="js/on-click.js"></script>
+<script src="js/login.js"></script>
+<script src="js/bs_leftnavi.js"></script>
+<script src="js/fontawesome.js"></script> 
+<script src="js/left-menu.js"></script>
+<script src="js/left-menu2.js"></script>
 </body>
-
-
-
 </html>
-

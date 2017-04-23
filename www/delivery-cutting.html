@@ -122,7 +122,7 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-7 col-xs-7 dasbord-font">Delivery  Cutting</div>
 
 
 
@@ -143,50 +143,33 @@
 
 <div class="available-credits2">
 <div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
- 
-
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
 
 
-</div>
+<div class="col-sm-6 col-xs-6"><label>Select Route</label>
+<select class="form-control" id="routeid">
 
+                                                <option value="">Select Route</option>
+												
+                                                <option value="promotional">Promotional</option>
+                                                <option value="promotional1">Promotional 1</option>
+												
+                                                <option value="promosenderid">Promo S.ID</option>
+												
+                                                <option value="transactional">Transactional</option>
+                                                <option value="transactional2">Transactional 2</option>
+                                                
+                                                <option value="voicesms">Voice SMS</option>
+												
+                                               
 
-
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
-</div>
-
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
+                                                </select>
 
 </div>
 
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
+<div class="col-sm-6 col-xs-6"><label>Sender Username</label>
+<select class="form-control" id="routeid">
 
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
-
-
-
-
+<option value="">Select </option>
 
 
 
@@ -194,62 +177,14 @@
 
 </div>
 
-
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
-
-
-
-
-
-
+<div class="col-sm-12 col-xs-12"><label>Delivery Percent (%)</label>
+<input type="text" name="text" class="form-control input-box" placeholder="Delivery Percent" required>
 
 </div>
-
-  
-    </div>
-
-
-</div></form>
-
-<form>
-
-
-<div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
-
-
-</div>
-
-
-
 
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Add Delivery Cut" style="margin-top:20px;">
 </div>
-
-
-
-</form>
-
 
 
 
@@ -324,11 +259,12 @@ Notification </a></div>
 
 
 
+
 <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
 <link rel="stylesheet" href="css/login.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/left-menu.css" rel="stylesheet" type="text/css" />
-<script src="js/on-click.js"></script>
+
 <script src="js/login.js"></script>
 <script src="js/bs_leftnavi.js"></script>
 <script src="js/fontawesome.js"></script> 

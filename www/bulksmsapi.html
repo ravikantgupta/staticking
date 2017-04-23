@@ -122,7 +122,7 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-7 col-xs-7 dasbord-font">Bulk SMS API</div>
 
 
 
@@ -143,112 +143,121 @@
 
 <div class="available-credits2">
 <div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
- 
 
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
-
-
-</div>
-
-
-
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
-</div>
-
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
-
-</div>
-
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
-
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
-
-
-
-
-
-
-
-</select>
-
-</div>
-
-
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
-
-
-
-
-
-
-
-</div>
-
-  
-    </div>
-
-
-</div></form>
-
-<form>
-
-
-<div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
-
-
-</div>
-
-
-
+<div class="col-md-12"><strong class="pp-class">What is Bulk SMS Api? </strong> </div>
 
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+
+
+<p class="pp-class">Bulk SMS Api allows you to send sms in bulk, using http post method.  </p> </div>
+<div class="col-md-12">
+
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+    
+    
+   <div class="table-responsive">
+<table class="table table-bordered">
+       <tbody>
+         <tr>
+           <td>http://manage.staticking.net/index.php/Bulksmsapi/httpapi</td>
+           </tr>
+         
+       </tbody>
+       
+       </table>
+  </div> 
+
+</div>
+
 </div>
 
 
 
-</form>
+
+
+<div class="col-md-12" style="float:left;"><strong>Api Description</strong></div>
+
+<div class="col-md-12 samppi-text">
+<p class="pp-class"><i class="fa fa-angle-right"></i> uname : Username of your account</p>
+<p class="pp-class"><i class="fa fa-angle-right"></i> password : Password of your account</p>
+
+<p class="pp-class"><i class="fa fa-angle-right"></i> sender : Sender id ( Origin )</p>
+
+<p class="pp-class"><i class="fa fa-angle-right"></i> receiver : Destination numbers ( Comma separated ) eg : 99XXXXXXXX,98XXXXXXXX</p>
+
+<p class="pp-class"><i class="fa fa-angle-right"></i> route : Route you want to send SMS ( Promotional API - PA , Transaction API - TA , Promotional Senderid API - PSA )</p>
+
+<p class="pp-class"><i class="fa fa-angle-right"></i> msgtype : Message type ( Text - 1 , Flash - 2 , Unicode - 3)</p>
+<p class="pp-class"><i class="fa fa-angle-right"></i> sms : SMS Content ( Url encoded )</p>
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="col-sm-12" style="background:#efefef; padding:15px; float:left; margin-top:20px;">
+
+<strong style="float:left; margin-top:20px; width:100%; margin-bottom:20px;" >PHP code to Send Request</strong>
+
+<div class="jumbotron">
+ 
+$param['uname'] = Username of your account;
+<br>
+<br>
+$param['password'] = Password of your account;
+<br>
+<br>
+$param['sender'] = Sender id;
+<br>
+<br>
+$param['receiver'] = Destination numbers (Comma separated) eg : 99XXXXXXXX,98XXXXXXXX;
+<br>
+<br>
+$param['route'] = Route you want to send SMS ( Promotional API - PA , Transaction API - TA , Promotional Senderid API - PSA );
+<br>
+<br>
+$param['msgtype'] = Message type (Text - 1 , Flash - 2 , Unicode - 3);
+<br>
+<br>
+$param['sms']  = SMS Content (Url encoded);
+		<br>	
+        <br>				
+$parameters = http_build_query($param);
+<br>
+<br>	
+$url="http://manage.staticking.net/index.php/Bulksmsapi/httpapi";
+		<br>	
+        <br>				
+$ch = curl_init();
+<br><br>
+
+curl_setopt($ch, CURLOPT_URL, $url); 
+<br><br>
+
+curl_setopt($ch,CURLOPT_HEADER, false);
+<br><br>
+
+curl_setopt($ch, CURLOPT_POST, 1); 
+<br><br>
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/x-www-form-urlencoded'));
+<br><br>
+
+curl_setopt($ch, CURLOPT_POSTFIELDS,$parameters);
+<br><br>
+
+$result = curl_exec($ch);
+
+ 
+ </div>
+</div>
+
 
 
 
@@ -324,11 +333,12 @@ Notification </a></div>
 
 
 
+
 <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
 <link rel="stylesheet" href="css/login.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/left-menu.css" rel="stylesheet" type="text/css" />
-<script src="js/on-click.js"></script>
+
 <script src="js/login.js"></script>
 <script src="js/bs_leftnavi.js"></script>
 <script src="js/fontawesome.js"></script> 

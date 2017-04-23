@@ -122,7 +122,7 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-7 col-xs-7 dasbord-font">Transaction Out</div>
 
 
 
@@ -143,99 +143,57 @@
 
 <div class="available-credits2">
 <div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
- 
-
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
-
-
-</div>
-
-
-
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
-</div>
-
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
-
-</div>
-
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
-
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
-
-
-
-
-
-
-
+<div class="col-sm-4 col-xs-6"><label>Short</label>
+<select name="list" class="form-control" onchange="this.form.submit();">
+<option value="">Sort</option>
+<option value="20">20</option>
+<option value="50">50</option>
+<option value="100">100</option>
+<option value="300">300</option>
+<option value="500">500</option>
+<option value="1000">1000</option>
 </select>
 
 </div>
 
 
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
 
+<div class="col-sm-4 col-xs-6"><label>Select Route</label>
+<select class="form-control" id="routeid" required="">
 
+                                                <option value="">Select Route</option>
 
+                                                
 
+                                               
 
+                                                <option value="UHJvbW90aW9uYWw=">Promotional</option>
+												<option value="YXBpUHJvbW90aW9uYWw=">API Promotional</option>
+                                                <option value="UHJvbW90aW9uYWwx">Promotional 1</option>
+                                                
 
+                                                <option value="cHJvbW9zZW5kZXJpZA==">Promo S.ID</option>
+												<option value="YXBpcHJvbW9zZW5kZXJpZA==">API Promo S.ID</option>
+                                                
 
-</div>
+                                                <option value="VHJhbnNhY3Rpb25hbA==">Transactional</option>
+												<option value="YXBpVHJhbnNhY3Rpb25hbA==">API Transactional</option>
+                                                
+                                                <option value="dm9pY2VzbXM=">Voice SMS</option>
+												
+                                                
 
-  
-    </div>
-
-
-</div></form>
-
-<form>
-
-
-<div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
+                                                 <option value="c29jaWFsbWVkaWE=">Social Media</option>
+                                                                                                  <option value="YW5kcm9pZGFwcA==">Android App</option>
+                                                 <option value="VHJhbnNhY3Rpb25hbDI=">Transactional 2</option>
+                                                 <option value="aW50ZXJuYXRpb25hbA==">International</option>
+                                                </select>
 
 </div>
 
-<div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
 
+<div class="col-sm-4 col-xs-12"><label>Add Username & Hit Enter</label>
+<input type="text" name="text" class="form-control input-box" placeholder="Add Username" required>
 
 </div>
 
@@ -243,17 +201,98 @@
 
 
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+<div class="table-responsive">
+<table class="table table-bordered">
+       
+       <tbody><tr>
+       <th>Id</th>
+       <th>Username</th>
+       <th>Volume</th>
+       <th>Type</th>
+       <th>Route</th>
+       <th>Price</th>
+       <th>Tax</th>
+       <th>Amount</th>
+       <th>Credits</th>
+       <th>Note</th>
+       <th>Added By</th>
+       <th>Date</th>
+       </tr>
+       
+              
+       <tr>
+       <td>5544</td>
+       <td>Misscall</td>
+       <td>50</td>
+       <td>add</td>
+       <td>apitransactional</td>
+       <td>0</td>
+       <td>0</td>
+       <td>0</td>
+       <td>Credits</td>
+       <td>0</td>
+       <td>Admin</td>
+       <td>2016-12-07 15:20:09</td>
+       </tr>
+       
+              
+       <tr>
+       <td>5363</td>
+       <td>Misscall</td>
+       <td>100</td>
+       <td>add</td>
+       <td>apitransactional</td>
+       <td>0</td>
+       <td>0</td>
+       <td>0</td>
+       <td>Credits</td>
+       <td>0</td>
+       <td>Admin</td>
+       <td>2016-11-26 12:42:53</td>
+       </tr>
+       
+              
+       <tr>
+       <td>4224</td>
+       <td>Misscall</td>
+       <td>25</td>
+       <td>add</td>
+       <td>apitransactional</td>
+       <td>0</td>
+       <td>0</td>
+       <td>0</td>
+       <td>Credits</td>
+       <td>0</td>
+       <td>Admin</td>
+       <td>2016-10-05 13:29:28</td>
+       </tr>
+       
+              
+       </tbody></table>
+       
+
+
+											
+</div>
+</div>
 </div>
 
 
 
-</form>
 
 
 
 
 
+
+
+
+
+<div class="col-md-12">
+<!--<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Send Message">-->
+</div>
 </div>
 
 
@@ -334,6 +373,5 @@ Notification </a></div>
 <script src="js/fontawesome.js"></script> 
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
-
 </body>
 </html>

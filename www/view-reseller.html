@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +7,8 @@
 <title>Dashboard</title>
 <link href="images/fav.jpg" rel="shortcut icon" />
 <link href="css/my-css.css" rel="stylesheet" type="text/css" />
-
+<link href="SpryAssets/SpryAccordion.css" rel="stylesheet" type="text/css">
+<script src="SpryAssets/SpryAccordion.js" type="text/javascript"></script>
 </head>
 
 <body style="background:#fff; color:#000;">
@@ -122,7 +122,7 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-7 col-xs-7 dasbord-font">View Reseller</div>
 
 
 
@@ -141,119 +141,129 @@
 
 </div>
 
+
 <div class="available-credits2">
-<div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
- 
-
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
+  <div class="row compose">
 
 
-</div>
-
-
-
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
-</div>
-
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
-
-</div>
-
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
-
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
-
-
-
-
-
-
-
-</select>
-
-</div>
-
-
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
-
-
-
-
-
-
-
-</div>
-
-  
-    </div>
-
-
-</div></form>
-
-<form>
-
+<div class="col-sm-6 col-xs-6"><select name="listuser" class="form-control" onchange="this.form.submit();">
+    <option value="">Sort</option>
+    <option value="20">20</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
+    <option value="200">200</option>
+    <option value="300">300</option>
+    <option value="500">500</option>
+    <option value="1000">1000</option>
+    </select></div>
 
 <div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
 
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
+<input type="text" name="text" class="form-control input-box" placeholder="Search Via Username, Mobile No.l">
 
 </div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
-
-
-</div>
-
-
-
 
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+<div class="table-responsive">
+       <table class="table table-bordered">
+
+       <tbody><tr>
+
+       <th>Id</th>
+
+       <th>Username</th>
+
+       <th>Email</th>
+
+       <th>P,PS,T,PA,PSA,TA,V,T2,P1</th>
+
+       <th>Password</th>
+
+       <th>Phone No</th>
+
+       <th>Pin Code</th>
+
+       <th>Domain</th>
+
+       
+
+       <th>Status</th>
+        <th>Date</th>
+
+       <th>Action</th>
+
+       </tr>
+
+       
+
+       
+       <tr>
+
+       <td>2394</td>
+
+       <td>demo123gurp</td>
+
+       <td>demo@demo.com</td>
+
+       <td>,,, ,  , , , , </td>
+
+       <td>free123</td>
+
+       <td>123456</td>
+
+       <td>0</td>
+
+       <td></td>
+       
+
+       <td>active</td>
+       <td>2017-03-27 22:25:58</td>
+
+       <td><a href="edit-reseller.html" class="btn btn-primary">Edit</a>
+			       </td>
+
+       </tr>
+
+       
+       <tr>
+
+       <td>57</td>
+
+       <td>reseller1</td>
+
+       <td>reseller@reseller.com</td>
+
+       <td>,,, ,  , , , , </td>
+
+       <td>12345</td>
+
+       <td>9910763636</td>
+
+       <td>0</td>
+
+       <td></td>
+       
+
+       <td>active</td>
+       <td>2016-04-28 13:02:40</td>
+
+       <td><a href="edit-reseller.html" class="btn btn-primary">Edit</a>
+			       </td>
+
+       </tr>
+
+       
+       
+
+       </tbody></table> 
+       </div>
 </div>
-
-
-
+<form id="form1" name="form1" method="post" action="">
+  <label for="textfield"></label>
 </form>
-
-
-
-
-
+</div>
 </div>
 
 
@@ -322,18 +332,18 @@ Notification </a></div>
 
 </div>
 
-
-
 <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
 <link rel="stylesheet" href="css/login.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 <link href="css/left-menu.css" rel="stylesheet" type="text/css" />
-<script src="js/on-click.js"></script>
+
 <script src="js/login.js"></script>
 <script src="js/bs_leftnavi.js"></script>
 <script src="js/fontawesome.js"></script> 
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
-
+<script type="text/javascript">
+var Accordion1 = new Spry.Widget.Accordion("Accordion1");
+</script>
 </body>
 </html>

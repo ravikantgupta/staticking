@@ -122,7 +122,7 @@
 
 </div>
 
-<div class="col-sm-7 col-xs-7 dasbord-font">Misscall Settings</div>
+<div class="col-sm-7 col-xs-7 dasbord-font">View Short Details</div>
 
 
 
@@ -143,115 +143,175 @@
 
 <div class="available-credits2">
 <div class="row compose">
-<form><div class="col-sm-12 col-xs-12">
- <a href="#" class="show_hide">+</a>
+<div class="col-sm-12 col-xs-12">
+ 
  
 
- 
-    <div class="slidingDiv" style="margin-top:25px;">
-    
-    <div class="row">
-    <div class="col-sm-6 col-xs-12">
-    <label>Auto Reply Status <input type="checkbox" id="replystatus" name="autoreplystatus" value="on" checked="checked"></label>
-
+ <div class="row">
+    <div class="col-sm-6 col-xs-6" style="height:0px;">
+    <label>Search By Number</label>
+<input type="text" name="text" class="form-control input-box" placeholder="Search By Number">
 
 </div>
 
 
 
-<div class="col-sm-5 col-xs-12">
-<label>Auto Reply Route</label>
+<div class="col-sm-6 col-xs-6">
+<label>Sort By Circle</label>
+
+<select class="form-control" name="circle" onchange="this.form.submit()" required="">
+<option value="">Select Circle</option>
+<option value="Rajasthan">Rajasthan</option>
+<option value="Delhi Metro">Delhi Metro</option>
+<option value="Haryana">Haryana</option>
+<option value="Bihar And Jharkhand">Bihar And Jharkhand</option>
+<option value="West Bengal">West Bengal</option>
+<option value="Punjab">Punjab</option>
+<option value="Karnataka">Karnataka</option>
+<option value="MTNL Delhi">MTNL Delhi</option>
+<option value="Delhi">Delhi</option>
+<option value="Karnatak">Karnatak</option>
+<option value="Maharashtra">Maharashtra</option>
+<option value="Uttar Pradesh West And Uttarak">Uttar Pradesh West And Uttarak</option>
+<option value="Madhya Pradesh And Chhattisgar">Madhya Pradesh And Chhattisgar</option>
+<option value="Uttar Pradesh East">Uttar Pradesh East</option>
+<option value="Delhi NCR">Delhi NCR</option>
+</select>
+
+
 </div>
-
-<div class="col-sm-2 col-xs-4"><label>Default: <input type="radio" class="replyroute" name="route" value="default" checked="checked"></label> </div>
-
-<div class="col-sm-3 col-xs-5"><label>Third Party Api: <input type="radio" class="replyroute" name="route" value="thirdparty"></label></div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Auto Reply Text</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Auto Reply Text">
-
-</div>
-
-<div class="col-sm-6 col-xs-12">
-<label>Sender ID</label>
-<select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
-
-<option value="">Sender ID</option>
-
-
-<option value="Promotional">IVR King</option>
-<option value="Promotional1">STKING</option>
-
-
-
-
-
-
-
+<div class="col-sm-6 col-xs-6">
+<label>Sort By Operator</label>
+<select class="form-control" name="operator" onchange="this.form.submit()" required="">
+<option value="">Select Operator</option>
+<option value="Airtel">Airtel</option>
+<option value="Vodafone">Vodafone</option>
+<option value="TATA Indicom">TATA Indicom</option>
+<option value="Reliance GSM">Reliance GSM</option>
+<option value="MTS">MTS</option>
+<option value="Idea">Idea</option>
+<option value="Aircel">Aircel</option>
+<option value="MTNL Delhi ">MTNL Delhi </option>
+<option value="BSNL">BSNL</option>
+<option value="Reliance Jio">Reliance Jio</option>
+<option value="TATA DOCOMO">TATA DOCOMO</option>
+<option value="Reliance CDMA">Reliance CDMA</option>
+<option value="Reliance GIO">Reliance GIO</option>
+<option value="Loop">Loop</option>
 </select>
 
 </div>
 
-
-<div class="col-sm-12 col-xs-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-top:20px !important;">
-</div>
-
-
-
-
-
-
+<div class="col-sm-6 col-xs-6">
+<label>From Date</label>
+<input type="text" name="text" class="form-control input-box" placeholder="From Date">
 
 </div>
-
-  
-    </div>
-
-
-</div></form>
-
-<form>
 
 
 <div class="col-sm-6 col-xs-6">
-<label>Url Forwarding <input type="checkbox" id="urlforwading" name="urlforwarding" value="1" checked="checked"></label>
-
-
-</div>
-
-<div class="col-sm-12 col-xs-12">
-<label>Url Parameters will Sent to your url are:  </label>
-1. who 
-2. circle 
-3. operator 
-4. date
-
+<label style="margin:0px 0px 11px 0px;">To Date</label>
+<input type="text" name="text" class="form-control input-box" placeholder="To Date">
 
 </div>
 
 <div class="col-sm-12 col-xs-12">
-<label>Add Url (With Http or Https)  </label>
-<input type="text" name="text" class="form-control input-box" placeholder="a">
+
 
 
 </div>
-
-
-
-
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Submit" style="margin-bottom:20px !important;"> 
+<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Search" style="margin-bottom:20px !important;"> <a href="#" title="Export" class="btn inner-button" style="border-radius: 5px; color:#fff;
+    margin: 0px;"><i class="fa fa-download"></i></a>
+</div>
+
+</div>
+    
+
+
 </div>
 
 
 
-</form>
+<div class="col-sm-12 col-xs-12">
+ 
+ 
+
+<hr>
+    
+
+
+</div>
 
 
 
+
+
+
+
+
+<div class="col-md-12" style="margin-top:25px;">
+<div style="overflow-x:auto;float: left;
+    width: 100%;">
+    
+    
+   <div class="table-responsive">
+<table class="table table-bordered">
+
+       <tbody><tr>
+
+       <th>Id</th>
+       <th>Date/Time</th>
+       <th>Number</th>
+       <th>Keyword</th>
+       <th>Message</th>
+       <th>Circle</th>
+       <th>Operator</th>
+       </tr>
+
+       
+              <tr>
+       <td>177</td>
+       <td>10-01-2017 16:27:40</td>
+       <td>7290041013</td>
+       <td>DDSIL</td>
+       <td> DHALAO COMPLETE</td>
+       <td>Delhi Metro</td>
+       <td>Vodafone</td>
+       </tr>
+
+              <tr>
+       <td>176</td>
+       <td>10-01-2017 16:16:53</td>
+       <td>7290041013</td>
+       <td>DDSIL</td>
+       <td> DHALAO COMPLETE</td>
+       <td>Delhi Metro</td>
+       <td>Vodafone</td>
+       </tr>
+
+              <tr>
+       <td>175</td>
+       <td>10-01-2017 16:14:53</td>
+       <td>7290041013</td>
+       <td>DDSIL</td>
+       <td> DHALAO COMPLETE</td>
+       <td>Delhi Metro</td>
+       <td>Vodafone</td>
+       </tr>
+
+       
+       
+
+       </tbody></table>
+       
+
+
+<a class="btn btn-info">1</a><a href="#" class="btn btn-default" data-ci-pagination-page="50" rel="start">2</a><a href="#" class="btn btn-default" data-ci-pagination-page="50" rel="next">&gt;</a>													
+</div> 
+
+</div>
+</div>
 
 
 </div>
