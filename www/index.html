@@ -50,7 +50,70 @@
 
 </head>
 
-<body style="background:#fff; color:#000;">
+<body style="background:#fff; color:#000;" onload="checkconnection()">
+
+<script>
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var logged_in= userdetail.id;
+ 
+  	function checkconnection()
+	{
+	
+	
+	      	var url = "http://manage.staticking.net/index.php/services/connectionapi";
+		   $.getJSON(url, function(data) {
+			
+			setvalue();
+			
+		})
+		.error(function() {
+				alert('No Internet Connection Please Try Again!');
+				checkconnection();
+				
+				
+			
+		});
+	
+	}
+		
+		function setvalue()
+		{
+		             
+					
+					 
+					  if(!logged_in) 
+						{ 
+						 //logout();
+						 }
+						
+			           //   setuserinfo(logged_in);						
+	                  //addrightmenu(logged_in);		
+
+            		  $.ajax({
+						type:'POST',
+						
+						url:"http://manage.staticking.net/index.php/services/homedataapi",
+						data:'logged_in='+logged_in,
+						success:function(data)
+						{
+							
+							//$("#dhashboarddata").html(data);
+						}
+					  });
+
+
+
+
+
+
+
+
+					  
+		}
+
+
+</script>
+
 <div class="container" style="overflow:hidden;">
 <div class="header">
 
