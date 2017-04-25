@@ -1,13 +1,13 @@
 
  var menuhtml='<div class="gw-sidebar"><div id="gw-sidebar" class="gw-sidebar"><div class="nano-content"><ul class="gw-nav gw-nav-list">';
- menuhtml+='<li class="init-un-active" style="height:60px;"> <a href="index.html" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>';
+ menuhtml+='<li class="init-un-active" style="height:60px;"> <a onClick="slide(\'index.html\')" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>';
  menuhtml+='<li class="init-un-active" style="">  <input type="text" id="filtersearch" class="form-control" placeholder="Search Page" style="border-radius:0px; border:none !important; height:40px;"> </li>';
- menuhtml+='<li class="init-un-active"> <a href="index.html"> <i class="fa fa-align-justify"></i> DASHBOARD </a> </li>';
+ menuhtml+='<li class="init-un-active"> <a onClick="slide(\'index.html\')"> <i class="fa fa-align-justify"></i> DASHBOARD </a> </li>';
  menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-comments"></i> SMS</span> <b class="gw-arrow"></b> </a>';
 
  menuhtml+='<ul class="gw-submenu">';
- menuhtml+='<li><a href="compose-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Compose SMS</a></li>';
- menuhtml+='<li><a href="all-sent-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> All Sent SMS</a></li>';
+ menuhtml+='<li><a  onClick="slide(\'compose-sms.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Compose SMS</a></li>';
+ menuhtml+='<li><a onClick="slide(\'all-sent-sms.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> All Sent SMS</a></li>';
  menuhtml+='<li><a href="schedule-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Schedule SMS</a>';
  menuhtml+='<li><a href="quick-compose.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Quick Compose</a></li>';
  menuhtml+='<li><a href="quick-sent-item.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Quick Sent Item</a></li>';
@@ -100,6 +100,20 @@
  footerhtml+='</div>'; 
  
  document.getElementById("footercredits").innerHTML =footerhtml;
+ 
+ 
+ var quickselection='<div class="col-sm-2 col-xs-2"> <img src="images/3.png" class="img-responsive quick-image"></div>';
 
+	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/4.png" class="img-responsive quick-image"></div>';
 
+	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/5.png" class="img-responsive quick-image"></div>';
+
+	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/6.png" class="img-responsive quick-image"></div>';
+
+	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/1.png" class="img-responsive quick-image"></div>';
+
+	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/2.png" class="img-responsive quick-image"></div>';
+
+  document.getElementById("quickselection").innerHTML =quickselection;
+ 
 
