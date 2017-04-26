@@ -31,6 +31,105 @@ overflow-y: visible!important;
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
+.facebook-login
+{ 
+background: #4962a4;
+color: #fff;
+text-align:center;
+float:left !important;
+width:100%;
+margin-bottom:15px;
+font-size: 12px;
+padding: 9px 4px;
+border-radius: 3px;
+}
+
+.facebook-login:hover
+{ 
+background: #4962a4;
+color: #fff;
+text-decoration:blink;
+}
+
+.googel-login
+{background: #b6381a;
+color: #fff;
+margin-bottom:15px;
+text-align:center;
+float:left;
+width:100%;
+font-size: 12px;
+padding: 9px 4px;
+border-radius: 3px;
+}
+
+.googel-login:hover
+{background: #b6381a;
+color: #fff;
+text-decoration:blink;
+}
+
+.login-formme {
+    width: 100%;
+    height: auto;
+    padding: 9px 17px;
+    margin: 0px;
+    background: #df531c !important;
+    border-radius: 6px;
+    opacity: 0.95;
+    margin-top: 61px;
+    color: #444 !important;
+}
+
+.login-page-ma {
+    margin: 0px 0px 10px 0px !important;
+	color:#fff;
+}
+
+.login-height
+{    height: 41px !important;
+}
+
+.btn-primarya {
+color: #fff;
+background-color: #f86b00;
+font-weight: bold !important;
+text-transform: uppercase;
+padding: 10px !important;
+}
+.btn-primarya:hover {
+color: #fff !important;
+background-color: #f86b00;
+}
+
+
+.divi-new {
+    background: url(../images/bg-1px-grey-divi-437f1a1ff5ca3ab9db09cb43bbfbc380.png) repeat-x left 9px;
+    text-align: center;
+    height: 16px;
+    padding-bottom: 20px;
+    margin-top: 10px;
+}
+.divi-new span {
+    background-color: #df521b;
+    font-size: 16px;
+    line-height: 16px;
+    color: #fff;
+    text-transform: lowercase;
+    padding: 0 10px;
+}
+.forgot-pass-link {
+    color: #fff !important;
+    font-size: 11px !important;
+}
+
+.login-text {
+    text-align: center !important;
+    font-size: 21px !important;
+    text-transform: capitalize !important;
+    padding: 4px 0px 0px 0px !important;
+}
+
 .sender-id-add {
     margin-top: 40px !important;
     padding-left: 6px !important;
@@ -457,12 +556,21 @@ height:80px !important;
 }
 
 @media only screen and (min-width: 320px) and (max-width: 359px) {
+	
+.facebook-login
+{background: #4962a4;color: #fff;text-align:center;float:left !important;width:100%;margin-bottom:15px;font-size: 9px;padding: 9px 4px;border-radius: 3px;}
+
+.googel-login
+{background: #b6381a;color: #fff;margin-bottom:15px;text-align:center;float:left;width:100%;font-size: 9px;padding: 9px 4px;border-radius: 3px;}	
+	
 .gw-sidebar
 {
 overflow: auto;
 height:550px !important;
 width: 251px;
 overflow-x: hidden;
+
+
 
 }
 
@@ -758,6 +866,13 @@ border: 1px solid #ddd!important;
 
 
 @media only screen and (min-width: 360px) and (max-width: 640px) {
+	
+.facebook-login
+{background: #4962a4;color: #fff;text-align:center;float:left !important;width:100%;margin-bottom:15px;font-size: 9px;padding: 9px 4px;border-radius: 3px;}
+
+.googel-login
+{background: #b6381a;color: #fff;margin-bottom:15px;text-align:center;float:left;width:100%;font-size: 9px;padding: 9px 4px;border-radius: 3px;}		
+	
 .gw-sidebar
 {
 overflow: auto;
@@ -1058,6 +1173,32 @@ border: 1px solid #ddd!important;
 }
 
 @media only screen and (min-width:640px) and (max-width:766px) {
+	
+	.facebook-login
+{ 
+background: #4962a4;
+color: #fff;
+text-align:center;
+float:left !important;
+width:100%;
+margin-bottom:15px;
+font-size:9px;
+padding: 9px 4px;
+border-radius: 3px;
+}
+
+.googel-login
+{background: #b6381a;
+color: #fff;
+margin-bottom:15px;
+text-align:center;
+float:left;
+width:100%;
+font-size:9px;
+padding: 9px 4px;
+border-radius: 3px;
+}	
+	
 .notifactions-icon {
 background: #ff0000;
 color: #fff;
