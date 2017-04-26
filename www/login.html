@@ -9,7 +9,44 @@
 <link href="images/fav.jpg" rel="shortcut icon" />
 <link href="css/my-css.css" rel="stylesheet" type="text/css" />
 
+ <script type="text/javascript" src="cordova.js"></script>
+	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
+	<script>
+	var app = {
+	
+				initialize: function() {
+					this.bindEvents();
+				},
 
+				bindEvents: function() {
+					document.addEventListener('deviceready', app.onDeviceReady, false);
+				}
+	
+           };
+
+
+	            document.addEventListener("deviceready", function() {
+					
+							 
+				 
+			  // then override any default you want
+			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
+			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
+			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
+			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
+			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
+			  // these are used for slide left/right only currently
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+			  
+			  
+			
+				  
+			}, false);
+			
+			
+	</script>
+	 <script type="text/javascript" src="js/function.js"></script>
 </head>
 
 <body style="background:#df531c;">
@@ -24,7 +61,7 @@
 
 <div class="col-md-12 login-page-ma login-text">LOG IN</div>
 
-<form id="registerform">
+<form id="loginforms">
 
 
 <div class="col-md-12 login-page-ma">
@@ -47,7 +84,7 @@
 <div class="col-md-12 login-page-ma">
 <div class="input-group">
 <span class="input-group-addon"><i class="fa fa-lock pass-text"></i></span>
-<input type="password" id="password" name="password" class="form-control login-height" placeholder="Password">
+<input type="password" name="password" id="inputPassword" class="form-control login-height" placeholder="Password" required>
 </div>
 </div>
 
@@ -69,8 +106,8 @@
 <div class="col-md-12">
 
 <div class="row" style="margin:5px 0px;">
-<div class="col-md-6 col-sm-6 col-xs-6 forgot-pas"><a href="forgotpassword.html" class="forgot-pass-link">Forgot password?</a></div>
-<div class="col-md-6 col-sm-6 col-xs-6 join-link" style="text-align:right;"><a href="registration.html" class="forgot-pass-link">Join now</a></div>
+<div class="col-md-6 col-sm-6 col-xs-6 forgot-pas"><a onClick="slide('forgotpassword.html')" class="forgot-pass-link">Forgot password?</a></div>
+<div class="col-md-6 col-sm-6 col-xs-6 join-link" style="text-align:right;"><a onClick="slide('registration.html')" class="forgot-pass-link">Join now</a></div>
 </div>
 
 </div>
@@ -80,8 +117,8 @@
 
 <div class="col-md-12 socil-link" style="margin-top:10px; margin-bottom:10px;">
 <div class="row">
-<div class="col-md-6 col-xs-6"><a href="#" class="facebook-login"><i class="fa fa-facebook"></i> Sign in with Facebook</a></div>
-<div class="col-md-6 col-xs-6"><a href="#" class="googel-login"><i class="fa fa-google-plus"></i> Sign in with Google</a></div>
+<div class="col-md-6 col-xs-6"><a onClick="facebook.onFacebookLogin();" class="facebook-login"><i class="fa fa-facebook"></i> Sign in with Facebook</a></div>
+<div class="col-md-6 col-xs-6"><a id="logingogle" class="googel-login"><i class="fa fa-google-plus"></i> Sign in with Google</a></div>
 </div>
 
 </div>
@@ -117,8 +154,122 @@
 <script src="js/fontawesome.js"></script> 
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
+<script type="text/javascript" src="js/oauth.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
 
+ <script type="text/javascript" src="js/facebook.js"></script>
+ 
+ <script type="text/javascript" src="js/googleplus.js"></script>
+ 
+ <script type="text/javascript">
 
+    jQuery(document).ready(function()
+
+{
+
+	
+
+jQuery("#loginforms").on('submit',function(ev)
+{		
+ev.preventDefault();
+username=jQuery("#username").val();
+password=jQuery("#inputPassword").val();
+
+if(username=='')
+
+{
+
+	jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Enter Username");
+
+}
+
+else
+
+{
+
+	if(password=='')
+
+	{
+
+		jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Enter Password");
+
+	}
+
+	else
+	{
+
+	    
+		        
+
+		jQuery.ajax({
+				
+				type:'GET',
+                contentType: 'application/json',
+				 dataType: 'jsonp',
+				
+				url:'http://manage.staticking.net/index.php/services/loginapi',
+				data:jQuery("#loginforms").serialize(),
+				
+
+				beforeSend:function()
+				{
+
+					jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Wait....");
+
+				},
+
+				success:function(data)
+
+				{
+                      //alert(data.data.username);
+					  
+					  if(data.status=='true')
+					  {
+						  window.localStorage.setItem("loggedIn", 1);
+						  window.localStorage.setItem('userdetail', JSON.stringify(data.data));
+						  
+						window.plugins.nativepagetransitions.flip({
+								 'backgroundColor' : "#BBBBBB",
+								'direction': 'up',
+								'duration': 2000,
+								"href" : "index.html"
+								 });
+					  }else
+                         {
+						      jQuery("#msgstatus").html(data.msg);
+						 }					  
+
+				}
+
+				
+
+			
+
+		});
+
+		
+
+		
+
+	}
+
+	
+
+}
+
+	
+
+	});
+
+});
+
+    
+
+    
+
+    </script>
+
+    
 
 
 
