@@ -116,7 +116,7 @@
 
   document.getElementById("quickselection").innerHTML =quickselection;
   
-  var profilehtml='<a href="#" id="loginButton"><span>A</span></a><div style="clear:both"></div><div id="loginBox">';                
+  var profilehtml='<a href="#" id="loginButton"><span></span></a><div style="clear:both"></div><div id="loginBox">';                
 	profilehtml+='<form id="loginForm"><span><a onClick="slide(\'my-profile.html\')" ><i class="fa fa-user"></i> My Profile</a></span>';
 	profilehtml+='<span><a onclick="logout()"><i class="fa fa-lock"></i> Log Out</a></span></form></div>';
 	

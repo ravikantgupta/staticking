@@ -183,7 +183,7 @@ function addmenu(){
 						jQuery('#uname').html(userin);
 						jQuery('#uname1').html(username);
 						var picture='<img src="'+window.localStorage.getItem("picture")+'"  style="height: 50px;width: 50px;" class="img-responsive">';
-						jQuery('.user-thumb').html(picture);
+						jQuery('#loginButton').html('<span>'+picture+'</span>');
 				  
 				  
 				  }else
@@ -198,7 +198,7 @@ function addmenu(){
 						
 					    var ufna=username.charAt(0);
 						
-						jQuery('#proicon').html(ufna.toUpperCase());
+						jQuery('#loginButton').html('<span>'+ufna.toUpperCase()+'</span>');
 				  
 				  }  
 	   
