@@ -115,12 +115,7 @@
 	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/2.png" class="img-responsive quick-image"></div>';
 
   document.getElementById("quickselection").innerHTML =quickselection;
-  
-  var profilehtml='<a href="#" id="loginButton"><span></span></a><div style="clear:both"></div><div id="loginBox">';                
-	profilehtml+='<form id="loginForm"><span><a onClick="slide(\'my-profile.html\')" ><i class="fa fa-user"></i> My Profile</a></span>';
-	profilehtml+='<span><a onclick="logout()"><i class="fa fa-lock"></i> Log Out</a></span></form></div>';
-	
-	 document.getElementById("loginContainer").innerHTML =profilehtml;
+ 
   
  
 
