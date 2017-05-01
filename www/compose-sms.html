@@ -84,8 +84,8 @@
 									{
 										//  alert(JSON.stringify(data.routes));
 										  
-										/*  var routes =data.routes;
-										  var routeshtml='<option value=""><b>Select Route</b></option>';
+										  var routes =data.routes;
+										  var routeshtml='<option value="">Route</option>';
 										  for (var key in routes) {
 										  
 										               routeshtml+='<option value="'+key+'">'+key+'</option>';
@@ -96,7 +96,7 @@
 											jQuery('#routeid').html(routeshtml);								
 												
 										  
-										   var group =data.group;
+										 /*  var group =data.group;
 										  var grouphtml='<option value=""><b>Select Group</b></option>';
 										  for (var key in group) {
 										  									  						              
@@ -381,5 +381,914 @@
 <script src="js/fontawesome.js"></script> 
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
+<script type="text/javascript" src="js/composesms.js"></script>
+
+<script type="text/javascript">
+jQuery(document).ready(function(e) {
+  
+ jQuery("#schedulenew").datetimepicker({
+			mask:'9999/19/39 29:59',
+			minDate:'-1970/01/01',
+			minTime:'0',
+			maxTime:'21:00',
+			step:30
+			});   
+
+jQuery("#schedulenew").val("");
+    jQuery("#schedulenew").on('change click focus',function()
+	{
+		
+			
+		if(this.value!=='')
+		{
+			
+			ajdidate="2017/02/24";
+			
+			tyu=this.value.split("/");
+			//alert(tyu[0]);
+			tyus=tyu[2].charAt(0)+tyu[2].charAt(1);
+			var myDate = tyu[0]+'/'+tyu[1]+'/'+tyus;
+			if(myDate==ajdidate)
+			{
+				jQuery(this).datetimepicker({
+			mask:'9999/19/39 29:59',
+			minDate:'-1970/01/01',
+			minTime:'0',
+			maxTime:'21:00'
+			});
+			}
+			else
+			{
+				
+				jQuery(this).datetimepicker({
+			mask:'9999/19/39 29:59',
+			minDate:'-1970/01/01',
+			minTime:'09:00',
+			maxTime:'21:00'
+			});
+			}
+		}
+			
+	});
+	});
+</script>
+
+
+<script type="text/javascript">
+$=jQuery;
+$(document).ready(function()
+{
+	$("#routeid").on('change',function()
+	{
+		routch=$("#routeid").val();
+		
+			$("#labelsms, #wordsremain, #labelchar, #countsms, #smscontent").hide();
+			$.ajax({
+					type:'POST',
+					url:'http://manage.staticking.net/index.php/servicessms/gettemplatesapi',
+					data:'templates='+routch+'&logged_in='+logged_in,
+					beforeSend:function()
+					{
+						$("#smstabh").html("Please Wait. Fetching Data");
+						$("#sendsmsfast").attr('disabled','disabled');
+					},
+					success:function(data)
+					{
+						$("#smstabh").html(data);
+						$("#sendsmsfast").removeAttr('disabled');
+					}
+					
+			});
+
+	});
+	
+	
+});
+</script>
+<script type="text/javascript">
+function getsmslen(str)
+{
+	$=jQuery;
+	totchars=str.length;
+	$("#wordsremain").html(totchars);
+	msgtyu=$("#msgtype").val();
+	if(msgtyu=='unicodemsg' || msgtyu=='unicodeflashmsg')
+	{
+		if(totchars > 71)
+		{
+		totsmslen=Math.ceil(totchars/63);
+		}
+		else
+		{
+		totsmslen=Math.ceil(totchars/70);	
+		}
+	
+	}
+	else
+	{
+		if(totchars > 161)
+		{
+		totsmslen=Math.ceil(totchars/153);	
+		}
+		else
+		{
+		totsmslen=Math.ceil(totchars/160);	
+		}
+	}
+	$("#countsms").html(totsmslen);
+	$("#countsmshidden").val(totsmslen);
+	$("#msgpreview").html("<span class='alert-info' style='font-size:15px;'><br>Message Preview:</span>"+str+"<br>");
+}
+
+</script>
+
+<script type="text/javascript">
+$(document).ready(function()
+{
+	$("#msgtype").on('change',function()
+	{
+		getsmslen($("#smscontent").val());
+		if($(this).val()=='unicodemsg')
+		{	
+			$("#translControl").show();
+		}
+		else
+		{
+			$(".inputapi-inline-block").removeClass("inputapi-transliterate-button-checked");
+			$(".inputapi-transliterate-button").removeClass("inputapi-transliterate-button-checked");
+			$(".inputapi-transliterate-language-menuitem").removeClass("inputapi-option inputapi-option-selected");
+			
+			 
+			
+			$("#translControl").hide();
+			 
+		}
+		
+	});
+	
+	
+		
+});
+
+</script>
+
+
+<script type="text/javascript">
+function checkroutes(str)
+{
+	$=jQuery;
+	if(str=='Promotional' || str=='Promotional1')
+	{
+		$("#senderid").hide();
+		$("#labelsendid").hide();
+		$("#opensenderid").hide();
+		$("#senderidrowhi").hide();
+	}
+	else
+	{
+		$("#senderid").show();
+		$("#labelsendid").show();
+		$("#opensenderid").show();
+		$("#senderidrowhi").show();
+	}
+	
+}
+</script>
+
+<script type="text/javascript">
+
+$=jQuery;
+
+$(document).ready(function()
+
+{
+
+	$("#sendsmsfast").click(function()
+
+	{
+
+		countwords();
+
+		countwordcontact();
+
+		
+
+		routeid=$("#routeid").val();
+
+		senderid=$("#senderid").val();
+
+		contactnumberst=$("#contactnumberst").val();
+
+		msgtype=$("#msgtype").val();
+
+		smscontent=encodeURIComponent($("#smscontent").val());
+
+		schedulenew=$("#schedulenew").val();
+
+		totalsms=$("#countsmshidden").val();
+
+		totalcontacts=$("#totalcontactrow").val();
+		
+		if(senderid=='' && routeid=='Promotional' || senderid=='undefined' && routeid=='Promotional')
+		{
+			senderid='Default';
+		}
+		
+		if(senderid=='Default' && routeid=='Transactional' || senderid=='' && routeid=='Transactional')
+		{
+			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		
+		if(senderid=='Default' && routeid=='Promosid' || senderid=='' && routeid=='Promosid')
+		{
+			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		if(senderid=='Default' && routeid=='transactional2' || senderid=='' && routeid=='transactional2')
+		{
+			$("#bbalertd").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		
+
+		if(routeid=='' || senderid=='' || contactnumberst=='' || msgtype=='' || smscontent=='' || totalsms=='' || totalcontacts=='')
+
+		{
+
+			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required Values");
+
+			
+
+		}
+
+		else
+		{
+			if(totalcontacts > 50000)
+			{
+				alert("Enter Only 50000 Numbers");
+				return false;
+			}
+			else
+			{
+			if(routeid=='Promotional1' && $("#istendigitid").val()=='yes' && totalsms > 1)
+			{
+				alert("You Can Send Only 1 Sms(160 Characters) On this Route ");
+				return false;
+			}
+			else
+			{		
+datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactnumberst+'&msgtype='+msgtype+'&smscontent='+smscontent+'&schedulenew='+schedulenew+'&totalsms='+totalsms+'&totalcontacts='+totalcontacts+'&logged_in='+logged_in;
+
+			$.ajax({
+
+					type:'POST',
+
+					url:'http://manage.staticking.net/index.php/servicessms/sendsmsapi',
+
+					data:datastring,
+
+					beforeSend:function()
+					{
+						$("#waitmsg").text("Please Wait. Sending Message.....");
+						
+						$("#faceoff").show();
+						$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass("alert-info").text("Please Wait, Sending Message.....");
+						$("#sendsmsfast").attr('disabled','disabled');
+						
+						
+					},
+
+					success:function(data)
+					{
+						$("#faceoff").hide();
+						$("#showloadf").click();
+						$("#waitmsg").fadeIn(10).html(data);
+						
+						$("#msgstatus").fadeIn(10).removeClass("alert-info").html(data);
+						$("#sendsmsfast").removeAttr('disabled');
+						$(".close").removeAttr('disabled');
+						
+						$("#clsosebutton").show();
+						$("input,select,textarea").each(function()
+						{
+							$(this).val("");
+						});
+						$("#sendsmsfast").val("Send Message");
+						
+					}
+
+			});
+
+			}
+
+			
+			}
+		}
+
+		
+
+	});
+
+$("#clsosebutton").click(function()
+{
+	location.reload(true);
+});	
+						
+
+
+});
+
+
+
+</script>
+
+
+
+
+
+<script type="text/javascript">
+
+    jQuery(document).ready(function() {
+
+           jQuery('#opensenderid').click( function() { 
+
+		    
+
+            loadPopupBox();
+
+				});
+
+    
+
+       jQuery('#popupBoxClose').click( function() {            
+
+            unloadPopupBox();
+
+        });
+
+		 
+       jQuery('#contactpopupBoxClose').click( function() {            
+
+            contactunloadPopupBox();
+
+        });
+        
+
+        jQuery('#container').click( function() {
+
+            unloadPopupBox();
+			contactunloadPopupBox();
+
+        });
+		
+		
+        jQuery('#cover').click( function() {
+
+           
+			contactunloadPopupBox();
+
+        });
+
+   
+
+        function unloadPopupBox() 
+
+		{    // TO Unload the Popupbox
+
+           jQuery('#popup_box').fadeOut("slow");
+
+            jQuery("#container").css({ // this is just for style        
+
+                "opacity": "1"  
+
+            }); 
+
+			jQuery('#cover').fadeOut("slow");
+
+        } 
+
+    
+        
+  
+        function loadPopupBox() 
+
+		{    // To Load the Popupbox
+
+            jQuery('#popup_box').fadeIn("slow");
+
+            jQuery("#container").css({ // this is just for style
+
+                "opacity": "0.3"  
+
+            });  
+
+			jQuery("#cover").fadeTo(500, 0.5);       
+
+        }        
+
+    });
+
+ </script> 
+
+ 
+
+ <script type="text/javascript">
+
+ 
+
+ function addnewsendersnew()
+  {
+
+		inroute=jQuery("#newrouteid").val();
+
+			insenderid=jQuery("#addnewsenderid").val();
+			
+			msgcontent=jQuery("#samplecontentmsg").val();
+
+			if(inroute=='')
+
+			{
+
+				jQuery("#msg_statusnewid").fadeIn(0).addClass("alert-danger").text("Please Select Route");
+
+			}
+
+			else
+
+			{
+
+				if(insenderid=='')
+
+				{
+
+				jQuery("#msg_statusnewid").fadeIn(0).addClass("alert-danger").text("Please Enter Sender ID");	
+
+				}
+
+				else
+
+				{
+
+					if(insenderid.length < 6)
+
+					{
+
+					jQuery("#msg_statusnewid").fadeIn(0).addClass("alert-danger").text("Sender Id Not Less Than 6 Characters");	
+
+					}
+
+					else
+
+					{
+
+						if(insenderid.length > 6)
+
+						{
+
+						jQuery("#msg_statusnewid").fadeIn(0).addClass("alert-danger").text("Sender Id Not Greater Than 6 Characters");		
+
+						}
+
+						else
+						{
+							if(msgcontent=='')
+							{
+								
+							jQuery("#msg_statusnewid").fadeIn(0).addClass("alert-danger").text("Please Enter Sample Message");	
+							}
+							else
+							{
+
+							if(insenderid.length == 6)
+							{
+
+								datastringsender='inroute='+inroute+'&insenderid='+insenderid+'&msgcontent='+msgcontent+'&logged_in='+logged_in;
+
+								jQuery.ajax({
+
+										type:'POST',
+
+										url:'http://manage.staticking.net/index.php/servicessms/senderidapprovalapi',
+
+										data:datastringsender,
+
+										beforeSend:function()
+
+										{
+
+										jQuery("#msg_statusnewid").fadeIn(0).removeClass("alert-danger").addClass("alert-info").text("Please Wait....");	
+
+										},
+
+										success:function(data)
+
+										{
+
+										jQuery("#msg_statusnewid").fadeIn(0).removeClass("alert-info").addClass("alert-success").html(data);
+
+										jQuery("#newrouteid").val("");
+
+										jQuery("#addnewsenderid").val("");
+
+
+
+										}
+
+										
+
+									
+
+								});
+
+								
+
+								
+
+							}
+							}
+
+							
+
+							
+
+						}
+
+						
+
+						
+
+					}
+
+					
+
+				}
+
+			}
+
+
+ }
+ </script>
+
+<script type="text/javascript">
+	function getgroupnos(str)
+	{
+		file="http://manage.staticking.net/public/groupfiles/"+str;
+		
+		$.get(file, function(data)
+		{
+		
+		$("#contactnumberst").append(data);
+		$("#mismodal").click();
+		
+		});
+	}
+	
+	function gettemplate(templa)
+	{
+		
+		
+		
+		
+		$("#smscontent").val(templa);
+		$("#mismodalgroup").click();
+		
+		
+	}
+</script>
+
+<script type="text/javascript">
+$=jQuery;
+$(document).ready(function()
+{
+	$("#scheduleison").click(function()
+	{
+		$("#schedulenew").val("");
+	});
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#routeid").on('change',function()
+	{
+		routbval=$(this).val();
+		
+		if(routbval=='Promosid' || routbval=='Transactional' || routbval=='transactional2')
+		{
+			
+					
+				$.ajax({
+					type:'POST',
+					url:'http://manage.staticking.net/index.php/servicessms/getsenderidbyrouteapi',
+					data:'routbval='+routbval+'&logged_in='+logged_in,
+					
+					success:function(data)
+					{
+					
+					
+						
+						$("#senderid").html(data);
+						
+						
+						$("#senderid").css('display','none');
+					}
+					
+			});
+			
+		}
+		else
+		{
+			$("#senderid").html("");	
+		}
+		if(routbval=='transactional2' || routbval=='Transactional')
+		{
+			$("#opentrans2").click();
+		}
+		
+        if(routbval=='Transactional')
+        {
+            $("#templateswithname").hide();
+            $(".selecttmp").hide();
+        }
+        else
+        {
+            $("#templateswithname").show();
+             $(".selecttmp").show();
+        }
+	
+			
+	});
+});
+</script>
+<script type="text/javascript">
+$=jQuery;
+$("#contactnumberst").on('change keyup',function()
+{
+    //$("#contactnumberst").val(this.value.match(/[0-9 \s]*/));
+     onlynumberscheck();
+});
+
+
+
+    function onlynumberscheck()
+	{
+		onlynumsty=/^[0-9 \s]+$/;
+		nosval=$("#contactnumberst").val();
+		//var patterns = /[^0-9]/g;
+		if(nosval.match(onlynumsty))
+		{
+		}
+		else
+		{
+			if(nosval!=='')
+			{
+			alert("Please Remove Alphabets and Special Characters From Your Contact List.");
+			 $("#contactnumberst").val("");
+			}
+		}
+	}
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $("#removedndnumbers").on('click',function()
+	{
+		
+		allmulnumbersple=$("#contactnumberst").val();
+		
+		if(allmulnumbersple!=='')
+		{
+
+			$.ajax({
+					type:'POST',
+					url:'http://manage.staticking.net/index.php/services/removedndnumbersfastapi',
+					data:'alldndnumbers='+allmulnumbersple,
+					beforeSend: function()
+					{
+						//$("#showloadf").click();
+						//$("#waitmsg").text("Please Wait. Removing DND Numbers");
+						$("#faceoff").show();
+						$("#sendsmsfast, #removedndnumbers").attr('disabled','disabled');
+					},
+					success:function(data)
+					{
+						
+						$("#contactnumberst").val($.parseJSON(data));
+						$("#sendsmsfast, #removedndnumbers").removeAttr('disabled');
+						$("#faceoff").hide();
+						alert("DND Numbers Removed");
+						
+					}
+			});
+		}
+		
+	});
+});
+</script>
+
+<script type="text/javascript">
+$=jQuery;
+$("#addnewsenderid").on('keyup change keydown keypress',function()
+{
+	onlyaplha=/^[A-Z a-z]+$/;
+	sendervalnew=$("#addnewsenderid").val();
+	if(sendervalnew.match(onlyaplha))
+		{
+		}
+		else
+		{
+			if(sendervalnew!=='')
+			{
+			alert("Enter Only Alphabets");
+			$("#addnewsenderid").val("");
+			}
+		}
+	
+});
+</script>
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $("#routeid").on('change',function()
+	{
+		roytu=$(this).val();
+		
+		if(roytu=='Promotional1')
+		{
+			$.ajax({
+					type:'POST',
+					url:'http://manage.staticking.net/index.php/servicessms/getsmscsofroute/'+roytu,
+					data:'route='+roytu+'&logged_in='+logged_in,
+					beforeSend:function()
+					{
+						
+					},
+					success:function(data)
+					{
+						
+						if(data=='10digitid')
+						{
+						$("#istendigitid").val("yes");	
+						$("#msgtype").empty();
+						$("#msgtype").html("<option value=''>Select Message Type</option><option value='textmsg'>Text</option>");
+						//$("#smstabh").html(data);
+						
+						}
+					}
+					
+				});
+		}
+		else
+		{
+			$("#msgtype").empty();
+			$("#istendigitid").val("no");	
+	$("#msgtype").html("<option value=''>Select Message Type</option><option value='textmsg'>Text</option><option value='flashmsg'>Flash</option><option value='unicodemsg'>Unicode</option><option value='unicodeflashmsg'>Unicode + Flash</option");	
+		}
+	});
+	
+	
+	
+	
+});
+
+
+$("#translControl").on('click',function()
+	{
+		
+		$(".inputapi-transliterate-language-menu").toggle();
+	});
+
+$("#msgtype").on('change',function()
+{
+	if($(this).val()!=='')
+	{
+		$.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/templatebytypeapi",
+				data:'mgtype='+$("#msgtype").val()+'&logged_in='+logged_in,
+				beforeSend: function()
+				{
+					$("#faceoff").show();
+				},
+				success:function(data)
+				{
+					$("#faceoff").hide();
+					$("#templateswithname").html(data);
+				}
+		});
+	}
+});
+
+if($(window).width() < 700)
+	{
+		$("#changemob").css('margin-top','0px');
+		
+	}
+	else
+	{
+		
+			
+		
+	}
+	
+	
+
+$("#removeinvalid").on('click',function()
+{
+    contactnumberst=$("#contactnumberst").val();
+    nums = contactnumberst.split("\n");
+
+    $.ajax({
+            type:'POST',
+            url:'http://manage.staticking.net/index.php/servicessms/removeinvalidnoapi',
+            data:'numbers='+nums,
+            beforeSend:function()
+            {
+                $("#faceoff").show();
+            },
+            success:function(data)
+            {
+                $("#faceoff").hide();
+                $("#contactnumberst").val(data);
+            }
+    });
+
+});
+
+</script>
+<script type="text/javascript">
+
+
+var files;
+
+// Add events
+jQuery('#contactnosfile').on('change', prepareUpload);
+
+// Grab the files and set them to our variable
+function prepareUpload(event)
+{
+  files = event.target.files;
+  
+  
+  event.stopPropagation(); // Stop stuff happening
+    event.preventDefault(); // Totally stop stuff happening
+
+// START A LOADING SPINNER HERE
+
+// Create a formdata object and add the files
+var data = new FormData();
+$.each(files, function(key, value)
+{
+    data.append(key, value);
+});
+
+ jQuery('#faceoff').show();
+$.ajax({
+    url: 'http://manage.staticking.net/index.php/servicessms/uploadcontactsapi',
+    type: 'POST',
+    data: data,
+   
+    processData: false, // Don't process the files
+    contentType: false, // Set content type to false as jQuery will tell the server its a query string request
+    success: function(data, textStatus, jqXHR)
+    {
+	
+	jQuery('#faceoff').hide();
+				if(data=='No')
+				{
+				  
+				
+				alert('Please select valide csv');
+				
+				}else
+				{
+				
+				 jQuery('#contactnumberst').val(data);
+				}
+     
+					  
+    },
+    error: function(jqXHR, textStatus, errorThrown)
+    {
+        // Handle errors here
+        console.log('ERRORS: ' + textStatus);
+        // STOP LOADING SPINNER
+    }
+});
+
+  
+  
+  
+  
+}
+
+
+
+    </script>
+
+
 </body>
 </html>
