@@ -247,6 +247,15 @@
 		<label class="red" id="totalcontacts">Total Contact No's:)</label><input type="hidden" id="totalcontactrow"  />
 	</div>
 
+                   <div class="col-md-8" style="display:none;">
+
+								<form method="post" id="fileuploadform" action="http://manage.staticking.net/index.php/servicessms/uploadcontactsapi" enctype="multipart/form-data">
+
+										  <input type="file" id="contactnosfile" name="contactnosfile" >
+
+								 </form>
+
+					</div>
 		<div class="col-sm-12" style="float:left;">
 
 			<button type="button" style="margin-top:5px;" id="fileupload" onclick="document.getElementById('contactnosfile').click();" class="btn btn-primary" title="Upload File"><i class="fa fa-upload"></i></button>
@@ -977,7 +986,7 @@ $(document).ready(function() {
 					success:function(data)
 					{
 					
-					
+					alert(data);
 						
 						$("#senderid").html(data);
 						
