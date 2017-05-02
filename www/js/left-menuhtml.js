@@ -102,20 +102,6 @@
  document.getElementById("footercredits").innerHTML =footerhtml;
  
  
- var quickselection='<div class="col-sm-2 col-xs-2"> <img src="images/3.png" class="img-responsive quick-image"></div>';
-
-	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/4.png" class="img-responsive quick-image"></div>';
-
-	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/5.png" class="img-responsive quick-image"></div>';
-
-	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/6.png" class="img-responsive quick-image"></div>';
-
-	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/1.png" class="img-responsive quick-image"></div>';
-
-	 quickselection+='<div class="col-sm-2 col-xs-2"> <img src="images/2.png" class="img-responsive quick-image"></div>';
-
-  document.getElementById("quickselection").innerHTML =quickselection;
  
-  
  
 
