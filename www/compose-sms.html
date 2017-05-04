@@ -229,7 +229,8 @@
 
 
 
-	<div class="col-sm-5 col-xs-5"><label>Sender ID</label>
+	<div class="col-sm-5 col-xs-5" id="senderidrowhi">
+	<label id="labelsendid">Sender ID</label>
 			<select class="form-control" id="senderid" name="senderid" required=""> 
 
 			<option value="">Sender ID</option>
@@ -313,7 +314,7 @@
 
 </div>
 
-	<div class="col-sm-6 col-xs-6"><label>Select Template</label>
+	<div class="col-sm-6 col-xs-6"><label class="selecttmp control-label">Select Template</label>
 		<select id="templateswithname" class="form-control" onchange="gettemplate(this.value);">
 		  <option value=""> Template</option>
 
@@ -341,6 +342,7 @@
 
 	<div class="col-md-12">
 	    <input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Send Message">
+		  <span id="msgstatus"></span>
 	</div>
 </div>
 
