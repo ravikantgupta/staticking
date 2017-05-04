@@ -322,9 +322,9 @@
 
 	</div>
 
-	<div class="col-sm-12">
+	<div class="col-sm-12" id="smstabh">
 		<label>Sms Content</label>
-		<textarea class="form-control composse-box" id="smscontent" rows="3" placeholder="" style="margin:5px 0px;"></textarea>
+		<textarea class="form-control composse-box" id="smscontent" rows="3" placeholder="" style="margin:5px 0px;" onchange="countwords();" onkeydown="countwords(); " onclick="countwords();" onkeyup="countwords();" onfocus="countwords();" onkeypress="countwords();" onmouseover="countwords();" onmousemove="countwords();" required ></textarea>
 		<label> <span id="wordsremain"></span> <span id="labelchar"> Characters </span> <span id="countsms"></span> <span id="labelsms"> SMS </span></label>
 
 		   <input type="hidden" id="countsmshidden" />
