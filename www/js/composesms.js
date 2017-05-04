@@ -86,11 +86,11 @@ function countwords()
 
 
 
-		jQuery(function(){
+		/*jQuery(function(){
 			jQuery('*[name=date]').appendDtpicker();
 			$('*[name=date]').val("");
 
-		});
+		});*/
 	
 		jQuery(document).ready(function()
 		{

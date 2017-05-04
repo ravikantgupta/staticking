@@ -212,7 +212,14 @@
 <select class="form-control" id="routeid" onchange="checkroutes(this.value);" required="">
 
 
-
+<option value=""> Route</option>
+						                
+												                                                <option value="Promotional">Promotional</option>
+												                                                <option value="Promotional1">Promotional1</option>
+												                                                <option value="Promosid">Promosid</option>
+												                                                <option value="Transactional">Transactional</option>
+												                                                <option value="transactional2">Transactional2</option>
+												                                                <option value="international">International</option>
 
 
 
@@ -383,56 +390,6 @@
  
 <script type="text/javascript" src="js/composesms.js"></script>
 
-<script type="text/javascript">
-jQuery(document).ready(function(e) {
-  
- jQuery("#schedulenew").datetimepicker({
-			mask:'9999/19/39 29:59',
-			minDate:'-1970/01/01',
-			minTime:'0',
-			maxTime:'21:00',
-			step:30
-			});   
-
-jQuery("#schedulenew").val("");
-    jQuery("#schedulenew").on('change click focus',function()
-	{
-		
-			
-		if(this.value!=='')
-		{
-			
-			ajdidate="2017/02/24";
-			
-			tyu=this.value.split("/");
-			//alert(tyu[0]);
-			tyus=tyu[2].charAt(0)+tyu[2].charAt(1);
-			var myDate = tyu[0]+'/'+tyu[1]+'/'+tyus;
-			if(myDate==ajdidate)
-			{
-				jQuery(this).datetimepicker({
-			mask:'9999/19/39 29:59',
-			minDate:'-1970/01/01',
-			minTime:'0',
-			maxTime:'21:00'
-			});
-			}
-			else
-			{
-				
-				jQuery(this).datetimepicker({
-			mask:'9999/19/39 29:59',
-			minDate:'-1970/01/01',
-			minTime:'09:00',
-			maxTime:'21:00'
-			});
-			}
-		}
-			
-	});
-	});
-</script>
-
 
 <script type="text/javascript">
 $=jQuery;
@@ -440,6 +397,8 @@ $(document).ready(function()
 {
 	$("#routeid").on('change',function()
 	{
+	
+	
 		routch=$("#routeid").val();
 		
 			$("#labelsms, #wordsremain, #labelchar, #countsms, #smscontent").hide();
