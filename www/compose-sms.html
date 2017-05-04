@@ -333,7 +333,7 @@
 
 	<div class="col-sm-12">
 		 <label>
-			 <a id="scheduleison"> <input type="checkbox"> Schedule SMS</a>
+			 <a id="scheduleison"> <input type="checkbox"> </a> Schedule SMS
 			</label>
 		 <input type="text" name="date" value id="schedulenew" placeholder="Please Select Date/time" class="form-control" style="display:none;" readonly="readonly"   />
 
@@ -392,7 +392,29 @@
  
 <script type="text/javascript" src="js/composesms.js"></script>
 
+<link rel="stylesheet" type="text/css" href="js/datepicker/jquery.datetimepicker.css"/>
 
+<style>
+
+.xdsoft_datetimepicker{
+    
+    opacity: 1;
+     z-index: 99999;
+}
+</style>
+<script src="js/datepicker/jquery.datetimepicker.full.js"></script>
+<script>
+
+jQuery("#schedulenew").datetimepicker({
+			mask:'9999/19/39 29:59',
+			minDate:'-1970/01/01',
+			minTime:'0',
+			maxTime:'21:00',
+			step:30
+			});   
+
+
+</script>
 <script type="text/javascript">
 $=jQuery;
 $(document).ready(function()
@@ -924,6 +946,7 @@ $(document).ready(function()
 {
 	$("#scheduleison").click(function()
 	{
+	  
 		$("#schedulenew").val("");
 	});
 });
