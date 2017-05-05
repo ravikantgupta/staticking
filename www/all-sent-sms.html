@@ -145,14 +145,14 @@ function querystring(senderids)
 {
 
   var pageno=1;
-  jQuery('#faceoff').show();
+ 
      $.ajax({
 				type:'POST',
 				url:"http://manage.staticking.net/index.php/servicessms/allsentsmsapi",
 				data:'page='+pageno+'&logged_in='+logged_in+'&senderids='+senderids,
 				success:function(data)
 				{
-					 jQuery('#faceoff').hide();
+					
 					$(".item").html(data);
 				}
 		      });
@@ -160,7 +160,7 @@ function querystring(senderids)
 function  userquerystring()
 {
    var pageno=1;
-  jQuery('#faceoff').show();
+  
   var usernameid=jQuery('#usernameid').val();
      $.ajax({
 				type:'POST',
@@ -168,7 +168,7 @@ function  userquerystring()
 				data:'page='+pageno+'&logged_in='+logged_in+'&usernameid='+usernameid,
 				success:function(data)
 				{
-					 jQuery('#faceoff').hide();
+					
 					$(".item").html(data);
 				}
 		      });
@@ -180,7 +180,7 @@ return false;
 function  smquerystring()
 {
    var pageno=1;
-  jQuery('#faceoff').show();
+  
   var smsid=jQuery('#smsid').val();
      $.ajax({
 				type:'POST',
@@ -188,7 +188,7 @@ function  smquerystring()
 				data:'page='+pageno+'&logged_in='+logged_in+'&smsid='+smsid,
 				success:function(data)
 				{
-					 jQuery('#faceoff').hide();
+					
 					$(".item").html(data);
 				}
 		      });
@@ -200,7 +200,7 @@ return false;
 function  datequerystring()
 {
    var pageno=1;
-  jQuery('#faceoff').show();
+ 
   var fromdate=jQuery('#fromdate').val();
    var todate=jQuery('#todate').val();
      $.ajax({
@@ -209,7 +209,7 @@ function  datequerystring()
 				data:'page='+pageno+'&logged_in='+logged_in+'&fromdate='+fromdate+'&todate='+todate,
 				success:function(data)
 				{
-					 jQuery('#faceoff').hide();
+					 
 					$(".item").html(data);
 				}
 		      });
@@ -220,7 +220,7 @@ return false;
 function bulkdlrs()
 {
        
-  jQuery('#faceoff').show();
+  
   var fromdate=jQuery('#fromdate1').val();
    var todate=jQuery('#todate1').val();
     var route=jQuery('#routeid').val();
@@ -230,7 +230,7 @@ function bulkdlrs()
 				data:'logged_in='+logged_in+'&fromdate='+fromdate+'&todate='+todate+'&route='+route,
 				success:function(data)
 				{
-					 jQuery('#faceoff').hide();
+					
 					$(".msg").html(data);
 				}
 		      });
