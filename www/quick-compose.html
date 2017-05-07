@@ -236,7 +236,7 @@
 
 
 
-<div class="col-sm-6 col-xs-6"><label>Sender ID</label>
+<div class="col-sm-6 col-xs-6" id="senderidrowhi"><label id="labelsendid">Sender ID</label>
 	<select class="form-control" name="senderid" id="senderid"  required=""> 
 
 		 <option value="">Sender ID</option>
@@ -310,7 +310,7 @@
 
 
 <div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Send Message">
+<input type="submit" id="sendsmsfast"  class="btn btn-primary inner-button" value="Send Message">
 <span id="msgstatus"></span>
 </div>
 
@@ -435,35 +435,7 @@ function getsmslen(str)
 
 </script>
 
-<script type="text/javascript">
-$(document).ready(function()
-{
-	$("#msgtype").on('change',function()
-	{
-		getsmslen($("#smscontent").val());
-		if($(this).val()=='unicodemsg')
-		{	
-			$("#translControl").show();
-		}
-		else
-		{
-			$(".inputapi-inline-block").removeClass("inputapi-transliterate-button-checked");
-			$(".inputapi-transliterate-button").removeClass("inputapi-transliterate-button-checked");
-			$(".inputapi-transliterate-language-menuitem").removeClass("inputapi-option inputapi-option-selected");
-			
-			 
-			
-			$("#translControl").hide();
-			 
-		}
-		
-	});
-	
-	
-		
-});
 
-</script>
 
 
 <script type="text/javascript">
@@ -776,43 +748,6 @@ $("#clsosebutton").click(function()
  }
  </script>
 
-<script type="text/javascript">
-	function getgroupnos(str)
-	{
-		file="http://manage.staticking.net/public/groupfiles/"+str;
-		
-		$.get(file, function(data)
-		{
-		
-		$("#contactnumberst").append(data);
-		$("#mismodal").click();
-		
-		});
-	}
-	
-	function gettemplate(templa)
-	{
-		
-		
-		
-		
-		$("#smscontent").val(templa);
-		$("#mismodalgroup").click();
-		
-		
-	}
-</script>
-
-<script type="text/javascript">
-$=jQuery;
-$(document).ready(function()
-{
-	$("#scheduleison").click(function()
-	{
-		$("#schedulenew").val("");
-	});
-});
-</script>
 
 <script type="text/javascript">
 $(document).ready(function() {
@@ -896,42 +831,7 @@ $("#contactnumberst").on('change keyup',function()
 	}
 </script>
 
-<script type="text/javascript">
-$(document).ready(function(e) {
-    $("#removedndnumbers").on('click',function()
-	{
-		
-		allmulnumbersple=$("#contactnumberst").val();
-		
-		if(allmulnumbersple!=='')
-		{
 
-			$.ajax({
-					type:'POST',
-					url:'http://manage.staticking.net/index.php/services/removedndnumbersfastapi',
-					data:'alldndnumbers='+allmulnumbersple,
-					beforeSend: function()
-					{
-						//$("#showloadf").click();
-						//$("#waitmsg").text("Please Wait. Removing DND Numbers");
-						$("#faceoff").show();
-						$("#sendsmsfast, #removedndnumbers").attr('disabled','disabled');
-					},
-					success:function(data)
-					{
-						
-						$("#contactnumberst").val($.parseJSON(data));
-						$("#sendsmsfast, #removedndnumbers").removeAttr('disabled');
-						$("#faceoff").hide();
-						alert("DND Numbers Removed");
-						
-					}
-			});
-		}
-		
-	});
-});
-</script>
 
 <script type="text/javascript">
 $=jQuery;
@@ -997,20 +897,6 @@ $(document).ready(function() {
 	
 	
 });
-
-
-$("#translControl").on('click',function()
-	{
-		
-		$(".inputapi-transliterate-language-menu").toggle();
-	});
-
-
-
-
-	
-	
-
 
 
 </script>
