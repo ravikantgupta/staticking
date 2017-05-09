@@ -92,7 +92,7 @@
 		
 	 function getpageitem()
 			{
-			 jQuery('#faceoff').show();
+			 
 			 var userid=window.localStorage.getItem("userid");
 				$.ajax({
 					type:'POST',
@@ -103,7 +103,7 @@
 						
 						$(".item").html(data);
 						
-						 jQuery('#faceoff').hide();
+						
 					}
 				  });
 
