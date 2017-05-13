@@ -219,7 +219,7 @@ $("#urlform").on('submit',function()
 {
 	$.ajax({
 			type:'POST',
-			url:'http://manage.staticking.net/index.php/pages/addmisscallurlsettings/9',
+			url:'http://manage.staticking.net/index.php/servicessms/addmisscallurlsettingsapi/'+misscallsettings,
 			data:$("#urlform").serialize(),
 			beforeSend:function()
 			{
