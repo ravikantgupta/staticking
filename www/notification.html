@@ -70,7 +70,7 @@
 						
 					
 
-                       getitem();					  
+                       getpageitem();					  
 
 
 						  
@@ -78,7 +78,7 @@
 		}
 		
 				
-		function getitem()
+		function getpageitem()
 		   {
 		   
 		        
@@ -96,6 +96,15 @@
 							
 							}
 						  });
+						  
+						  
+						  $.get('http://manage.staticking.net/index.php/servicessms/notireadapi?notiread=yes&logged_in='+logged_in,function(data)
+							{
+								if(data=='success')
+								{
+									//$(".notitotalh").hide();
+								}
+							});
 
 		   
 		   
