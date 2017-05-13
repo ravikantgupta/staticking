@@ -92,7 +92,7 @@
 
 
  footerhtml+='<div class="col-sm-3 col-xs-3 col-sm-3-me">';
- footerhtml+='<span class="notifactions-icon">12</span>';
+ footerhtml+='<span id="notifactionsicon" class="notifactions-icon"></span>';
  footerhtml+='<a onClick="slide(\'notification.html\')" >';
  footerhtml+='<i class="fa fa-bell fav-icon"></i><br>';
  footerhtml+='Notification </a></div>';

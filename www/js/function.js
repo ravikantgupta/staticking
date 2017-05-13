@@ -73,25 +73,46 @@
 	profilehtml+='<span><a onclick="logout()"><i class="fa fa-lock"></i> Log Out</a></span></form></div>';
 	
 	 document.getElementById("loginContainer").innerHTML =profilehtml;
-	 $(function() {
-    var button = $('#loginButton');
-    var box = $('#loginBox');
-    var form = $('#loginForm');
-    button.removeAttr('href');
-    button.mouseup(function(login) {
-        box.toggle();
-        button.toggleClass('active');
-    });
-    form.mouseup(function() { 
-        return false;
-    });
-    $(this).mouseup(function(login) {
-        if(!($(login.target).parent('#loginButton').length > 0)) {
-            button.removeClass('active');
-            box.hide();
-        }
-    });
-});
+								 $(function() {
+								var button = $('#loginButton');
+								var box = $('#loginBox');
+								var form = $('#loginForm');
+								button.removeAttr('href');
+								button.mouseup(function(login) {
+									box.toggle();
+									button.toggleClass('active');
+								});
+								form.mouseup(function() { 
+									return false;
+								});
+								$(this).mouseup(function(login) {
+									if(!($(login.target).parent('#loginButton').length > 0)) {
+										button.removeClass('active');
+										box.hide();
+									}
+								});
+					});
+					
+					
+					
+					
+					
+					 $.ajax({
+						type:'POST',
+						url:"http://manage.staticking.net/index.php/servicessms/unreadnotificationapi",
+						data:'logged_in='+logged_in,
+						success:function(data)
+						{
+							
+							$("#notifactionsicon").html(data);
+						}
+					  });
+					
+					
+					
+					
+					
+					
 	   
    }
    
