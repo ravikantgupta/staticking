@@ -93,6 +93,7 @@
 							{
 								
 								$(".item").html(data);
+								setscript();
 							}
 						  });
 
@@ -194,118 +195,116 @@
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
 <script type="text/javascript">
-
-$("#misscallform").on('submit',function()
+function setscript()
 {
-	$.ajax({
-			type:'POST',
-			url:'http://manage.staticking.net/index.php/servicessms/addmisscallsettingsapi/'+misscallsettings,
-			data:$("#misscallform").serialize(),
-			beforeSend:function()
+		$("#misscallform").on('submit',function()
+		{
+			$.ajax({
+					type:'POST',
+					url:'http://manage.staticking.net/index.php/servicessms/addmisscallsettingsapi/'+misscallsettings,
+					data:$("#misscallform").serialize(),
+					beforeSend:function()
+					{
+						$("#submitnewuser").attr('disabled','disabled');
+						$("#msgstatus").html("Please Wait..");
+					},
+					success:function(data)
+					{
+						$("#submitnewuser").removeAttr('disabled');
+						$("#msgstatus").html(data);
+					}
+
+			});
+		});
+
+		$("#urlform").on('submit',function()
+		{
+			$.ajax({
+					type:'POST',
+					url:'http://manage.staticking.net/index.php/servicessms/addmisscallurlsettingsapi/'+misscallsettings,
+					data:$("#urlform").serialize(),
+					beforeSend:function()
+					{
+						$("#submitnewuser2").attr('disabled','disabled');
+						$("#msgstatus2").html("Please Wait..");
+					},
+					success:function(data)
+					{
+						$("#submitnewuser2").removeAttr('disabled');
+						$("#msgstatus2").html(data);
+					}
+
+			});
+		});
+
+
+		$("#mobile").keyup(function() {
+			$("#mobile").val(this.value.match(/[0-9]*/));
+		});
+
+
+
+		$(".replyroute").on('change',function()
+		{
+			var checkval=$(this).val();
+			
+			if(checkval=='thirdparty')
 			{
-				$("#submitnewuser").attr('disabled','disabled');
-				$("#msgstatus").html("Please Wait..");
-			},
-			success:function(data)
+				$(".defaultroute").hide();
+				$(".thirdpartyroute").show();
+			}
+			else
+			{	
+				$(".defaultroute").show();
+				$(".thirdpartyroute").hide();
+			}
+		});
+
+
+		$("#replystatus").on('change',function()
+		{
+			var thisval=$("#replystatus:checked").val();
+			
+			if(thisval=='on')
 			{
-				$("#submitnewuser").removeAttr('disabled');
-				$("#msgstatus").html(data);
+				$("#alldivs").slideDown();
+			}
+			else
+			{
+				$("#alldivs").hide();
+			}
+		});
+
+
+		var checkvalag="default";
+			
+			if(checkvalag=='thirdparty')
+			{
+				$(".defaultroute").hide();
+				$(".thirdpartyroute").show();
+			}
+			else
+			{	
+				$(".defaultroute").show();
+				$(".thirdpartyroute").hide();
 			}
 
-	});
-});
 
-$("#urlform").on('submit',function()
-{
-	$.ajax({
-			type:'POST',
-			url:'http://manage.staticking.net/index.php/servicessms/addmisscallurlsettingsapi/'+misscallsettings,
-			data:$("#urlform").serialize(),
-			beforeSend:function()
+		$("#urlforwading").on('change',function()
+		{
+			thisval=$("#urlforwading:checked").val();
+			
+			if(thisval=='1')
 			{
-				$("#submitnewuser2").attr('disabled','disabled');
-				$("#msgstatus2").html("Please Wait..");
-			},
-			success:function(data)
-			{
-				$("#submitnewuser2").removeAttr('disabled');
-				$("#msgstatus2").html(data);
+				$("#urltext").slideDown();
 			}
+			else
+			{
+				$("#urltext").hide();
+			}
+		});
 
-	});
-});
-
-
-$("#mobile").keyup(function() {
-    $("#mobile").val(this.value.match(/[0-9]*/));
-});
-
-</script>
- <script type="text/javascript">
- 	
- 
-
-$(".replyroute").on('change',function()
-{
-	var checkval=$(this).val();
-	
-	if(checkval=='thirdparty')
-	{
-		$(".defaultroute").hide();
-		$(".thirdpartyroute").show();
-	}
-	else
-	{	
-		$(".defaultroute").show();
-		$(".thirdpartyroute").hide();
-	}
-});
-
-
-$("#replystatus").on('change',function()
-{
-	var thisval=$("#replystatus:checked").val();
-	
-	if(thisval=='on')
-	{
-		$("#alldivs").slideDown();
-	}
-	else
-	{
-		$("#alldivs").hide();
-	}
-});
-
-
-var checkvalag="default";
-	
-	if(checkvalag=='thirdparty')
-	{
-		$(".defaultroute").hide();
-		$(".thirdpartyroute").show();
-	}
-	else
-	{	
-		$(".defaultroute").show();
-		$(".thirdpartyroute").hide();
-	}
-
-
-$("#urlforwading").on('change',function()
-{
-	thisval=$("#urlforwading:checked").val();
-	
-	if(thisval=='1')
-	{
-		$("#urltext").slideDown();
-	}
-	else
-	{
-		$("#urltext").hide();
-	}
-});
-
-
+}
  </script>            
 </body>
 </html>
