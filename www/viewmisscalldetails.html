@@ -110,7 +110,7 @@
 			     var miscallviewid= window.localStorage.getItem("viewedmisscall");
 					 
 					   
-		            jQuery('#faceoff').show();
+		           
 		          $.ajax({
 							type:'POST',
 							url:"http://manage.staticking.net/index.php/servicessms/viewmisscalldetailsapi/"+logged_in+'/'+curpage,
@@ -120,7 +120,7 @@
 							{
 								
 								$(".item").html(data);
-								 jQuery('#faceoff').hide();
+								
 							}
 						  });
 			
