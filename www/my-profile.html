@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,11 +8,105 @@
 <link href="images/fav.jpg" rel="shortcut icon" />
 <link href="css/my-css.css" rel="stylesheet" type="text/css" />
 
+   <script type="text/javascript" src="cordova.js"></script>
+	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
+	<script>
+	var app = {
+	
+				initialize: function() {
+					this.bindEvents();
+				},
+
+				bindEvents: function() {
+					document.addEventListener('deviceready', app.onDeviceReady, false);
+				}
+	
+           };
+
+
+	            document.addEventListener("deviceready", function() {
+					
+							 
+				 
+			  // then override any default you want
+			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
+			  window.plugins.nativepagetransitions.globalOptions.iosdelay = 100;
+			  window.plugins.nativepagetransitions.globalOptions.androiddelay = 150;
+			  window.plugins.nativepagetransitions.globalOptions.winphonedelay = 175;
+			  window.plugins.nativepagetransitions.globalOptions.slowdownfactor = 8;
+			  // these are used for slide left/right only currently
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsTop = 64;
+			  window.plugins.nativepagetransitions.globalOptions.fixedPixelsBottom = 48;
+			  
+			  
+			
+				  
+			}, false);
+			
+			
+	</script>
+	 <script type="text/javascript" src="js/function.js"></script>
 </head>
 
-<body style="background:#fff; color:#000;">
+<body style="background:#fff; color:#000;" onload="setvalue()">
 
-<div class="container">
+<script>
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var logged_in= userdetail.id;
+ 
+   
+ 
+		if(window.localStorage.getItem("loggedIn")==1) 
+		{ 
+		 //alert('ram2');
+		}
+		else{ 
+
+		window.location.href="login.html";
+
+
+
+		}
+		
+		
+		function setvalue()
+		{
+		
+			if(!logged_in) 
+			{ 
+			 logout();
+			}
+			
+		            setuserinfo(logged_in);
+					
+				
+                getpagehtml();
+      	
+
+				  
+		}
+		
+		function getpagehtml()
+		{
+            $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/services/userprofileapi",
+				data:'logged_in='+logged_in,
+				success:function(data)
+				{
+					
+					$(".item").html(data);
+				}
+		      });
+
+			  
+		}
+		
+		
+		
+</script>
+
+<div class="container" style="overflow:hidden;">
 
 
 <div class="header">
@@ -35,88 +128,6 @@
 <div id="menu-overlay"></div>
 <ul id="menu">
 
-<div class="gw-sidebar">
-<div id="gw-sidebar" class="gw-sidebar">
-<div class="nano-content">
-<ul class="gw-nav gw-nav-list">
-<li class="init-un-active" style="height:60px;"> <a href="index.html" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>
-<li class="init-un-active" style="">  <input type="text" id="filtersearch" class="form-control" placeholder="Search Page" style="border-radius:0px; border:none !important; height:40px;"> </li>
-<li class="init-un-active"> <a href="index.html"> <i class="fa fa-align-justify"></i> DASHBOARD </a> </li>
-<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-comments"></i> SMS</span> <b class="gw-arrow"></b> </a>
-
-<ul class="gw-submenu">
-<li><a href="compose-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Compose SMS</a></li>
-<li><a href="all-sent-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> All Sent SMS</a></li>
-<li><a href="schedule-sms.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Schedule SMS</a>
-<li><a href="quick-compose.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Quick Compose</a></li>
-<li><a href="quick-sent-item.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Quick Sent Item</a></li>
-</ul>
-</li>
-<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-phone"></i> Miss Call Alerts</span> <b class="gw-arrow icon-arrow-up8"></b> </a>
-<ul class="gw-submenu">
-<li><a href="view-miss-call-alerts.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Miss Call Alerts</a></li>
-</ul>
-</li>
-<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-th"></i> Short/Long Code</span> <b></b> </a>
-<ul class="gw-submenu">
-<li><a href="view-short-long-code.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Short/Long Code</a></li>
-</ul>
-</li>
-
-<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-file"></i> Others</span> <b></b> </a>
-<ul class="gw-submenu">
-<li><a href="add-template.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Template</a></li>
-<li><a href="view-template.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Template</a></li>
-<li><a href="add-group.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Group</a></li>
-<li><a href="view-group.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Group</a></li>
-</ul>
-</li>
-
-<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-user"></i> Users</span> <b></b> </a>
-<ul class="gw-submenu">
-<li><a href="add-user.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add User</a></li>
-<li><a href="view-user.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View User</a></li>
-</ul>
-</li>
-
-<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-users"></i> Reseller</span> <b></b> </a>
-<ul class="gw-submenu">
-<li><a href="add-reseller.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Add Reseller</a></li>
-<li><a href="view-reseller.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Reseller</a></li>
-</ul>
-</li>
-
-<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-cogs"></i> Settings</span> <b></b> </a>
-<ul class="gw-submenu">
-
-<li><a href="changeusertype.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Change User Type </a></li>
-<li><a href="transfer-credits.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transfer Credits </a></li>
-<li><a href="transsactionin.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions In </a></li>
-<li><a href="transsactionout.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions Out </a></li>
-<li><a href="smsapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> HTTP API </a></li>
-
-<li><a href="bulksmsapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Bulk SMS API </a></li>
-<li><a href="xmlapi.html"><i class="fa fa-angle-right" aria-hidden="true"></i> XML API </a></li>
-<li><a href="credit-api.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Credits API </a></li>
-<li><a href="delivery-api.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery API </a></li>
-<li><a href="view-sender-ids.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Sender IDs </a></li>
-<li><a href="viewactualcredits.html"><i class="fa fa-angle-right" aria-hidden="true"></i> View Actual Credits </a></li>
-<li><a href="send-notifications.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Send Notifications </a></li>
-<li><a href="delivery-cutting.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting </a></li>
-<li><a href="delivery-cutting-users-list.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting Users List</a></li>
-<li><a href="website-settings.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Website Settings</a></li>
-<li><a href="check-dnd-number.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Check DND Number</a></li>
-<li><a href="block-number.html"><i class="fa fa-angle-right" aria-hidden="true"></i> Block Number</a></li>
-<li><a href="my-transactions.html"><i class="fa fa-angle-right" aria-hidden="true"></i> My Transactions </a></li>
-
-</ul>
-</li>
-
-</ul>
-</div>
-</div>
-</div>
-
 </ul>
 
 
@@ -126,63 +137,20 @@
 
 
 
-<div class="col-sm-3 col-xs-3" style="text-align:center;"><div id="loginContainer">
-<a href="#" id="loginButton"><span>A</span></a>
-<div style="clear:both"></div>
-<div id="loginBox">                
-<form id="loginForm">
-<span><a href="my-profile.html"><i class="fa fa-user"></i> My Profile</a></span>
-<span><a href="#"><i class="fa fa-lock"></i> Log Out</a></span>
-</form>
+<div class="col-sm-3 col-xs-3" style="text-align:center;">
+<div id="loginContainer">
+
 </div>
-</div></div>
+</div>
 
 </div>
 
 </div>
 
 <div class="available-credits2">
-<div class="row compose">
+<div class="row compose item">
 
 
-
-
-<div class="col-sm-6 col-xs-6">
-<label>User Name</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Enter Name">
-
-</div>
-
-<div class="col-sm-6 col-xs-6">
-<label>Email</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Email">
-
-</div>
-
-<div class="col-sm-6 col-xs-6">
-<label>Password</label>
-<input type="password" name="text" class="form-control input-box" placeholder="Password">
-
-</div>
-
-<div class="col-sm-6 col-xs-6">
-<label>Place</label>
-<input type="password" name="text" class="form-control input-box" placeholder="Place">
-
-</div>
-
-
-<div class="col-sm-6 col-xs-12">
-<label>Phone No</label>
-<input type="text" name="text" class="form-control input-box" placeholder="Phone No.">
-
-</div>
-
-
-
-<div class="col-md-12">
-<input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Save">
-</div>
 </div>
 
 
@@ -202,46 +170,7 @@
 
 <div style="margin:40px; float:left;"></div>
 
-<div class="footer-credits">
-
-<div class="row">
-
-
-<div class="col-sm-3 col-xs-3 col-sm-3-me">
-<a href="index.html">
-<i class="fa fa-home fav-icon"></i><br>
-Dashboard </a></div>
-
-
-
-<div class="col-sm-3 col-xs-3 col-sm-3-me">
-<a href="quick-compose.html">
-<i class="fa fa-envelope-o fav-icon"></i><br>
-Quick SMS </a></div>
-
-
-<div class="col-sm-3 col-xs-3 col-sm-3-me">
-<a href="quick-sent-item.html">
-<i class="fa fa-pencil-square-o fav-icon"></i><br>
-Sent Item</a> </div>
-
-<div class="col-sm-3 col-xs-3 col-sm-3-me">
-<a href="view-group.html">
-<i class="fa fa-users fav-icon"></i><br>
-Group </a></div>
-
-
-
-
-<div class="col-sm-3 col-xs-3 col-sm-3-me">
-<span class="notifactions-icon">12</span>
-<a href="notification.html">
-<i class="fa fa-bell fav-icon"></i><br>
-Notification </a></div>
-
-</div>
-
-
+<div class="footer-credits" id="footercredits">
 
 
 </div>
@@ -252,7 +181,7 @@ Notification </a></div>
 </div>
 
 
-
+<script src="js/left-menuhtml.js"></script>
 <link rel="stylesheet" type="text/css" href="css/bs_leftnavi.css">
 <link rel="stylesheet" href="css/login.css" />
 <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
@@ -264,5 +193,61 @@ Notification </a></div>
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
 
+<script type="text/javascript">
+function adduser()
+{
+
+  var password=$("#password").val();
+
+  var place=$("#place").val();
+
+  var signupnoti=$("#signupnoti").val();
+  var dcpromo=$("#dcpromo").val();
+
+ var dcpromosid=$("#dcpromosid").val();
+
+  var dctrans2=$("#dctrans2").val();
+
+  var dctrans=$("#dctrans").val();
+
+	if(password=='' || place=='')
+
+	{
+
+		$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required Values");
+
+	}
+
+else
+{
+
+	datastring='password='+password+'&place='+place+'&phoneno=9910763636&signupnoti='+signupnoti+'&dcpromo='+dcpromo+'&dcpromosid='+dcpromosid+'&dctrans2='+dctrans2+'&dctrans='+dctrans+'&logged_in='+logged_in;
+
+	$.ajax({
+
+			type:'POST',
+
+			url:'http://manage.staticking.net/index.php/services/editprofileapi',
+
+			data:datastring,
+
+			beforeSend:function()
+			{
+				$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass("alert-info").text("Please Wait");
+			},
+
+			success:function(data)
+			{
+				$("#msgstatus").fadeIn(10).removeClass("alert-info").addClass("alert-success").text(data);
+
+			}
+
+	});
+
+}
+
+}
+
+</script>
 </body>
 </html>
