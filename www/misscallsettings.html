@@ -247,7 +247,7 @@ $("#mobile").keyup(function() {
 
 $(".replyroute").on('change',function()
 {
-	checkval=$(this).val();
+	var checkval=$(this).val();
 	
 	if(checkval=='thirdparty')
 	{
@@ -264,7 +264,7 @@ $(".replyroute").on('change',function()
 
 $("#replystatus").on('change',function()
 {
-	thisval=$("#replystatus:checked").val();
+	var thisval=$("#replystatus:checked").val();
 	
 	if(thisval=='on')
 	{
@@ -277,7 +277,7 @@ $("#replystatus").on('change',function()
 });
 
 
-checkvalag="default";
+var checkvalag="default";
 	
 	if(checkvalag=='thirdparty')
 	{
