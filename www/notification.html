@@ -91,9 +91,7 @@
 							success:function(data)
 							{
 							
-							alert(logged_in);
-								alert(data);
-								
+														
 								$(".item").html(data);
 							
 							}
@@ -103,7 +101,14 @@
 		   
 		   }
 		
+		function gotopage(id)
+		{
 		
+		  window.localStorage.setItem("notifiedid", id);
+		
+		   slide('notification-inbox.html');
+		
+		}
 
 		
 	</script>
