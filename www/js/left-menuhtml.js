@@ -54,21 +54,21 @@
  menuhtml+='<li><a onClick="slide(\'transfer-credits.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Transfer Credits </a></li>';
  menuhtml+='<li><a onClick="slide(\'transsactionin.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions In </a></li>';
  menuhtml+='<li><a onClick="slide(\'transsactionout.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions Out </a></li>';
- menuhtml+='<li><a onClick="slide(\'smsapi.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> HTTP API </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'smsapi.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> HTTP API </a></li>';
 
- menuhtml+='<li><a onClick="slide(\'bulksmsapi.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Bulk SMS API </a></li>';
- menuhtml+='<li><a onClick="slide(\'xmlapi.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> XML API </a></li>';
- menuhtml+='<li><a onClick="slide(\'credit-api.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Credits API </a></li>';
- menuhtml+='<li><a onClick="slide(\'delivery-api.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery API </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'bulksmsapi.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Bulk SMS API </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'xmlapi.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> XML API </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'credit-api.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Credits API </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'delivery-api.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery API </a></li>';
  menuhtml+='<li><a onClick="slide(\'view-sender-ids.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Sender IDs </a></li>';
- menuhtml+='<li><a onClick="slide(\'viewactualcredits.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Actual Credits </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'viewactualcredits.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Actual Credits </a></li>';
  menuhtml+='<li><a onClick="slide(\'send-notifications.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Send Notifications </a></li>';
- menuhtml+='<li><a onClick="slide(\'delivery-cutting.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting </a></li>';
- menuhtml+='<li><a onClick="slide(\'delivery-cutting-users-list.html\')" href=""><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting Users List</a></li>';
+ //menuhtml+='<li><a onClick="slide(\'delivery-cutting.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'delivery-cutting-users-list.html\')" href=""><i class="fa fa-angle-right" aria-hidden="true"></i> Delivery Cutting Users List</a></li>';
  menuhtml+='<li><a onClick="slide(\'website-settings.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Website Settings</a></li>';
- menuhtml+='<li><a onClick="slide(\'check-dnd-number.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Check DND Number</a></li>';
- menuhtml+='<li><a onClick="slide(\'block-number.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Block Number</a></li>';
- menuhtml+='<li><a onClick="slide(\'my-transactions.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> My Transactions </a></li>';
+ //menuhtml+='<li><a onClick="slide(\'check-dnd-number.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Check DND Number</a></li>';
+ //menuhtml+='<li><a onClick="slide(\'block-number.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Block Number</a></li>';
+ //menuhtml+='<li><a onClick="slide(\'my-transactions.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> My Transactions </a></li>';
 
  menuhtml+='</ul>';
  menuhtml+='</li>';
