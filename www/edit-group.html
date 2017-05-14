@@ -155,7 +155,7 @@
 		if(contact.phoneNumbers && contact.phoneNumbers.length) {
 			entry=contact.phoneNumbers[0].value;
 			
-			    alert(entry);
+			   
 			
 				alert(entry.length);
 			
@@ -164,7 +164,7 @@
 						    entry=entry.substring(1, entry.length-1);
 						   }
 						   
-						   
+						    alert(entry);
 						   if(txt!='')
 								{
 								  var textval=txt+'\n'+entry.replace("91", "");
@@ -176,7 +176,7 @@
 						   
 		}
 
-			
+			 alert(textval);
 		 jQuery('#contactnumberst').val(textval);	
 			
 	},function(err){
