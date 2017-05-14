@@ -51,6 +51,62 @@
 
 <body style="background:#fff; color:#000;" onload="setvalue()">
 
+   <script>
+	var userdetail= JSON.parse(window.localStorage.getItem("userdetail"));
+	 var notifiedid= window.localStorage.getItem("notifiedid");
+ var logged_in= userdetail.id;
+
+		if(window.localStorage.getItem("loggedIn") == 1) 
+		{ 
+		// alert('ram1');
+		}
+		else{  window.location.href="login.html"; }
+		
+		
+		function setvalue()
+		{
+		             
+				
+				
+				      setuserinfo(logged_in);
+						
+					
+
+                       getitem();					  
+
+
+						  
+					
+		}
+		
+				
+		function getitem()
+		   {
+		   
+		        
+		   
+		          $.ajax({
+							type:'POST',
+							url:"http://manage.staticking.net/index.php/servicessms/usernotificationdetailapi",
+							data:'logged_in='+logged_in+'&notifiedid='+notifiedid,
+							
+							success:function(data)
+							{
+								
+								$(".item").html(data);
+								
+							}
+						  });
+
+		   
+		   
+		   }
+		
+		
+
+		
+	</script>
+
 <div class="container" style="overflow:hidden;">
 
 
@@ -103,18 +159,8 @@
 <div class="available-credits2">
 <div class="row compose">
   
-<div class="col-sm-12" style="padding:0px;">
-  <a href="inbox-item.html">
-    <div class="thumbnail sender-no" style="background:#efefef !important;">
-      <div class="row">
-  <div class="col-sm-12 sta-date">03 Apriil 2017  7:06 PM</div>
-    <div class="col-sm-12 sta-no">9910763636  | STKING</div>
-    <div class="col-sm-12 sta-text">All Types of SMS under Single Accounts. Promotional,All Types of SMS under Single Accounts. Promotional, </div>
+<div class="col-sm-12 item" style="padding:0px;">
 
-      </div>
-      
-    </div>
-    </a>
   </div>
   
   
