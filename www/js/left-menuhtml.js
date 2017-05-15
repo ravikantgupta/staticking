@@ -3,7 +3,7 @@
  menuhtml+='<li class="init-un-active" style="height:60px;"> <a onClick="slide(\'index.html\')" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>';
  menuhtml+='<li class="init-un-active" style="">  <input type="text" id="filtersearch" class="form-control" placeholder="Search Page" style="border-radius:0px; border:none !important; height:40px;"> </li>';
  menuhtml+='<li class="init-un-active"> <a onClick="slide(\'index.html\')"> <i class="fa fa-align-justify"></i> DASHBOARD </a> </li>';
- menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-comments"></i> SMS</span> <b class="gw-arrow"></b> </a>';
+ menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-comments"></i> SMS</span> <b class="gw-arrow"></b> </a>';
 
  menuhtml+='<ul class="gw-submenu">';
  menuhtml+='<li><a  onClick="slide(\'compose-sms.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Compose SMS</a></li>';
@@ -13,18 +13,18 @@
  menuhtml+='<li><a onClick="slide(\'quick-sent-item.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Quick Sent Item</a></li>';
  menuhtml+='</ul>';
  menuhtml+='</li>';
- menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-phone"></i> Miss Call Alerts</span> <b class="gw-arrow icon-arrow-up8"></b> </a>';
+ menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-phone"></i> Miss Call Alerts</span> <b class="gw-arrow icon-arrow-up8"></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
  menuhtml+='<li><a onClick="slide(\'view-miss-call-alerts.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Miss Call Alerts</a></li>';
  menuhtml+='</ul>';
  menuhtml+='</li>';
- menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-th"></i> Short/Long Code</span> <b></b> </a>';
+ menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"><i class="fa fa-th"></i> Short/Long Code</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
  menuhtml+='<li><a onClick="slide(\'view-short-long-code.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Short/Long Code</a></li>';
  menuhtml+='</ul>';
  menuhtml+='</li>';
 
- menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-file"></i> Others</span> <b></b> </a>';
+ menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-file"></i> Others</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
  menuhtml+='<li><a onClick="slide(\'add-template.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Add Template</a></li>';
  menuhtml+='<li><a onClick="slide(\'view-template.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Template</a></li>';
@@ -33,21 +33,21 @@
  menuhtml+='</ul>';
  menuhtml+='</li>';
 
- menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-user"></i> Users</span> <b></b> </a>';
+ menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-user"></i> Users</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
  menuhtml+='<li><a onClick="slide(\'add-user.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Add User</a></li>';
  menuhtml+='<li><a onClick="slide(\'view-user.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View User</a></li>';
  menuhtml+='</ul>';
  menuhtml+='</li>';
 
- menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-users"></i> Reseller</span> <b></b> </a>';
+ menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-users"></i> Reseller</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
  menuhtml+='<li><a onClick="slide(\'add-reseller.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Add Reseller</a></li>';
  menuhtml+='<li><a onClick="slide(\'view-reseller.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Reseller</a></li>';
  menuhtml+='</ul>';
  menuhtml+='</li>';
 
- menuhtml+='<li class="init-arrow-down"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-cogs"></i> Settings</span> <b></b> </a>';
+ menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-cogs"></i> Settings</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
 
  menuhtml+='<li><a onClick="slide(\'changeusertype.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Change User Type </a></li>';
@@ -102,6 +102,28 @@
  document.getElementById("footercredits").innerHTML =footerhtml;
  
  
- 
+ $('#filtersearch').keyup(function(){
+
+    var that = this, $allListElements = $('.gw-nav > li, .mnli  > ul > li');
+
+    var $matchingListElements = $allListElements.filter(function(i, li){
+        var listItemText = $(li).text().toUpperCase(), 
+            searchText = that.value.toUpperCase();
+        return ~listItemText.indexOf(searchText);
+    });    
+    $allListElements.hide();
+	
+	jQuery('.init-un-active').show();
+    $matchingListElements.show();
+	
+    
+    $(".mnli  > ul").show();
+    
+    if($.trim($('#filtersearch').val())=='')
+    {
+        $(".mnli  > ul").hide();
+    }
+});
+
  
 
