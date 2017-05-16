@@ -103,8 +103,17 @@
 						data:'logged_in='+logged_in,
 						success:function(data)
 						{
+							if(data.trim()=='0')
+							{
+								
+								$("#notifactionsicon").removeClass('notifactions-icon');
+								
+							}else
+								{
+									
+									$("#notifactionsicon").html(data);
+								}
 							
-							$("#notifactionsicon").html(data);
 						}
 					  });
 					
