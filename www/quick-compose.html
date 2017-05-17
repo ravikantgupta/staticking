@@ -473,28 +473,29 @@ $(document).ready(function()
 	$("#sendsmsfast").click(function()
 
 	{
-
+           alert('ram');
 		countwords();
 
 		countwordcontact();
-
+            alert('ram1');
 		
 
-		routeid=$("#routeid").val();
+		var routeid=$("#routeid").val();
 
-		senderid=$("#senderid").val();
+		var senderid=$("#senderid").val();
 
-		contactnumberst=$("#contactnumberst").val();
+		var contactnumberst=$("#contactnumberst").val();
 
-		msgtype=$("#msgtype").val();
+		var msgtype=$("#msgtype").val();
 
-		smscontent=encodeURIComponent($("#smscontent").val());
+		var smscontent=encodeURIComponent($("#smscontent").val());
 
-		schedulenew=$("#schedulenew").val();
+		var schedulenew=$("#schedulenew").val();
 
-		totalsms=$("#countsmshidden").val();
+		var totalsms=$("#countsmshidden").val();
 
-		totalcontacts=$("#totalcontactrow").val();
+		var totalcontacts=$("#totalcontactrow").val();
+		 alert('ram');
 		
 		if(senderid=='' && routeid=='Promotional' || senderid=='undefined' && routeid=='Promotional')
 		{
