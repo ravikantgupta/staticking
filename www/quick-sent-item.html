@@ -60,8 +60,24 @@
 		       				 		            
 			            setuserinfo(logged_in);	
 			
-		
+	  	   getpageitem(1);
 		}
+	function getpageitem(pageno)
+		{
+            $.ajax({
+				type:'POST',
+				url:"http://manage.staticking.net/index.php/servicessms/quicksentsmsapi",
+				data:'page='+pageno+'&logged_in='+logged_in,
+				success:function(data)
+				{
+					
+					$(".item").html(data);
+				}
+		      });
+
+			  
+		}
+		
 	</script>	
 <div class="container" style="overflow:hidden;">
 
@@ -109,36 +125,9 @@
 
 
 <div class="available-credits2">
-<div class="row compose">
+<div class="row compose item">
   
-<div class="col-sm-12">
-  <a href="inbox-item.html">
-    <div class="thumbnail sender-no">
-      <div class="row">
-  <div class="col-sm-12 sta-date">03 Apriil 2017  7:06 PM</div>
-    <div class="col-sm-12 sta-no">9910763636  | STKING</div>
-    <div class="col-sm-12 sta-text">All Types of SMS under Single Accounts. Promotional, Tr...</div>
 
-      </div>
-      
-    </div>
-    </a>
-  </div>
-  
-  <div class="col-sm-12">
-  <a href="inbox-item.html">
-    <div class="thumbnail sender-no">
-      <div class="row">
-  <div class="col-sm-12 sta-date">03 Apriil 2017  7:06 PM</div>
-    <div class="col-sm-12 sta-no">9910763636  | STKING</div>
-    <div class="col-sm-12 sta-text">All Types of SMS under Single Accounts. Promotional, Tr...</div>
-
-      </div>
-      
-    </div>
-    </a>
-  </div>
-  
   
   
   

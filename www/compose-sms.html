@@ -138,6 +138,10 @@
 		if(contact.phoneNumbers && contact.phoneNumbers.length) {
 			entry=contact.phoneNumbers[0].value;
 			
+			entry=entry.replace(/\s/g, "") ;
+			
+			entry=entry.replace(/[^0-9 ]/g, "");
+			
 			  if(entry.length>10)
 						   {
 						    entry=entry.substring(1);
