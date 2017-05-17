@@ -28,15 +28,16 @@ jQuery(document).ready(function()
 
 function countwords()
 {
+	  alert('ram11');
 	var words= document.getElementById('smscontent').value;
 	
 	var totalwords= words.length;
 	document.getElementById('wordsremain').innerHTML=totalwords;
-	divid=document.getElementById('msgtype').value;
-	
+	var divid=document.getElementById('msgtype').value;
+	alert('ram12');
 	if(divid=='unicodemsg' || divid=='unicodeflashmsg')
 	{
-		
+		alert('ram13');
 		if(totalwords > 71)
 		{
 		dvdby=63;
@@ -57,18 +58,13 @@ function countwords()
 		dvdby=160;
 		}
 		
-		//var reg ="[^\x00-\x80]+";
-		//if(words.match(reg)) 
-		//{
-		//document.getElementById('smscontent').value="";
-  	    //$("#msgstatus").fadeIn().fadeOut(4000).html("Input Text Characters Only (If Error Persists then please Refresh The Page)");
-   
-  	 	//return false;
-	  //}
+		alert('ram15');
 		
 	}
 	if(totalwords > 0)
 	{
+		
+		alert('ram16');
 		var ff= Math.ceil(totalwords / dvdby);
 		
 		document.getElementById('countsms').innerHTML=parseInt(ff);
