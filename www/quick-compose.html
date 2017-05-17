@@ -146,6 +146,9 @@
 		 
 		if(contact.phoneNumbers && contact.phoneNumbers.length) {
 			entry=contact.phoneNumbers[0].value;
+			entry=entry.replace(/\s/g, "") ;
+			
+			entry=entry.replace(/[^a-zA-Z ]/g, "");
 			
 			  if(entry.length>10)
 						   {
@@ -473,11 +476,11 @@ $(document).ready(function()
 	$("#sendsmsfast").click(function()
 
 	{
-           alert('ram');
+         
 		countwords();
-  alert('ram0');
+  
 		countwordcontact();
-            alert('ram1');
+          
 		
 
 		var routeid=$("#routeid").val();
@@ -495,7 +498,7 @@ $(document).ready(function()
 		var totalsms=$("#countsmshidden").val();
 
 		var totalcontacts=$("#totalcontactrow").val();
-		 alert('ram');
+		
 		
 		if(senderid=='' && routeid=='Promotional' || senderid=='undefined' && routeid=='Promotional')
 		{
