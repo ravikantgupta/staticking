@@ -146,10 +146,11 @@
 		 
 		if(contact.phoneNumbers && contact.phoneNumbers.length) {
 			entry=contact.phoneNumbers[0].value;
+			 alert(entry);
 			entry=entry.replace(/\s/g, "") ;
-			
+			 alert(entry);
 			entry=entry.replace(/[^0-9 ]/g, "");
-			
+			 alert(entry);
 			  if(entry.length>10)
 						   {
 						    entry=entry.substring(1);
