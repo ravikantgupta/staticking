@@ -93,6 +93,7 @@
 				{
 					
 					$(".item").html(data);
+					setdata();
 				}
 		      });
 
@@ -237,7 +238,7 @@
 
 <script type="text/javascript">
 $=jQuery;
-$(document).ready(function()
+ function setdata()
 {
 	$("#changeuser").click(function()
 	{
@@ -273,7 +274,7 @@ else
 }
 
 	});
-});
+}
 
 
 </script>
