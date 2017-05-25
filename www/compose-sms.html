@@ -142,18 +142,16 @@
 			
 			entry=entry.replace(/[^0-9 ]/g, "");
 			
-			  if(entry.length>10)
-						   {
-						    entry=entry.substring(1);
-						   }
-						   
+			 
+												   
+						    entry.substr(entry.length - 10);
 						   
 						   if(txt!='')
 								{
-								  var textval=txt+'\n'+entry.replace("91", "");
+								  var textval=txt+'\n'+entry;
 								}else
 								{
-								  var textval=entry.replace("91", "");
+								  var textval=entry;
 								}
 						   
 						   
