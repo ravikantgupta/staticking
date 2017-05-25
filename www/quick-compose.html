@@ -146,23 +146,28 @@
 		 
 		if(contact.phoneNumbers && contact.phoneNumbers.length) {
 			entry=contact.phoneNumbers[0].value;
-			 alert(entry);
+			
 			entry=entry.replace(/\s/g, "") ;
-			 alert(entry);
+			
 			entry=entry.replace(/[^0-9 ]/g, "");
-			 alert(entry);
-			  if(entry.length>10)
+			
+						  if(entry.length>10)
 						   {
-						    entry=entry.substring(1);
+						   // entry=entry.substring(1);
 						   }
 						   
-						   alert(entry);
+						  entry= entry.replace("91", "");
+						    if(entry.length>10)
+						   {
+						      entry=entry.substring(1);
+						   }
+						   
 						   if(txt!='')
 								{
-								  var textval=txt+'\n'+entry.replace("91", "");
+								  var textval=txt+'\n'+entry;
 								}else
 								{
-								  var textval=entry.replace("91", "");
+								  var textval=entry;
 								}
 						   
 						   
