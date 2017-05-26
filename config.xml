@@ -88,6 +88,8 @@
                 <preference name="DisallowOverscroll" value="true" />
           	<preference name="webviewbounce" value="false" />
 			
+				<preference name="OverrideUserAgent" value="Mozilla/5.0 Google" />
+			
      <plugin name="cordova-plugin-whitelist" version="1"/>
         
 
