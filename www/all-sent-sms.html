@@ -492,6 +492,31 @@ function promotionaldlr(smsid)
     </div>
   </div>
 </div>
+
+<div id="messagemodal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	
+    <!-- Modal content-->
+    <div class="modal-content">
+      <span id="msgload"></span>
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title popupme">Message </h4>
+      </div>
+      <div id="showmsgthere" class=" modal-body alert-info" style="white-space:pre;">
+     
+      
+        </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        
+        <button type="button" id="msgmodal" data-toggle='modal' data-target='#messagemodal' style="display:none;"></button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="js/jquery-1.11.2.min.js"></script>
 
 <script src="js/left-menuhtml.js"></script>
@@ -545,6 +570,15 @@ $=jQuery;
 					});
 				}
 			});
+			
+			
+			$(".originalmsg").on('click',function()
+{
+	msg=$(this).attr("originalmsg");
+	
+	$("#showmsgthere").html("<pre>"+msg+"</pre>");
+	$("#msgmodal").click();
+});
 }
 
 </script>
