@@ -464,7 +464,28 @@ function promotionaldlr(smsid)
 
 
 </div>
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+	
+    <!-- Modal content-->
+    <div class="modal-content" style="width:800px;">
+      <span id="msgload"></span>
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title popupme">Delivery Report </h4>
+      </div>
+      <div id="showthere" class=" modal-body alert-info">
+     
+      
+        </div>
 
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="js/jquery-1.11.2.min.js"></script>
 
 <script src="js/left-menuhtml.js"></script>
@@ -489,5 +510,36 @@ function promotionaldlr(smsid)
             todayHighlight: true
         });
  </script>
+ 
+ <script type="text/javascript">
+$=jQuery;
+
+$(document).ready(function()
+{
+$(".viewreport").click(function()
+{
+	check=(this.value);
+	
+	if(check!=='')
+	{
+		$.ajax({
+				type:'POST',
+				url:'http://manage.staticking.net/index.php/servicessms/viewdlrapi',
+				data:'checkid='+check+'&logged_in='+logged_in,
+				beforeSend:function()
+				{
+					$("#showthere").text("Please Wait...");
+				},
+				success:function(data)
+				{
+					$("#showthere").html(data);
+				}
+		});
+	}
+});
+});
+
+</script>
+ 
 </body>
 </html>
