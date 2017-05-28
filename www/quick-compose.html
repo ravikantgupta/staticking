@@ -299,12 +299,18 @@
 
 <div class="col-sm-12" id="smstabh">
 <label>Sms Content</label>
-<input type="hidden" value="textmsg" id="msgtype" name="msgtype" >
-	                                           
-<textarea class="form-control composse-box" rows="3" id="smscontent" placeholder="" style="margin:5px 0px;" onchange="countwords();" onkeydown="countwords(); " onclick="countwords();" onkeyup="countwords();" onfocus="countwords();" onkeypress="countwords();" onmouseover="countwords();" onmousemove="countwords();" required></textarea>
-<label class="red"><span id="wordsremain"></span> <span id="labelchar"> &nbsp;Characters&nbsp; </span> <span id="countsms"></span> <span id="labelsms"> &nbsp;SMS&nbsp; </span></label>
 
-   <input type="hidden" id="countsmshidden" />
+				
+                <select class="form-control smscontent" id="smscontent" onchange="getsmslen(this.value);">
+                <option value="">Select Template</option>
+                <option value="Hi, This is test sms from SMS panel.">Test SMS</option>
+                
+                </select>
+                 <label>  <span id="msgpreview"></span>
+                <span id="wordsremain">0</span> <span id="labelchar">&nbsp;Characters&nbsp;</span> <span id="countsms">0</span> <span id="labelsms">&nbsp;SMS&nbsp;</span>
+				</label>
+				<input type="hidden" id="countsmshidden" />
+               <input type="hidden" value="textmsg" id="msgtype" name="msgtype" >
 </div>
 
 
