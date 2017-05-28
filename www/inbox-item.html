@@ -56,10 +56,34 @@
     function setvalue()
 		{
 		       				 		            
-			            setuserinfo(logged_in);	
+			setuserinfo(logged_in);	
+			
+			 getitem();	
 			
 		
 		}
+	function getitem()
+		   {
+		   
+		          var quicksentid= window.localStorage.getItem("quicksentid");
+					 
+					   
+		   
+		          $.ajax({
+							type:'POST',
+							url:"http://manage.staticking.net/index.php/servicessms/quicksentsmsdetailapi",
+							data:'logged_in='+logged_in+'&quicksentid='+quicksentid,
+							
+							success:function(data)
+							{
+								
+								$(".compose").html(data);
+							}
+						  });
+
+		   
+		   
+		   }
 	</script>	
 <div class="container" style="overflow:hidden;">
 
