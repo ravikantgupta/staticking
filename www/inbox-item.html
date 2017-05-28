@@ -77,7 +77,7 @@
 							success:function(data)
 							{
 								
-								$(".compose").html(data);
+								$(".item").html(data);
 							}
 						  });
 
@@ -131,7 +131,7 @@
 
 
 <div class="available-credits2">
-<div class="row compose">
+<div class="row compose item">
   
 <div class="col-sm-12" style="padding:0px;">
   <a href="inbox-item.html">
@@ -151,7 +151,10 @@
   
   
   
-  
+    <input type="hidden" id="routeid" name="routeid" >
+  <input type="hidden" id="senderid" name="senderid" >
+  <input type="hidden" id="contactnumberst" name="contactnumberst" >
+ <input type="hidden" value="textmsg" id="msgtype" name="msgtype" >
   
   
 </div>
@@ -170,15 +173,20 @@
 <div class="available-credits2">
 <div class="row compose" style="background:#fff;">
   
+
+  
 <div class="col-sm-12">
 
-<textarea class="form-control composse-box" rows="3" placeholder="Text Message" style="margin:5px 0px;"></textarea>
-<label class="red">0 Characters 0 SMS</label>
+<textarea class="form-control composse-box" rows="3" id="smscontent" placeholder="Text Message" style="margin:5px 0px;" onchange="countwords();" onkeydown="countwords(); " onclick="countwords();" onkeyup="countwords();" onfocus="countwords();" onkeypress="countwords();" onmouseover="countwords();" onmousemove="countwords();" ></textarea>
+<label class="red"><span id="wordsremain" class="red"></span> <span id="labelchar" class="red"> &nbsp;Characters&nbsp; </span> <span id="countsms" class="red"></span> <span id="labelsms" class="red"> &nbsp;SMS&nbsp; </span></label>
+
+<input type="hidden" id="countsmshidden" />
 </div>
   
   
   <div class="col-md-12">
 <input type="submit" id="sendsmsfast" class="btn btn-primary inner-button" value="Send" style="margin-top:20px;">
+<span id="msgstatus"></span>
 </div>
   
   
@@ -225,6 +233,149 @@
 <script src="js/fontawesome.js"></script> 
 <script src="js/left-menu.js"></script>
 <script src="js/left-menu2.js"></script>
+ 
+<script type="text/javascript" src="js/composesms.js"></script>
+
+<script type="text/javascript">
+
+$=jQuery;
+
+$(document).ready(function()
+
+{
+
+	$("#sendsmsfast").click(function()
+
+	{
+         
+		countwords();
+  
+		countwordcontact();
+          
+		
+
+		var routeid=$("#routeid").val();
+
+		var senderid=$("#senderid").val();
+
+		var contactnumberst=$("#contactnumberst").val();
+
+		var msgtype=$("#msgtype").val();
+
+		var smscontent=encodeURIComponent($("#smscontent").val());
+
+		var schedulenew=$("#schedulenew").val();
+
+		var totalsms=$("#countsmshidden").val();
+
+		var totalcontacts=$("#totalcontactrow").val();
+		
+		
+		if(senderid=='' && routeid=='Promotional' || senderid=='undefined' && routeid=='Promotional')
+		{
+			senderid='Default';
+		}
+		
+		if(senderid=='Default' && routeid=='Transactional' || senderid=='' && routeid=='Transactional')
+		{
+			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		
+		if(senderid=='Default' && routeid=='Promosid' || senderid=='' && routeid=='Promosid')
+		{
+			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		if(senderid=='Default' && routeid=='transactional2' || senderid=='' && routeid=='transactional2')
+		{
+			$("#bbalertd").fadeIn(10).addClass("alert-danger").text("Please Select Sender ID");
+			return false;
+		}
+		
+
+		if(routeid=='' || senderid=='' || contactnumberst=='' || msgtype=='' || smscontent=='' || totalsms=='' || totalcontacts=='')
+
+		{
+
+			$("#msgstatus").fadeIn(10).addClass("alert-danger").text("Please Enter Required Values");
+
+			
+
+		}
+
+		else
+		{
+			if(totalcontacts > 50000)
+			{
+				alert("Enter Only 50000 Numbers");
+				return false;
+			}
+			else
+			{
+			if(routeid=='Promotional1' && $("#istendigitid").val()=='yes' && totalsms > 1)
+			{
+				alert("You Can Send Only 1 Sms(160 Characters) On this Route ");
+				return false;
+			}
+			else
+			{		
+datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactnumberst+'&msgtype='+msgtype+'&smscontent='+smscontent+'&schedulenew='+schedulenew+'&totalsms='+totalsms+'&totalcontacts='+totalcontacts+'&logged_in='+logged_in;
+
+			$.ajax({
+
+					type:'POST',
+
+					url:'http://manage.staticking.net/index.php/servicessms/sendsmsapi',
+
+					data:datastring,
+
+					beforeSend:function()
+					{
+						$("#waitmsg").text("Please Wait. Sending Message.....");
+						
+						$("#faceoff").show();
+						$("#msgstatus").fadeIn(10).removeClass("alert-danger").addClass("alert-info").text("Please Wait, Sending Message.....");
+						$("#sendsmsfast").attr('disabled','disabled');
+						
+						
+					},
+
+					success:function(data)
+					{
+						$("#faceoff").hide();
+						$("#showloadf").click();
+						$("#waitmsg").fadeIn(10).html(data);
+						
+						$("#msgstatus").fadeIn(10).removeClass("alert-info").html(data);
+						$("#sendsmsfast").removeAttr('disabled');
+						$(".close").removeAttr('disabled');
+						
+						$("#clsosebutton").show();
+						$("input,select,textarea").each(function()
+						{
+							$(this).val("");
+						});
+						$("#sendsmsfast").val("Send Message");
+						
+					}
+
+			});
+
+			}
+
+			
+			}
+		}
+
+		
+
+	});
+
+});
+
+</script>
+
 
 </body>
 </html>
