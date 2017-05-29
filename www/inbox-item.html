@@ -338,6 +338,7 @@ datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactn
 
 					success:function(data)
 					{
+					   
 						$("#faceoff").hide();
 						$("#showloadf").click();
 						$("#waitmsg").fadeIn(10).html(data);
@@ -352,6 +353,8 @@ datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactn
 							$(this).val("");
 						});
 						$("#sendsmsfast").val("Send Message");
+						
+						getitem();
 						
 					}
 
