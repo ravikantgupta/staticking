@@ -58,6 +58,52 @@
 		{
 		       				 		            
 			            setuserinfo(logged_in);	
+						
+						  datastring='logged_in='+logged_in;
+						
+						jQuery.ajax({
+									
+									type:'GET',
+									contentType: 'application/json',
+									 dataType: 'jsonp',
+									
+									url:'http://manage.staticking.net/index.php/servicessms/composesmsapi',
+									data:datastring,
+									
+
+									beforeSend:function()
+									{
+
+										//jQuery("#msgstatus").addClass("alert-danger").fadeIn(10).text("Please Wait....");
+
+									},
+
+									success:function(data)
+									{
+										//  alert(JSON.stringify(data.routes));
+										  
+										  var routes =data.routes;
+										  var routeshtml='<option value="">Route</option>';
+										  for (var key in routes) {
+										  
+										               routeshtml+='<option value="'+key+'">'+key+'</option>';
+													   
+													
+												}
+												
+											jQuery('#routeid').html(routeshtml);								
+												
+										  
+										
+										 			  
+
+									}
+
+									
+
+								
+
+							});
 			
 		
 		}
