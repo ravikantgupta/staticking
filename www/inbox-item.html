@@ -58,11 +58,11 @@
 		       				 		            
 			setuserinfo(logged_in);	
 			
-			 getitem();	
+			 getitem(0);	
 			
 		
 		}
-	function getitem()
+	function getitem(pageno)
 		   {
 		   
 		          var quicksentid= window.localStorage.getItem("quicksentid");
@@ -72,12 +72,35 @@
 		          $.ajax({
 							type:'POST',
 							url:"http://manage.staticking.net/index.php/servicessms/quicksentsmsdetailapi",
-							data:'logged_in='+logged_in+'&quicksentid='+quicksentid,
+							data:'logged_in='+logged_in+'&quicksentid='+quicksentid+'&pageno='+pageno,
 							
 							success:function(data)
 							{
 								
 								$(".item").html(data);
+							}
+						  });
+
+		   
+		   
+		   }
+		   
+		   function getitemafterscroll(pageno)
+		   {
+		   
+		          var quicksentid= window.localStorage.getItem("quicksentid");
+					 
+					   
+		   
+		          $.ajax({
+							type:'POST',
+							url:"http://manage.staticking.net/index.php/servicessms/quicksentsmsdetailapi",
+							data:'logged_in='+logged_in+'&quicksentid='+quicksentid+'&pageno='+pageno,
+							
+							success:function(data)
+							{
+								
+								$(".item").append(data);
 							}
 						  });
 
@@ -354,7 +377,7 @@ datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactn
 						});
 						$("#sendsmsfast").val("Send Message");
 						
-						getitem();
+						getitem(0);
 						
 					}
 
@@ -373,7 +396,41 @@ datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactn
 });
 
 </script>
+<script>
 
+var mincount = 20;
+var maxcount = 40;
+
+var counter=0;
+
+jQuery(window).scroll(function(e) 
+                    {
+						
+						
+                    if(jQuery(window).scrollTop() + jQuery(window).height() >= jQuery(document).height() - 1000)
+						{
+							
+							if(counter==1)
+							{
+							  return false;
+							}
+							counter=1;
+													
+								
+							
+					
+					var totpro=jQuery('.pro').length;
+	
+	                    getitemafterscroll(totpro);
+							
+				         
+                          
+                      }
+					  
+					
+});
+
+</script>
 
 </body>
 </html>
