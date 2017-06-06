@@ -2,7 +2,7 @@
     <widget xmlns:gap="http://phonegap.com/ns/1.0" 
     xmlns="http://www.w3.org/ns/widgets" 
     id="com.staticking.com" 
-    version="2.0.0">
+    version="2.0.1">
 
         <name>Staticking</name>
         <description>
