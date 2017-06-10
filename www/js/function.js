@@ -73,6 +73,16 @@
 	profilehtml+='<span><a onclick="logout()"><i class="fa fa-lock"></i> Log Out</a></span></form></div>';
 	
 	 document.getElementById("loginContainer").innerHTML =profilehtml;
+	 
+	 
+	               jQuery('#loginButton').click(function(){
+					   
+					   
+					   alert('ram');
+					   
+				   });
+	 
+	 
 								 $(function() {
 								var button = $('#loginButton');
 								var box = $('#loginBox');
