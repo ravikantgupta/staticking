@@ -77,31 +77,19 @@
 	 
 	               jQuery('#loginButton').click(function(){
 					   
-					   
-					   alert('ram');
+					    if(jQuery(this).hasClass('active')) {
+					      jQuery('#loginButton').removeClass('active');
+					      jQuery('#loginBox').hide();
+						}else{
+							
+							 jQuery('#loginButton').addClass('active');
+					         jQuery('#loginBox').show();
+						}
+					    
 					   
 				   });
 	 
 	 
-								 $(function() {
-								var button = $('#loginButton');
-								var box = $('#loginBox');
-								var form = $('#loginForm');
-								button.removeAttr('href');
-								button.mouseup(function(login) {
-									box.toggle();
-									button.toggleClass('active');
-								});
-								form.mouseup(function() { 
-									return false;
-								});
-								$(this).mouseup(function(login) {
-									if(!($(login.target).parent('#loginButton').length > 0)) {
-										button.removeClass('active');
-										box.hide();
-									}
-								});
-					});
 					
 					
 					
