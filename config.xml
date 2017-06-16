@@ -41,7 +41,7 @@
 		<!-- Icons -->
 		<icon src="resource/icon/96x96px_2.png" />
 		<!-- Splash Screens -->
-		<gap:splash src="resource/splash/480x800.png" />
+		<splash src="resource/splash/480x800.png" />
 		
 		<!-- ====================== -->
 		<!-- iOS Configuration      -->
@@ -66,14 +66,14 @@
 		<icon src="{{android-icon-76-2x}}" gap:platform="android" width="152" height="152" />
 		-->
 		<!-- Splash Screens -->
-		<gap:splash src="resource/splash/480x800.png" gap:platform="android" width="480" height="800" />
-		<gap:splash src="resource/splash/200x320.png" gap:platform="android" width="200" height="320" />
-		<gap:splash src="resource/splash/512x512_7.png" gap:platform="android" width="320" height="480" />
-		<gap:splash src="resource/splash/720x1280.png" gap:platform="android" width="720" height="1280" />
-		<gap:splash src="resource/splash/800x480.png" gap:platform="android" width="800" height="480" />
-		<gap:splash src="resource/splash/320x200.png" gap:platform="android" width="320" height="200" />
-		<gap:splash src="resource/splash/480x320.png" gap:platform="android" width="480" height="320" />
-		<gap:splash src="resource/splash/1280x720.png" gap:platform="android" width="1280" height="720" />
+		<splash src="resource/splash/480x800.png" gap:platform="android" width="480" height="800" />
+		<splash src="resource/splash/200x320.png" gap:platform="android" width="200" height="320" />
+		<splash src="resource/splash/512x512_7.png" gap:platform="android" width="320" height="480" />
+		<splash src="resource/splash/720x1280.png" gap:platform="android" width="720" height="1280" />
+		<splash src="resource/splash/800x480.png" gap:platform="android" width="800" height="480" />
+		<splash src="resource/splash/320x200.png" gap:platform="android" width="320" height="200" />
+		<splash src="resource/splash/480x320.png" gap:platform="android" width="480" height="320" />
+		<splash src="resource/splash/1280x720.png" gap:platform="android" width="1280" height="720" />
 		
     
 	         <preference name="phonegap-version" value="cli-6.5.0" /> 
