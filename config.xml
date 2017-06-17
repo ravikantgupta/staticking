@@ -77,7 +77,7 @@
 		<gap:splash src="resource/splash/1280x720.png" gap:platform="android" width="1280" height="720" />
 		
     
-	         <preference name="phonegap-version" value="4.1.1" /> 
+	         <preference name="phonegap-version" value="cli-6.5.0" /> 
 			  <preference name="SplashScreen" value="screen" />
 			  <preference name="SplashScreenDelay" value="3000"/>
 				<preference name="show-splash-screen-spinner" value="true"/>
