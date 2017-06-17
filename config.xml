@@ -43,7 +43,7 @@
 		<icon src="resource/icon/96x96px_2.png" />
 		<!-- Splash Screens -->
 		<gap:splash src="resource/splash/480x800.png" />
-		
+		<splash src="splash.png" />
 		<!-- ====================== -->
 		<!-- iOS Configuration      -->
 		<!-- ====================== -->
