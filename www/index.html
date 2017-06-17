@@ -12,6 +12,7 @@
      <script type="text/javascript" src="cordova.js"></script>
 	 <script type="text/javascript" src="js/NativePageTransitionsKendoAdapter.js"></script>
 	<script>
+	
 	var app = {
 	
 				initialize: function() {
@@ -27,7 +28,7 @@
 
 	            document.addEventListener("deviceready", function() {
 					
-							 
+				navigator.splashscreen.show();			 
 				 
 			  // then override any default you want
 			  window.plugins.nativepagetransitions.globalOptions.duration = 700;
