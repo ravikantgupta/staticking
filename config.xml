@@ -73,7 +73,7 @@
 			<splash src="res/screen/android/splash-port-xhdpi.png" density="port-xhdpi"/>
 		   </platform>
 		   
-	         <preference name="phonegap-version" value="4.0.1" /> 
+	         <preference name="phonegap-version" value="cli-6.5.0" /> 
 			
 			 <preference name="SplashScreenDelay" value="50000" />
 			  <preference name="AutoHideSplashScreen" value="true" />
