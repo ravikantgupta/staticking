@@ -74,8 +74,8 @@
 		   </platform>
 		   
 	         <preference name="phonegap-version" value="cli-6.5.0" /> 
-			  <preference name="SplashScreen" value="screen" />
-			 <preference name="SplashScreenDelay" value="10000" />
+			
+			 <preference name="SplashScreenDelay" value="50000" />
 			  <preference name="AutoHideSplashScreen" value="true" />
 			
 				  <preference name="disable-cursor" value="false"/>
