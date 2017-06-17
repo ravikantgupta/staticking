@@ -19,7 +19,7 @@
     	
 		 <plugin name="org.apache.cordova.inappbrowser"   />
 		
-    	<plugin name="org.apache.cordova.splashscreen" spec="0.2.7"  />
+    
     	<plugin name="cordova-plugin-contacts" spec="~2.3.0" />
         
 		 <plugin name="com.telerik.plugins.nativepagetransitions" source="npm" />
