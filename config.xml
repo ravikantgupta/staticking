@@ -19,7 +19,7 @@
     	
 		 <plugin name="org.apache.cordova.inappbrowser"   />
 		
-    	<plugin name="org.apache.cordova.splashscreen" spec="0.2.7"  />
+    	<plugin name="cordova-plugin-splashscreen"   />
     	<plugin name="cordova-plugin-contacts" spec="~2.3.0" />
         
 		 <plugin name="com.telerik.plugins.nativepagetransitions" source="npm" />
@@ -42,8 +42,7 @@
 		<!-- Icons -->
 		<icon src="resource/icon/96x96px_2.png" />
 		<!-- Splash Screens -->
-		
-		<splash src="splash.png" />
+		<gap:splash src="resource/splash/480x800.png" />
 		
 		<!-- ====================== -->
 		<!-- iOS Configuration      -->
