@@ -1,4 +1,9 @@
 
+ var usertypedetail= JSON.parse(window.localStorage.getItem("userdetail"));
+ var usertype= usertypedetail.acc_type;
+ 
+ alert(usertype);
+ 
  var menuhtml='<div class="gw-sidebar"><div id="gw-sidebar" class="gw-sidebar"><div class="nano-content"><ul class="gw-nav gw-nav-list">';
  menuhtml+='<li class="init-un-active" style="height:60px;"> <a onClick="slide(\'index.html\')" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>';
  menuhtml+='<li class="init-un-active" style="">  <input type="text" id="filtersearch" class="form-control" placeholder="Search Page" style="border-radius:0px; border:none !important; height:40px;"> </li>';
