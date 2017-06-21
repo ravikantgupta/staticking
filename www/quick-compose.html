@@ -107,13 +107,19 @@
 												
 												var senderhtml=window.localStorage.getItem("senderhtml");
 												
-												alert(routehtml);
+												
 												
 											if(routehtml!=null)
                                              {
 											 
 											   jQuery('#routeid').html(routehtml);
 											    jQuery('#senderid').html(senderhtml);
+												
+												jQuery('#routeid').val(window.localStorage.getItem("routeval"));
+												
+												jQuery('#senderid').val(window.localStorage.getItem("senderval"));
+												
+																						
 											 
 											 }else{
 											   jQuery('#routeid').html(routeshtml);
@@ -567,6 +573,9 @@ datastring='routeid='+routeid+'&senderid='+senderid+'&contactnumberst='+contactn
 
 			    window.localStorage.setItem("routehtml", jQuery('#routeid').html());
 			    window.localStorage.setItem("senderhtml", jQuery('#senderid').html());
+				
+				  window.localStorage.setItem("routeval",routeid);
+			    window.localStorage.setItem("senderval", senderid);
 			
 			
 			
