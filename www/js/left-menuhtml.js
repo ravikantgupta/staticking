@@ -88,7 +88,7 @@
  footerhtml+='<div class="col-sm-3 col-xs-3 col-sm-3-me">';
  footerhtml+='<a onClick="slide(\'view-group.html\')" >';
  footerhtml+='<i class="fa fa-users fav-icon"></i><br>';
- footerhtml+='Group </a></div>';
+ footerhtml+='Contact List</a></div>';
 
 
  footerhtml+='<div class="col-sm-3 col-xs-3 col-sm-3-me">';
