@@ -2,7 +2,7 @@
  var usertypedetail= JSON.parse(window.localStorage.getItem("userdetail"));
  var usertype= usertypedetail.acc_type;
  
- alert(usertype);
+ 
  
  var menuhtml='<div class="gw-sidebar"><div id="gw-sidebar" class="gw-sidebar"><div class="nano-content"><ul class="gw-nav gw-nav-list">';
  menuhtml+='<li class="init-un-active" style="height:60px;"> <a onClick="slide(\'index.html\')" style="padding:0px;"> <img src="images/log.jpg" width="260" height="60" class="img-responsive" style="height:60px !important;"> </a> </li>';
@@ -40,14 +40,20 @@
 
  menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-user"></i> Users</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
- menuhtml+='<li><a onClick="slide(\'add-user.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Add User</a></li>';
+ if(usertype!='user')
+ {
+   menuhtml+='<li><a onClick="slide(\'add-user.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Add User</a></li>';
+ }
  menuhtml+='<li><a onClick="slide(\'view-user.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View User</a></li>';
  menuhtml+='</ul>';
  menuhtml+='</li>';
 
  menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-users"></i> Reseller</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
- menuhtml+='<li><a onClick="slide(\'add-reseller.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Add Reseller</a></li>';
+ if(usertype!='user')
+ {
+   menuhtml+='<li><a onClick="slide(\'add-reseller.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Add Reseller</a></li>';
+ }
  menuhtml+='<li><a onClick="slide(\'view-reseller.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> View Reseller</a></li>';
  menuhtml+='</ul>';
  menuhtml+='</li>';
@@ -55,8 +61,14 @@
  menuhtml+='<li class="init-arrow-down mnli"> <a href="javascript:void(0)"> <span class="gw-menu-text"> <i class="fa fa-cogs"></i> Settings</span> <b></b> </a>';
  menuhtml+='<ul class="gw-submenu">';
 
- menuhtml+='<li><a onClick="slide(\'changeusertype.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Change User Type </a></li>';
- menuhtml+='<li><a onClick="slide(\'transfer-credits.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Transfer Credits </a></li>';
+ if(usertype!='user')
+ {
+   menuhtml+='<li><a onClick="slide(\'changeusertype.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Change User Type </a></li>';
+ 
+ 
+    menuhtml+='<li><a onClick="slide(\'transfer-credits.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Transfer Credits </a></li>';
+ }
+ 
  menuhtml+='<li><a onClick="slide(\'transsactionin.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions In </a></li>';
  menuhtml+='<li><a onClick="slide(\'transsactionout.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> Transactions Out </a></li>';
  //menuhtml+='<li><a onClick="slide(\'smsapi.html\')" ><i class="fa fa-angle-right" aria-hidden="true"></i> HTTP API </a></li>';
