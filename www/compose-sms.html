@@ -234,7 +234,7 @@
 
 	<div class="col-sm-12 col-xs-12" id="senderidrowhi">
 	<label id="labelsendid">Sender ID</label>
-			<select class="form-control" id="senderid" name="senderid" required="" style="height:50px"> 
+			<select class="form-control" id="senderid" name="senderid" required="" style="height:50px" data-native-menu="false"> 
 
 			<option value="">Sender ID</option>
 
@@ -244,6 +244,7 @@
 	<script>
 	var dropdown = document.getElementById('senderid');
 dropdown.addEventListener('touchstart', function(e) {
+alert('ram');
     e.stopPropagation();
 }, false);
 	</script>
