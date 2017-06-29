@@ -244,8 +244,13 @@
 	<script>
 	var dropdown = document.getElementById('senderid');
 dropdown.addEventListener('touchstart', function(e) {
-alert('ram');
-    e.stopPropagation();
+if (   e.target.tagName == "SELECT"
+        || e.target.tagName == "INPUT"
+        || e.target.tagName == "BUTTON"
+        || e.target.tagName == "TEXTAREA") {
+        return true;
+    }
+   // e.stopPropagation();
 }, false);
 	</script>
 	<div class="col-sm-1 col-xs-2 sender-id-ad sender-id-plus">
