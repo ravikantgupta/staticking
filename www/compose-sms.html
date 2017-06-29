@@ -241,6 +241,12 @@
 			</select>
 
 	</div>
+	<script>
+	var dropdown = document.getElementById('senderid');
+dropdown.addEventListener('touchstart', function(e) {
+    e.stopPropagation();
+}, false);
+	</script>
 	<div class="col-sm-1 col-xs-2 sender-id-ad sender-id-plus">
 			<label></label>
 			<a href="sender-id.html"><button type="button" id="opensenderid" class="btn btn-primary"><i class="fa fa-plus"></i></button></a>
@@ -304,7 +310,7 @@
 
 
       
-	<select id="msgtype" class="form-control" required="">
+	<select id="msgtype" class="form-control" required="" style="height:50px">
 
 	<option value="">Message Type</option>
 
@@ -323,7 +329,7 @@
 </div>
 
 	<div class="col-sm-12 col-xs-12"><label class="selecttmp control-label">Select Template</label>
-		<select id="templateswithname" class="form-control" onchange="gettemplate(this.value);">
+		<select id="templateswithname" class="form-control" onchange="gettemplate(this.value);" style="height:50px">
 		  <option value=""> Template</option>
 
 		</select>
